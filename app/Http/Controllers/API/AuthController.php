@@ -16,13 +16,13 @@ class AuthController extends Controller
     
     public function login(LoginUserRequest $request)
     {
-        if(!Auth::attempt($request->only(['email','password']))){
+        if(!Auth::attempt($request->only(['name','password']))){
             return response()->json([
                 'message' => 'Credenciais inválidas'
             ],401);
         }
         
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('name',$request->name)->first();
 
         return response()->json([
             "message" => "Autenticado com sucesso",
@@ -38,7 +38,6 @@ class AuthController extends Controller
 
         $user = User::create([
             'name' => $d['name'],
-            'email' => $d['email'],
             'password' => Hash::make($d['password'])
         ]);
 
