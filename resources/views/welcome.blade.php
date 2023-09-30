@@ -9,6 +9,5 @@
     </head>
     <body class="antialiased">
         
-        <livewire:select  :model="'User'" :allModel="'tiposFerramental'" :placeholder="'Procure o Tipo do ferramental'" :searchkey="'name'"/>
     </body>
 </html>
