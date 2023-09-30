@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('renavam', 45)->nullable();
             $table->string('placa', 45);
             $table->string('cor', 45);
+            $table->date('data_desativacao')->nullable();
             $table->tinyInteger('ativo')->nullable()->default('1');
             $table->foreignId('agente_id')->references('id')->on('agente');
             $table->timestamps();

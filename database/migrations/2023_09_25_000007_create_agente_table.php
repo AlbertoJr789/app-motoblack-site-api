@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('tipo', ['Mototaxista','Motorista'])->default('Mototaxista');
             $table->string('cnh', 45)->nullable();
             $table->enum('status',['Inativo','Ativo','Banido','Reprovado','Aprovado'])->default('Inativo');
+            $table->foreignId('users_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });

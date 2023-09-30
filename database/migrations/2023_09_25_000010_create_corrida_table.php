@@ -27,14 +27,18 @@ return new class extends Migration
             $table->string('justificativa_cancelamento')->nullable();
             $table->foreignId('veiculo_id')->references('id')->on('veiculo');
             
-            $table->double('lat_origem',10,7);
-            $table->double('lon_origem',10,7);
-            
-            $table->double('lat_destino',10,7);
-            $table->double('lon_destino',10,7);
+            $table->text('lat_origem',10,7);
+            $table->text('lon_origem',10,7);
+        
+            $table->text('lat_destino',10,7);
+            $table->text('lon_destino',10,7);
 
-            $table->foreign(['lat_origem','lon_origem'])->references(['latitude','longitude'])->on('coordenadas');
-            $table->foreign(['lat_destino','lon_destino'])->references(['latitude','longitude'])->on('coordenadas');
+            $table->text('latitude_motoboy',10,7);
+            $table->text('longitude_motoboy',10,7);
+
+
+            // $table->foreign(['lat_origem','lon_origem'])->references(['latitude','longitude'])->on('coordenadas');
+            // $table->foreign(['lat_destino','lon_destino'])->references(['latitude','longitude'])->on('coordenadas');
     
             $table->timestamps();
             $table->softDeletes();

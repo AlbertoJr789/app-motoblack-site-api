@@ -22,8 +22,7 @@ return new class extends Migration
             $table->string('nome');
             $table->string('cpf',14)->nullable();
             $table->string('rg')->nullable();
-            $table->foreignId('users_id')->references('id')->on('users');
-            $table->foreignId('endereco_id')->references('id')->on('endereco')->nullable();
+            $table->foreignId('endereco_id')->nullable()->references('id')->on('endereco');
             $table->timestamps();
             $table->softDeletes();            
         });

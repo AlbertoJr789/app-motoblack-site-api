@@ -21,6 +21,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pessoa_id')->references('id')->on('pessoa');
             $table->decimal('creditos', 10, 2)->default();
+            $table->foreignId('users_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });

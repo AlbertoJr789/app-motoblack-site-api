@@ -17,14 +17,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('coordenadas', function (Blueprint $table) {
-            $table->double('latitude',10,7);
-            $table->double('longitude',10,7);
-            $table->primary(['latitude','longitude']);
-            $table->foreignId('endereco_id')->references('id')->on('endereco');
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        // Schema::create('coordenadas', function (Blueprint $table) {
+        //     $table->double('latitude',10,7);
+        //     $table->double('longitude',10,7);
+        //     $table->primary(['latitude','longitude']);
+        //     $table->foreignId('endereco_id')->references('id')->on('endereco');
+        //     $table->timestamps();
+        //     $table->softDeletes();
+        // });
     }
 
     /**
