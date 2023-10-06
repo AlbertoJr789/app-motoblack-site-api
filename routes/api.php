@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 //rotas da primeira versão
-Route::group(['namespace' => 'App\Http\Controllers\API', 'middleware' => 'auth:sanctum'], function () {
-    Route::apiResource('pacotes', PacoteController::class);
-});
+// Route::group(['namespace' => 'App\Http\Controllers\API', 'middleware' => 'auth:sanctum'], function () {
+    // Route::apiResource('pacotes', PacoteController::class);
+// });
 
 
 Route::group(['prefix' => 'auth'],function () {
