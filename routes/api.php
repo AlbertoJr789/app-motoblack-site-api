@@ -22,6 +22,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth'],function () {
     Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login']);
-    Route::post('cadastro', [App\Http\Controllers\API\AuthController::class, 'cadastro']);
     Route::post('logout', [App\Http\Controllers\API\AuthController::class, 'logout'])->middleware('auth:sanctum');
 });
