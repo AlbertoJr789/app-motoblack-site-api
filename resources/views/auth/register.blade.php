@@ -9,6 +9,10 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
+            @if(request()->query('mototaxista'))
+                <input type="text" name="mototaxista" value="true" hidden>
+            @endif
+
             <div>
                 <x-label for="name" value="{{ __('Name') }}" class="required"/>
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />

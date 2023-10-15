@@ -20,6 +20,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
+        dd($input);
         if($input['email']==""){
             unset($input['email']);
         }
@@ -31,10 +32,16 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'] ?? null,
             'password' => Hash::make($input['password']),
-        ]);
+        ]); 
+
+        // if(isset($input['mototaxista'])){
+
+        // }
+
+        // return;
     }
 }
