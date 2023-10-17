@@ -30,3 +30,4 @@ Route::post(
     'generator_builder/generate-from-file',
     '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile'
 )->name('io_generator_builder_generate_from_file');
+Route::resource('passageiros', App\Http\Controllers\PassageiroController::class);

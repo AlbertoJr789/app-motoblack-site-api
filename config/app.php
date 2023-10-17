@@ -170,7 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
-        InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class
+        InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class,
     ])->toArray(),
 
     /*

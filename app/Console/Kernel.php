@@ -4,9 +4,23 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use InfyOm\Generator\Commands\API\APIControllerGeneratorCommand;
+use InfyOm\Generator\Commands\API\APIGeneratorCommand;
+use InfyOm\Generator\Commands\API\APIRequestsGeneratorCommand;
+use InfyOm\Generator\Commands\APIScaffoldGeneratorCommand;
+use InfyOm\Generator\Commands\Scaffold\ScaffoldGeneratorCommand;
 
 class Kernel extends ConsoleKernel
 {
+
+    protected $commands = [
+        APIGeneratorCommand::class,
+        APIRequestsGeneratorCommand::class,
+        APIControllerGeneratorCommand::class,
+        APIScaffoldGeneratorCommand::class,
+        ScaffoldGeneratorCommand::class,
+    ];
+
     /**
      * Define the application's command schedule.
      */
