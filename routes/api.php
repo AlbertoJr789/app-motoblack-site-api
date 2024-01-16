@@ -24,3 +24,7 @@ Route::group(['prefix' => 'auth'],function () {
     Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login']);
     Route::post('logout', [App\Http\Controllers\API\AuthController::class, 'logout'])->middleware('auth:sanctum');
 });
+
+
+Route::resource('testes', App\Http\Controllers\API\TesteAPIController::class)
+    ->except(['create', 'edit']);
