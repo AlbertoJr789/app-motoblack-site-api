@@ -13,6 +13,10 @@
     color: red;
 } 
 
+div::-webkit-scrollbar {
+    width: 0.4rem;
+    height: 0.4rem;
+}
 
 body::-webkit-scrollbar {
     width: 1em;
@@ -26,4 +30,18 @@ body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #2c2a2a transparent;
+}
+
+div {
+    scrollbar-color: rgb(251,191,36) transparent;
+  }
+div::-webkit-scrollbar {
+    width: 0.4rem;
+    height: 0.4rem;
+  }
 

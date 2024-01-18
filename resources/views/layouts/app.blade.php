@@ -25,13 +25,13 @@
 
         <x-sidebar-menu />
 
-        <div class="min-h-screen sm:ml-20 bg-gray-600">
+        <div class="min-h-screen sm:ml-20 bg-gray-100">
             
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow ml-5">
+                <header class="bg-white shadow ml-5">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -49,5 +49,7 @@
         @stack('modals')
 
         @livewireScripts
+        
+        @vite('resources/js/app.js')
     </body>
 </html>

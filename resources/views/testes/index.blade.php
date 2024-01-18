@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -17,15 +18,13 @@
         </div>
     </section>
 
-    <div class="content px-3">
+    <div class="p-3 w-full h-full">
 
         @include('flash::message')
 
-        <div class="clearfix"></div>
-
-        <div class="card">
-            @include('testes.table')
-        </div>
+        <x-card class="w-full">
+           <Datatable/>
+        </x-card>
     </div>
 
 @endsection
