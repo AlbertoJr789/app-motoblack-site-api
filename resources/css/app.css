@@ -5,9 +5,7 @@
 [x-cloak] {
     display: none;
 }
-:root{
-    --transition-speed: 600ms;
-}
+
 .required:after {
     content:" *";
     color: red;
@@ -43,5 +41,4 @@ div {
 div::-webkit-scrollbar {
     width: 0.4rem;
     height: 0.4rem;
-  }
-
+}

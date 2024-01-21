@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
-                       href="{{ route('testes.create') }}">
+                       href="{{ route('admin.testes.create') }}">
                         Add New
                     </a>
                 </div>
@@ -23,7 +23,7 @@
         @include('flash::message')
 
         <x-card class="w-full">
-           <Datatable/>
+           <Datatable :ajax-route="'{{route('admin.testes.dataTableData')}}'"/>
         </x-card>
     </div>
 

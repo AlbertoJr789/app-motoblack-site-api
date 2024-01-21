@@ -1,0 +1,30 @@
+@tailwind components;
+
+@layer components {
+    .dataTables_processing {
+        @apply absolute top-[50%] left-[50%] bg-secondary rounded-lg shadow-md m-0 p-[1rem_2rem] translate-x-[-50%] translate-y-[-50%] text-center 
+    }
+    .dataTables_processing>div:last-child {
+        @apply relative w-[80px] h-[15px] m-[1em_auto]
+    }
+
+    .dataTables_processing>div:last-child>div:nth-child(1) {
+        @apply left-[8px] animate-dt-table1
+    }
+
+    .dataTables_processing>div:last-child>div:nth-child(2) {
+        @apply left-[8px] animate-dt-table2
+    }
+
+    .dataTables_processing>div:last-child>div:nth-child(3) {
+        @apply left-[32px] animate-dt-table2
+    }
+
+    .dataTables_processing>div:last-child>div:nth-child(4) {
+        @apply left-[56px] animate-dt-table3
+    }
+    
+    .dataTables_processing>div:last-child>div {
+       @apply absolute top-0 w-[13px] h-[13px] rounded-[50%] bg-amber-400 ease-in-out;
+    }
+}

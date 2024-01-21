@@ -1,0 +1,35 @@
+@tailwind components;
+
+@layer components {
+    tr {
+        @apply odd:bg-zinc-100 hover:bg-gray-300 transition-all duration-100;
+    }
+    td {
+        @apply px-6 py-4;
+    }
+    .dataTables_wrapper .dataTables_filter > label > input {
+        @apply border-gray-700  text-neutral-900 focus:border-amber-400 focus:ring-amber-600 rounded-md shadow-sm transition ease-in-out;
+    }
+    .dataTables_wrapper .dataTables_length > label > select {
+        @apply border-gray-700  text-neutral-900 focus:border-amber-400 focus:ring-amber-600 rounded-md shadow-sm transition ease-in-out;
+    }
+    .table-responsive {
+        @apply overflow-x-auto relative z-[1];
+    }
+    .dataTables_info {
+        @apply mx-2;
+    }
+
+    .paginate_button {
+        @apply  bg-amber-300 px-2 py-1 text-neutral-900 rounded-md transition ease-in-out mx-1 hover:cursor-pointer hover:bg-secondary hover:text-amber-300 shadow-md;
+    }
+
+    .current {
+        @apply bg-secondary text-amber-300;
+    }
+
+    .disabled {
+        @apply hidden
+    }
+
+}

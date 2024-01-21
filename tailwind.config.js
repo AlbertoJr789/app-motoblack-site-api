@@ -10,6 +10,7 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/views/**/*.vue',
+        './resources/css/**'
     ],
 
     theme: {
@@ -20,6 +21,25 @@ export default {
             colors: {
                 primary: '#E7E6E6',
                 secondary: '#0A0909',
+            },
+            animation: {
+                'dt-table1': 'datatables-loader-1 .6s infinite',
+                'dt-table2': 'datatables-loader-2 .6s infinite',
+                'dt-table3': 'datatables-loader-3 .6s infinite',
+            },
+            keyframes: {
+                'datatables-loader-1': {
+                    '0%': { transform: 'scale(0)' },
+                    '100%': { transform: 'scale(1)' }
+                },
+                'datatables-loader-2': {
+                    '0%': { transform: 'translate(0,0)' },
+                    '100%': { transform: 'translate(24px,0)' }
+                },
+                'datatables-loader-3': {
+                    '0%': { transform: 'scale(1)' },
+                    '100%': { transform: 'scale(0)' }
+                },
             }
         },
     },

@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
+Route::group(['as' => 'admin.', 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified' ]], function () {
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::resource('testes', App\Http\Controllers\TesteController::class);
+    Route::group(['prefix' => 'testes', 'as' => 'testes.'],function(){
+        Route::resource('/', App\Http\Controllers\TesteController::class);
+        Route::get('dataTableData',[App\Http\Controllers\TesteController::class,'dataTableData'])->name('dataTableData');
+    });
 });
 
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder');

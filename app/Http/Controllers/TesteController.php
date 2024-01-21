@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateTesteRequest;
 use App\Http\Requests\UpdateTesteRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Teste;
 use App\Repositories\TesteRepository;
 use Illuminate\Http\Request;
-use Flash;
+use Laracasts\Flash\Flash;
+use Yajra\DataTables\Facades\DataTables;
 
 class TesteController extends AppBaseController
 {
@@ -125,4 +127,21 @@ class TesteController extends AppBaseController
 
         return redirect(route('testes.index'));
     }
+
+    /**
+     * Process dataTable ajax response.
+     *
+     * @param \Yajra\Datatables\Datatables $datatables
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function dataTableData(Request $request){
+
+        $query = Teste::whereNotNull('created_at');
+
+        return DataTables::eloquent($query)
+                          ->rawColumns([])
+                          ->make();
+
+    }
+
 }
