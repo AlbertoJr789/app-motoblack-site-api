@@ -1,5 +1,7 @@
 <!-- Teste Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('teste', 'Teste:') !!}
-    {!! Form::text('teste', null, ['class' => 'form-control']) !!}
+<div class="grid sm:grid-cols-2 grid-cols-1">
+    <div>
+        {!! Form::label('teste', 'Teste:',['class' => "block mx-1"]) !!}
+        {!! Form::text('teste', null, ['class' => 'input','required' => 'true','wire:model' => 'teste']) !!}
+    </div>
 </div>

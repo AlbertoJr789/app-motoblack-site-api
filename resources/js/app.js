@@ -5,6 +5,7 @@
  */
 
 import './bootstrap';
+// import 'flowbite';
 import { createApp } from 'vue';
 import '../css/app.css';
 
@@ -35,4 +36,4 @@ Object.entries(import.meta.glob('../views/**/*.vue', { eager: true })).forEach((
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
 
-app.mount('body');
+app.mount('main');

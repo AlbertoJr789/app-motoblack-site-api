@@ -25,7 +25,7 @@
 
         <x-sidebar-menu />
 
-        <div class="min-h-screen sm:ml-20 bg-gray-100">
+        <div class="min-h-screen sm:ml-20 sm:mb-0 mb-20 bg-gray-100">
             
             @livewire('navigation-menu')
 
@@ -49,7 +49,6 @@
         @stack('modals')
 
         @livewireScripts
-        
         @vite('resources/js/app.js')
     </body>
 </html>

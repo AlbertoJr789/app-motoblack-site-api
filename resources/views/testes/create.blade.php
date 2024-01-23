@@ -1,42 +1,20 @@
-@extends('layouts.app')
 
-@section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1>
-                    Create Testes
-                    </h1>
-                </div>
-            </div>
-        </div>
-    </section>
+<x-dialog-modal wire:model.live="open" id="modalCreate">
+    <x-slot name="title">
+        {{__('Create new register')}}
+    </x-slot>
 
-    <div class="content px-3">
-
+    <x-slot name="content">
         @include('adminlte-templates::common.errors')
+        {!! Form::model($teste,['wire:submit.prevent' => 'submit']) !!}
+                @include('testes.fields')
+    </x-slot>
 
-        <div class="card">
-
-            {!! Form::open(['route' => 'admin.testes.store']) !!}
-
-            <div class="card-body">
-
-                <h2>Chupa</h2>
-                <div class="row">
-                    @include('testes.fields')
-                </div>
-
-            </div>
-
-            <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('admin.testes.index') }}" class="btn btn-default"> Cancel </a>
-            </div>
-
-            {!! Form::close() !!}
-
-        </div>
-    </div>
-@endsection
+    <x-slot name="footer">
+        <x-button class="btn-primary ml-3" type="submit" wire:loading>
+            <div></div>
+            {{__('Add')}}
+        </x-button>
+        {!! Form::close() !!}
+    </x-slot>
+</x-dialog-modal>

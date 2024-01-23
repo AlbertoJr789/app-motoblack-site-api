@@ -19,9 +19,8 @@
     import DataTable from 'datatables.net-vue3';
     import DataTablesCore from 'datatables.net';
     import '../../css/dataTables.css';
-    console.log('eaeae');
     import '../../css/dataTablesLoader.css';
-    import { onMounted, ref } from 'vue';
+    import { ref } from 'vue';
     
     DataTable.use(DataTablesCore);
 
@@ -66,7 +65,4 @@
     const ajax = {
         url: props.ajaxRoute
     }
-
-  
-
 </script>

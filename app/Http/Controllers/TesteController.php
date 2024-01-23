@@ -32,59 +32,18 @@ class TesteController extends AppBaseController
             ->with('testes', $testes);
     }
 
-    /**
-     * Show the form for creating a new Teste.
-     */
-    public function create()
-    {
-        return view('testes.create');
-    }
-
+    
     /**
      * Store a newly created Teste in storage.
      */
     public function store(CreateTesteRequest $request)
     {
         $input = $request->all();
-
         $teste = $this->testeRepository->create($input);
-
         Flash::success('Teste saved successfully.');
-
-        return redirect(route('testes.index'));
+        return response('Ok');
     }
 
-    /**
-     * Display the specified Teste.
-     */
-    public function show($id)
-    {
-        $teste = $this->testeRepository->find($id);
-
-        if (empty($teste)) {
-            Flash::error('Teste not found');
-
-            return redirect(route('testes.index'));
-        }
-
-        return view('testes.show')->with('teste', $teste);
-    }
-
-    /**
-     * Show the form for editing the specified Teste.
-     */
-    public function edit($id)
-    {
-        $teste = $this->testeRepository->find($id);
-
-        if (empty($teste)) {
-            Flash::error('Teste not found');
-
-            return redirect(route('testes.index'));
-        }
-
-        return view('testes.edit')->with('teste', $teste);
-    }
 
     /**
      * Update the specified Teste in storage.

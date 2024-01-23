@@ -126,11 +126,11 @@ abstract class BaseRepository
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|Model
      */
-    public function update(array $input, int $id)
+    public function update(array $input, $id)
     {
         $query = $this->model->newQuery();
 
-        $model = $query->findOrFail($id);
+        $model = is_int($id) ? $query->findOrFail($id) : $id; 
 
         $model->fill($input);
 

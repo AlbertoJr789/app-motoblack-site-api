@@ -21,6 +21,7 @@
         "vue": "^3.2.37"
     },
     "dependencies": {
-        "datatables.net-vue3": "^2.1.3"
+        "datatables.net-vue3": "^2.1.3",
+        "flowbite": "^2.2.1"
     }
 }
