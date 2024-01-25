@@ -1,5 +1,9 @@
 
+
 <template>
+    <div class="sm:float-left sm:mb-0 sm:text-start text-center">
+        <slot name="toolbar"></slot>
+    </div>
     <DataTable :data="data" :columns="columns" :ajax="ajax" :options="options" ref="table" class="display border border-transparent border-separate border-spacing-0 rounded-lg">
         <thead class="text-xs text text-amber-300 uppercase hover:cursor-pointer">
             <tr class="border">
@@ -20,7 +24,7 @@
     import DataTablesCore from 'datatables.net';
     import '../../css/dataTables.css';
     import '../../css/dataTablesLoader.css';
-    import { ref } from 'vue';
+    import { ref, } from 'vue';
     
     DataTable.use(DataTablesCore);
 
@@ -34,9 +38,14 @@
     })
 
     const columns = [
+        { responsivePriority: 2, data: 'select', name: 'select', title: `<div class="form-check form-check-sm form-check-custom form-check-solid mx-0">
+                    <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#table .form-check-input" value="1"/></div>`, 
+                    className:'text-center noVis', orderable: false, searchable: false, visible: true, width: '20px'},
         {data: 'teste', title: 'Teste'},
         {data: 'created_at', title: 'Criação'},
-        {data: 'updated_at', title: 'Atualização'}
+        {data: 'updated_at', title: 'Atualização'},
+        { responsivePriority: 2, data: 'action', name: 'action', title: '', className:'text-center noVis', orderable: false, searchable: false, width: '50px'},
+
     ]
 
     const options = {
@@ -65,4 +74,20 @@
     const ajax = {
         url: props.ajaxRoute
     }
+
+    document.addEventListener('livewire:initialized', () => {
+        Livewire.on('alert',(e)=>{
+            Swal.fire({
+                icon: e[0].icon,
+                title: e[0].title,
+                text: e[0].text
+            })
+            table.value.dt.draw()
+        })
+        Livewire.on('loadInputs',(teste) => {
+             teste = teste[0]
+             document.querySelector("#teste").value = teste.teste
+        })
+    })
+
 </script>

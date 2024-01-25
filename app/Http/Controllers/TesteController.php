@@ -98,7 +98,13 @@ class TesteController extends AppBaseController
         $query = Teste::whereNotNull('created_at');
 
         return DataTables::eloquent($query)
-                          ->rawColumns([])
+                          ->addColumn('select',function($reg){
+                                return '';
+                          })
+                          ->addColumn('action',function($reg){
+                                return view('testes.action-buttons',['data' => $reg]);
+                          })
+                          ->rawColumns(['action'])
                           ->make();
 
     }

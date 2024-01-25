@@ -6,17 +6,18 @@
 
 import './bootstrap';
 // import 'flowbite';
+import Swal from 'sweetalert2';
+window.Swal = Swal
 import { createApp } from 'vue';
 import '../css/app.css';
-
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
  * to use in your application's views. An example is included for you.
  */
-
 const app = createApp({});
 
+console.log('monta o app');
 
 /**
  * The following block of code may be used to automatically register your

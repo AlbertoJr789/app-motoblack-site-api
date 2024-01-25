@@ -141,5 +141,10 @@
     "New": "Novo",
     "Filter": "Filtro",
     "Add": "Adicionar",
-    "Create new register": "Criar novo registro"
+    "Create new register": "Criar novo registro",
+    "added successfully!": "Adicionado(a) com sucesso!",
+    "updated successfully!": "Atualizado(a) com sucesso!",
+    "Success": "Sucesso",
+    "Error": "Erro",
+    "Update register": "Atualizar registro"
 }

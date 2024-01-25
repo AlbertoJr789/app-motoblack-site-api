@@ -1,13 +1,16 @@
-
 <x-dialog-modal wire:model.live="open" id="modalCreate">
     <x-slot name="title">
-        {{__('Create new register')}}
+        @if($Teste)
+            {{__('Update register')}}
+        @else
+            {{__('Create new register')}}
+        @endif
     </x-slot>
 
     <x-slot name="content">
         @include('adminlte-templates::common.errors')
-        {!! Form::model($teste,['wire:submit.prevent' => 'submit']) !!}
-                @include('testes.fields')
+        {!! Form::model($Teste,['wire:submit.prevent' => 'submit']) !!}
+            @include('testes.fields')
     </x-slot>
 
     <x-slot name="footer">
@@ -18,3 +21,9 @@
         {!! Form::close() !!}
     </x-slot>
 </x-dialog-modal>
+
+@script
+<script>
+
+</script>
+@endscript
