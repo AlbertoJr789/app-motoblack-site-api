@@ -45,13 +45,18 @@ div::-webkit-scrollbar {
 
 @layer components {
     .btn-primary {
-        @apply inline-flex items-center px-4 py-3 bg-secondary border border-transparent rounded-md font-semibold text-xs text-amber-300 uppercase tracking-widest hover:bg-zinc-800 active:bg-gray-900 focus:ring-4 focus:ring-amber-400 transition ease-in-out duration-150
-
+        @apply inline-flex items-center px-4 py-3 bg-secondary border border-transparent rounded-md font-semibold text-xs text-amber-300 uppercase tracking-widest hover:bg-zinc-800  focus:ring-4 focus:ring-amber-400 transition ease-in-out duration-150
     }
     .btn-secondary {
-        @apply inline-flex items-center px-4 py-3 bg-amber-400 border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-amber-200  active:bg-gray-900 focus:ring-2 focus:ring-black transition ease-in-out duration-150
+        @apply inline-flex items-center px-4 py-3 bg-amber-400 border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-amber-200   focus:ring-2 focus:ring-black transition ease-in-out duration-150
+    }
+    .btn-danger {
+        @apply inline-flex items-center px-4 py-3 bg-danger border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#FF0505]   focus:ring-2 focus:ring-black transition ease-in-out duration-150 hover:text-black
     }
     .input { 
-        @apply border-gray-300 dark:border-gray-700 dark:bg-neutral-300 dark:text-neutral-900 focus:border-amber-400 dark:focus:border-amber-400 focus:ring-amber-400 dark:focus:ring-amber-600 rounded-md shadow-sm transition ease-in-out
+        @apply rounded bg-white border-black focus:border-amber-300 shadow-sm focus:ring-amber-600 focus:ring-offset-amber-600 transition-all ease-in-out duration-100 
+    }
+    .input-checkbox {
+        @apply focus:ring-offset-0 text-amber-500 checked:bg-amber-400
     }
 }

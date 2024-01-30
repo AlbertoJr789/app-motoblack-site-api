@@ -17,8 +17,6 @@ import '../css/app.css';
  */
 const app = createApp({});
 
-console.log('monta o app');
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

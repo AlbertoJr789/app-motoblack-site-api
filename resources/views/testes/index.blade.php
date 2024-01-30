@@ -23,3 +23,40 @@
     @endpush
 @endsection
 
+@push('scripts')
+    <script>
+        function deleteRegister(teste){
+            console.log(teste);
+            Swal.fire({
+                icon: 'info',
+                title: "{{__('Delete register')}}",     
+                text: teste instanceof Array ? "{{__('Are you sure you want to delete the selected registers?')}}": "{{__('Are you sure you want to delete this register?')}}",
+                showCancelButton: true,
+                confirmButtonText: "{{__('Yes')}}",
+                confirmButtonColor: "#27272A",
+                cancelButtonColor: "#EA4335",
+                cancelButtonText: "{{__('Cancel')}}"     
+            }).then((res) => {
+                if(res.value){
+                    Livewire.dispatch('delete',[teste])
+                }
+            })
+        }
+        function restoreRegister(teste){
+            Swal.fire({
+                icon: 'info',
+                title: "{{__('Restore register')}}",     
+                text: "{{__('Are you sure you want to restore this register?')}}",
+                showCancelButton: true,
+                confirmButtonText: "{{__('Yes')}}",
+                confirmButtonColor: "#27272A",
+                cancelButtonColor: "#EA4335",
+                cancelButtonText: "{{__('Cancel')}}"     
+            }).then((res) => {
+                if(res.value){
+                    Livewire.dispatch('restore',[id])
+                }
+            })
+        }
+    </script>
+@endpush

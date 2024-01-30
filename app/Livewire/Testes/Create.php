@@ -47,6 +47,46 @@ class Create extends Component
         $this->dispatch('loadInputs',$teste);
     }
 
+    #[On('delete')]
+    public function delete($testes){
+        try {
+            if(!is_array($testes))
+                $testes = [$testes];
+            (new TesteRepository)->deleteMultiple($testes);
+            $message = [
+                'icon' => 'success',
+                'title' => __('Success'),
+                'text' => 'Teste(s) '.__('deleted successfuly!')
+            ];
+        } catch (\Throwable $th) {
+            $message = [
+                'icon' => 'error',
+                'title' => __('Error'),
+                'text' => __('Whoops! Something went wrong.')
+            ];
+        }
+        $this->dispatch('alert',$message);
+    }
+
+    #[On('restore')]
+    public function restore($testes){
+        try {
+            (new TesteRepository)->restoreMultiple($testes);
+            $message = [
+                'icon' => 'success',
+                'title' => __('Success'),
+                'text' => 'Teste(s) '.__('restored successfuly!')
+            ];
+        } catch (\Throwable $th) {
+            $message = [
+                'icon' => 'error',
+                'title' => __('Error'),
+                'text' => __('Whoops! Something went wrong.')
+            ];
+        }
+        $this->dispatch('alert',$message);
+    }
+
     public function submit()
     {
         try {
@@ -58,7 +98,7 @@ class Create extends Component
                     'text' => 'Teste '.__('added successfully!')
                 ];
             } else {
-                $this->Teste->update($this->except(['open','create','update','id']));
+                (new TesteRepository)->update($this->except(['open','create','update','id']),$this->Teste->id);
                 $message = [
                     'icon' => 'success',
                     'title' => __('Success'),
@@ -66,6 +106,7 @@ class Create extends Component
                 ];
             }
         } catch (\Throwable $th) {
+            dd($th);
             $message = [
                 'icon' => 'error',
                 'title' => __('Error'),

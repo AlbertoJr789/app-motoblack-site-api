@@ -146,5 +146,16 @@
     "updated successfully!": "Atualizado(a) com sucesso!",
     "Success": "Sucesso",
     "Error": "Erro",
-    "Update register": "Atualizar registro"
+    "Update register": "Atualizar registro",
+    "deleted successfuly!": "Deletado(s) com sucesso!",
+    "restored successfuly!": "Restaurado(s) com sucesso!",
+    "Delete register": "Exclusão de registro",
+    "Are you sure you want to delete this register?": "Tem certeza de que deseja excluir este registro?",
+    "Are you sure you want to delete the selected registers?": "Tem certeza de que deseja excluir os registros selecionados?",
+    "Restore register": "Restauração de registro",
+    "Are you sure you want to restore this register?": "Tem certeza de que deseja restaurar este registro?",
+    "Are you sure you want to restore the selected registers?": "Tem certeza de que deseja restaurar os registros selecionados?",
+    "Yes": "Sim",
+    "Cancel": "Cancelar",
+    "Update": "Atualizar"
 }

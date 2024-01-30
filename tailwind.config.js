@@ -22,6 +22,7 @@ export default {
             colors: {
                 primary: '#E7E6E6',
                 secondary: '#0A0909',
+                danger: '#ff3700'
             },
             animation: {
                 'dt-table1': 'datatables-loader-1 .6s infinite',

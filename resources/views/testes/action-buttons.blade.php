@@ -13,7 +13,7 @@
         </div>
     </button>
     @if(!$data->deleted_at)
-    <button class="btn-secondary w-[25px] h-[25px] ms-auto me-1 flex justify-center" title="Deletar Registro" onclick="delete({{$data->id}})">
+    <button class="btn-danger w-[25px] h-[25px] ms-auto me-1 flex justify-center" title="Deletar Registro" onclick="deleteRegister({{$data->id}})">
         <span class="svg-icon svg-icon-3">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -29,7 +29,7 @@
     </button>
     @endif
     @if($data->deleted_at)
-    <button class="btn btn-icon btn-active-light-info w-25px h-25px ms-auto me-1 tooltip-btn" title="Restaurar Registro" onclick="restore({{$data->id}})">
+    <button class="btn btn-icon btn-active-light-info w-25px h-25px ms-auto me-1 tooltip-btn" title="Restaurar Registro" onclick="restoreRegister({{$data->id}})">
         <i class="fa fa-trash-restore"></i>
     </button>
     @endif

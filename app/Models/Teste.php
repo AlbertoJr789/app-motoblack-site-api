@@ -3,13 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Teste extends Model
 {
+    use SoftDeletes;
+
     public $table = 'Teste';
 
     public $fillable = [
-        'teste'
+        'teste',
+        'criou',
+        'editou',
+        'deletou'
     ];
 
     protected $casts = [

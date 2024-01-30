@@ -7,6 +7,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 abstract class BaseRepository
 {
@@ -102,6 +103,7 @@ abstract class BaseRepository
      */
     public function create(array $input): Model
     {
+        $input['criou'] = Auth::id();
         $model = $this->model->newInstance($input);
 
         $model->save();
@@ -128,6 +130,7 @@ abstract class BaseRepository
      */
     public function update(array $input, $id)
     {
+        $input['editou'] = Auth::id();
         $query = $this->model->newQuery();
 
         $model = is_int($id) ? $query->findOrFail($id) : $id; 
@@ -152,4 +155,40 @@ abstract class BaseRepository
 
         return $model->delete();
     }
+
+    
+    /**
+     * @throws \Exception
+     *
+     * @return bool|mixed|null
+     */
+    public function deleteMultiple(array $ids)
+    {
+        $query = $this->model->newQuery();
+
+        $model = $query->whereIn($this->model->getKeyName(),$ids);
+
+        return $model->update([
+            'deletou' => Auth::id(),
+            'deleted_at' => now()
+        ]);
+    }
+
+      /**
+     * @throws \Exception
+     *
+     * @return bool|mixed|null
+     */
+    public function restoreMultiple(array $ids)
+    {
+        $query = $this->model->newQuery();
+
+        $model = $query->whereIn($this->model->getKeyName(),$ids);
+
+        return $model->update([
+            'deletou' => null,
+            'deleted_at' => null
+        ]);
+    }
+
 }
