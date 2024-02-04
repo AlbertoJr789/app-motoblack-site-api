@@ -95,7 +95,8 @@ class TesteController extends AppBaseController
      */
     public function dataTableData(Request $request){
 
-        $query = Teste::whereNotNull('created_at');
+        $query = Teste::query();
+        $query = $this->filterDataTableData($query,$request->all());
 
         return DataTables::eloquent($query)
                           ->addColumn('select',function($reg){
@@ -107,6 +108,29 @@ class TesteController extends AppBaseController
                           ->rawColumns(['action'])
                           ->make();
 
+    }
+
+    private function filterDataTableData($query,$r){
+        if(isset($r['dateTypeFilter'])){
+            $field = null;
+            switch($r['dateTypeFilter']){
+                case 'C': $field = 'created_at'; break;
+                case 'U': $field = 'updated_at'; break;
+                case 'D': $field = 'deleted_at'; $query->onlyTrashed(); break;
+            }
+            if(isset($r['initialDate']) && $r['initialDate'])
+                $query->where($field,'>=',$r['initialDate']);
+            if(isset($r['endDate']) && $r['endDate'])
+                $query->where($field,'<=',$r['initialDate']);
+        }
+        if(isset($r['activeFilter'])){
+            if($r['activeFilter'] == 'on'){
+                $query->active();
+            }else{
+                $query->unactive();
+            }
+        }
+        return $query;
     }
 
 }

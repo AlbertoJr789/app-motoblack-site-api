@@ -14,9 +14,10 @@
     </x-slot>
 
     <x-slot name="footer">
-        <x-button class="btn-primary ml-3" type="submit" wire:loading>
-            <div></div>
+        <x-button class="btn-primary ml-3" type="submit">
             @if($Teste) {{__('Update') }} @else {{__('Add')}}   @endif
+            <x-loader wire:loading wire:target="submit"/>
+          </div>
         </x-button>
         {!! Form::close() !!}
     </x-slot>

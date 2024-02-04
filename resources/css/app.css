@@ -44,6 +44,9 @@ div::-webkit-scrollbar {
 }
 
 @layer components {
+    .btn {
+        @apply inline-flex items-center px-4 py-3 bg-primary border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest focus:ring-2 focus:ring-black transition ease-in-out duration-150
+    }
     .btn-primary {
         @apply inline-flex items-center px-4 py-3 bg-secondary border border-transparent rounded-md font-semibold text-xs text-amber-300 uppercase tracking-widest hover:bg-zinc-800  focus:ring-4 focus:ring-amber-400 transition ease-in-out duration-150
     }
@@ -51,12 +54,15 @@ div::-webkit-scrollbar {
         @apply inline-flex items-center px-4 py-3 bg-amber-400 border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-amber-200   focus:ring-2 focus:ring-black transition ease-in-out duration-150
     }
     .btn-danger {
-        @apply inline-flex items-center px-4 py-3 bg-danger border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#FF0505]   focus:ring-2 focus:ring-black transition ease-in-out duration-150 hover:text-black
+        @apply inline-flex items-center px-4 py-3 bg-danger border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-[#FF0505]   focus:ring-2 focus:ring-black transition ease-in-out duration-150
     }
     .input { 
         @apply rounded bg-white border-black focus:border-amber-300 shadow-sm focus:ring-amber-600 focus:ring-offset-amber-600 transition-all ease-in-out duration-100 
     }
     .input-checkbox {
         @apply focus:ring-offset-0 text-amber-500 checked:bg-amber-400
+    }
+    .checkbox-toggle-switch {
+        @apply mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-amber-400 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-amber-300 checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:hover:bg-amber-300 text-amber-300
     }
 }

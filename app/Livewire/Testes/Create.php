@@ -71,6 +71,8 @@ class Create extends Component
     #[On('restore')]
     public function restore($testes){
         try {
+            if(!is_array($testes))
+                $testes = [$testes];
             (new TesteRepository)->restoreMultiple($testes);
             $message = [
                 'icon' => 'success',
@@ -106,7 +108,6 @@ class Create extends Component
                 ];
             }
         } catch (\Throwable $th) {
-            dd($th);
             $message = [
                 'icon' => 'error',
                 'title' => __('Error'),

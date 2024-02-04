@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('teste');
             $table->timestamps();
             $table->softDeletes();
+            $table->boolean('active')->default(true);
             $table->foreignId('criou')->references('id')->on('users');
             $table->foreignId('editou')->nullable()->references('id')->on('users');
             $table->foreignId('deletou')->nullable()->references('id')->on('users');

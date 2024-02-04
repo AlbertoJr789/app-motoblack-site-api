@@ -4,8 +4,9 @@
     <div class="sm:float-left sm:mb-0 sm:text-start text-center">
         <slot name="toolbar"></slot>
         <span v-if="checked.length">
-            <button class="btn-danger" @click="deleteMultiple()">Delete</button>
-            {{ checked.length }} elements checked
+            <button v-if="!deletedFilter" class="btn-danger" @click="deleteMultiple()">Delete</button>
+            <button v-else class="btn-danger" @click="restoreMultiple()">Restaurar</button>
+            {{ checked.length }} elementos marcados
         </span>
     </div>
     <DataTable :columns="columns" :ajax="ajax" :options="options" ref="table" class="display border border-transparent border-separate border-spacing-0 rounded-lg" id="tableTestes">
@@ -26,15 +27,16 @@
 <script setup>
     import DataTable from 'datatables.net-vue3';
     import DataTablesCore from 'datatables.net';
+    import { ref, toRaw } from 'vue';
+    import { fillForms, handleCheckboxes } from '../../js/utils.js';
     import '../../css/dataTables.css';
     import '../../css/dataTablesLoader.css';
-    import { ref, toRaw } from 'vue';
-    import { fillForms } from '../../js/utils.js'
     
     DataTable.use(DataTablesCore);
 
     const table = ref()
     const checked = ref([])
+    let deletedFilter = false
 
     const props = defineProps({
         ajaxRoute: {
@@ -88,33 +90,7 @@
             },
         ],
         initComplete: () => {
-            document.getElementById('tableTestes').addEventListener('change',(e)=>{
-                if(e.target.type == 'checkbox'){
-                    let value = e.target.getAttribute('value')
-                    if(e.target.checked){
-                        if(value == -1){ //table header marker
-                            document.querySelectorAll('#tableTestes input[type="checkbox"]').forEach((checkbox)=>{
-                                checkbox.checked = true
-                                value = checkbox.getAttribute('value')
-                                if(!checked.value.includes(value) && value != -1){
-                                    checked.value.push(value)
-                                }
-                            })
-                        }else{
-                            checked.value.push(value)
-                        }
-                    } else {
-                        if(e.target.getAttribute('value') == -1){ //table header marker
-                            document.querySelectorAll('#tableTestes input[type="checkbox"]').forEach((checkbox)=>{
-                                checkbox.checked = false
-                                checked.value = []
-                            })
-                        }else{
-                            checked.value = checked.value.filter((v) => v != value)
-                        }
-                    }
-                }
-            })
+            handleCheckboxes(document.getElementById('tableTestes'),checked)
         },
         drawCallback: () => {
             document.getElementById('testesHeaderCheckbox').checked = false
@@ -124,7 +100,13 @@
     };
 
     const ajax = {
-        url: props.ajaxRoute
+        url: props.ajaxRoute,
+        data: (d) => {
+            d.dateTypeFilter = document.getElementById('dateTypeFilter').value,
+            d.activeFilter = document.getElementById('activeFilter').value,
+            d.initialDate = document.getElementById('initialDate').value,
+            d.endDate = document.getElementById('endDate').value
+        }
     }
 
     document.addEventListener('livewire:initialized', () => {
@@ -139,10 +121,19 @@
         Livewire.on('loadInputs',(teste) => {
              fillForms(document.querySelector("#formTestes").elements,teste[0])
         })
+        Livewire.on('filter',() =>{
+            deletedFilter = document.getElementById('dateTypeFilter').value == 'D' ? true : false
+            table.value.dt.draw()
+        })
     })
 
     function deleteMultiple(){
         deleteRegister(toRaw(checked.value))
     }
+
+    function restoreMultiple(){
+        restoreRegister(toRaw(checked.value))
+    }
+
 
 </script>

@@ -10,7 +10,7 @@
                     <button class="btn-primary" onclick="Livewire.dispatch('openCreate')">
                         <i class="fa-solid fa-plus mr-1"></i> {{__('New')}}
                     </button>
-                    <button class="btn-primary mx-2">
+                    <button class="btn-primary mx-2" onclick="Livewire.dispatch('openFilter')">
                         <i class="fa-solid fa-magnifying-glass-chart mr-1"></i> {{__('Filter')}}
                     </button>
                 </template>
@@ -20,13 +20,13 @@
     
     @push('modals')
         @livewire('testes.create')
+        @livewire('testes.filter')
     @endpush
 @endsection
 
 @push('scripts')
     <script>
         function deleteRegister(teste){
-            console.log(teste);
             Swal.fire({
                 icon: 'info',
                 title: "{{__('Delete register')}}",     
@@ -46,7 +46,7 @@
             Swal.fire({
                 icon: 'info',
                 title: "{{__('Restore register')}}",     
-                text: "{{__('Are you sure you want to restore this register?')}}",
+                text: teste instanceof Array ? "{{__('Are you sure you want to restore the selected registers?')}}": "{{__('Are you sure you want to restore this register?')}}",
                 showCancelButton: true,
                 confirmButtonText: "{{__('Yes')}}",
                 confirmButtonColor: "#27272A",
@@ -54,7 +54,7 @@
                 cancelButtonText: "{{__('Cancel')}}"     
             }).then((res) => {
                 if(res.value){
-                    Livewire.dispatch('restore',[id])
+                    Livewire.dispatch('restore',[teste])
                 }
             })
         }

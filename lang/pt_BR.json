@@ -157,5 +157,14 @@
     "Are you sure you want to restore the selected registers?": "Tem certeza de que deseja restaurar os registros selecionados?",
     "Yes": "Sim",
     "Cancel": "Cancelar",
-    "Update": "Atualizar"
+    "Update": "Atualizar",
+    "Filter Registers": "Filtrar registros",
+    "Reset Fields": "Limpar Campos",
+    "Date type": "Tipo de Data",
+    "Created": "Criados",
+    "Updated": "Atualizados",
+    "Deleted": "Excluídos",
+    "Initial Date": "Data Inicial",
+    "End Date": "Data Final",
+    "Active": "Ativo"
 }

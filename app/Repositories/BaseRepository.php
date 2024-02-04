@@ -183,7 +183,7 @@ abstract class BaseRepository
     {
         $query = $this->model->newQuery();
 
-        $model = $query->whereIn($this->model->getKeyName(),$ids);
+        $model = $query->onlyTrashed()->whereIn($this->model->getKeyName(),$ids);
 
         return $model->update([
             'deletou' => null,
