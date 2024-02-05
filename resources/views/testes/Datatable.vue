@@ -51,6 +51,7 @@
             className:'text-center noVis', orderable: false, searchable: false, visible: true, width: '20px'},
         {data: 'id', title: 'id'},
         {data: 'teste', title: 'Teste'},
+        {data: 'active', title: 'Active'},
         {data: 'created_at', title: 'Criação'},
         {data: 'updated_at', title: 'Atualização'},
         {data: 'deleted_at', title: 'Exclusão'},
@@ -63,7 +64,6 @@
             url: `../../../lang/${navigator.language ?? 'en'}/datatables.json`
         },
         responsive: true,
-        select: true,
         serverSide: true,
         processing: true,
         responsive: true,
@@ -73,7 +73,6 @@
             "<'col-span-4 flex items-center justify-end'fB>" +
             ">" +
             "<'table-responsive'tr>" +
-
             "<'grid grid-cols-1 sm:grid-cols-12 gap-4 mt-2'" +
             "<'col-span-12 md:col-span-5 flex items-center justify-center md:justify-start mx-2'li>" +
             "<'col-span-12 md:col-span-7 flex items-center justify-center md:justify-end'p>" +
@@ -96,7 +95,7 @@
             document.getElementById('testesHeaderCheckbox').checked = false
             checked.value = []
         },
-        lengthMenu: [ [5,10, 25, 50, 100, -1], [5,10, 25, 50, 100, "∞"] ],
+        lengthMenu: [ [5,10 , 25, 50, 100, -1], [5,10, 25, 50, 100, "∞"] ]
     };
 
     const ajax = {
@@ -104,8 +103,8 @@
         data: (d) => {
             d.dateTypeFilter = document.getElementById('dateTypeFilter').value,
             d.activeFilter = document.getElementById('activeFilter').value,
-            d.initialDate = document.getElementById('initialDate').value,
-            d.endDate = document.getElementById('endDate').value
+            d.initialDate = document.getElementById('initialDateFilter').value,
+            d.endDate = document.getElementById('endDateFilter').value
         }
     }
 
@@ -134,6 +133,5 @@
     function restoreMultiple(){
         restoreRegister(toRaw(checked.value))
     }
-
 
 </script>

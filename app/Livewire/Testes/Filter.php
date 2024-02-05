@@ -11,8 +11,15 @@ class Filter extends Component
     //screen attributes
     public $open;
     
+    //filter fields
+    public $dateType;
+    public $active;
+    public $initialDate;
+    public $endDate;
+
     public function mount(){
         $this->open = false;
+        $this->standardFields();
     }
 
     public function render()
@@ -23,16 +30,21 @@ class Filter extends Component
     #[On('openFilter')]
     public function openFilter()
     {
-        $this->reset();
         $this->open = true;
     }
 
     public function resetFields(){
-        $this->dispatch('resetFilter');
+        $this->standardFields();
     }
 
     public function updated(){
         $this->dispatch('filter');
+    }
+
+    private function standardFields(){
+        $this->dateType = 'C';
+        $this->active = true;
+        $this->initialDate = $this->endDate = null;
     }
 
 }
