@@ -5,7 +5,7 @@
         <slot name="toolbar"></slot>
         <span v-if="checked.length">
             <button v-if="!deletedFilter" class="btn-danger" @click="deleteMultiple()">Delete</button>
-            <button v-else class="btn-danger" @click="restoreMultiple()">Restaurar</button>
+            <button v-else class="btn" @click="restoreMultiple()">Restaurar</button>
             {{ checked.length }} elementos marcados
         </span>
     </div>
