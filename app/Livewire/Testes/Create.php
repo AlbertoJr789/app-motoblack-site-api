@@ -23,6 +23,7 @@ class Create extends Component
     public function mount(){
         $this->open = $this->create = $this->update = false;
         $Teste = null;
+        $teste = null;
     }
 
     public function render()
@@ -42,9 +43,9 @@ class Create extends Component
     public function openEdit(Teste $teste)
     {
         $this->Teste = $teste;
+        $this->teste = $teste->teste;
         $this->open = $this->update = true;
         $this->create = false;
-        $this->dispatch('loadInputs',$teste);
     }
 
     #[On('delete')]

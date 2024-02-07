@@ -29,7 +29,6 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid slategrey;
 }
 
-
 * {
     scrollbar-width: thin;
     scrollbar-color: #2c2a2a transparent;
@@ -42,7 +41,7 @@ div::-webkit-scrollbar {
     width: 0.4rem;
     height: 0.4rem;
 }
-
+/** Global componentes style Bootstrap Somewhat-Semantic Based :P **/
 @layer components {
     .btn {
         @apply inline-flex items-center px-4 py-3 bg-primary border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest focus:ring-2 focus:ring-black transition ease-in-out duration-150

@@ -1,15 +1,15 @@
 
 
 <template>
-    <div class="sm:float-left sm:mb-0 sm:text-start text-center">
+    <div class="lg:float-left lg:mb-0 lg:text-start text-center mt-6">
         <slot name="toolbar"></slot>
-        <span v-if="checked.length">
-            <button v-if="!deletedFilter" class="btn-danger" @click="deleteMultiple()">Delete</button>
-            <button v-else class="btn" @click="restoreMultiple()">Restaurar</button>
-            {{ checked.length }} elementos marcados
-        </span>
+        <div v-if="checked.length" class="md:inline md:mt-0 mt-2">
+            <button v-if="!deletedFilter" class="btn-danger" @click="deleteMultiple()">{{ window.trans('Delete') }}</button>
+            <button v-else class="btn" @click="restoreMultiple()">{{ window.trans('Restore') }}</button>
+            {{ checked.length }} {{ window.trans('Elements Selected') }}
+        </div>
     </div>
-    <DataTable :columns="columns" :ajax="ajax" :options="options" ref="table" class="display border border-transparent border-separate border-spacing-0 rounded-lg" id="tableTestes">
+    <DataTable :columns="columns" :ajax="ajax" :options="options" ref="table" class="display responsive border border-transparent border-separate border-spacing-0 rounded-lg" id="tableTestes">
         <thead class="text-xs text text-amber-300 uppercase hover:cursor-pointer">
             <tr class="border">
                 <th v-for="_ in columns" scope="col" class="px-6 py-3 first:rounded-tl-lg last:rounded-tr-lg bg-secondary ">
@@ -26,6 +26,10 @@
 
 <script setup>
     import DataTable from 'datatables.net-vue3';
+    import 'datatables.net-responsive';
+    import 'datatables.net-fixedheader-dt';
+    import 'datatables.net-buttons-dt';
+    import 'datatables.net-buttons/js/buttons.colVis.js';
     import DataTablesCore from 'datatables.net';
     import { ref, toRaw } from 'vue';
     import { fillForms, handleCheckboxes } from '../../js/utils.js';
@@ -46,6 +50,7 @@
     })
   
     const columns = [
+        { responsivePriority: 0, data: 'select', name: 'select', className:'text-center noVis', orderable: false, searchable: false, visible: true},
         { responsivePriority: 2, data: 'select', name: 'select', title: `<div class="mx-0">
             <input class="input input-checkbox" type="checkbox" value="-1" id="testesHeaderCheckbox"/></div>`, 
             className:'text-center noVis', orderable: false, searchable: false, visible: true, width: '20px'},
@@ -63,14 +68,21 @@
         language: {
             url: `../../../lang/${navigator.language ?? 'en'}/datatables.json`
         },
+        buttons: [{
+            extend: 'colvis',
+            columns: ':not(.noVis)',
+        }],
+        fixedHeader: true,
+        fixedColumns: true,
         responsive: true,
         serverSide: true,
         processing: true,
         responsive: true,
         stateSave: true,
+        order: [[2,'desc']],
         dom: "<'grid grid-cols-1 sm:grid-cols-12 mb-2'" +
             "<'col-span-8'<'toolbar mt-4'>>" +
-            "<'col-span-4 flex items-center justify-end'fB>" +
+            "<'col-span-4 flex items-center sm:justify-end sm:flex-nowrap flex-wrap justify-center'fB>" +
             ">" +
             "<'table-responsive'tr>" +
             "<'grid grid-cols-1 sm:grid-cols-12 gap-4 mt-2'" +
@@ -79,7 +91,7 @@
             ">",
         columnDefs: [
             {
-                targets: 0,
+                targets: 1,
                 orderable: false,
                 render: function ( val, type, row ) {
                     return `<div class="mx-0">

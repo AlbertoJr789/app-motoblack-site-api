@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,5 +29,15 @@ class AppServiceProvider extends ServiceProvider
         Builder::macro('unactive', function(){
             return $this->whereActive(false);
         });
+
+        Cache::remember('translationsJSON', 10, function () {
+            try {
+                $contents = file_get_contents('../lang/'.App::getLocale().'.json'); 
+            } catch (\Throwable $th) {
+                $contents = file_get_contents('lang/'.App::getLocale().'.json'); 
+            }
+            return $contents;
+        });
+
     }
 }

@@ -1,10 +1,9 @@
 @tailwind components;
 
+/** Sorting Arrow */
 .sorting:after,
 .sorting_asc:after,
-.sorting_desc:after,
-.sorting_asc_disabled:after,
-.sorting_desc_disabled:after {
+.sorting_desc:after {
     margin-left: 5px;
     color: #ffc107;
 }
@@ -15,6 +14,57 @@
     content: "\25BC";
 }
 
+/** Responsive Button Feature */
+table.dataTable.dtr-inline.collapsed.compact
+    > tbody
+    > tr
+    > td.dtr-control::before,
+table.dataTable.dtr-inline.collapsed.compact
+    > tbody
+    > tr
+    > th.dtr-control::before {
+    left: 4px;
+    height: 14px;
+    width: 14px;
+    border-radius: 14px;
+    line-height: 14px;
+    text-indent: 3px;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control::before {
+    top: 50%;
+    left: 0;
+    height: 1.35rem;
+    width: 1.35rem;
+    line-height: 1.5;
+    margin-top: -0.675rem;
+    margin-right: 0.675rem;
+    display: inline-block;
+    position: relative;
+    font-size: 1.05rem;
+    border: 0;
+    box-shadow: none;
+    text-align: center;
+    text-indent: 0 !important;
+    content: "+";
+    color: white;
+    font-family: Inter, Helvetica, sans-serif;
+    background-color: black;
+    border-radius: 0.475rem;
+}
+
+table.dataTable.dtr-inline.collapsed
+    > tbody
+    > tr.parent
+    > td.dtr-control::before,
+table.dataTable.dtr-inline.collapsed
+    > tbody
+    > tr.parent
+    > th.dtr-control::before {
+    content: "-";
+}
+/** Overriding DataTable Classes with Tailwind */
 @layer components {
     tr {
         @apply odd:bg-zinc-100 hover:bg-gray-300 transition-all duration-100;
@@ -23,7 +73,7 @@
         @apply px-6 py-4;
     }
     .dataTables_wrapper .dataTables_filter > label > input {
-        @apply border-gray-700  text-neutral-900 focus:border-amber-400 focus:ring-amber-600 rounded-md shadow-sm transition ease-in-out;
+        @apply border-gray-700  text-neutral-900 focus:border-amber-400 focus:ring-amber-600 rounded-md shadow-sm transition ease-in-out mb-4;
     }
     .dataTables_wrapper .dataTables_length > label > select {
         @apply border-gray-700  text-neutral-900 focus:border-amber-400 focus:ring-amber-600 rounded-md shadow-sm transition ease-in-out;
@@ -45,5 +95,29 @@
 
     .disabled {
         @apply hidden;
+    }
+
+    .dt-buttons {
+        @apply inline-flex;
+    }
+
+    .dt-button {
+        @apply inline-flex items-center px-4 py-2 my-1 !bg-primary rounded-md font-semibold text-xs uppercase tracking-widest focus:ring-2 focus:ring-black transition ease-in-out duration-150;
+    }
+
+    .dt-button-active {
+        @apply !bg-secondary text-primary;
+    }
+
+    .dt-button-background {
+        @apply fixed top-0 left-0 w-full h-full z-[999];
+    }
+
+    .dt-button-collection {
+        @apply absolute z-[4001] border rounded-sm shadow-md p-2 w-[218px] bg-primary flex flex-col;
+    }
+
+    div[role="menu"] {
+        @apply flex flex-col text-center;
     }
 }

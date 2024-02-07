@@ -34,6 +34,7 @@
     "Current Password": "Senha Atual",
     "Dashboard": "Painel de controle",
     "Delete": "Deletar",
+    "Restore": "Restaurar",
     "Delete API Token": "Deletar o Token de API",
     "Delete Account": "Deletar Conta",
     "Disable": "Desabilitar",
@@ -166,5 +167,6 @@
     "Deleted": "Excluídos",
     "Initial Date": "Data Inicial",
     "End Date": "Data Final",
-    "Active": "Ativo"
+    "Active": "Ativo",
+    "Elements Selected": "Elementos Selecionados"
 }

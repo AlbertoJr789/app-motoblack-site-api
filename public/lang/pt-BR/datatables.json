@@ -20,5 +20,8 @@
     "aria": {
         "sortAscending":  ": Ordenar do menor pro maior",
         "sortDescending": ": Ordenar do maior pro menor"
+    },
+    "buttons": {
+        "colvis": "Ver Colunas"
     }
 }
