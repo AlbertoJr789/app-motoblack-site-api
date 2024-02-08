@@ -38,7 +38,7 @@ class Filter extends Component
     }
 
     public function updated(){
-        $this->dispatch('filter');
+        $this->dispatch('filter',$this->all());
     }
 
     private function standardFields(){

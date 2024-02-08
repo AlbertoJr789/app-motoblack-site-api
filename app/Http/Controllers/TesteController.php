@@ -95,17 +95,37 @@ class TesteController extends AppBaseController
      */
     public function dataTableData(Request $request){
 
-        $query = Teste::query();
+        $query = Teste::with(['creator:id,name','editor:id,name','deleter:id,name']);
         $query = $this->filterDataTableData($query,$request->all());
-
         return DataTables::eloquent($query)
                           ->addColumn('select',function($reg){
                                 return '';
                           })
+                          ->editColumn('created_at',function($reg){
+                                return $reg->created_at ? $reg->created_at->format('d/m/Y H:i') : '';
+                          })
+                          ->editColumn('updated_at',function($reg){
+                                return $reg->updated_at ? $reg->updated_at->format('d/m/Y H:i') : '';
+                          })
+                          ->editColumn('deleted_at',function($reg){
+                                return $reg->deleted_at ? $reg->deleted_at->format('d/m/Y H:i') : '';
+                          })
+                          ->addColumn('creator',function($reg){
+                                return $reg->creator ? $reg->creator->name : '';
+                          })
+                          ->addColumn('editor',function($reg){
+                                return $reg->editor ? $reg->editor->name : '';
+                          })
+                          ->addColumn('deleter',function($reg){
+                                return $reg->deleter ? $reg->deleter->name : '';
+                          })
+                          ->editColumn('active',function($reg){
+                             return $reg->active ? '<span class="badge badge-green uppercase">'.__('Yes').'</span>' : '<span class="badge badge-red uppercase">'.__('No').'</span>';
+                          })
                           ->addColumn('action',function($reg){
                                 return view('testes.action-buttons',['data' => $reg]);
                           })
-                          ->rawColumns(['action'])
+                          ->rawColumns(['action','active'])
                           ->make();
 
     }
@@ -124,7 +144,7 @@ class TesteController extends AppBaseController
                 $query->where($field,'<=',$r['initialDate']);
         }
         if(isset($r['activeFilter'])){
-            if($r['activeFilter'] == 'on'){
+            if($r['activeFilter'] == 'true'){
                 $query->active();
             }else{
                 $query->unactive();

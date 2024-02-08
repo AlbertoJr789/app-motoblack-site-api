@@ -13,9 +13,10 @@ class Teste extends Model
 
     public $fillable = [
         'teste',
-        'criou',
-        'editou',
-        'deletou'
+        'active',
+        'creator_id',
+        'editor_id',
+        'deleter_id'
     ];
 
     protected $casts = [
@@ -23,9 +24,23 @@ class Teste extends Model
         'teste' => 'string'
     ];
 
+    protected $dates = ['created_at','updated_at','deleted_at'];
+
     public static array $rules = [
         
     ];
 
+    public function creator(){
+        return $this->hasOne(User::class,'id','creator_id');
+    }
+
+    
+    public function editor(){
+        return $this->hasOne(User::class,'id','editor_id');
+    }
+
+    public function deleter(){
+        return $this->hasOne(User::class,'id','deleter_id');
+    }
     
 }

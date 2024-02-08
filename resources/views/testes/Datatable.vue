@@ -32,7 +32,7 @@
     import 'datatables.net-buttons/js/buttons.colVis.js';
     import DataTablesCore from 'datatables.net';
     import { ref, toRaw } from 'vue';
-    import { fillForms, handleCheckboxes } from '../../js/utils.js';
+    import { handleCheckboxes } from '../../js/utils.js';
     import '../../css/dataTables.css';
     import '../../css/dataTablesLoader.css';
     
@@ -59,6 +59,9 @@
         {data: 'active', title: 'Active'},
         {data: 'created_at', title: 'Criação'},
         {data: 'updated_at', title: 'Atualização'},
+        {data: 'creator', name:'creator.name', title: 'Criador',},
+        {data: 'editor', name:'editor.name', title: 'Editor'},
+        {data: 'deleter', name:'deleter.name', title: 'Deletor'},
         {data: 'deleted_at', title: 'Exclusão'},
         { responsivePriority: 2, data: 'action', name: 'action', title: '', className:'text-center noVis', orderable: false, searchable: false, width: '50px'},
 
@@ -114,7 +117,7 @@
         url: props.ajaxRoute,
         data: (d) => {
             d.dateTypeFilter = document.getElementById('dateTypeFilter').value,
-            d.activeFilter = document.getElementById('activeFilter').value,
+            d.activeFilter = document.getElementById('activeFilter').checked,
             d.initialDate = document.getElementById('initialDateFilter').value,
             d.endDate = document.getElementById('endDateFilter').value
         }
@@ -128,9 +131,6 @@
                 text: e[0].text
             })
             table.value.dt.draw()
-        })
-        Livewire.on('loadInputs',(teste) => {
-             fillForms(document.querySelector("#formTestes").elements,teste[0])
         })
         Livewire.on('filter',() =>{
             deletedFilter = document.getElementById('dateTypeFilter').value == 'D' ? true : false

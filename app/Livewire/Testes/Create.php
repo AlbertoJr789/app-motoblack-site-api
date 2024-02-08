@@ -19,6 +19,7 @@ class Create extends Component
 
     //attributes
     public $teste;
+    public $active;
     
     public function mount(){
         $this->open = $this->create = $this->update = false;
@@ -44,6 +45,7 @@ class Create extends Component
     {
         $this->Teste = $teste;
         $this->teste = $teste->teste;
+        $this->active = $teste->active;
         $this->open = $this->update = true;
         $this->create = false;
     }

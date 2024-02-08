@@ -103,7 +103,7 @@ abstract class BaseRepository
      */
     public function create(array $input): Model
     {
-        $input['criou'] = Auth::id();
+        $input['creator_id'] = Auth::id();
         $model = $this->model->newInstance($input);
 
         $model->save();
@@ -130,7 +130,7 @@ abstract class BaseRepository
      */
     public function update(array $input, $id)
     {
-        $input['editou'] = Auth::id();
+        $input['editor_id'] = Auth::id();
         $query = $this->model->newQuery();
 
         $model = is_int($id) ? $query->findOrFail($id) : $id; 
@@ -169,7 +169,7 @@ abstract class BaseRepository
         $model = $query->whereIn($this->model->getKeyName(),$ids);
 
         return $model->update([
-            'deletou' => Auth::id(),
+            'deleter_id' => Auth::id(),
             'deleted_at' => now()
         ]);
     }
@@ -186,7 +186,7 @@ abstract class BaseRepository
         $model = $query->onlyTrashed()->whereIn($this->model->getKeyName(),$ids);
 
         return $model->update([
-            'deletou' => null,
+            'deleter_id' => null,
             'deleted_at' => null
         ]);
     }
