@@ -21,14 +21,15 @@
         @stack('styles')
     </head>
     <body class="font-sans antialiased">
-        <x-banner />
-
+        
         <x-sidebar-menu />
-
+        
         <div class="min-h-screen sm:ml-20 sm:mb-0 mb-20 bg-gray-100">
             
             @livewire('navigation-menu')
-
+            
+            <x-banner />
+            
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow ml-5">

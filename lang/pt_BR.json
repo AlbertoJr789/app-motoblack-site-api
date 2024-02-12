@@ -168,6 +168,13 @@
     "Deleted": "Excluídos",
     "Initial Date": "Data Inicial",
     "End Date": "Data Final",
+    "Elements Selected": "Elementos Selecionados",
     "Active": "Ativo",
-    "Elements Selected": "Elementos Selecionados"
+    "Creator": "Criador",
+    "Editor": "Editor",
+    "Deleter": "Deletor",
+    "Creation Date": "Data de Criação",
+    "Update Date": "Data de Atualização",
+    "Delete Date": "Data de exclusão",
+    "You are not authorized to do this action": "Você não está autorizado a executar esta ação"
 }

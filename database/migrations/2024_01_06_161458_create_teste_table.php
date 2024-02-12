@@ -24,13 +24,9 @@ return new class extends Migration
             $table->foreignId('editor_id')->nullable()->references('id')->on('users');
             $table->foreignId('deleter_id')->nullable()->references('id')->on('users');
 
-            try {
-                Permission::createMany ([]);
-            } catch (\Throwable $th) {
-                //throw $th;
-            }
-
-
+            Permission::create([ 'name' => 'testes.view']);
+            Permission::create([ 'name' => 'testes.create']);
+            Permission::create([ 'name' => 'testes.delete']);
         });
     }
 
@@ -42,5 +38,8 @@ return new class extends Migration
     public function down()
     {
         Schema::drop('Teste');
+        Permission::whereName('testes.view')->delete();
+        Permission::whereName('testes.create')->delete();
+        Permission::whereName('testes.delete')->delete();
     }
 };
