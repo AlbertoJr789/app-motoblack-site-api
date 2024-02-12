@@ -3,7 +3,7 @@
 <template>
     <div class="lg:float-left lg:mb-0 lg:text-start text-center mt-6">
         <slot name="toolbar"></slot>
-        <div v-if="checked.length" class="md:inline md:mt-0 mt-2">
+        <div v-if="checked.length && props.canDelete" class="md:inline md:mt-0 mt-2">
             <button v-if="!deletedFilter" class="btn-danger" @click="deleteMultiple()">{{ window.trans('Delete') }}</button>
             <button v-else class="btn" @click="restoreMultiple()">{{ window.trans('Restore') }}</button>
             {{ checked.length }} {{ window.trans('Elements Selected') }}
@@ -46,15 +46,23 @@
         ajaxRoute: {
             type: String,
             required: true
+        },
+        canCreate: {
+            type: Boolean,
+            required: true,
+        },
+        canDelete: {
+            type: Boolean,
+            required: true
         }
     })
   
     const columns = [
         { responsivePriority: 0, data: 'select', name: 'select', className:'text-center noVis', orderable: false, searchable: false, visible: true},
-        { responsivePriority: 2, data: 'select', name: 'select', title: `<div class="mx-0">
+        props.canDelete ? { responsivePriority: 2, data: 'select', name: 'select', title: `<div class="mx-0">
             <input class="input input-checkbox" type="checkbox" value="-1" id="testesHeaderCheckbox"/></div>`, 
-            className:'text-center noVis', orderable: false, searchable: false, visible: true, width: '20px'},
-        {data: 'id', title: 'id'},
+            className:'text-center noVis', orderable: false, searchable: false, visible: true, width: '20px'} : null,
+        {data: 'id', title: 'id', name:'id'},
         {data: 'teste', title: 'Teste'},
         {data: 'active', title: 'Active'},
         {data: 'created_at', title: 'Criação'},
@@ -65,7 +73,8 @@
         {data: 'deleted_at', title: 'Exclusão'},
         { responsivePriority: 2, data: 'action', name: 'action', title: '', className:'text-center noVis', orderable: false, searchable: false, width: '50px'},
 
-    ]
+    ].filter(Boolean)
+    console.log(columns);
     
     const options = {
         language: {
@@ -82,7 +91,7 @@
         processing: true,
         responsive: true,
         stateSave: true,
-        order: [[2,'desc']],
+        order: props.canDelete ? [[2,'desc']] : [[1,'desc']],
         dom: "<'grid grid-cols-1 sm:grid-cols-12 mb-2'" +
             "<'col-span-8'<'toolbar mt-4'>>" +
             "<'col-span-4 flex items-center sm:justify-end sm:flex-nowrap flex-wrap justify-center'fB>" +
@@ -93,7 +102,7 @@
             "<'col-span-12 md:col-span-7 flex items-center justify-center md:justify-end'p>" +
             ">",
         columnDefs: [
-            {
+            props.canDelete ? {
                 targets: 1,
                 orderable: false,
                 render: function ( val, type, row ) {
@@ -101,14 +110,17 @@
                                 <input class="input input-checkbox border-black" type="checkbox" value="${row.id}"/>
                             </div>`;
                 }
-            },
+            } : {},
         ],
         initComplete: () => {
-            handleCheckboxes(document.getElementById('tableTestes'),checked)
+            if(props.canDelete)
+                handleCheckboxes(document.getElementById('tableTestes'),checked)
         },
         drawCallback: () => {
-            document.getElementById('testesHeaderCheckbox').checked = false
-            checked.value = []
+            if(props.canDelete){
+                document.getElementById('testesHeaderCheckbox').checked = false
+                checked.value = []
+            }
         },
         lengthMenu: [ [5,10 , 25, 50, 100, -1], [5,10, 25, 50, 100, "∞"] ]
     };

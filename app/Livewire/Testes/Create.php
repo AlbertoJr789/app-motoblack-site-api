@@ -96,7 +96,7 @@ class Create extends Component
     {
         try {
             if ($this->create) {
-                (new TesteRepository)->create($this->except(['open','create','update']));
+                (new TesteRepository)->create($this->except(['open','create','update','active']));
                 $message = [
                     'icon' => 'success',
                     'title' => __('Success'),
@@ -111,6 +111,7 @@ class Create extends Component
                 ];
             }
         } catch (\Throwable $th) {
+            dd($th);
             $message = [
                 'icon' => 'error',
                 'title' => __('Error'),
