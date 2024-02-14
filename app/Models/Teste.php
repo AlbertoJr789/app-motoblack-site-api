@@ -34,7 +34,6 @@ class Teste extends Model
         return $this->hasOne(User::class,'id','creator_id');
     }
 
-    
     public function editor(){
         return $this->hasOne(User::class,'id','editor_id');
     }
