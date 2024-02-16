@@ -8,17 +8,6 @@
     </div>
 
     <div class="bg-zinc-900 flex sm:flex-col flex-row sm:h-full sm:w-auto w-screen sm:hover:overflow-y-scroll overflow-y-hidden overflow-x-auto sm:pb-[10em] sm:pt-5">
-        <x-menu-item icon="fa-solid fa-pen">
-            {{ __('Teste 1') }}
-        </x-menu-item>
-        <x-menu-item icon="fa-solid fa-pen">
-            {{ __('Teste 2') }}
-        </x-menu-item>
-        <x-menu-item icon="fa-solid fa-pen">
-            {{ __('Teste 3') }}
-        </x-menu-item>
-        <x-menu-item icon="fa-solid fa-motorcycle">
-            {{ __('Teste 13') }}
-        </x-menu-item>
+        @include('layouts.menu')
     </div>
 </div>

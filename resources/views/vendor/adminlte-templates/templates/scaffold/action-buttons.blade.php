@@ -1,6 +1,6 @@
 <div class="flex justify-end">
-    @if(!$data->deleted_at)
-        @can('{!! $config->modelNames->camelPlural !!}.edit')
+    @@if(!$data->deleted_at)
+        @@can('{{$config->modelNames->camelPlural}}.edit')
         <button
             class="btn-secondary w-[25px] h-[25px] ms-auto me-1 flex justify-center" title="Editar Registro" onclick="Livewire.dispatch('openEdit',{ {{$config->modelNames->camel}}: {{$data->id}} })">
             <div class="svg-icon svg-icon-3">
@@ -14,9 +14,9 @@
                 </svg>
             </div>
         </button>
-        @endcan
-        @can('{!! $config->modelNames->camelPlural !!}.delete')
-        <button class="btn-danger w-[25px] h-[25px] ms-auto me-1 flex justify-center" title="Deletar Registro" onclick="deleteRegister({{$data->id}})">
+        @@endcan
+        @@can('{{ $config->modelNames->camelPlural }}.delete')
+        <button class="btn-danger w-[25px] h-[25px] ms-auto me-1 flex justify-center" title="Deletar Registro" onclick="deleteRegister(@{{$data->id}})">
             <span class="svg-icon svg-icon-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -30,13 +30,13 @@
                 </svg>
             </span>
         </button>
-        @endcan
-    @endif
-    @if($data->deleted_at)
-        @can('{!! $config->modelNames->camelPlural !!}.delete')
-            <button class="btn" title="Restaurar Registro" onclick="restoreRegister({{$data->id}})">
+        @@endcan
+    @@endif
+    @@if($data->deleted_at)
+        @@can('{{ $config->modelNames->camelPlural }}.delete')
+            <button class="btn" title="Restaurar Registro" onclick="restoreRegister(@{{$data->id}})">
                 <i class="fa fa-trash-restore"></i>
             </button>
-        @endcan
-    @endif
+        @@endcan
+    @@endif
 </div>

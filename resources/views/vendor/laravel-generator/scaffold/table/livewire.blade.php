@@ -1,48 +1,136 @@
 @php
     echo "<?php".PHP_EOL;
+    $fields = [
+        'inline' => array_map(function($field){
+            return  "$$field->name";
+        },$config->fields),
+         'this' =>  array_map(function($field){
+            return '$this->'.$field->name;
+        },$config->fields),
+        'thisEq' => array_map(function($field) use ($config){
+            $name = $config->modelNames->camel;
+            return '$this->'.$field->name." = $$name->".$field->name;
+        },$config->fields)
+    ];
 @endphp
 
 namespace {{ $config->namespaces->livewireTables }};
 
-use Laracasts\Flash\Flash;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Column;
-use {{ $config->namespaces->model }}\{{ $config->modelNames->name }};
+use App\Models\{{$config->modelNames->name}};
+use App\Repositories\{{$config->modelNames->name}}Repository;
+use Livewire\Component;
+use Livewire\Attributes\On;
 
-class {{ $config->modelNames->plural }}Table extends DataTableComponent
+class Create extends Component
 {
-    protected $model = {{ $config->modelNames->name }}::class;
 
-    protected $listeners = ['deleteRecord' => 'deleteRecord'];
+    //screen attributes
+    public $open, $create, $update;
 
-    public function deleteRecord($id)
+    public ?{{$config->modelNames->name}} ${{$config->modelNames->name}};
+
+    //attributes
+    public {!! implode(',',$fields['inline']) !!},$active;
+    
+    
+    public function mount(){
+        $this->open = $this->create = $this->update = false;
+        ${{$config->modelNames->name}} = null;
+        {!! implode(' = ',$fields['this']) !!} = $this->active = null;
+    
+}
+
+    public function render()
     {
-        {{ $config->modelNames->name }}::find($id)->delete();
-@if($config->options->localized)
-        Flash::success(__('messages.deleted', ['model' => __('models/{{ $config->modelNames->camelPlural }}.singular')]));
-@else
-        Flash::success('{{ $config->modelNames->human }} deleted successfully.');
-@endif
-        $this->emit('refreshDatatable');
+        return view('{{$config->modelNames->camelPlural}}.create');
     }
 
-    public function configure(): void
+    #[On('openCreate')]
+    public function openCreate()
     {
-        $this->setPrimaryKey('{{ $config->primaryName }}');
+        $this->reset();
+        $this->create = true;
+        $this->open = true;
     }
 
-    public function columns(): array
+    #[On('openEdit')]
+    public function openEdit({{$config->modelNames->name}} ${{$config->modelNames->camel}})
     {
-        return [
-            {!! $columns !!},
-            Column::make("Actions", '{{ $config->primaryName }}')
-                ->format(
-                    fn($value, $row, Column $column) => view('common.livewire-tables.actions', [
-                        'showUrl' => route('{{ $config->modelNames->dashedPlural }}.show', $row->{{ $config->primaryName }}),
-                        'editUrl' => route('{{ $config->modelNames->dashedPlural }}.edit', $row->{{ $config->primaryName }}),
-                        'recordId' => $row->{{ $config->primaryName }},
-                    ])
-                )
-        ];
+        $this->{{$config->modelNames->name}} = ${{$config->modelNames->camel}};
+        {!! implode(';',$fields['thisEq']) !!};
+        $this->active = ${{$config->modelNames->camel}}->active;
+        $this->open = $this->update = true;
+        $this->create = false;
+    }
+
+    #[On('delete')]
+    public function delete(${{$config->modelNames->camelPlural}}){
+        try {
+            if(!is_array(${{$config->modelNames->camelPlural}}))
+                ${{$config->modelNames->camelPlural}} = [${{$config->modelNames->camelPlural}}];
+            (new {{$config->modelNames->name}}Repository)->deleteMultiple(${{$config->modelNames->camelPlural}});
+            $message = [
+                'icon' => 'success',
+                'title' => __('Success'),
+                'text' => '{{$config->modelNames->name}}(s) '.__('deleted successfuly!')
+            ];
+        } catch (\Throwable $th) {
+            $message = [
+                'icon' => 'error',
+                'title' => __('Error'),
+                'text' => __('Whoops! Something went wrong.')
+            ];
+        }
+        $this->dispatch('alert',$message);
+    }
+
+    #[On('restore')]
+    public function restore(${{$config->modelNames->camelPlural}}){
+        try {
+            if(!is_array(${{$config->modelNames->camelPlural}}))
+                ${{$config->modelNames->camelPlural}} = [${{$config->modelNames->camelPlural}}];
+            (new {{$config->modelNames->name}}Repository)->restoreMultiple(${{$config->modelNames->camelPlural}});
+            $message = [
+                'icon' => 'success',
+                'title' => __('Success'),
+                'text' => '{{$config->modelNames->name}}(s) '.__('restored successfuly!')
+            ];
+        } catch (\Throwable $th) {
+            $message = [
+                'icon' => 'error',
+                'title' => __('Error'),
+                'text' => __('Whoops! Something went wrong.')
+            ];
+        }
+        $this->dispatch('alert',$message);
+    }
+
+    public function submit()
+    {
+        try {
+            if ($this->create) {
+                (new {{$config->modelNames->name}}Repository)->create($this->except(['open','create','update','active']));
+                $message = [
+                    'icon' => 'success',
+                    'title' => __('Success'),
+                    'text' => '{{$config->modelNames->name}} '.__('added successfully!')
+                ];
+            } else {
+                (new {{$config->modelNames->name}}Repository)->update($this->except(['open','create','update','id']),$this->{{$config->modelNames->name}}->id);
+                $message = [
+                    'icon' => 'success',
+                    'title' => __('Success'),
+                    'text' => '{{$config->modelNames->name}} '.__('updated successfully!')
+                ];
+            }
+        } catch (\Throwable $th) {
+            $message = [
+                'icon' => 'error',
+                'title' => __('Error'),
+                'text' => __('Whoops! Something went wrong.')
+            ];
+        }
+        $this->open = false;
+        $this->dispatch('alert',$message);
     }
 }

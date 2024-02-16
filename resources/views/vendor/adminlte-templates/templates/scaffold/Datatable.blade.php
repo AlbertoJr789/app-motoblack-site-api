@@ -9,7 +9,7 @@
             {{ checked.length }} {{ window.trans('Elements Selected') }}
         </div>
     </div>
-    <DataTable :columns="columns" :ajax="ajax" :options="options" ref="table" class="display responsive border border-transparent border-separate border-spacing-0 rounded-lg" id="table{{ucfirst($config->modelNames->camelPlural)}}">
+    <DataTable :columns="columns" :ajax="ajax" :options="options" ref="table" class="display responsive border border-transparent border-separate border-spacing-0 rounded-lg" id="table{{$config->modelNames->plural}}">
         <thead class="text-xs text text-amber-300 uppercase hover:cursor-pointer">
             <tr class="border">
                 <th v-for="_ in columns" scope="col" class="px-6 py-3 first:rounded-tl-lg last:rounded-tr-lg bg-secondary ">
@@ -114,7 +114,7 @@
         ],
         initComplete: () => {
             if(props.canDelete)
-                handleCheckboxes(document.getElementById('table{{ucfirst($config->modelNames->camelPlural)}}'),checked)
+                handleCheckboxes(document.getElementById('table{{$config->modelNames->plural}}'),checked)
         },
         drawCallback: () => {
             if(props.canDelete){
