@@ -4,12 +4,12 @@
 @@section('content')
 
     @php
-        $route = "{{route(admin.{$config->modelNames->camelPlural}.dataTableData)}}"
+        $route = "{{route('admin.{$config->modelNames->camelPlural}.dataTableData')}}"
     @endphp
 
     <div class="p-3 w-full h-full">
         <x-card class="w-full">
-           <Datatable{{$config->modelNames->plural}} :ajax-route="'{{$route}}'"
+           <Datatable{{$config->modelNames->plural}} :ajax-route="'{!! $route !!}'"
                 :can-create="@@can('testes.create') true @@else false @@endcan"
                 :can-delete="@@can('testes.delete') true @@else false @@endcan"         
                 >
@@ -23,7 +23,7 @@
                         <i class="fa-solid fa-magnifying-glass-chart mr-1"></i> {{__('Filter')}}
                     </button>
                 </template>
-            </Datatable{{$config->modelNames->camelPlural}}>
+            </Datatable{{$config->modelNames->plural}}>
         </x-card>
     </div>
     

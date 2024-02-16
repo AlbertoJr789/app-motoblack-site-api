@@ -2,7 +2,7 @@
     @@if(!$data->deleted_at)
         @@can('{{$config->modelNames->camelPlural}}.edit')
         <button
-            class="btn-secondary w-[25px] h-[25px] ms-auto me-1 flex justify-center" title="Editar Registro" onclick="Livewire.dispatch('openEdit',{ {{$config->modelNames->camel}}: {{$data->id}} })">
+            class="btn-secondary w-[25px] h-[25px] ms-auto me-1 flex justify-center" title="Editar Registro" onclick="Livewire.dispatch('openEdit',{ {{$config->modelNames->camel}}: @{{$data->id}} })">
             <div class="svg-icon svg-icon-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path opacity="0.3"

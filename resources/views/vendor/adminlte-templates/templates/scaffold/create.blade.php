@@ -1,12 +1,24 @@
 
+@php
+     $fields = implode(',',array_map(function($field) use ($config){   
+        if($field->name == 'created_at'){
+            $name = 'Creation Date';
+        }elseif($field->name == 'updated_at'){
+            $name = 'Update Date';
+        }else{
+            $name = $field->name;
+        }   
+        return "{data: '$field->name', title: window.trans('$name')}";
+    },$config->fields)).',';    
+@endphp
 
 <template>
     <div class="lg:float-left lg:mb-0 lg:text-start text-center mt-6">
         <slot name="toolbar"></slot>
         <div v-if="checked.length && props.canDelete" class="md:inline md:mt-0 mt-2">
-            <button v-if="!deletedFilter" class="btn-danger" @click="deleteMultiple()">{{ window.trans('Delete') }}</button>
-            <button v-else class="btn" @click="restoreMultiple()">{{ window.trans('Restore') }}</button>
-            {{ checked.length }} {{ window.trans('Elements Selected') }}
+            <button v-if="!deletedFilter" class="btn-danger" @click="deleteMultiple()">@{{ window.trans('Delete') }}</button>
+            <button v-else class="btn" @click="restoreMultiple()">@{{ window.trans('Restore') }}</button>
+            @{{ checked.length }} @{{ window.trans('Elements Selected') }}
         </div>
     </div>
     <DataTable :columns="columns" :ajax="ajax" :options="options" ref="table" class="display responsive border border-transparent border-separate border-spacing-0 rounded-lg" id="table{{$config->modelNames->plural}}">
@@ -62,11 +74,10 @@
         props.canDelete ? { responsivePriority: 2, data: 'select', name: 'select', title: `<div class="mx-0">
             <input class="input input-checkbox" type="checkbox" value="-1" id="testesHeaderCheckbox"/></div>`, 
             className:'text-center noVis', orderable: false, searchable: false, visible: true, width: '20px'} : null,
-        {data: 'id', title: 'id', name:'id'},
-        {data: 'teste', title: 'Teste'},
+
+        {!! $fields !!}
+
         {data: 'active', title: window.trans('Active')},
-        {data: 'created_at', title: window.trans('Creation Date')},
-        {data: 'updated_at', title: window.trans('Update Date')},
         {data: 'creator', name:'creator.name', title: window.trans('Creator')},
         {data: 'editor', name:'editor.name', title: window.trans('Editor')},
         {data: 'deleter', name:'deleter.name', title: window.trans('Deleter')},
