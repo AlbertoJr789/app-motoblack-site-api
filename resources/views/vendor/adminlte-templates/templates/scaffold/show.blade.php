@@ -1,39 +1,44 @@
-@@extends('layouts.app')
+@verbatim 
+<x-dialog-modal wire:model.live="open" id="modalFilter">
+    <x-slot name="title">
+        {{__('Filter')}}
+    </x-slot>
+    <x-slot name="content">
 
-@@section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>
-@if($config->options->localized)
-@@lang('models/{!! $config->modelNames->camelPlural !!}.singular') @@lang('crud.detail')
-@else
-{{ $config->modelNames->human }} Details
-@endif
-                    </h1>
-                </div>
-                <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural  !!}.index') }}">
-                        @if($config->options->localized)
-                            @@lang('crud.back')
-                        @else
-                            Back
-                        @endif
-                    </a>
-                </div>
+        <!-- Teste Field -->
+        <div class="sm:text-start text-center">
+          <div class="grid sm:grid-cols-2 grid-cols-1">
+            <div class="sm:pr-4">
+                {!! Form::label('dateTypeFilter', __('Date type').':',['class' => "block mx-1"]) !!}
+                {!! Form::select('dateTypeFilter', ['C' => __('Created'),'U' => __('Updated'),'D' => __('Deleted') ],$dateType, ['class' => 'input w-full px-2','required' => 'true','wire:model.live' => 'dateType','id' => 'dateTypeFilter']) !!} 
             </div>
+            <div class="flex sm:justify-start justify-center sm:my-auto my-4">
+              {!! Form::label('activeFilter', __('Active'),['class' => "block mx-1"]) !!}
+              {!! Form::checkbox('activeFilter',null,$active, ['class' => 'checkbox-toggle-switch','required' => 'true','wire:model.live' => 'active','id' => 'activeFilter']) !!} 
+            </div>
+          </div>
+          <!-- Teste Field -->
+          <div class="grid sm:grid-cols-2 grid-cols-1">
+            <div class="sm:pr-4">
+                {!! Form::label('initialDate', __('Initial Date').':',['class' => "block mx-1"]) !!}
+                {!! Form::datetimelocal('initialDate', $initialDate, ['class' => 'input w-full px-2','required' => 'true','wire:model.live' => 'initialDate','id' => 'initialDateFilter']) !!}
+            </div>
+            <div>
+              {!! Form::label('endDate', __('End Date').':',['class' => "block mx-1"]) !!}
+              {!! Form::datetimelocal('endDate',$endDate, ['class' => 'input w-full px-2','required' => 'true','wire:model.live' => 'endDate','id' => 'endDateFilter']) !!} 
+            </div>
+          </div>
         </div>
-    </section>
 
-    <div class="content px-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    @@include('{{ $config->prefixes->getViewPrefixForInclude() }}{{ $config->modelNames->snakePlural }}.show_fields')
-                </div>
-            </div>
-        </div>
-    </div>
-@@endsection
+    </x-slot>
+
+    <x-slot name="footer">
+        <x-button class="btn-secondary ml-3" type="submit" wire:click="resetFields">
+            {{__('Reset Fields')}}
+            <x-loader wire:loading wire:target="resetFields"/>
+          </div>
+        </x-button>
+    </x-slot>
+</x-dialog-modal>
+
+@endverbatim

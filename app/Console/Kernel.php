@@ -7,7 +7,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use InfyOm\Generator\Commands\API\APIControllerGeneratorCommand;
 use InfyOm\Generator\Commands\API\APIGeneratorCommand;
 use InfyOm\Generator\Commands\API\APIRequestsGeneratorCommand;
-use InfyOm\Generator\Commands\APIScaffoldGeneratorCommand;
+use App\CRUDGenerator\APIScaffoldGeneratorCommand;
 use InfyOm\Generator\Commands\Scaffold\ScaffoldGeneratorCommand;
 
 class Kernel extends ConsoleKernel
