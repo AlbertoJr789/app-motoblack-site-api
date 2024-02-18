@@ -1,44 +1,43 @@
-
 @@extends('layouts.app')
 
 @@section('content')
 
-    @php
-        $route = "{{route('admin.{$config->modelNames->camelPlural}.dataTableData')}}"
-    @endphp
+@php
+$route = "{{route('admin.{$config->modelNames->camelPlural}.dataTableData')}}"
+@endphp
 
-    <div class="p-3 w-full h-full">
-        <x-card class="w-full">
-           <Datatable{{$config->modelNames->plural}} :ajax-route="'{!! $route !!}'"
-                :can-create="@@can('testes.create') true @@else false @@endcan"
-                :can-delete="@@can('testes.delete') true @@else false @@endcan"         
-                >
-                <template v-slot:toolbar>
-                    @@can('{{$config->modelNames->camelPlural}}.create')
-                        <button class="btn-primary" onclick="Livewire.dispatch('openCreate')">
-                            <i class="fa-solid fa-plus mr-1"></i> {{__('New')}}
-                        </button>
-                    @@endcan
-                    <button class="btn-primary mx-2" onclick="Livewire.dispatch('openFilter')">
-                        <i class="fa-solid fa-magnifying-glass-chart mr-1"></i> {{__('Filter')}}
-                    </button>
-                </template>
-            </Datatable{{$config->modelNames->plural}}>
-        </x-card>
-    </div>
-    
-    @@push('modals')
-        @@can('{{$config->modelNames->camelPlural}}.create')
-            @@livewire('{{$config->modelNames->camelPlural}}.create')
-        @@endcan
-        @@livewire('{{$config->modelNames->camelPlural}}.filter')
-    @@endpush
+<div class="p-3 w-full h-full">
+    <x-card class="w-full">
+        <Datatable-{{$config->modelNames->plural}} :ajax-route="'{!! $route !!}'"
+            :can-create="@@can('testes.create') true @@else false @@endcan"
+            :can-delete="@@can('testes.delete') true @@else false @@endcan"
+            >
+            <template v-slot:toolbar>
+                @@can('{{$config->modelNames->camelPlural}}.create')
+                <button class="btn-primary" onclick="Livewire.dispatch('openCreate')">
+                    <i class="fa-solid fa-plus mr-1"></i> {{__('New')}}
+                </button>
+                @@endcan
+                <button class="btn-primary mx-2" onclick="Livewire.dispatch('openFilter')">
+                    <i class="fa-solid fa-magnifying-glass-chart mr-1"></i> {{__('Filter')}}
+                </button>
+            </template>
+        </Datatable-{{$config->modelNames->plural}}>
+    </x-card>
+</div>
+
+@@push('modals')
+@@can('{{$config->modelNames->camelPlural}}.create')
+@@livewire('{{$config->modelNames->camelPlural}}.create')
+@@endcan
+@@livewire('{{$config->modelNames->camelPlural}}.filter')
+@@endpush
 @@endsection
 
 @@can('{{$config->modelNames->camelPlural}}.delete')
-    @@push('scripts')
-        <script>
-            function deleteRegister({{$config->modelNames->camel}}){
+@@push('scripts')
+<script>
+    function deleteRegister({{$config->modelNames->camel}}){
                 Swal.fire({
                     icon: 'info',
                     title: "{{__('Delete register')}}",     
@@ -70,6 +69,6 @@
                     }
                 })
             }
-        </script>
-    @@endpush
+</script>
+@@endpush
 @@endcan

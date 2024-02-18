@@ -270,7 +270,7 @@ $this->config->commandComment(infy_nl().'Generating Views...');
     {
         $templateData = view($this->templateViewPath.'.scaffold.Datatable')->render();
 
-        g_filesystem()->createFile($this->path."Datatable{$this->config->modelNames->name}.vue", $templateData);
+        g_filesystem()->createFile($this->path."Datatable{$this->config->modelNames->plural}.vue", $templateData);
         $this->config->commandInfo("Datatable{$this->config->modelNames->name}.vue created");
     }
 

@@ -14,7 +14,7 @@
     ];
 @endphp
 
-namespace App\Livewire\{{$config->modelNames->name}};
+namespace App\Livewire\{{$config->modelNames->plural}};
 
 use App\Models\{{$config->modelNames->name}};
 use App\Repositories\{{$config->modelNames->name}}Repository;
@@ -42,7 +42,7 @@ class Create extends Component
 
     public function render()
     {
-        return view('{{$config->modelNames->camelPlural}}.create');
+        return view('{{$config->modelNames->snakePlural}}.create');
     }
 
     #[On('openCreate')]

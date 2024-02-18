@@ -2,7 +2,7 @@
     echo "<?php".PHP_EOL;
 @endphp
 
-namespace App\Livewire\{{$config->modelNames->name}};
+namespace App\Livewire\{{trim($config->modelNames->plural)}};
 
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -26,7 +26,7 @@ class Filter extends Component
 
     public function render()
     {
-        return view('{{$config->modelNames->camelPlural}}.filter');
+        return view('{{$config->modelNames->snakePlural}}.filter');
     }
 
     #[On('openFilter')]
