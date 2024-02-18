@@ -65,12 +65,12 @@ $this->config->commandComment(infy_nl().'Generating Views...');
         } else {
 
             // $this->generateTable();
-            // $this->generateIndex();
             // $this->generateShowFields();
-            // $this->generateDatatable();
-            // $this->generateActionButtons();
+            $this->generateIndex();
+            $this->generateDatatable();
+            $this->generateActionButtons();
             $this->generateFields();
-            // $this->generateFilter();
+            $this->generateFilter();
         }
 
         $this->config->commandComment('Views created: ');
