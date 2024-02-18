@@ -4,6 +4,7 @@ namespace App\CRUDGenerator;
 
 use Exception;
 use Illuminate\Support\Str;
+use InfyOm\Generator\Common\GeneratorField;
 use InfyOm\Generator\Generators\BaseGenerator;
 use InfyOm\Generator\Generators\ViewServiceProviderGenerator;
 use InfyOm\Generator\Utils\HTMLFieldGenerator;
@@ -41,7 +42,7 @@ $this->config->commandComment(infy_nl().'Generating Views...');
         $viewsToBeGenerated = explode(',', $this->config->getOption('views'));
     
             if (in_array('index', $viewsToBeGenerated)) {
-                $this->generateTable();
+                // $this->generateTable();
                 $this->generateIndex();
             }
 
@@ -49,26 +50,27 @@ $this->config->commandComment(infy_nl().'Generating Views...');
                 $this->generateFields();
             }
 
-            if (in_array('create', $viewsToBeGenerated)) {
-                $this->generateCreate();
-            }
+            // if (in_array('create', $viewsToBeGenerated)) {
+            //     $this->generateCreate();
+            // }
 
-            if (in_array('edit', $viewsToBeGenerated)) {
-                $this->generateUpdate();
-            }
+            // if (in_array('edit', $viewsToBeGenerated)) {
+            //     $this->generateUpdate();
+            // }
 
-            if (in_array('show', $viewsToBeGenerated)) {
-                $this->generateShowFields();
-                $this->generateShow();
-            }
+            // if (in_array('show', $viewsToBeGenerated)) {
+                // $this->generateShowFields();
+            //     $this->generateFilter();
+            // }
         } else {
-            $this->generateTable();
-            $this->generateIndex();
+
+            // $this->generateTable();
+            // $this->generateIndex();
+            // $this->generateShowFields();
+            // $this->generateDatatable();
+            // $this->generateActionButtons();
             $this->generateFields();
-            $this->generateCreate();
-            $this->generateUpdate();
-            $this->generateShowFields();
-            $this->generateShow();
+            // $this->generateFilter();
         }
 
         $this->config->commandComment('Views created: ');
@@ -185,11 +187,20 @@ $this->config->commandComment(infy_nl().'Generating Views...');
     {
         $htmlFields = [];
 
+
         foreach ($this->config->fields as $field) {
             if (!$field->inForm) {
                 continue;
             }
-
+            // * Field Input Format: field_name <space> db_type <space> html_type(optional) <space> options(optional)
+            // * Options are to skip the field from certain criteria like searchable, fillable, not in form, not in index
+            // * Searchable (s), Fillable (f), In Form (if), In Index (ii)
+            // * Sample Field Inputs
+            if(str_contains($field->htmlType,'select')){
+                $fieldNovo = clone $field;
+                $fieldNovo->htmlType = 'select';
+                $field = $fieldNovo;
+            }
             $htmlFields[] = HTMLFieldGenerator::generateHTML(
                 $field,
                 $this->templateViewPath
@@ -223,6 +234,14 @@ $this->config->commandComment(infy_nl().'Generating Views...');
 //            }
         }
 
+        $htmlFields[] = "@if($".$this->config->modelNames->name.")
+        <div class=\"flex sm:justify-start justify-center sm:my-auto my-4\">
+            {!! Form::label('active', __('Active'),['class' => \"block mx-1\"]) !!}
+            {!! Form::checkbox('active',null,".'$active'.", ['class' => 'checkbox-toggle-switch','wire:model' => 'active',]) !!}
+        </div>
+        @endif
+    ";
+
         g_filesystem()->createFile($this->path.'fields.blade.php', implode(infy_nls(2), $htmlFields));
         $this->config->commandInfo('field.blade.php created');
     }
@@ -246,20 +265,20 @@ $this->config->commandComment(infy_nl().'Generating Views...');
         );
     }
 
-    protected function generateCreate()
+    protected function generateDatatable()
     {
-        $templateData = view($this->templateViewPath.'.scaffold.create')->render();
+        $templateData = view($this->templateViewPath.'.scaffold.Datatable')->render();
 
-        g_filesystem()->createFile($this->path.'create.blade.php', $templateData);
-        $this->config->commandInfo('create.blade.php created');
+        g_filesystem()->createFile($this->path."Datatable{$this->config->modelNames->name}.vue", $templateData);
+        $this->config->commandInfo("Datatable{$this->config->modelNames->name}.vue created");
     }
 
-    protected function generateUpdate()
+    protected function generateActionButtons()
     {
-        $templateData = view($this->templateViewPath.'.scaffold.edit')->render();
+        $templateData = view($this->templateViewPath.'.scaffold.action-buttons')->render();
 
-        g_filesystem()->createFile($this->path.'edit.blade.php', $templateData);
-        $this->config->commandInfo('edit.blade.php created');
+        g_filesystem()->createFile($this->path.'action-buttons.blade.php', $templateData);
+        $this->config->commandInfo('action-buttons.blade.php created');
     }
 
     protected function generateShowFields()
@@ -271,17 +290,18 @@ $this->config->commandComment(infy_nl().'Generating Views...');
                 continue;
             }
 
-            $fieldsStr .= view($this->templateViewPath.'.scaffold.show_field', $field->variables());
+            $fieldsStr .= view($this->templateViewPath.'.scaffold.fields', $field->variables());
             $fieldsStr .= infy_nls(2);
         }
 
-        g_filesystem()->createFile($this->path.'show_fields.blade.php', $fieldsStr);
-        $this->config->commandInfo('show_fields.blade.php created');
+    
+        g_filesystem()->createFile($this->path.'fields.blade.php', $fieldsStr);
+        $this->config->commandInfo('fields.blade.php created');
     }
 
-    protected function generateShow()
+    protected function generateFilter()
     {
-        $templateData = view($this->templateViewPath.'.scaffold.show')->render();
+        $templateData = view($this->templateViewPath.'.scaffold.filter')->render();
 
         g_filesystem()->createFile($this->path.'filter.blade.php', $templateData);
         $this->config->commandInfo('filter.blade.php created');

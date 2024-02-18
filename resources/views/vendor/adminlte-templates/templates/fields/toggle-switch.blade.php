@@ -1,7 +1,7 @@
 <!-- 'bootstrap / Toggle Switch {{ $fieldTitle }} Field' -->
 <div class="grid sm:grid-cols-2 grid-cols-1">
-    <div class="custom-control custom-switch">
-        @{!! Form::checkbox('{{ $fieldName }}', 1, null,  ['class' => 'custom-control-input']) !!}
+    <div class="checkbox-toggle-switch">
+        @{!! Form::checkbox('{{ $fieldName }}', 1, null,  ['class' => 'custom-control-input','wire:model' => '{{$fieldName}}']) !!}
 @if($config->options->localized)
         @{!! Form::label('{{ $fieldName }}', __('models/{{ $config->modelNames->camelPlural }}.fields.{{ $fieldName }}').':', ['class' => 'custom-control-label']) !!}
 @else

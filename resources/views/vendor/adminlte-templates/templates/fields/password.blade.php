@@ -5,5 +5,5 @@
 @else
     @{!! Form::label('{{ $fieldName }}', '{{ $fieldTitle }}:') !!}
 @endif
-    @{!! Form::password('{{ $fieldName }}', ['class' => 'form-control'@php if(isset($options)) { echo htmlspecialchars_decode($options); } @endphp]) !!}
+    @{!! Form::password('{{ $fieldName }}', ['class' => 'form-control'@php if(isset($options)) { echo htmlspecialchars_decode($options); } @endphp,'wire:model' => '{{$fieldName}}']) !!}
 </div>

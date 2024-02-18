@@ -8,7 +8,7 @@
     <div class="input-group">
         <div class="custom-file">
             @{!! Form::file('{{ $fieldName }}', ['class' => 'custom-file-input']) !!}
-            @{!! Form::label('{{ $fieldName }}', 'Choose file', ['class' => 'custom-file-label']) !!}
+            @{!! Form::label('{{ $fieldName }}', 'Choose file', ['class' => 'custom-file-label','wire:model' => '{{$fieldName}}']) !!}
         </div>
     </div>
 </div>

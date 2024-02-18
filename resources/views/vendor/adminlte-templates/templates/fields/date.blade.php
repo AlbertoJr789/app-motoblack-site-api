@@ -5,7 +5,7 @@
 @else
     @{!! Form::label('{{ $fieldName }}', '{{ $fieldTitle }}:') !!}
 @endif
-    @{!! Form::text('{{ $fieldName }}', null, ['class' => 'form-control','id'=>'{{ $fieldName }}']) !!}
+    @{!! Form::text('{{ $fieldName }}', null, ['class' => 'form-control','id'=>'{{ $fieldName }},'wire:model' => '{{$fieldName}}']) !!}
 </div>
 
 @@push('page_scripts')
