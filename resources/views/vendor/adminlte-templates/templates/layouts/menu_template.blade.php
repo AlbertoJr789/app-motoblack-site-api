@@ -1,7 +1,7 @@
 
 @php
     $menu = "{{ __('{$config->modelNames->humanPlural}') }}";
-    $route = "{{route('admin.{$config->modelNames->camel}.index')}}";
+    $route = "{{route('admin.{$config->modelNames->camelPlural}.index')}}";
 @endphp
 @verbatim
 <x-menu-item icon="fa-solid fa-pen" @endverbatim route="{!! $route !!}">

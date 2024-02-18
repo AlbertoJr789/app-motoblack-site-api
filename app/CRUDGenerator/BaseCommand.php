@@ -22,17 +22,17 @@ use InfyOm\Generator\Generators\MigrationGenerator;
 use InfyOm\Generator\Generators\ModelGenerator;
 use InfyOm\Generator\Generators\RepositoryGenerator;
 use InfyOm\Generator\Generators\RepositoryTestGenerator;
-use App\CRUDGenerator\ControllerGenerator;
 use InfyOm\Generator\Generators\Scaffold\MenuGenerator;
 use InfyOm\Generator\Generators\Scaffold\RequestGenerator;
-use InfyOm\Generator\Generators\Scaffold\RoutesGenerator;
-use App\CRUDGenerator\ViewGenerator;
 use InfyOm\Generator\Generators\SeederGenerator;
 use InfyOm\Generator\Utils\GeneratorFieldsInputUtil;
 use InfyOm\Generator\Utils\TableFieldsGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\VarExporter\VarExporter;
+use App\CRUDGenerator\ControllerGenerator;
+use App\CRUDGenerator\RoutesGenerator;
+use App\CRUDGenerator\ViewGenerator;
 
 class BaseCommand extends Command
 {

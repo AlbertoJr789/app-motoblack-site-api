@@ -66,6 +66,7 @@ $this->config->commandComment(infy_nl().'Generating Views...');
 
             // $this->generateTable();
             // $this->generateShowFields();
+            $this->generateCreate();
             $this->generateIndex();
             $this->generateDatatable();
             $this->generateActionButtons();
@@ -280,6 +281,15 @@ $this->config->commandComment(infy_nl().'Generating Views...');
         g_filesystem()->createFile($this->path.'action-buttons.blade.php', $templateData);
         $this->config->commandInfo('action-buttons.blade.php created');
     }
+
+    protected function generateCreate()
+    {
+        $templateData = view($this->templateViewPath.'.scaffold.create')->render();
+
+        g_filesystem()->createFile($this->path.'create.blade.php', $templateData);
+        $this->config->commandInfo('create.blade.php created');
+    }
+
 
     protected function generateShowFields()
     {

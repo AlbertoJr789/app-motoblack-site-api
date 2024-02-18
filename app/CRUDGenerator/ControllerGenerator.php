@@ -93,8 +93,8 @@ class ControllerGenerator extends BaseGenerator
         $fileName = $this->config->modelNames->plural.'Table.php';
         $filterData = view('laravel-generator::scaffold.table.filter')->render();
         
-        g_filesystem()->createFile(app_path("Livewire/{$this->config->modelNames->name}/Create.php"), $templateData);
-        g_filesystem()->createFile(app_path("Livewire/{$this->config->modelNames->name}/Filter.php"), $filterData);
+        g_filesystem()->createFile(app_path("Livewire/{$this->config->modelNames->humanPlural}/Create.php"), $templateData);
+        g_filesystem()->createFile(app_path("Livewire/{$this->config->modelNames->humanPlural}/Filter.php"), $filterData);
 
         $this->config->commandComment(infy_nl().'Livewire Components created: ');
         $this->config->commandInfo($fileName);

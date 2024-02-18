@@ -14,7 +14,7 @@
     ];
 @endphp
 
-namespace {{ $config->namespaces->livewireTables }};
+namespace App\Livewire\{{$config->modelNames->name}};
 
 use App\Models\{{$config->modelNames->name}};
 use App\Repositories\{{$config->modelNames->name}}Repository;

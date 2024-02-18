@@ -13,13 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['as' => 'admin.', 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified' ]], function () {
-    Route::get('/', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::group(['prefix' => 'testes', 'as' => 'testes.', 'middleware' => 'permission:testes.view'],function(){
-        Route::get('/', [App\Http\Controllers\TesteController::class,'index'])->name('index');
-        Route::get('dataTableData',[App\Http\Controllers\TesteController::class,'dataTableData'])->name('dataTableData');
-    });
+    includeRouteFiles(__DIR__.'/admin/');
 });
 
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder');
