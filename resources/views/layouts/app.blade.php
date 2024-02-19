@@ -53,7 +53,7 @@
                 for (var placeholder in replace) {
                     translation = translation.replace(`:${placeholder}`, replace[placeholder]);
                 }
-                return translation;
+                return translation ?? key;
             }
         </script>
 

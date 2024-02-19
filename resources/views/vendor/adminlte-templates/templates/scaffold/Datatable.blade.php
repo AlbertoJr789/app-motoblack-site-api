@@ -78,14 +78,13 @@
         {!! $fields !!}
 
         {data: 'active', title: window.trans('Active')},
-        {data: 'creator', name:'creator.name', title: window.trans('Creator')},
-        {data: 'editor', name:'editor.name', title: window.trans('Editor')},
-        {data: 'deleter', name:'deleter.name', title: window.trans('Deleter')},
+        {data: 'creator', name:'C.name', title: window.trans('Creator')},
+        {data: 'editor', name:'E.name', title: window.trans('Editor')},
+        {data: 'deleter', name:'D.name', title: window.trans('Deleter')},
         {data: 'deleted_at', title: window.trans('Delete Date')},
         { responsivePriority: 2, data: 'action', name: 'action', title: '', className:'text-center noVis', orderable: false, searchable: false, width: '50px'},
 
     ].filter(Boolean)
-    console.log(columns);
     
     const options = {
         language: {

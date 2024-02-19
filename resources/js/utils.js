@@ -14,16 +14,16 @@ export function fillForms(container,data) {
 
 /**
  * 
- * @param {HTMLTableElement} table 
+ * @param {HTMLTableElement} targetTable 
  * @param {object} checked 
  */
-export function handleCheckboxes(table,checked){
-    table.addEventListener('change',(e)=>{
+export function handleCheckboxes(targetTable,checked){
+    targetTable.addEventListener('change',(e)=>{
         if(e.target.type == 'checkbox'){
             let value = e.target.getAttribute('value')
             if(e.target.checked){
                 if(value == -1){ //table header marker
-                    document.querySelectorAll('#tableTestes input[type="checkbox"]').forEach((checkbox)=>{
+                    targetTable.querySelectorAll('input[type="checkbox"]').forEach((checkbox)=>{
                         checkbox.checked = true
                         value = checkbox.getAttribute('value')
                         if(!checked.value.includes(value) && value != -1){
@@ -35,7 +35,7 @@ export function handleCheckboxes(table,checked){
                 }
             } else {
                 if(e.target.getAttribute('value') == -1){ //table header marker
-                    document.querySelectorAll('#tableTestes input[type="checkbox"]').forEach((checkbox)=>{
+                    targetTable.querySelectorAll('input[type="checkbox"]').forEach((checkbox)=>{
                         checkbox.checked = false
                         checked.value = []
                     })

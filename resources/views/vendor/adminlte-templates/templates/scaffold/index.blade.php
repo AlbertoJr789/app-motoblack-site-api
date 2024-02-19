@@ -8,7 +8,7 @@ $route = "{{route('admin.{$config->modelNames->camelPlural}.dataTableData')}}"
 
 <div class="p-3 w-full h-full">
     <x-card class="w-full">
-        <Datatable-{{$config->modelNames->plural}} :ajax-route="'{!! $route !!}'"
+        <Datatable-{{implode('-',explode(' ',$config->modelNames->humanPlural))}} :ajax-route="'{!! $route !!}'"
             :can-create="@@can('testes.create') true @@else false @@endcan"
             :can-delete="@@can('testes.delete') true @@else false @@endcan"
             >
@@ -22,7 +22,7 @@ $route = "{{route('admin.{$config->modelNames->camelPlural}.dataTableData')}}"
                     <i class="fa-solid fa-magnifying-glass-chart mr-1"></i> {{__('Filter')}}
                 </button>
             </template>
-        </Datatable-{{$config->modelNames->plural}}>
+        </Datatable-{{implode('-',explode(' ',$config->modelNames->humanPlural))}}>
     </x-card>
 </div>
 

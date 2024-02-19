@@ -2,15 +2,15 @@
 <x-dialog-modal wire:model.live="open" id="modalCreate">
     <x-slot name="title">@endverbatim
         @@if(${{$config->modelNames->name}})
-            {{__('Update register')}}
+            @{{__('Update register')}}
         @@else
-            {{__('Create new register')}}
+            @{{__('Create new register')}}
         @@endif @verbatim
     </x-slot>
 
     <x-slot name="content"> @endverbatim
         @@include('adminlte-templates::common.errors')
-        @{!! Form::model(${{$config->modelNames->name}},['wire:submit.prevent' => 'submit', 'id' => 'form{{$config->modelNames->humanPlural}}}']) !!}
+        @{!! Form::model(${{$config->modelNames->name}},['wire:submit.prevent' => 'submit', 'id' => 'form{{$config->modelNames->plural}}}']) !!}
             @@include('{{$config->modelNames->snakePlural}}.fields')
     @verbatim </x-slot> @endverbatim
         @verbatim

@@ -22,7 +22,11 @@ class {{ $config->modelNames->name }} extends Model
 @if($customCreatedAt)@tab()const CREATED_AT = '{{ $customCreatedAt }}';@nls(2)@endif
 @if($customUpdatedAt)@tab()const UPDATED_AT = '{{ $customUpdatedAt }}';@nls(2)@endif
     public $fillable = [
-        {!! $fillables !!}
+        {!! $fillables !!},
+        'creator_id',
+        'editor_id',
+        'deleter_id',
+        'active'
     ];
 
     protected $casts = [

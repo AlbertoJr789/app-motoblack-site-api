@@ -41,9 +41,9 @@ class {{ $config->modelNames->name }}Controller extends AppBaseController
    public function dataTableData(Request $request){
 
        $query = {{$config->modelNames->name}}::select('{{$config->modelNames->snakePlural}}.*','C.name','E.name','D.name')
-                                    ->leftjoin(['users as C','C.id','{{$config->modelNames->snakePlural}}.creator_id'])
-                                    ->leftjoin(['users as E','E.id','{{$config->modelNames->snakePlural}}.editor_id'])
-                                    ->leftjoin(['users as D','D.id','{{$config->modelNames->snakePlural}}.deleter_id']);
+                                    ->leftjoin('users as C','C.id','{{$config->modelNames->snakePlural}}.creator_id')
+                                    ->leftjoin('users as E','E.id','{{$config->modelNames->snakePlural}}.editor_id')
+                                    ->leftjoin('users as D','D.id','{{$config->modelNames->snakePlural}}.deleter_id');
        $query = $this->filterDataTableData($query,$request->all());
        return DataTables::eloquent($query)
                          ->addColumn('select',function($reg){
@@ -71,7 +71,7 @@ class {{ $config->modelNames->name }}Controller extends AppBaseController
                             return $reg->active ? '<span class="badge badge-green uppercase">'.__('Yes').'</span>' : '<span class="badge badge-red uppercase">'.__('No').'</span>';
                          })
                          ->addColumn('action',function($reg){
-                               return view('{{$config->modelNames->camelPlural}}.action-buttons',['data' => $reg]);
+                               return view('{{$config->modelNames->snakePlural}}.action-buttons',['data' => $reg]);
                          })
                          ->rawColumns(['action','active'])
                          ->make();

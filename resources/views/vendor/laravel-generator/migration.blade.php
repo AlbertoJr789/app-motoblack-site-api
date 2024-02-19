@@ -1,5 +1,6 @@
 @php
-    echo "<?php".PHP_EOL;
+echo "
+<?php".PHP_EOL;
 @endphp
 
 use Illuminate\Database\Migrations\Migration;
@@ -22,10 +23,13 @@ return new class extends Migration
             $table->foreignId('creator_id')->references('id')->on('users');
             $table->foreignId('editor_id')->nullable()->references('id')->on('users');
             $table->foreignId('deleter_id')->nullable()->references('id')->on('users');
-
-            Permission::create([ 'name' => '{{$config->modelNames->camel}}.view']);
-            Permission::create([ 'name' => '{{$config->modelNames->camel}}.create']);
-            Permission::create([ 'name' => '{{$config->modelNames->camel}}.delete']);
+            
+            try {
+                Permission::create([ 'name' => '{{$config->modelNames->camelPlural}}.view']);
+                Permission::create([ 'name' => '{{$config->modelNames->camelPlural}}.create']);
+                Permission::create([ 'name' => '{{$config->modelNames->camelPlural}}.delete']);
+            } catch (\Throwable $th) {
+            }
         });
     }
 
@@ -37,5 +41,13 @@ return new class extends Migration
     public function down()
     {
         Schema::drop('{{ $config->tableName }}');
+                
+        try {
+            Permission::whereName('{{$config->modelNames->camelPlural}}.view')
+                  ->orWhereName('{{$config->modelNames->camelPlural}}.create')
+                  ->orWhereName('{{$config->modelNames->camelPlural}}.delete')
+                  ->delete();
+        } catch (\Throwable $th) {
+        }
     }
 };
