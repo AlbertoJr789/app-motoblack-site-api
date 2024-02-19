@@ -171,7 +171,8 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class,
-        App\Providers\GlobalFunctionsProvider::class
+        App\Providers\GlobalFunctionsProvider::class,
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -186,7 +187,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        'Log' => Illuminate\Support\Facades\Log::class,
+        'Str' => Illuminate\Support\Str::class,
     ])->toArray(),
 
 ];
