@@ -22,8 +22,6 @@ return new class extends Migration
         //     $table->double('longitude',10,7);
         //     $table->primary(['latitude','longitude']);
         //     $table->foreignId('endereco_id')->references('id')->on('endereco');
-        //     $table->timestamps();
-        //     $table->softDeletes();
         // });
     }
 

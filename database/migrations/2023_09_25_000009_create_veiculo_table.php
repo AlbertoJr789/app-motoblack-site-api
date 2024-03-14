@@ -17,21 +17,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('veiculo', function (Blueprint $table) {
-            $table->id();
-            $table->enum('tipo',['Moto','Carro']);
-            $table->string('modelo', 45);
-            $table->string('marca', 45);
-            $table->string('chassi', 45)->nullable();
-            $table->string('renavam', 45)->nullable();
-            $table->string('placa', 45);
-            $table->string('cor', 45);
-            $table->date('data_desativacao')->nullable();
-            $table->tinyInteger('ativo')->nullable()->default('1');
-            $table->foreignId('agente_id')->references('id')->on('agente');
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        // Schema::create('veiculo', function (Blueprint $table) {
+            // $table->id();
+            // $table->enum('tipo',['Moto','Carro']);
+            // $table->string('modelo', 45);
+            // $table->string('marca', 45);
+            // $table->string('chassi', 45)->nullable();
+            // $table->string('renavam', 45)->nullable();
+            // $table->string('placa', 45);
+            // $table->string('cor', 45);
+            // $table->date('data_desativacao')->nullable();
+            // $table->tinyInteger('ativo')->nullable()->default('1');
+            // $table->foreignId('agente_id')->references('id')->on('agente');
+            // $table->timestamps();
+            // $table->softDeletes();
+        // });
     }
 
     /**

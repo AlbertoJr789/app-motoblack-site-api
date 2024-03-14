@@ -40,6 +40,7 @@ class TesteController extends AppBaseController
 
         $query = Teste::with(['creator:id,name','editor:id,name','deleter:id,name']);
         $query = $this->filterDataTableData($query,$request->all());
+
         return DataTables::eloquent($query)
                           ->addColumn('select',function($reg){
                                 return '';

@@ -177,5 +177,18 @@
     "Update Date": "Data de Atualização",
     "Delete Date": "Data de exclusão",
     "You are not authorized to do this action": "Você não está autorizado a executar esta ação",
-    "Photo": "Foto"
+    "Photo": "Foto",
+    "Warning!": "Aviso!",
+    "Invalid Document": "Documento inválido",
+    "Invalid Fields": "Campos inválidos",
+    "Some fields are invalid or not filled, correct them before proceding: ": "Alguns campos se encontram inválidos ou não preenchidos, corrija-os antes de continuar: ",
+    "ZIP Code": "CEP",
+    "Number": "Número",
+    "Address": "Endereço",
+    "City": "Cidade",
+    "Neighborhood": "Bairro",
+    "State": "Estado",
+    "Country": "País",
+    "Personal Info": "Informações Pessoais",
+    "Complement": "Complemento"
 }

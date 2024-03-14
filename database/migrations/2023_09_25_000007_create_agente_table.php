@@ -16,17 +16,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('agente', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('pessoa_id')->references('id')->on('pessoa');
-            $table->decimal('creditos', 10, 2)->default(0.0);
-            $table->enum('tipo', ['Mototaxista','Motorista'])->default('Mototaxista');
-            $table->string('cnh', 45)->nullable();
-            $table->enum('status',['Inativo','Ativo','Banido','Reprovado','Aprovado'])->default('Inativo');
-            $table->foreignId('users_id')->references('id')->on('users');
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        // Schema::create('agente', function (Blueprint $table) {
+            // $table->id();
+            // $table->foreignId('pessoa_id')->references('id')->on('pessoa');
+            // $table->decimal('creditos', 10, 2)->default(0.0);
+            // $table->enum('tipo', ['Mototaxista','Motorista'])->default('Mototaxista');
+            // $table->string('cnh', 45)->nullable();
+            // $table->enum('status',['Inativo','Ativo','Banido','Reprovado','Aprovado'])->default('Inativo');
+            // $table->foreignId('users_id')->references('id')->on('users');
+            // $table->timestamps();
+            // $table->softDeletes();
+        // });
     }
 
     /**
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agente');
+        // Schema::dropIfExists('agente');
     }
 };

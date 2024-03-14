@@ -16,33 +16,33 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('corrida', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('agente_id')->references('id')->on('agente');
-            $table->foreignId('passageiro_id')->references('id')->on('passageiro');
-            $table->tinyInteger('cancelada')->nullable();
-            $table->timestamp('data_finalizada')->nullable();
-            $table->integer('nota_passageiro')->nullable();
-            $table->integer('nota_agente')->nullable();
-            $table->string('justificativa_cancelamento')->nullable();
-            $table->foreignId('veiculo_id')->references('id')->on('veiculo');
+        // Schema::create('corrida', function (Blueprint $table) {
+            // $table->id();
+            // $table->foreignId('agente_id')->references('id')->on('agente');
+            // $table->foreignId('passageiro_id')->references('id')->on('passageiro');
+            // $table->tinyInteger('cancelada')->nullable();
+            // $table->timestamp('data_finalizada')->nullable();
+            // $table->integer('nota_passageiro')->nullable();
+            // $table->integer('nota_agente')->nullable();
+            // $table->string('justificativa_cancelamento')->nullable();
+            // $table->foreignId('veiculo_id')->references('id')->on('veiculo');
             
-            $table->text('lat_origem',10,7);
-            $table->text('lon_origem',10,7);
+            // $table->text('lat_origem',10,7);
+            // $table->text('lon_origem',10,7);
         
-            $table->text('lat_destino',10,7);
-            $table->text('lon_destino',10,7);
+            // $table->text('lat_destino',10,7);
+            // $table->text('lon_destino',10,7);
 
-            $table->text('latitude_motoboy',10,7);
-            $table->text('longitude_motoboy',10,7);
+            // $table->text('latitude_motoboy',10,7);
+            // $table->text('longitude_motoboy',10,7);
 
 
-            // $table->foreign(['lat_origem','lon_origem'])->references(['latitude','longitude'])->on('coordenadas');
-            // $table->foreign(['lat_destino','lon_destino'])->references(['latitude','longitude'])->on('coordenadas');
+            // // $table->foreign(['lat_origem','lon_origem'])->references(['latitude','longitude'])->on('coordenadas');
+            // // $table->foreign(['lat_destino','lon_destino'])->references(['latitude','longitude'])->on('coordenadas');
     
-            $table->timestamps();
-            $table->softDeletes();
-        });
+            // $table->timestamps();
+            // $table->softDeletes();
+        // });
     }
 
     /**
@@ -52,6 +52,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('corrida');
+        // Schema::dropIfExists('corrida');
     }
 };

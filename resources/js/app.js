@@ -8,6 +8,8 @@ import './bootstrap';
 // import 'flowbite';
 import Swal from 'sweetalert2';
 window.Swal = Swal
+import IMask from 'imask';
+window.IMask = IMask;
 import { createApp } from 'vue';
 import '../css/app.css';
 /**
@@ -16,7 +18,9 @@ import '../css/app.css';
  * to use in your application's views. An example is included for you.
  */
 
-const app = createApp({});
+
+
+const Vue = createApp({});
 
 /**
  * The following block of code may be used to automatically register your
@@ -27,7 +31,7 @@ const app = createApp({});
  */
 
 Object.entries(import.meta.glob('../views/**/*.vue', { eager: true })).forEach(([path, definition]) => {
-    app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
+    Vue.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
 });
 
 /**
@@ -35,5 +39,8 @@ Object.entries(import.meta.glob('../views/**/*.vue', { eager: true })).forEach((
  * an "id" attribute of "app". This element is included with the "auth"
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
-app.config.globalProperties.window = window
-app.mount('main');
+Vue.config.globalProperties.window = window
+
+Vue.mount('main');
+
+

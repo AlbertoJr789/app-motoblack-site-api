@@ -1,0 +1,57 @@
+<ol class="flex items-center w-full">
+    {{ $slot }}
+</ol>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            let stepperFields = document.querySelector('[stepper-fields]')
+            let stepperItems = document.querySelectorAll('[stepper-item]') 
+            let init = false
+            stepperItems.forEach((item)=>{
+                item.addEventListener('click',(e)=>{
+                    let previous = document.querySelector('[active-stepper]')
+                    if(previous == e.target) return
+                    let fields = fieldsValid(stepperFields.children[previous.getAttribute('active-stepper')])
+                    if(!fields){
+                        for(let i=0;i < stepperItems.length;++i){
+                            if(stepperItems[i] === e.target){
+                                stepperFields.children[i].classList.remove('hidden')
+                                stepperItems[i].setAttribute('active-stepper',i)
+                                stepperItems[i].classList.remove('bg-secondary', 'text-primary', 'hover:text-secondary', 'hover:bg-amber-400','cursor-pointer')
+                                stepperItems[i].classList.add('bg-amber-400','text-secondary')
+                            }else{
+                                stepperFields.children[i].classList.add('hidden')
+                                stepperItems[i].classList.remove('bg-amber-400','text-secondary')
+                                stepperItems[i].classList.add('bg-secondary','text-primary','hover:text-secondary','hover:bg-amber-400','cursor-pointer')
+                                stepperItems[i].removeAttribute('active-stepper')
+                            }
+                         }
+                    }else{
+                        Swal.fire({
+                            icon: 'warning',
+                            title: "{{__('Invalid Fields')}}",
+                            text: `{{__('Some fields are invalid or not filled, correct them before proceding: ')}}${fields}`
+                        })
+                    }
+                  
+                })
+            }) 
+        })
+
+        function fieldsValid(container){
+            let inputs = container.querySelectorAll('input,select')
+            let invalid = ''
+            inputs.forEach((input)=>{
+                console.log(input.getAttribute('required'));
+               if(input.getAttribute('required') == "true"){
+                 if(input.value.trim() == "" || !input.value){
+                    invalid += input.labels[0].getAttribute('for')+','
+                 }
+               }
+            })
+            return invalid.substr(0,invalid.length-1) //removing last comma
+        }
+
+</script>
+@endpush
