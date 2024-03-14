@@ -124,6 +124,7 @@ class Create extends Component
                 ];
             }
         } catch (\Throwable $th) {
+            \Log::error('Error while submiting {{$config->modelNames->name}}: '.$th->getMessage());
             $message = [
                 'icon' => 'error',
                 'title' => __('Error'),
