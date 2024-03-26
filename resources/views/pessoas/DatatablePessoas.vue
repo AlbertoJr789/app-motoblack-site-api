@@ -66,7 +66,7 @@
         {data: 'tipo', title: window.trans('tipo')},
         {data: 'documento', title: window.trans('documento')},
         {data: 'rg', title: window.trans('rg')},
-        {data: 'endereco', title: window.trans('Address')},
+        {responsivePriority: 2, data: 'endereco', title: window.trans('Address')},
         {data: 'created_at', title: window.trans('Creation Date')},
         {data: 'updated_at', title: window.trans('Update Date')},
 

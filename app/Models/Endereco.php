@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Http;
 
 class Endereco extends Model
 {
@@ -12,7 +13,9 @@ class Endereco extends Model
     public $table = 'endereco';
 
     protected $fillable = [
+        'cep',
         'logradouro',
+        'complemento',
         'numero',
         'bairro',
         'cidade',
@@ -21,7 +24,11 @@ class Endereco extends Model
     ];
 
     public function getFormattedAddressAttribute(){
-        
+        return "$this->logradouro, $this->numero, $this->bairro $this->complemento - $this->cidade/$this->estado - $this->pais - $this->cep";
+    }
+
+    public static function queryCep($cep) {
+        return preg_replace('/[?();]/','',Http::get("https://viacep.com.br/ws/$cep/json/?callback=?")->body());
     }
 
 

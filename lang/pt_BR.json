@@ -183,12 +183,15 @@
     "Invalid Fields": "Campos inválidos",
     "Some fields are invalid or not filled, correct them before proceding: ": "Alguns campos se encontram inválidos ou não preenchidos, corrija-os antes de continuar: ",
     "ZIP Code": "CEP",
-    "Number": "Número",
+    "Number": "Nº",
     "Address": "Endereço",
     "City": "Cidade",
     "Neighborhood": "Bairro",
     "State": "Estado",
     "Country": "País",
     "Personal Info": "Informações Pessoais",
-    "Complement": "Complemento"
+    "Complement": "Complemento",
+    "Error While Fetching ZIP Code, insert the data manually": "Houve um erro ao buscar informações sobre o CEP, Insira os dados manualmente",
+    "Brazil": "Brasil",
+    "United States": "Estados Unidos"
 }

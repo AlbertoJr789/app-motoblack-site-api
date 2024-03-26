@@ -50,22 +50,22 @@
                     }
                 })
             }
-            function restoreRegister(pessoa){
-                Swal.fire({
-                    icon: 'info',
-                    title: "Restauração de registro",     
-                    text: pessoa instanceof Array ? "Tem certeza de que deseja restaurar os registros selecionados?": "Tem certeza de que deseja restaurar este registro?",
-                    showCancelButton: true,
-                    confirmButtonText: "Sim",
-                    confirmButtonColor: "#27272A",
-                    cancelButtonColor: "#EA4335",
-                    cancelButtonText: "Cancelar"     
-                }).then((res) => {
-                    if(res.value){
-                        Livewire.dispatch('restore',[pessoa])
-                    }
-                })
+    function restoreRegister(pessoa){
+        Swal.fire({
+            icon: 'info',
+            title: "Restauração de registro",     
+            text: pessoa instanceof Array ? "Tem certeza de que deseja restaurar os registros selecionados?": "Tem certeza de que deseja restaurar este registro?",
+            showCancelButton: true,
+            confirmButtonText: "Sim",
+            confirmButtonColor: "#27272A",
+            cancelButtonColor: "#EA4335",
+            cancelButtonText: "Cancelar"     
+        }).then((res) => {
+            if(res.value){
+                Livewire.dispatch('restore',[pessoa])
             }
+        })
+    }
 </script>
 @endpush
 @endcan

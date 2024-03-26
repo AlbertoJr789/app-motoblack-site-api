@@ -35,7 +35,6 @@ class Create extends Component
     #[On('openCreate')]
     public function openCreate()
     {
-        Log::error('waaa tira q eu vo cagar');
         $this->reset();
         $this->create = true;
         $this->open = true;
@@ -112,7 +111,6 @@ class Create extends Component
                 ];
             }
         } catch (\Throwable $th) {
-            dd($th);
             $message = [
                 'icon' => 'error',
                 'title' => __('Error'),

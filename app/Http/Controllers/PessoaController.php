@@ -9,6 +9,10 @@ use App\Repositories\PessoaRepository;
 use Illuminate\Http\Request;
 use Flash;
 use App\Models\Pessoa;
+use App\Rules\DocumentRule;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use Yajra\DataTables\Facades\DataTables;
 
 class PessoaController extends AppBaseController
@@ -27,6 +31,54 @@ class PessoaController extends AppBaseController
     public function index(Request $request)
     {
         return view('pessoas.index');
+    }
+
+    public function store(Request $request){
+        try {
+            $d = $request->all();
+
+            $validator = Validator::make($d,[
+                'documento' => new DocumentRule($d['tipo'])
+            ]);
+
+            if($validator->fails()){
+                throw new ValidationException($validator,$validator->errors());
+            }
+            
+            $pessoa = (new PessoaRepository)->create($d);
+            
+            if(isset($d['cep'])){
+                $pessoa->update(['endereco_id' => $pessoa->endereco()->create($d)->id ]);
+            }
+            
+            alert()->success(__('Success'),'Pessoa '.__('added successfully!'));
+        } catch (ValidationException $ex) {
+            alert()->warning(__('Warning!'),implode(',',Arr::flatten($ex->errors())));
+        }
+        catch (\Throwable $th) {
+            \Log::error('Error while submiting Pessoa: '.$th->getMessage());
+            alert()->error(__('Error'),__('Whoops! Something went wrong.'));
+        }
+        return redirect()->back();
+    }
+
+    public function update(Pessoa $pessoa,Request $request){
+
+        try {
+            $d = $request->all();
+            $pessoa = (new PessoaRepository)->update($d,$pessoa->id);
+                
+            if($pessoa->endereco){
+                $pessoa->endereco->update($d);
+            }else{
+                $pessoa->update(['endereco_id' => $pessoa->endereco()->create($d)->id]);
+            }        
+            alert()->success(__('Success'),'Pessoa '.__('updated successfully!'));
+        }catch (\Throwable $th) {
+            \Log::error('Error while submiting Pessoa: '.$th->getMessage());
+            alert()->error(__('Error'),__('Whoops! Something went wrong.'));
+        }
+        return redirect()->back();
     }
 
     /**
@@ -52,9 +104,6 @@ class PessoaController extends AppBaseController
                                 case 2: return  'Pessoa Jurídica';
                             }
                          })
-                         ->editColumn('endereco',function($reg){
-                               return $reg->endereco_id ? $reg->endereco->formattedAddress : '-';
-                         })
                          ->editColumn('created_at',function($reg){
                                return $reg->created_at ? $reg->created_at->format('d/m/Y H:i') : '';
                          })
@@ -63,6 +112,9 @@ class PessoaController extends AppBaseController
                          })
                          ->editColumn('deleted_at',function($reg){
                                return $reg->deleted_at ? $reg->deleted_at->format('d/m/Y H:i') : '';
+                         })
+                         ->addColumn('endereco',function($reg){
+                             return $reg->endereco_id ? $reg->endereco->formattedAddress : '-';
                          })
                          ->addColumn('creator',function($reg){
                                return $reg->creator ? $reg->creator->name : '';

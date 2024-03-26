@@ -2,11 +2,13 @@
 
 namespace App\Livewire\Pessoas;
 
+use App\Models\Endereco;
 use App\Models\Pessoa;
 use App\Repositories\PessoaRepository;
 use App\Rules\DocumentRule;
 use Exception;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
@@ -18,17 +20,21 @@ class Create extends Component
     //screen attributes
     public $open, $create, $update;
 
-    public ?Pessoa $Pessoa;
+    public ?Pessoa $Pessoa; 
+    public $endereco;
 
     //attributes
-    public $id,$nome,$tipo=1,$documento,$rg,$created_at,$updated_at,$active;
-    
+    public $id,$nome,$tipo=1,$documento,$rg,$active;
+
+    //address
+    public $requiredAddress;
     
     public function mount(){
         $this->open = $this->create = $this->update = false;
-        $Pessoa = null;
-        $this->id = $this->nome = $this->documento = $this->rg = $this->created_at = $this->updated_at = $this->active = null;
+        $this->Pessoa = $this->endereco = null;
+        $this->id = $this->nome = $this->documento = $this->rg = $this->active = null;
         $this->tipo = 1;
+        $this->requiredAddress = false;
     }
 
     public function render()
@@ -42,6 +48,8 @@ class Create extends Component
         $this->reset();
         $this->create = true;
         $this->open = true;
+        $this->requiredAddress = false;
+        $this->dispatch('resetStepper');
     }
 
     #[On('openEdit')]
@@ -58,6 +66,14 @@ class Create extends Component
         $this->active = $pessoa->active;
         $this->open = $this->update = true;
         $this->create = false;
+
+        if($pessoa->endereco){
+            $this->endereco = $pessoa->endereco->toArray();
+        }else{
+            $this->endereco = null;
+        }
+        $this->requiredAddress = true;
+        $this->dispatch('resetStepper');
     }
 
     #[On('delete')]
@@ -102,55 +118,5 @@ class Create extends Component
         $this->dispatch('alert',$message);
     }
 
-    #[On('tipoChanged')]
-    public function tipoChanged($doc){
-        $this->documento = $doc;
-    }
-
-    public function submit()
-    {
-        try {
-
-            $validator = Validator::make($this->except(['open','create','update','active']),[
-                'documento' => new DocumentRule($this->tipo)
-            ]);
-
-            if($validator->fails()){
-                throw new ValidationException($validator,$validator->errors());
-            }
-
-            if ($this->create) {
-                (new PessoaRepository)->create($this->except(['open','create','update','active']));
-                $message = [
-                    'icon' => 'success',
-                    'title' => __('Success'),
-                    'text' => 'Pessoa '.__('added successfully!')
-                ];
-            } else {
-                (new PessoaRepository)->update($this->except(['open','create','update','id']),$this->Pessoa->id);
-                $message = [
-                    'icon' => 'success',
-                    'title' => __('Success'),
-                    'text' => 'Pessoa '.__('updated successfully!')
-                ];
-            }
-            $this->open = false;
-        } catch (ValidationException $ex) {
-            $message = [
-                'icon' => 'warning',
-                'title' => __('Warning!'),
-                'text' => implode(',',Arr::flatten($ex->errors()))
-            ];
-        }
-        catch (\Throwable $th) {
-            \Log::error('Error while submiting Pessoa: '.$th->getMessage());
-            $message = [
-                'icon' => 'error',
-                'title' => __('Error'),
-                'text' => __('Whoops! Something went wrong.')
-            ];
-            $this->open = false;
-        }
-        $this->dispatch('alert',$message);
-    }
+    
 }

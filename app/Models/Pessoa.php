@@ -16,6 +16,7 @@ class Pessoa extends Model
         'creator_id',
         'editor_id',
         'deleter_id',
+        'endereco_id',
         'active'
     ];
 
@@ -43,6 +44,10 @@ class Pessoa extends Model
 
     public function deleter(){
         return $this->hasOne(User::class,'id','deleter_id');
+    }
+
+    public function endereco(){
+        return $this->hasOne(Endereco::class,'id','endereco_id');
     }
 
 }

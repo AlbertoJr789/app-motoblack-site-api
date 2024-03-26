@@ -29,5 +29,5 @@ Route::group(['prefix' => 'auth'],function () {
 Route::resource('testes', App\Http\Controllers\API\TesteAPIController::class)
     ->except(['create', 'edit']);
 
-Route::resource('pessoas', App\Http\Controllers\API\PessoaAPIController::class)
+Route::apiResource('pessoas', App\Http\Controllers\API\PessoaAPIController::class)
     ->except(['create', 'edit']);
