@@ -38,7 +38,7 @@ class Create extends Component
         ${{$config->modelNames->name}} = null;
         {!! implode(' = ',$fields['this']) !!} = $this->active = null;
     
-}
+    }
 
     public function render()
     {
@@ -102,36 +102,6 @@ class Create extends Component
                 'text' => __('Whoops! Something went wrong.')
             ];
         }
-        $this->dispatch('alert',$message);
-    }
-
-    public function submit()
-    {
-        try {
-            if ($this->create) {
-                (new {{$config->modelNames->name}}Repository)->create($this->except(['open','create','update','active']));
-                $message = [
-                    'icon' => 'success',
-                    'title' => __('Success'),
-                    'text' => '{{$config->modelNames->name}} '.__('added successfully!')
-                ];
-            } else {
-                (new {{$config->modelNames->name}}Repository)->update($this->except(['open','create','update','id']),$this->{{$config->modelNames->name}}->id);
-                $message = [
-                    'icon' => 'success',
-                    'title' => __('Success'),
-                    'text' => '{{$config->modelNames->name}} '.__('updated successfully!')
-                ];
-            }
-        } catch (\Throwable $th) {
-            \Log::error('Error while submiting {{$config->modelNames->name}}: '.$th->getMessage());
-            $message = [
-                'icon' => 'error',
-                'title' => __('Error'),
-                'text' => __('Whoops! Something went wrong.')
-            ];
-        }
-        $this->open = false;
         $this->dispatch('alert',$message);
     }
 }

@@ -45,7 +45,7 @@ class PessoaController extends AppBaseController
                 throw new ValidationException($validator,$validator->errors());
             }
             
-            $pessoa = (new PessoaRepository)->create($d);
+            $pessoa = $this->pessoaRepository->create($d);
             
             if(isset($d['cep'])){
                 $pessoa->update(['endereco_id' => $pessoa->endereco()->create($d)->id ]);
@@ -66,7 +66,7 @@ class PessoaController extends AppBaseController
 
         try {
             $d = $request->all();
-            $pessoa = (new PessoaRepository)->update($d,$pessoa->id);
+            $pessoa = $this->pessoaRepository->update($d,$pessoa->id);
                 
             if($pessoa->endereco){
                 $pessoa->endereco->update($d);

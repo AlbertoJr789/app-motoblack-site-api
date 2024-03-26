@@ -32,6 +32,36 @@ class {{ $config->modelNames->name }}Controller extends AppBaseController
      */
     {!! $indexMethod !!}
 
+
+    public function store(Request $request){
+        try {
+            $d = $request->all();
+
+            $this->{{ $config->modelNames->camel }}Repository->create($d);
+            
+            alert()->success(__('Success'),'{{$config->modelNames->name}} '.__('added successfully!'));
+        }
+        catch (\Throwable $th) {
+            \Log::error('Error while submiting {{$config->modelNames->name}}: '.$th->getMessage());
+            alert()->error(__('Error'),__('Whoops! Something went wrong.'));
+        }
+        return redirect()->back();
+    }
+
+    public function update({{$config->modelNames->name}} ${{ $config->modelNames->camel }},Request $request){
+
+        try {
+            $d = $request->all();
+            ${{ $config->modelNames->camel }} = $this->{{ $config->modelNames->camel }}Repository->update($d,${{ $config->modelNames->camel }}->id);
+
+            alert()->success(__('Success'),'{{$config->modelNames->name}} '.__('updated successfully!'));
+        }catch (\Throwable $th) {
+            \Log::error('Error while submiting {{$config->modelNames->name}}: '.$th->getMessage());
+            alert()->error(__('Error'),__('Whoops! Something went wrong.'));
+        }
+        return redirect()->back();
+    }
+
     /**
     * Process dataTable ajax response.
     *
@@ -40,10 +70,10 @@ class {{ $config->modelNames->name }}Controller extends AppBaseController
     */
    public function dataTableData(Request $request){
 
-       $query = {{$config->modelNames->name}}::select('{{$config->modelNames->snakePlural}}.*','C.name','E.name','D.name')
-                                    ->leftjoin('users as C','C.id','{{$config->modelNames->snakePlural}}.creator_id')
-                                    ->leftjoin('users as E','E.id','{{$config->modelNames->snakePlural}}.editor_id')
-                                    ->leftjoin('users as D','D.id','{{$config->modelNames->snakePlural}}.deleter_id');
+       $query = {{$config->modelNames->name}}::select('{{$config->tableName}}.*','C.name','E.name','D.name')
+                                    ->leftjoin('users as C','C.id','{{$config->tableName}}.creator_id')
+                                    ->leftjoin('users as E','E.id','{{$config->tableName}}.editor_id')
+                                    ->leftjoin('users as D','D.id','{{$config->tableName}}.deleter_id');
        $query = $this->filterDataTableData($query,$request->all());
        return DataTables::eloquent($query)
                          ->addColumn('select',function($reg){

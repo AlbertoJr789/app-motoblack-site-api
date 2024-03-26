@@ -131,6 +131,8 @@ abstract class BaseRepository
     public function update(array $input, $id)
     {
         $input['editor_id'] = Auth::id();
+        $input['active'] = isset($input['active']) ? 1 : 0;
+
         $query = $this->model->newQuery();
 
         $model = is_int($id) ? $query->findOrFail($id) : $id; 

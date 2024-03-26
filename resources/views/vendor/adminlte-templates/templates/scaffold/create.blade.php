@@ -10,14 +10,26 @@
 
     <x-slot name="content"> @endverbatim
         @@include('adminlte-templates::common.errors')
-        @{!! Form::model(${{$config->modelNames->name}},['wire:submit.prevent' => 'submit', 'id' => 'form{{$config->modelNames->plural}}}']) !!}
-            @@include('{{$config->modelNames->snakePlural}}.fields')
+        @{!! Form::model(${{$config->modelNames->name}},['route' => ${{$config->modelNames->name}} ? ['admin.{{$config->modelNames->camelPlural}}.update',${{$config->modelNames->name}}->id] : 'admin.{{$config->modelNames->camelPlural}}.store', 'method' => ${{$config->modelNames->name}} ? 'PATCH' : 'post','id' => 'form{{$config->modelNames->plural}}']) !!}
+
+            <div wire:key='{{$config->modelNames->camelPlural}}'> @verbatim
+               <x-stepper>
+                    <x-stepper-item icon="fa-solid fa-info" active-stepper="0"/>
+                </x-stepper> @endverbatim
+                <div class="my-2" stepper-fields >
+                    <div>
+                        <h1 class="m-auto text-2xl">@{{__('Info')}}</h1>
+                        @@include('{{$config->modelNames->snakePlural}}.fields')
+                    </div>
+                </div>
+            </div>
+
+
     @verbatim </x-slot> @endverbatim
         @verbatim
     <x-slot name="footer">
         <x-button class="btn-primary ml-3" type="submit"> @endverbatim
-            @@if(${{$config->modelNames->name}}) @{{__('Update') }} @@else @{{__('Add')}}   @@endif @verbatim
-            <x-loader wire:loading wire:target="submit"/>
+            @@if(${{$config->modelNames->name}}) @{{__('Update') }} @@else @{{__('Add')}} @@endif @verbatim
           </div>
         </x-button>
         {!! Form::close() !!}
