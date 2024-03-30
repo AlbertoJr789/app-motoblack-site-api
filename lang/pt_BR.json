@@ -196,5 +196,14 @@
     "United States": "Estados Unidos",
     "Vehicle Info": "Informações do Veículo",
     "Vehicle Papers": "Documentação do Veículo",
-    "Owner": "Dono"
+    "Owner": "Dono",
+    "User": "Usuário",
+    "Person": "Pessoa",
+    "Agent Info": "Informações do Agente",
+    "Current Location": "Localização Atual",
+    "Unavailable": "Indisponível",
+    "Available": "Disponível",
+    "Driving": "Em corrida",
+    "Motorcycle Pilot": "Moto Black",
+    "Car Driver": "Motorista"
 }

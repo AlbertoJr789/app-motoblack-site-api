@@ -17,7 +17,7 @@
                 </x-stepper> 
                 <div class="my-2" stepper-fields >
                     <div>
-                        <h1 class="m-auto text-2xl">{{__('Info')}}</h1>
+                        <h1 class="m-auto text-2xl">{{__('Agent Info')}}</h1>
                         @include('agentes.fields')
                     </div>
                 </div>

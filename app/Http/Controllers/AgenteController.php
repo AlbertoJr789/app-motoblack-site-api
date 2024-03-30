@@ -29,22 +29,6 @@ class AgenteController extends AppBaseController
         return view('agentes.index');
     }
 
-
-    public function store(Request $request){
-        try {
-            $d = $request->all();
-
-            $this->agenteRepository->create($d);
-            
-            alert()->success(__('Success'),'Agente '.__('added successfully!'));
-        }
-        catch (\Throwable $th) {
-            \Log::error('Error while submiting Agente: '.$th->getMessage());
-            alert()->error(__('Error'),__('Whoops! Something went wrong.'));
-        }
-        return redirect()->back();
-    }
-
     public function update(Agente $agente,Request $request){
 
         try {
@@ -67,7 +51,9 @@ class AgenteController extends AppBaseController
     */
    public function dataTableData(Request $request){
 
-       $query = Agente::select('agente.*','C.name','E.name','D.name')
+       $query = Agente::select('agente.*','C.name','E.name','D.name','P.nome as pessoa','U.name as usuario')
+                                    ->leftjoin('pessoa as P','P.id','agente.id')
+                                    ->leftjoin('users as U','U.id','agente.user_id')
                                     ->leftjoin('users as C','C.id','agente.creator_id')
                                     ->leftjoin('users as E','E.id','agente.editor_id')
                                     ->leftjoin('users as D','D.id','agente.deleter_id');
@@ -85,6 +71,24 @@ class AgenteController extends AppBaseController
                          ->editColumn('deleted_at',function($reg){
                                return $reg->deleted_at ? $reg->deleted_at->format('d/m/Y H:i') : '';
                          })
+                         ->editColumn('status',function($reg){
+                            switch($reg->status){
+                                case 0: return '<span class="badge uppercase">'.__('Unavailable').'</span>';
+                                case 1: return '<span class="badge badge-green uppercase">'.__('Available').'</span>';
+                                case 2: return '<span class="badge badge-yellow uppercase">'.__('Driving').'</span>';
+                                default: return '';
+                            }
+                         })
+                         ->editColumn('tipo',function($reg){
+                            switch($reg->tipo){
+                                case 1: return '<span class="badge badge-secondary uppercase">'.__('Motorcycle Pilot').'</span>';
+                                case 2: return '<span class="badge badge-primary uppercase">'.__('Car Driver').'</span>';
+                                default: return '';
+                            }
+                         })
+                         ->addColumn('localizacao',function($reg){
+                            return ($reg->latitude && $reg->longitude) ? "<button class=\"btn-primary\" onclick=\"monitorarLocalizacao($reg->id)\"><i class=\"fa-solid fa-magnifying-glass\"></i></button>" : '';
+                         })
                          ->addColumn('creator',function($reg){
                                return $reg->creator ? $reg->creator->name : '';
                          })
@@ -100,7 +104,7 @@ class AgenteController extends AppBaseController
                          ->addColumn('action',function($reg){
                                return view('agentes.action-buttons',['data' => $reg]);
                          })
-                         ->rawColumns(['action','active'])
+                         ->rawColumns(['action','active','status','tipo','localizacao'])
                          ->make();
 
    }
@@ -120,9 +124,9 @@ class AgenteController extends AppBaseController
         }
         if(isset($r['activeFilter'])){
             if($r['activeFilter'] == 'true'){
-                $query->active();
+                $query->where('agente.active',true);
             }else{
-                $query->unactive();
+                $query->where('agente.active',false);
             }
         }
         return $query;
