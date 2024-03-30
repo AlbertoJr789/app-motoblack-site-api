@@ -24,3 +24,8 @@ Route::group(['prefix' => 'veiculos', 'as' => 'veiculos.', 'middleware' => 'perm
         Route::patch('/update/{veiculo}', [App\Http\Controllers\VeiculoController::class,'update'])->name('update');
     Route::get('dataTableData',[App\Http\Controllers\VeiculoController::class,'dataTableData'])->name('dataTableData');
 });
+Route::group(['prefix' => 'passageiros', 'as' => 'passageiros.', 'middleware' => 'permission:passageiro.view'],function(){
+    Route::resource('/', App\Http\Controllers\PassageiroController::class);
+        Route::patch('/update/{passageiro}', [App\Http\Controllers\PassageiroController::class,'update'])->name('update');
+    Route::get('dataTableData',[App\Http\Controllers\PassageiroController::class,'dataTableData'])->name('dataTableData');
+});

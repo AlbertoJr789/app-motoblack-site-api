@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Teste;
+use App\Models\Passageiro;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTesteRequest extends FormRequest
+class CreatePassageiroRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,6 @@ class UpdateTesteRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = Teste::$rules;
-        
-        return $rules;
+        return Passageiro::$rules;
     }
 }

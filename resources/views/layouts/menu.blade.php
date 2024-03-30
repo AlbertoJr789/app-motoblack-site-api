@@ -18,4 +18,10 @@
 </x-menu-item>
 @endcan
 
+@can('passageiros.view')  
+<x-menu-item icon="fa-solid fa-user-large"  route="{{route('admin.passageiros.index')}}">
+        {{ __('Passageiros') }} 
+</x-menu-item>
+@endcan
+
 

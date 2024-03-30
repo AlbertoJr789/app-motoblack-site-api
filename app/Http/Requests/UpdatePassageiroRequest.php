@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\API;
+namespace App\Http\Requests;
 
-use App\Models\Teste;
-use InfyOm\Generator\Request\APIRequest;
+use App\Models\Passageiro;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTesteAPIRequest extends APIRequest
+class UpdatePassageiroRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class UpdateTesteAPIRequest extends APIRequest
      */
     public function rules()
     {
-        $rules = Teste::$rules;
+        $rules = Passageiro::$rules;
         
         return $rules;
     }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\API;
 
-use App\Models\Teste;
+use App\Models\Passageiro;
 use InfyOm\Generator\Request\APIRequest;
 
-class CreateTesteAPIRequest extends APIRequest
+class UpdatePassageiroAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,8 @@ class CreateTesteAPIRequest extends APIRequest
      */
     public function rules()
     {
-        return Teste::$rules;
+        $rules = Passageiro::$rules;
+        
+        return $rules;
     }
 }

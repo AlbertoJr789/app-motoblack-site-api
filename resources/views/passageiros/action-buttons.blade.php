@@ -1,8 +1,8 @@
 <div class="flex justify-end">
     @if(!$data->deleted_at)
-        @can('testes.edit')
+        @can('passageiros.edit')
         <button
-            class="btn-secondary w-[25px] h-[25px] ms-auto me-1 flex justify-center" title="Editar Registro" onclick="Livewire.dispatch('openEdit',{ teste: {{$data->id}} })">
+            class="btn-secondary w-[25px] h-[25px] ms-auto me-1 flex justify-center" title="Editar Registro" onclick="Livewire.dispatch('openEdit',{ passageiro: {{$data->id}} })">
             <div class="svg-icon svg-icon-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path opacity="0.3"
@@ -15,7 +15,7 @@
             </div>
         </button>
         @endcan
-        @can('testes.delete')
+        @can('passageiros.delete')
         <button class="btn-danger w-[25px] h-[25px] ms-auto me-1 flex justify-center" title="Deletar Registro" onclick="deleteRegister({{$data->id}})">
             <span class="svg-icon svg-icon-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@
         @endcan
     @endif
     @if($data->deleted_at)
-        @can('testes.delete')
+        @can('passageiros.delete')
             <button class="btn" title="Restaurar Registro" onclick="restoreRegister({{$data->id}})">
                 <i class="fa fa-trash-restore"></i>
             </button>

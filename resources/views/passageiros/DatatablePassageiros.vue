@@ -1,5 +1,3 @@
-
-
 <template>
     <div class="lg:float-left lg:mb-0 lg:text-start text-center mt-6">
         <slot name="toolbar"></slot>
@@ -9,7 +7,7 @@
             {{ checked.length }} {{ window.trans('Elements Selected') }}
         </div>
     </div>
-    <DataTable :columns="columns" :ajax="ajax" :options="options" ref="table" class="display responsive border border-transparent border-separate border-spacing-0 rounded-lg" id="tableTestes">
+    <DataTable :columns="columns" :ajax="ajax" :options="options" ref="table" class="display responsive border border-transparent border-separate border-spacing-0 rounded-lg" id="tablePassageiros">
         <thead class="text-xs text text-amber-300 uppercase hover:cursor-pointer">
             <tr class="border">
                 <th v-for="_ in columns" scope="col" class="px-6 py-3 first:rounded-tl-lg last:rounded-tr-lg bg-secondary ">
@@ -62,19 +60,21 @@
         props.canDelete ? { responsivePriority: 2, data: 'select', name: 'select', title: `<div class="mx-0">
             <input class="input input-checkbox" type="checkbox" value="-1" id="testesHeaderCheckbox"/></div>`, 
             className:'text-center noVis', orderable: false, searchable: false, visible: true, width: '20px'} : null,
-        {data: 'id', title: 'id', name:'id'},
-        {data: 'teste', title: 'Teste'},
-        {data: 'active', title: window.trans('Active')},
+
+        {data: 'id', title: window.trans('id')},
+        {data: 'pessoa', title: window.trans('pessoa')},
+        {data: 'user', title: window.trans('user')},
         {data: 'created_at', title: window.trans('Creation Date')},
         {data: 'updated_at', title: window.trans('Update Date')},
-        {data: 'creator', name:'creator.name', title: window.trans('Creator')},
-        {data: 'editor', name:'editor.name', title: window.trans('Editor')},
-        {data: 'deleter', name:'deleter.name', title: window.trans('Deleter')},
+
+        {data: 'active', title: window.trans('Active')},
+        {data: 'creator', name:'C.name', title: window.trans('Creator')},
+        {data: 'editor', name:'E.name', title: window.trans('Editor')},
+        {data: 'deleter', name:'D.name', title: window.trans('Deleter')},
         {data: 'deleted_at', title: window.trans('Delete Date')},
         { responsivePriority: 2, data: 'action', name: 'action', title: '', className:'text-center noVis', orderable: false, searchable: false, width: '50px'},
 
     ].filter(Boolean)
-    console.log(columns);
     
     const options = {
         language: {
@@ -114,7 +114,7 @@
         ],
         initComplete: () => {
             if(props.canDelete)
-                handleCheckboxes(document.getElementById('tableTestes'),checked)
+                handleCheckboxes(document.getElementById('tablePassageiros'),checked)
         },
         drawCallback: () => {
             if(props.canDelete){

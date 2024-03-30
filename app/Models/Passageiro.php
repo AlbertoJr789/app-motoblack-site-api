@@ -3,32 +3,31 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class Teste extends Model
+ use Illuminate\Database\Eloquent\SoftDeletes;
+class Passageiro extends Model
 {
-    use SoftDeletes;
-
-    public $table = 'Teste';
+     use SoftDeletes;    public $table = 'passageiro';
 
     public $fillable = [
-        'teste',
-        'active',
+        'pessoa_id',
+        'user_id',
         'creator_id',
         'editor_id',
-        'deleter_id'
+        'deleter_id',
+        'active'
     ];
 
     protected $casts = [
         'id' => 'integer',
-        'teste' => 'string'
+        'pessoa_id' => 'integer',
+        'user_id' => 'integer'
     ];
-
-    protected $dates = ['created_at','updated_at','deleted_at'];
 
     public static array $rules = [
         
     ];
+
+    
 
     public function creator(){
         return $this->hasOne(User::class,'id','creator_id');
@@ -41,5 +40,5 @@ class Teste extends Model
     public function deleter(){
         return $this->hasOne(User::class,'id','deleter_id');
     }
-    
+
 }

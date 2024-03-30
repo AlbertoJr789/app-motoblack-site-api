@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Testes;
+namespace App\Livewire\Passageiros;
 
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -24,7 +24,7 @@ class Filter extends Component
 
     public function render()
     {
-        return view('testes.filter');
+        return view('passageiros.filter');
     }
 
     #[On('openFilter')]

@@ -2,13 +2,14 @@
 
 namespace App\Repositories;
 
-use App\Models\Teste;
+use App\Models\Passageiro;
 use App\Repositories\BaseRepository;
 
-class TesteRepository extends BaseRepository
+class PassageiroRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-        'teste'
+        'pessoa_id',
+        'user_id'
     ];
 
     public function getFieldsSearchable(): array
@@ -18,6 +19,6 @@ class TesteRepository extends BaseRepository
 
     public function model(): string
     {
-        return Teste::class;
+        return Passageiro::class;
     }
 }
