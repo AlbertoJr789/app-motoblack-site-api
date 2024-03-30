@@ -18,8 +18,8 @@ return new class extends Migration
             $table->id();
             $table->smallInteger('tipo');
             $table->smallInteger('status');
-            $table->text('latitude');
-            $table->text('longitude');
+            $table->text('latitude')->nullable();
+            $table->text('longitude')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->dateTime('data_desativacao')->nullable();

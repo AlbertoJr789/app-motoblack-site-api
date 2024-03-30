@@ -2,17 +2,24 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
- use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Agente extends Model
 {
-     use SoftDeletes;    public $table = 'agente';
+    use HasFactory,
+        SoftDeletes;
+    public $table = 'agente';
 
     public $fillable = [
         'tipo',
         'status',
         'latitude',
         'longitude',
+        'pessoa_id',
+        'user_id',
+        'data_desativacao',
         'creator_id',
         'editor_id',
         'deleter_id',
@@ -27,22 +34,22 @@ class Agente extends Model
         'longitude' => 'string'
     ];
 
-    public static array $rules = [
-        
-    ];
+    public static array $rules = [];
 
-    
 
-    public function creator(){
-        return $this->hasOne(User::class,'id','creator_id');
+
+    public function creator()
+    {
+        return $this->hasOne(User::class, 'id', 'creator_id');
     }
 
-    public function editor(){
-        return $this->hasOne(User::class,'id','editor_id');
+    public function editor()
+    {
+        return $this->hasOne(User::class, 'id', 'editor_id');
     }
 
-    public function deleter(){
-        return $this->hasOne(User::class,'id','deleter_id');
+    public function deleter()
+    {
+        return $this->hasOne(User::class, 'id', 'deleter_id');
     }
-
 }

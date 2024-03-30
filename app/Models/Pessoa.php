@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
- use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Pessoa extends Model
 {
-     use SoftDeletes;    public $table = 'pessoa';
+    use HasFactory,
+        SoftDeletes;
+
+    public $table = 'pessoa';
 
     public $fillable = [
         'nome',
@@ -28,26 +33,25 @@ class Pessoa extends Model
         'rg' => 'string'
     ];
 
-    public static array $rules = [
-        
-    ];
+    public static array $rules = [];
 
-    
-
-    public function creator(){
-        return $this->hasOne(User::class,'id','creator_id');
+    public function creator()
+    {
+        return $this->hasOne(User::class, 'id', 'creator_id');
     }
 
-    public function editor(){
-        return $this->hasOne(User::class,'id','editor_id');
+    public function editor()
+    {
+        return $this->hasOne(User::class, 'id', 'editor_id');
     }
 
-    public function deleter(){
-        return $this->hasOne(User::class,'id','deleter_id');
+    public function deleter()
+    {
+        return $this->hasOne(User::class, 'id', 'deleter_id');
     }
 
-    public function endereco(){
-        return $this->hasOne(Endereco::class,'id','endereco_id');
+    public function endereco()
+    {
+        return $this->hasOne(Endereco::class, 'id', 'endereco_id');
     }
-
 }

@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
- use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Passageiro extends Model
 {
-     use SoftDeletes;    public $table = 'passageiro';
+    use HasFactory,
+        SoftDeletes;
+
+    public $table = 'passageiro';
 
     public $fillable = [
         'pessoa_id',
@@ -23,22 +28,22 @@ class Passageiro extends Model
         'user_id' => 'integer'
     ];
 
-    public static array $rules = [
-        
-    ];
+    public static array $rules = [];
 
-    
 
-    public function creator(){
-        return $this->hasOne(User::class,'id','creator_id');
+
+    public function creator()
+    {
+        return $this->hasOne(User::class, 'id', 'creator_id');
     }
 
-    public function editor(){
-        return $this->hasOne(User::class,'id','editor_id');
+    public function editor()
+    {
+        return $this->hasOne(User::class, 'id', 'editor_id');
     }
 
-    public function deleter(){
-        return $this->hasOne(User::class,'id','deleter_id');
+    public function deleter()
+    {
+        return $this->hasOne(User::class, 'id', 'deleter_id');
     }
-
 }

@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
- use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Corrida extends Model
 {
-     use SoftDeletes;    public $table = 'corrida';
+    use HasFactory,
+        SoftDeletes;
+    public $table = 'corrida';
 
     public $fillable = [
         'agente_id',
@@ -23,11 +27,7 @@ class Corrida extends Model
         'longitude_origem',
         'latitude_destino',
         'longitude_destino',
-        'rota_gerada',
-        'creator_id',
-        'editor_id',
-        'deleter_id',
-        'active'
+        'rota_gerada'
     ];
 
     protected $casts = [
@@ -49,22 +49,22 @@ class Corrida extends Model
         'rota_gerada' => 'string'
     ];
 
-    public static array $rules = [
-        
-    ];
+    public static array $rules = [];
 
-    
 
-    public function creator(){
-        return $this->hasOne(User::class,'id','creator_id');
+
+    public function creator()
+    {
+        return $this->hasOne(User::class, 'id', 'creator_id');
     }
 
-    public function editor(){
-        return $this->hasOne(User::class,'id','editor_id');
+    public function editor()
+    {
+        return $this->hasOne(User::class, 'id', 'editor_id');
     }
 
-    public function deleter(){
-        return $this->hasOne(User::class,'id','deleter_id');
+    public function deleter()
+    {
+        return $this->hasOne(User::class, 'id', 'deleter_id');
     }
-
 }

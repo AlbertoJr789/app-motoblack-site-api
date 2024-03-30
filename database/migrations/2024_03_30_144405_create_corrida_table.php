@@ -35,8 +35,6 @@ return new class extends Migration
             
             try {
                 Permission::create([ 'name' => 'corridas.view']);
-                Permission::create([ 'name' => 'corridas.create']);
-                Permission::create([ 'name' => 'corridas.delete']);
             } catch (\Throwable $th) {
             }
         });
@@ -53,8 +51,6 @@ return new class extends Migration
                 
         try {
             Permission::whereName('corridas.view')
-                  ->orWhereName('corridas.create')
-                  ->orWhereName('corridas.delete')
                   ->delete();
         } catch (\Throwable $th) {
         }
