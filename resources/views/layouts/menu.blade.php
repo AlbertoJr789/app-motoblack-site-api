@@ -11,3 +11,11 @@
         {{ __('Agentes') }} 
 </x-menu-item>
 @endcan
+
+@can('veiculos.view')  
+<x-menu-item icon="fa-solid fa-car"  route="{{route('admin.veiculos.index')}}">
+        {{ __('Veiculos') }} 
+</x-menu-item>
+@endcan
+
+

@@ -193,5 +193,8 @@
     "Complement": "Complemento",
     "Error While Fetching ZIP Code, insert the data manually": "Houve um erro ao buscar informações sobre o CEP, Insira os dados manualmente",
     "Brazil": "Brasil",
-    "United States": "Estados Unidos"
+    "United States": "Estados Unidos",
+    "Vehicle Info": "Informações do Veículo",
+    "Vehicle Papers": "Documentação do Veículo",
+    "Owner": "Dono"
 }

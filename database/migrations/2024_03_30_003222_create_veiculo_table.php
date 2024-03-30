@@ -14,26 +14,28 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('agente', function (Blueprint $table) {
+        Schema::create('veiculo', function (Blueprint $table) {
             $table->id();
             $table->smallInteger('tipo');
-            $table->smallInteger('status');
-            $table->text('latitude');
-            $table->text('longitude');
+            $table->string('modelo');
+            $table->string('marca');
+            $table->string('chassi');
+            $table->string('renavam');
+            $table->string('placa');
+            $table->string('cor');
+            $table->dateTime('data_desativacao')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->dateTime('data_desativacao')->nullable();
+            $table->foreignId('agente_id')->references('id')->on('agente');
             $table->boolean('active')->default(false);
-            $table->foreignId('pessoa_id')->references('id')->on('pessoa');
-            $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('creator_id')->references('id')->on('users');
             $table->foreignId('editor_id')->nullable()->references('id')->on('users');
             $table->foreignId('deleter_id')->nullable()->references('id')->on('users');
             
             try {
-                Permission::create([ 'name' => 'agentes.view']);
-                Permission::create([ 'name' => 'agentes.create']);
-                Permission::create([ 'name' => 'agentes.delete']);
+                Permission::create([ 'name' => 'veiculos.view']);
+                Permission::create([ 'name' => 'veiculos.create']);
+                Permission::create([ 'name' => 'veiculos.delete']);
             } catch (\Throwable $th) {
             }
         });
@@ -46,12 +48,12 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::drop('agente');
+        Schema::drop('veiculo');
                 
         try {
-            Permission::whereName('agentes.view')
-                  ->orWhereName('agentes.create')
-                  ->orWhereName('agentes.delete')
+            Permission::whereName('veiculos.view')
+                  ->orWhereName('veiculos.create')
+                  ->orWhereName('veiculos.delete')
                   ->delete();
         } catch (\Throwable $th) {
         }
