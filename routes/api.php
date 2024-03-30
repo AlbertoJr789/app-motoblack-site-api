@@ -31,3 +31,7 @@ Route::resource('testes', App\Http\Controllers\API\TesteAPIController::class)
 
 Route::apiResource('pessoas', App\Http\Controllers\API\PessoaAPIController::class)
     ->except(['create', 'edit']);
+
+
+Route::resource('agentes', App\Http\Controllers\API\AgenteAPIController::class)
+    ->except(['create', 'edit']);

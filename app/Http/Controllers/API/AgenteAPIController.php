@@ -1,0 +1,108 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+use App\Http\Requests\API\CreateAgenteAPIRequest;
+use App\Http\Requests\API\UpdateAgenteAPIRequest;
+use App\Models\Agente;
+use App\Repositories\AgenteRepository;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use App\Http\Controllers\AppBaseController;
+
+/**
+ * Class AgenteAPIController
+ */
+class AgenteAPIController extends AppBaseController
+{
+    private AgenteRepository $agenteRepository;
+
+    public function __construct(AgenteRepository $agenteRepo)
+    {
+        $this->agenteRepository = $agenteRepo;
+    }
+
+    /**
+     * Display a listing of the Agentes.
+     * GET|HEAD /agentes
+     */
+    public function index(Request $request): JsonResponse
+    {
+        $agentes = $this->agenteRepository->all(
+            $request->except(['skip', 'limit']),
+            $request->get('skip'),
+            $request->get('limit')
+        );
+
+        return $this->sendResponse($agentes->toArray(), 'Agentes retrieved successfully');
+    }
+
+    /**
+     * Store a newly created Agente in storage.
+     * POST /agentes
+     */
+    public function store(CreateAgenteAPIRequest $request): JsonResponse
+    {
+        $input = $request->all();
+
+        $agente = $this->agenteRepository->create($input);
+
+        return $this->sendResponse($agente->toArray(), 'Agente saved successfully');
+    }
+
+    /**
+     * Display the specified Agente.
+     * GET|HEAD /agentes/{id}
+     */
+    public function show($id): JsonResponse
+    {
+        /** @var Agente $agente */
+        $agente = $this->agenteRepository->find($id);
+
+        if (empty($agente)) {
+            return $this->sendError('Agente not found');
+        }
+
+        return $this->sendResponse($agente->toArray(), 'Agente retrieved successfully');
+    }
+
+    /**
+     * Update the specified Agente in storage.
+     * PUT/PATCH /agentes/{id}
+     */
+    public function update($id, UpdateAgenteAPIRequest $request): JsonResponse
+    {
+        $input = $request->all();
+
+        /** @var Agente $agente */
+        $agente = $this->agenteRepository->find($id);
+
+        if (empty($agente)) {
+            return $this->sendError('Agente not found');
+        }
+
+        $agente = $this->agenteRepository->update($input, $id);
+
+        return $this->sendResponse($agente->toArray(), 'Agente updated successfully');
+    }
+
+    /**
+     * Remove the specified Agente from storage.
+     * DELETE /agentes/{id}
+     *
+     * @throws \Exception
+     */
+    public function destroy($id): JsonResponse
+    {
+        /** @var Agente $agente */
+        $agente = $this->agenteRepository->find($id);
+
+        if (empty($agente)) {
+            return $this->sendError('Agente not found');
+        }
+
+        $agente->delete();
+
+        return $this->sendSuccess('Agente deleted successfully');
+    }
+}

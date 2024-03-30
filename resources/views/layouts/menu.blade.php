@@ -6,3 +6,8 @@
 @endcan
 
 
+@can('agentes.view')  
+<x-menu-item icon="fa-solid fa-user-secret"  route="{{route('admin.agentes.index')}}">
+        {{ __('Agentes') }} 
+</x-menu-item>
+@endcan
