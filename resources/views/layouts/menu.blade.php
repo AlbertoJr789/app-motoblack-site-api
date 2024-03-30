@@ -5,7 +5,6 @@
 </x-menu-item>
 @endcan
 
-
 @can('agentes.view')  
 <x-menu-item icon="fa-solid fa-user-secret"  route="{{route('admin.agentes.index')}}">
         {{ __('Agentes') }} 
@@ -21,6 +20,12 @@
 @can('passageiros.view')  
 <x-menu-item icon="fa-solid fa-user-large"  route="{{route('admin.passageiros.index')}}">
         {{ __('Passageiros') }} 
+</x-menu-item>
+@endcan
+
+@can('corridas.view')  
+<x-menu-item icon="fa-solid fa-flag-checkered"  route="{{route('admin.corridas.index')}}">
+        {{ __('Corridas') }} 
 </x-menu-item>
 @endcan
 

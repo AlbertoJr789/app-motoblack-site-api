@@ -41,3 +41,6 @@ Route::resource('veiculos', App\Http\Controllers\API\VeiculoAPIController::class
 
 Route::resource('passageiros', App\Http\Controllers\API\PassageiroAPIController::class)
     ->except(['create', 'edit']);
+
+Route::resource('corridas', App\Http\Controllers\API\CorridaAPIController::class)
+    ->except(['create', 'edit']);
