@@ -18,7 +18,13 @@ import '../css/app.css';
  * to use in your application's views. An example is included for you.
  */
 
+// Importar jQuery
+import jQuery from 'jquery';
+window.$ = window.jQuery = jQuery;
 
+// Importar select2
+import select2 from 'select2';
+select2();
 
 const Vue = createApp({});
 

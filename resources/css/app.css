@@ -82,4 +82,22 @@ div::-webkit-scrollbar {
     .badge-secondary {
         @apply bg-secondary text-amber-400
     }
+    .select2-search__field {
+        @apply input
+    }
+    .select2-container {
+        @apply !w-full
+    }
+    .select2-selection {
+        @apply p-5 
+    }
+    .select2-selection__rendered {
+        @apply mt-[-15px] ml-[-10px] text-base
+    }
+    .select2-selection__arrow {
+        @apply m-2
+    }
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        @apply bg-amber-400 text-secondary transition-all ease-in-out
+    }
 }

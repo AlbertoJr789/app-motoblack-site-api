@@ -67,7 +67,9 @@ class VeiculoController extends AppBaseController
     */
    public function dataTableData(Request $request){
 
-       $query = Veiculo::select('veiculo.*','C.name','E.name','D.name')
+       $query = Veiculo::select('veiculo.*','C.name','E.name','D.name','P.nome as dono')
+                                    ->leftjoin('agente as A','A.id','agente_id')
+                                    ->leftjoin('pessoa as P','P.id','A.pessoa_id')
                                     ->leftjoin('users as C','C.id','veiculo.creator_id')
                                     ->leftjoin('users as E','E.id','veiculo.editor_id')
                                     ->leftjoin('users as D','D.id','veiculo.deleter_id');
@@ -85,6 +87,16 @@ class VeiculoController extends AppBaseController
                          ->editColumn('deleted_at',function($reg){
                                return $reg->deleted_at ? $reg->deleted_at->format('d/m/Y H:i') : '';
                          })
+                         ->editColumn('tipo',function($reg){
+                            switch($reg->tipo){
+                                case 1: return '<span class="badge badge-secondary uppercase">'.__('Motorcycle').'</span>';
+                                case 2: return '<span class="badge badge-primary uppercase">'.__('Car').'</span>';
+                                default: return '';
+                            }
+                         })
+                         ->editColumn('cor',function($reg){
+                            return "<div style=\"background-color: $reg->cor;\" class=\"h-[25px] rounded rounded-sm\"><div>";
+                         })
                          ->addColumn('creator',function($reg){
                                return $reg->creator ? $reg->creator->name : '';
                          })
@@ -100,7 +112,7 @@ class VeiculoController extends AppBaseController
                          ->addColumn('action',function($reg){
                                return view('veiculos.action-buttons',['data' => $reg]);
                          })
-                         ->rawColumns(['action','active'])
+                         ->rawColumns(['action','active','tipo','cor'])
                          ->make();
 
    }
@@ -120,9 +132,9 @@ class VeiculoController extends AppBaseController
         }
         if(isset($r['activeFilter'])){
             if($r['activeFilter'] == 'true'){
-                $query->active();
+                $query->where('veiculo.active',true);
             }else{
-                $query->unactive();
+                $query->where('veiculo.active',false);
             }
         }
         return $query;

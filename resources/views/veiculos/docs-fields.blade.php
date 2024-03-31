@@ -1,6 +1,6 @@
 
 
-<div class="grid sm:grid-cols-2 grid-cols-1">
+<div class="grid sm:grid-cols-2 grid-cols-1 gap-4">
     <!-- Renavam Field -->
     <div>
         {!! Form::label('renavam', 'Renavam:',['class' => "block mx-1"]) !!}

@@ -199,11 +199,19 @@
     "Owner": "Dono",
     "User": "Usuário",
     "Person": "Pessoa",
+    "Agent": "Agente",
     "Agent Info": "Informações do Agente",
     "Current Location": "Localização Atual",
     "Unavailable": "Indisponível",
     "Available": "Disponível",
     "Driving": "Em corrida",
     "Motorcycle Pilot": "Moto Black",
-    "Car Driver": "Motorista"
+    "Car Driver": "Motorista",
+    "Motorcycle": "Moto",
+    "Car": "Carro",
+    "Deactivation Date": "Data Desativação",
+    "Type": "Tipo",
+    "Model": "Modelo",
+    "Brand": "Marca",
+    "License Plate": "Placa"
 }

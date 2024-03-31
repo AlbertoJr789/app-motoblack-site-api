@@ -53,7 +53,7 @@
         inputs.forEach((input)=>{
             if(input.getAttribute('required') == "true"){
                 if(input.value.trim() == "" || !input.value){
-                invalid += input.labels[0].getAttribute('for')+','
+                invalid += input.getAttribute('name')+','
                 }
             }
         })

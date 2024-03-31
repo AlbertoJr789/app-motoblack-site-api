@@ -10,8 +10,8 @@
     <x-slot name="content"> 
         @include('adminlte-templates::common.errors')
         {!! Form::model($Veiculo,['route' => $Veiculo ? ['admin.veiculos.update',$Veiculo->id] : 'admin.veiculos.store', 'method' => $Veiculo ? 'PATCH' : 'post','id' => 'formVeiculos']) !!}
-
-            <div wire:key='veiculos'> 
+        
+            <div wire:key='veiculos' id="veiculosFields"> 
                <x-stepper>
                     <x-stepper-item icon="fa-solid fa-info" active-stepper="0"/>
                     <x-stepper-item icon="fa-solid fa-folder-open" />

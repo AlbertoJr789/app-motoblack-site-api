@@ -47,6 +47,7 @@ class Create extends Component
         $this->active = $veiculo->active;
         $this->open = $this->update = true;
         $this->create = false;
+        $this->dispatch('select2',$this->agente_id);
     }
 
     #[On('delete')]
