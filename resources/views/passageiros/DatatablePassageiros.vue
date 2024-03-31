@@ -62,8 +62,8 @@
             className:'text-center noVis', orderable: false, searchable: false, visible: true, width: '20px'} : null,
 
         {data: 'id', title: window.trans('id')},
-        {data: 'pessoa', title: window.trans('pessoa')},
-        {data: 'user', title: window.trans('user')},
+        {data: 'pessoa', name: "P.nome", title: window.trans('Person')},
+        {data: 'user', name:"U.name",title: window.trans('User')},
         {data: 'created_at', title: window.trans('Creation Date')},
         {data: 'updated_at', title: window.trans('Update Date')},
 

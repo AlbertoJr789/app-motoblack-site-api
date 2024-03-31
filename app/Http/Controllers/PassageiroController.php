@@ -29,22 +29,6 @@ class PassageiroController extends AppBaseController
         return view('passageiros.index');
     }
 
-
-    public function store(Request $request){
-        try {
-            $d = $request->all();
-
-            $this->passageiroRepository->create($d);
-            
-            alert()->success(__('Success'),'Passageiro '.__('added successfully!'));
-        }
-        catch (\Throwable $th) {
-            \Log::error('Error while submiting Passageiro: '.$th->getMessage());
-            alert()->error(__('Error'),__('Whoops! Something went wrong.'));
-        }
-        return redirect()->back();
-    }
-
     public function update(Passageiro $passageiro,Request $request){
 
         try {
@@ -67,7 +51,9 @@ class PassageiroController extends AppBaseController
     */
    public function dataTableData(Request $request){
 
-       $query = Passageiro::select('passageiro.*','C.name','E.name','D.name')
+       $query = Passageiro::select('passageiro.*','C.name','E.name','D.name','P.nome as pessoa','U.name as user')
+                                    ->leftjoin('pessoa as P','P.id','pessoa_id')
+                                    ->leftjoin('users as U','U.id','user_id')
                                     ->leftjoin('users as C','C.id','passageiro.creator_id')
                                     ->leftjoin('users as E','E.id','passageiro.editor_id')
                                     ->leftjoin('users as D','D.id','passageiro.deleter_id');
@@ -120,9 +106,9 @@ class PassageiroController extends AppBaseController
         }
         if(isset($r['activeFilter'])){
             if($r['activeFilter'] == 'true'){
-                $query->active();
+                $query->where('passageiro.active',true);
             }else{
-                $query->unactive();
+                $query->where('passageiro.active',false);
             }
         }
         return $query;

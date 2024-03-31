@@ -33,7 +33,7 @@ class VeiculoController extends AppBaseController
     public function store(Request $request){
         try {
             $d = $request->all();
-
+            $d['agente_id'] = $d['Dono'];
             $this->veiculoRepository->create($d);
             
             alert()->success(__('Success'),'Veiculo '.__('added successfully!'));
@@ -49,6 +49,7 @@ class VeiculoController extends AppBaseController
 
         try {
             $d = $request->all();
+            $d['agente_id'] = $d['Dono'];
             $veiculo = $this->veiculoRepository->update($d,$veiculo->id);
 
             alert()->success(__('Success'),'Veiculo '.__('updated successfully!'));
@@ -95,7 +96,7 @@ class VeiculoController extends AppBaseController
                             }
                          })
                          ->editColumn('cor',function($reg){
-                            return "<div style=\"background-color: $reg->cor;\" class=\"h-[25px] rounded rounded-sm\"><div>";
+                            return "<div style=\"background-color: $reg->cor;\" class=\"h-[25px] w-[25px] rounded rounded-sm\"><div>";
                          })
                          ->addColumn('creator',function($reg){
                                return $reg->creator ? $reg->creator->name : '';
