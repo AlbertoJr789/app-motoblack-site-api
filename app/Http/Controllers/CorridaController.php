@@ -9,6 +9,8 @@ use App\Repositories\CorridaRepository;
 use Illuminate\Http\Request;
 use Flash;
 use App\Models\Corrida;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class CorridaController extends AppBaseController
@@ -67,10 +69,13 @@ class CorridaController extends AppBaseController
     */
    public function dataTableData(Request $request){
 
-       $query = Corrida::select('corrida.*','C.name','E.name','D.name')
-                                    ->leftjoin('users as C','C.id','corrida.creator_id')
-                                    ->leftjoin('users as E','E.id','corrida.editor_id')
-                                    ->leftjoin('users as D','D.id','corrida.deleter_id');
+       $query = Corrida::select('corrida.*','PA.nome as agente','PP.nome as passageiro',DB::raw('CONCAT(V.marca,\' - \',V.modelo) as veiculo'))
+                         ->join('agente as A','A.id','agente_id')
+                         ->join('pessoa as PA','PA.id','A.pessoa_id')
+                         ->join('passageiro as P','P.id','passageiro_id')
+                         ->join('pessoa as PP','PP.id','P.pessoa_id')
+                         ->join('veiculo as V','V.id','veiculo_id');
+
        $query = $this->filterDataTableData($query,$request->all());
        return DataTables::eloquent($query)
                          ->addColumn('select',function($reg){
@@ -82,25 +87,22 @@ class CorridaController extends AppBaseController
                          ->editColumn('updated_at',function($reg){
                                return $reg->updated_at ? $reg->updated_at->format('d/m/Y H:i') : '';
                          })
-                         ->editColumn('deleted_at',function($reg){
-                               return $reg->deleted_at ? $reg->deleted_at->format('d/m/Y H:i') : '';
+                         ->editColumn('data_finalizada',function($reg){
+                               return $reg->data_finalizada ? $reg->data_finalizada->format('d/m/Y H:i') : '';
                          })
-                         ->addColumn('creator',function($reg){
-                               return $reg->creator ? $reg->creator->name : '';
+                         ->editColumn('cancelada',function($reg){
+                               return $reg->cancelada ? '<span class="badge badge-green uppercase">'.__('Yes').'</span>' : '<span class="badge badge-red uppercase">'.__('No').'</span>';
                          })
-                         ->addColumn('editor',function($reg){
-                               return $reg->editor ? $reg->editor->name : '';
+                         ->editColumn('nota_passageiro',function($reg){
+                             return $reg->nota_passageiro ? view('components.star-rating',['rate' => $reg->nota_passageiro])->render() : '';
                          })
-                         ->addColumn('deleter',function($reg){
-                               return $reg->deleter ? $reg->deleter->name : '';
-                         })
-                         ->editColumn('active',function($reg){
-                            return $reg->active ? '<span class="badge badge-green uppercase">'.__('Yes').'</span>' : '<span class="badge badge-red uppercase">'.__('No').'</span>';
+                         ->editColumn('nota_agente',function($reg){
+                            return $reg->nota_agente ? view('components.star-rating',['rate' => $reg->nota_agente])->render() : '';
                          })
                          ->addColumn('action',function($reg){
                                return view('corridas.action-buttons',['data' => $reg]);
                          })
-                         ->rawColumns(['action','active'])
+                         ->rawColumns(['action','cancelada','nota_agente','nota_passageiro'])
                          ->make();
 
    }
@@ -111,20 +113,13 @@ class CorridaController extends AppBaseController
             switch($r['dateTypeFilter']){
                 case 'C': $field = 'created_at'; break;
                 case 'U': $field = 'updated_at'; break;
-                case 'D': $field = 'deleted_at'; $query->onlyTrashed(); break;
             }
             if(isset($r['initialDate']) && $r['initialDate'])
                 $query->where($field,'>=',$r['initialDate']);
             if(isset($r['endDate']) && $r['endDate'])
                 $query->where($field,'<=',$r['initialDate']);
         }
-        if(isset($r['activeFilter'])){
-            if($r['activeFilter'] == 'true'){
-                $query->active();
-            }else{
-                $query->unactive();
-            }
-        }
+       
         return $query;
     }
 

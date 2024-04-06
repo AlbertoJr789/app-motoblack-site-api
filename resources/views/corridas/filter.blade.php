@@ -11,10 +11,6 @@
                 {!! Form::label('dateTypeFilter', __('Date type').':',['class' => "block mx-1"]) !!}
                 {!! Form::select('dateTypeFilter', ['C' => __('Created'),'U' => __('Updated'),'D' => __('Deleted') ],$dateType, ['class' => 'input w-full px-2','required' => 'true','wire:model.live' => 'dateType','id' => 'dateTypeFilter']) !!} 
             </div>
-            <div class="flex sm:justify-start justify-center sm:my-auto my-4">
-              {!! Form::label('activeFilter', __('Active'),['class' => "block mx-1"]) !!}
-              {!! Form::checkbox('activeFilter',null,$active, ['class' => 'checkbox-toggle-switch','required' => 'true','wire:model.live' => 'active','id' => 'activeFilter']) !!} 
-            </div>
           </div>
           <!-- Teste Field -->
           <div class="grid sm:grid-cols-2 grid-cols-1">

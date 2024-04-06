@@ -213,5 +213,15 @@
     "Type": "Tipo",
     "Model": "Modelo",
     "Brand": "Marca",
-    "License Plate": "Placa"
+    "License Plate": "Placa",
+    "Passanger Info": "Informações do Passageiro",
+    "Cancelled": "Cancelada",
+    "Finish Date": "Data término",
+    "Agent Report": "Relato do Agente",
+    "Passenger Report": "Relato do Passageiro",
+    "Passenger Evaluation": "Avaliação do Passageiro",
+    "Agent Evaluation": "Avaliação do Agente",
+    "Reason for Cancelling": "Justificativa de Cancelamento",
+    "Route Taken": "Percurso tomado",
+    "Vehicle Used": "Veículo Usado"
 }

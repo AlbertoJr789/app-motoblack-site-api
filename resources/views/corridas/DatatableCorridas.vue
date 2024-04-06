@@ -1,11 +1,6 @@
 <template>
     <div class="lg:float-left lg:mb-0 lg:text-start text-center mt-6">
         <slot name="toolbar"></slot>
-        <div v-if="checked.length && props.canDelete" class="md:inline md:mt-0 mt-2">
-            <button v-if="!deletedFilter" class="btn-danger" @click="deleteMultiple()">{{ window.trans('Delete') }}</button>
-            <button v-else class="btn" @click="restoreMultiple()">{{ window.trans('Restore') }}</button>
-            {{ checked.length }} {{ window.trans('Elements Selected') }}
-        </div>
     </div>
     <DataTable :columns="columns" :ajax="ajax" :options="options" ref="table" class="display responsive border border-transparent border-separate border-spacing-0 rounded-lg" id="tableCorridas">
         <thead class="text-xs text text-amber-300 uppercase hover:cursor-pointer">
@@ -29,15 +24,13 @@
     import 'datatables.net-buttons-dt';
     import 'datatables.net-buttons/js/buttons.colVis.js';
     import DataTablesCore from 'datatables.net';
-    import { ref, toRaw } from 'vue';
-    import { handleCheckboxes } from '../../js/utils.js';
+    import { ref } from 'vue';
     import '../../css/dataTables.css';
     import '../../css/dataTablesLoader.css';
     
     DataTable.use(DataTablesCore);
 
     const table = ref()
-    const checked = ref([])
     let deletedFilter = false
 
     const props = defineProps({
@@ -45,32 +38,38 @@
             type: String,
             required: true
         },
-        canCreate: {
-            type: Boolean,
-            required: true,
-        },
-        canDelete: {
-            type: Boolean,
-            required: true
-        }
     })
   
     const columns = [
         { responsivePriority: 0, data: 'select', name: 'select', className:'text-center noVis', orderable: false, searchable: false, visible: true},
-        props.canDelete ? { responsivePriority: 2, data: 'select', name: 'select', title: `<div class="mx-0">
-            <input class="input input-checkbox" type="checkbox" value="-1" id="testesHeaderCheckbox"/></div>`, 
-            className:'text-center noVis', orderable: false, searchable: false, visible: true, width: '20px'} : null,
+        //  { responsivePriority: 2, data: 'select', name: 'select', title: `<div class="mx-0">
+        //     <input class="input input-checkbox" type="checkbox" value="-1" id="testesHeaderCheckbox"/></div>`, 
+        //     className:'text-center noVis', orderable: false, searchable: false, visible: true, width: '20px'},
 
-        {data: 'id', title: window.trans('id')},{data: 'agente_id', title: window.trans('agente_id')},{data: 'passageiro_id', title: window.trans('passageiro_id')},{data: 'cancelada', title: window.trans('cancelada')},{data: 'data_finalizada', title: window.trans('data_finalizada')},{data: 'nota_passageiro', title: window.trans('nota_passageiro')},{data: 'nota_agente', title: window.trans('nota_agente')},{data: 'obs_agente', title: window.trans('obs_agente')},{data: 'obs_passageiro', title: window.trans('obs_passageiro')},{data: 'justificativa_cancelamento', title: window.trans('justificativa_cancelamento')},{data: 'veiculo_id', title: window.trans('veiculo_id')},{data: 'latitude_origem', title: window.trans('latitude_origem')},{data: 'longitude_origem', title: window.trans('longitude_origem')},{data: 'latitude_destino', title: window.trans('latitude_destino')},{data: 'longitude_destino', title: window.trans('longitude_destino')},{data: 'rota_gerada', title: window.trans('rota_gerada')},{data: 'created_at', title: window.trans('Creation Date')},{data: 'updated_at', title: window.trans('Update Date')},
+        {data: 'id', title: window.trans('id')},
+        {data: 'agente', name: "PA.nome", title: window.trans('Agent')},
+        {data: 'passageiro', name:"PP.nome", title: window.trans('Passenger')},
+        {data: 'cancelada', title: window.trans('Cancelled')},
+        {data: 'data_finalizada', title: window.trans('Finish Date')},
+        {data: 'nota_passageiro', title: window.trans('Passenger Evaluation')},
+        {data: 'nota_agente', title: window.trans('Agent Evaluation')},
+        {data: 'obs_agente', title: window.trans('Agent Report')},
+        {data: 'obs_passageiro', title: window.trans('Passenger Report')},
+        {data: 'justificativa_cancelamento', title: window.trans('Reason for Cancelling')},
+        {data: 'veiculo', name: "V.modelo", title: window.trans('Vehicle Used')},
+        {data: 'rota_gerada', title: window.trans('Route Taken')},
+        
+        {data: 'created_at', title: window.trans('Creation Date')},
+        {data: 'updated_at', title: window.trans('Update Date')},
 
-        {data: 'active', title: window.trans('Active')},
-        {data: 'creator', name:'C.name', title: window.trans('Creator')},
-        {data: 'editor', name:'E.name', title: window.trans('Editor')},
-        {data: 'deleter', name:'D.name', title: window.trans('Deleter')},
-        {data: 'deleted_at', title: window.trans('Delete Date')},
+        // {data: 'active', title: window.trans('Active')},
+        // {data: 'creator', name:'C.name', title: window.trans('Creator')},
+        // {data: 'editor', name:'E.name', title: window.trans('Editor')},
+        // {data: 'deleter', name:'D.name', title: window.trans('Deleter')},
+        // {data: 'deleted_at', title: window.trans('Delete Date')},
         { responsivePriority: 2, data: 'action', name: 'action', title: '', className:'text-center noVis', orderable: false, searchable: false, width: '50px'},
 
-    ].filter(Boolean)
+    ]
     
     const options = {
         language: {
@@ -87,7 +86,7 @@
         processing: true,
         responsive: true,
         stateSave: true,
-        order: props.canDelete ? [[2,'desc']] : [[1,'desc']],
+        order: [[1,'desc']],
         dom: "<'grid grid-cols-1 sm:grid-cols-12 mb-2'" +
             "<'col-span-8'<'toolbar mt-4'>>" +
             "<'col-span-4 flex items-center sm:justify-end sm:flex-nowrap flex-wrap justify-center'fB>" +
@@ -97,27 +96,6 @@
             "<'col-span-12 md:col-span-5 flex items-center justify-center md:justify-start mx-2'li>" +
             "<'col-span-12 md:col-span-7 flex items-center justify-center md:justify-end'p>" +
             ">",
-        columnDefs: [
-            props.canDelete ? {
-                targets: 1,
-                orderable: false,
-                render: function ( val, type, row ) {
-                    return `<div class="mx-0">
-                                <input class="input input-checkbox border-black" type="checkbox" value="${row.id}"/>
-                            </div>`;
-                }
-            } : {},
-        ],
-        initComplete: () => {
-            if(props.canDelete)
-                handleCheckboxes(document.getElementById('tableCorridas'),checked)
-        },
-        drawCallback: () => {
-            if(props.canDelete){
-                document.getElementById('testesHeaderCheckbox').checked = false
-                checked.value = []
-            }
-        },
         lengthMenu: [ [5,10 , 25, 50, 100, -1], [5,10, 25, 50, 100, "∞"] ]
     };
 
@@ -125,33 +103,16 @@
         url: props.ajaxRoute,
         data: (d) => {
             d.dateTypeFilter = document.getElementById('dateTypeFilter').value,
-            d.activeFilter = document.getElementById('activeFilter').checked,
             d.initialDate = document.getElementById('initialDateFilter').value,
             d.endDate = document.getElementById('endDateFilter').value
         }
     }
 
     document.addEventListener('livewire:initialized', () => {
-        Livewire.on('alert',(e)=>{
-            Swal.fire({
-                icon: e[0].icon,
-                title: e[0].title,
-                text: e[0].text
-            })
-            table.value.dt.draw()
-        })
         Livewire.on('filter',() =>{
             deletedFilter = document.getElementById('dateTypeFilter').value == 'D' ? true : false
             table.value.dt.draw()
         })
     })
-
-    function deleteMultiple(){
-        deleteRegister(toRaw(checked.value))
-    }
-
-    function restoreMultiple(){
-        restoreRegister(toRaw(checked.value))
-    }
 
 </script>

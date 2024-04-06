@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Corrida extends Model
 {
-    use HasFactory,
-        SoftDeletes;
+    use HasFactory;
+      
     public $table = 'corrida';
+
+    public $dates = ['data_finalizada'];
 
     public $fillable = [
         'agente_id',
