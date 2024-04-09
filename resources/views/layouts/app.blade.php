@@ -66,7 +66,7 @@
 
         @include('sweetalert::alert')
 
-        @livewireScripts
+        @livewireScriptConfig
         @vite('resources/js/app.js')
     </body>
 </html>

@@ -3,7 +3,7 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
+import { Livewire } from '../../vendor/livewire/livewire/dist/livewire.esm'
 import './bootstrap';
 // import 'flowbite';
 import Swal from 'sweetalert2';
@@ -49,4 +49,4 @@ Vue.config.globalProperties.window = window
 
 Vue.mount('main');
 
-
+Livewire.start()
