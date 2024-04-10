@@ -63,9 +63,13 @@ class User extends Authenticatable
     ];
 
     public function getLocationAttribute(){
-        $ip = request()->ip();
-        $ip = $ip == '127.0.0.1' ? "" : $ip;
-        return (object) Http::get("http://ip-api.com/json/".$ip)->json();
+        try {
+            $ip = request()->ip();
+            $ip = $ip == '127.0.0.1' ? "" : $ip;
+            return (object) Http::get("http://ip-api.com/json/".$ip)->json();
+        } catch (\Throwable $th) {
+            return null;
+        }
     }
 
 }

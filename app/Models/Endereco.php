@@ -28,7 +28,11 @@ class Endereco extends Model
     }
 
     public static function queryCep($cep) {
-        return preg_replace('/[?();]/','',Http::get("https://viacep.com.br/ws/$cep/json/?callback=?")->body());
+        try {
+            return preg_replace('/[?();]/','',Http::get("https://viacep.com.br/ws/$cep/json/?callback=?")->body());
+        } catch (\Throwable $th) {
+            return null;
+        }
     }
 
 
