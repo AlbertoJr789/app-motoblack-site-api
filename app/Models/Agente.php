@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Sanctum\HasApiTokens;
 
 class Agente extends Model
 {
     use HasFactory,
+        HasApiTokens,
         SoftDeletes;
     public $table = 'agente';
 
@@ -37,6 +39,9 @@ class Agente extends Model
     public static array $rules = [];
 
 
+    public function user(){
+        return $this->hasOne(User::class,'id','user_id');
+    }
 
     public function creator()
     {

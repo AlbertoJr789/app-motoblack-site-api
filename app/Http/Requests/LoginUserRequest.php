@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LoginUserRequest extends FormRequest
 {
@@ -24,7 +25,8 @@ class LoginUserRequest extends FormRequest
 
         return [
             'name' => 'required|string|',
-            'password' => 'required|string|min:8'
+            'password' => 'required|string|min:8',
+            'type' => ['required',Rule::in(['P','A'])]
         ];
     }
 }

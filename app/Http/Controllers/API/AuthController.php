@@ -10,21 +10,31 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use App\Models\Agente;
+use App\Models\Passageiro;
 
 class AuthController extends Controller
 {
     
     public function login(LoginUserRequest $request)
     {
-        $user = User::whereName($request->name)->orWhere('email',$request->name)->first();
         
+        $user = match($request->type) {
+            'P' => Passageiro::withWhereHas('user',function($query) use ($request){
+                    $query->whereName($request->name)->orWhere('email',$request->name);
+                })->first(),
+            'A' => Agente::withWhereHas('user',function($query) use ($request){
+                $query->whereName($request->name)->orWhere('email',$request->name);
+            })->first(),
+            default => null
+        }; 
         if(!$user){
             return response()->json([
                 'message' => 'Usuário não encontrado!'
             ],404);
         } 
 
-        if(!Hash::check($request->password,$user->password)){
+        if(!Hash::check($request->password,$user->user->password)){
             return response()->json([
                 'message' => 'Senha inválida!'
             ],401);
