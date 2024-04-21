@@ -2,63 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateCorridaRequest;
-use App\Http\Requests\UpdateCorridaRequest;
+use App\Http\Requests\CreateAtividadeRequest;
+use App\Http\Requests\UpdateAtividadeRequest;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\CorridaRepository;
+use App\Repositories\AtividadeRepository;
 use Illuminate\Http\Request;
 use Flash;
-use App\Models\Corrida;
+use App\Models\Atividade;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
-class CorridaController extends AppBaseController
+class AtividadeController extends AppBaseController
 {
-    /** @var CorridaRepository $corridaRepository*/
-    private $corridaRepository;
+    /** @var AtividadeRepository $AtividadeRepository*/
+    private $AtividadeRepository;
 
-    public function __construct(CorridaRepository $corridaRepo)
+    public function __construct(AtividadeRepository $AtividadeRepo)
     {
-        $this->corridaRepository = $corridaRepo;
+        $this->AtividadeRepository = $AtividadeRepo;
     }
 
     /**
-     * Display a listing of the Corrida.
+     * Display a listing of the Atividade.
      */
     public function index(Request $request)
     {
-        return view('corridas.index');
-    }
-
-
-    public function store(Request $request){
-        try {
-            $d = $request->all();
-
-            $this->corridaRepository->create($d);
-            
-            alert()->success(__('Success'),'Corrida '.__('added successfully!'));
-        }
-        catch (\Throwable $th) {
-            \Log::error('Error while submiting Corrida: '.$th->getMessage());
-            alert()->error(__('Error'),__('Whoops! Something went wrong.'));
-        }
-        return redirect()->back();
-    }
-
-    public function update(Corrida $corrida,Request $request){
-
-        try {
-            $d = $request->all();
-            $corrida = $this->corridaRepository->update($d,$corrida->id);
-
-            alert()->success(__('Success'),'Corrida '.__('updated successfully!'));
-        }catch (\Throwable $th) {
-            \Log::error('Error while submiting Corrida: '.$th->getMessage());
-            alert()->error(__('Error'),__('Whoops! Something went wrong.'));
-        }
-        return redirect()->back();
+        return view('atividades.index');
     }
 
     /**
@@ -69,7 +39,7 @@ class CorridaController extends AppBaseController
     */
    public function dataTableData(Request $request){
 
-       $query = Corrida::select('corrida.*','PA.nome as agente','PP.nome as passageiro',DB::raw('CONCAT(V.marca,\' - \',V.modelo) as veiculo'))
+       $query = Atividade::select('atividade.*','PA.nome as agente','PP.nome as passageiro',DB::raw('CONCAT(V.marca,\' - \',V.modelo) as veiculo'))
                          ->join('agente as A','A.id','agente_id')
                          ->join('pessoa as PA','PA.id','A.pessoa_id')
                          ->join('passageiro as P','P.id','passageiro_id')
@@ -100,7 +70,7 @@ class CorridaController extends AppBaseController
                             return $reg->nota_agente ? view('components.star-rating',['rate' => $reg->nota_agente])->render() : '';
                          })
                          ->addColumn('action',function($reg){
-                               return view('corridas.action-buttons',['data' => $reg]);
+                               return view('atividades.action-buttons',['data' => $reg]);
                          })
                          ->rawColumns(['action','cancelada','nota_agente','nota_passageiro'])
                          ->make();

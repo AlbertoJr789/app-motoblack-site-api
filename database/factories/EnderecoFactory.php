@@ -25,6 +25,8 @@ class EnderecoFactory extends Factory
             'estado' => 'MG',
             'pais' => 'BR',
             'complemento' => $this->faker->boolean(50) ? $this->faker->text(20) : null,
+            'latitude' => $this->faker->latitude(),
+            'longitude' => $this->faker->latitude(),
         ];
     }
 }

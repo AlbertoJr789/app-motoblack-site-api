@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Corrida;
+use App\Models\Atividade;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCorridaRequest extends FormRequest
+class CreateAtividadeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,6 @@ class UpdateCorridaRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = Corrida::$rules;
-        
-        return $rules;
+        return Atividade::$rules;
     }
 }

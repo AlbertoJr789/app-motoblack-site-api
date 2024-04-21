@@ -14,8 +14,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('corrida', function (Blueprint $table) {
+        Schema::create('atividade', function (Blueprint $table) {
             $table->id();
+            $table->smallInteger('tipo')->comment('Corrida,entrega ou outra atividade');
             $table->tinyInteger('cancelada');
             $table->dateTime('data_finalizada')->nullable();
             $table->smallInteger('nota_passageiro')->nullable();
@@ -23,10 +24,10 @@ return new class extends Migration
             $table->text('obs_agente')->nullable();
             $table->text('obs_passageiro')->nullable();
             $table->text('justificativa_cancelamento')->nullable();
-            $table->text('latitude_origem');
-            $table->text('longitude_origem');
-            $table->text('latitude_destino');
-            $table->text('longitude_destino');
+            
+            $table->foreignId('origem')->references('id')->on('endereco');
+            $table->foreignId('destino')->references('id')->on('endereco');
+            
             $table->text('rota_gerada')->nullable();
             $table->foreignId('agente_id')->references('id')->on('agente');
             $table->foreignId('passageiro_id')->references('id')->on('passageiro');
@@ -34,7 +35,7 @@ return new class extends Migration
             $table->timestamps();
             
             try {
-                Permission::create([ 'name' => 'corridas.view']);
+                Permission::create([ 'name' => 'atividades.view']);
             } catch (\Throwable $th) {
             }
         });
@@ -47,10 +48,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::drop('corrida');
+        Schema::drop('atividade');
                 
         try {
-            Permission::whereName('corridas.view')
+            Permission::whereName('atividades.view')
                   ->delete();
         } catch (\Throwable $th) {
         }

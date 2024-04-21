@@ -24,9 +24,11 @@ return new class extends Migration
             $table->string('numero');
             $table->string('bairro');
             $table->string('complemento')->nullable();
-            $table->string('cidade');
-            $table->string('estado');
-            $table->string('pais');
+            $table->string('cidade')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('pais')->nullable();
+            $table->text('latitude')->nullable();
+            $table->text('longitude')->nullable();
             $table->timestamps();
             // $table->softDeletes();
         });

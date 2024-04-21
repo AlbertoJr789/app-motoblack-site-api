@@ -1,4 +1,4 @@
-<!-- Agente Id Field -->
+{{-- <!-- Agente Id Field -->
 <div class="grid sm:grid-cols-2 grid-cols-1">
 <div>
             {!! Form::label('agente_id', 'Agente Id:',['class' => "block mx-1"]) !!}
@@ -116,4 +116,4 @@
             {!! Form::checkbox('active',null,$active, ['class' => 'checkbox-toggle-switch','wire:model' => 'active',]) !!}
         </div>
         @endif
-    
+     --}}

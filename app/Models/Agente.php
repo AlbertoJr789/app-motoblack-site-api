@@ -39,6 +39,10 @@ class Agente extends Model
     public static array $rules = [];
 
 
+    public function veiculos(){
+        return $this->hasMany(Veiculo::class,'agente_id','id');
+    }
+
     public function user(){
         return $this->hasOne(User::class,'id','user_id');
     }

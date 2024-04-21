@@ -29,8 +29,8 @@ Route::group(['prefix' => 'passageiros', 'as' => 'passageiros.', 'middleware' =>
         Route::patch('/update/{passageiro}', [App\Http\Controllers\PassageiroController::class,'update'])->name('update');
     Route::get('dataTableData',[App\Http\Controllers\PassageiroController::class,'dataTableData'])->name('dataTableData');
 });
-Route::group(['prefix' => 'corridas', 'as' => 'corridas.', 'middleware' => 'permission:corrida.view'],function(){
-    Route::resource('/', App\Http\Controllers\CorridaController::class);
-        Route::patch('/update/{corrida}', [App\Http\Controllers\CorridaController::class,'update'])->name('update');
-    Route::get('dataTableData',[App\Http\Controllers\CorridaController::class,'dataTableData'])->name('dataTableData');
+Route::group(['prefix' => 'atividades', 'as' => 'atividades.', 'middleware' => 'permission:atividades.view'],function(){
+    Route::resource('/', App\Http\Controllers\AtividadeController::class);
+        Route::patch('/update/{corrida}', [App\Http\Controllers\AtividadeController::class,'update'])->name('update');
+    Route::get('dataTableData',[App\Http\Controllers\AtividadeController::class,'dataTableData'])->name('dataTableData');
 });

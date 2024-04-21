@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Corrida extends Model
+class Atividade extends Model
 {
     use HasFactory;
       
-    public $table = 'corrida';
+    public $table = 'atividade';
 
     public $dates = ['data_finalizada'];
 

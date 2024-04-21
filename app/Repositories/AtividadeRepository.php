@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Models\Corrida;
+use App\Models\Atividade;
 use App\Repositories\BaseRepository;
 
-class CorridaRepository extends BaseRepository
+class AtividadeRepository extends BaseRepository
 {
     protected $fieldSearchable = [
         'agente_id',
@@ -32,6 +32,6 @@ class CorridaRepository extends BaseRepository
 
     public function model(): string
     {
-        return Corrida::class;
+        return Atividade::class;
     }
 }

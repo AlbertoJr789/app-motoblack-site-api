@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\API;
 
-use App\Models\Corrida;
+use App\Models\Atividade;
 use InfyOm\Generator\Request\APIRequest;
 
-class UpdateCorridaAPIRequest extends APIRequest
+class UpdateAtividadeAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class UpdateCorridaAPIRequest extends APIRequest
      */
     public function rules()
     {
-        $rules = Corrida::$rules;
+        $rules = Atividade::$rules;
         
         return $rules;
     }

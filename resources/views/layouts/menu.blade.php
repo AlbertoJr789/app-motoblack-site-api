@@ -23,9 +23,9 @@
 </x-menu-item>
 @endcan
 
-@can('corridas.view')  
-<x-menu-item icon="fa-solid fa-flag-checkered"  route="{{route('admin.corridas.index')}}" :active="Route::is('admin.corridas.index')">
-        {{ __('Corridas') }} 
+@can('atividades.view')  
+<x-menu-item icon="fa-solid fa-flag-checkered"  route="{{route('admin.atividades.index')}}" :active="Route::is('admin.atividades.index')">
+        {{ __('Atividades') }} 
 </x-menu-item>
 @endcan
 

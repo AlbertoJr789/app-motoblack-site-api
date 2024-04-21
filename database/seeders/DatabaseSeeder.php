@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Agente;
+use App\Models\Passageiro;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,8 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        $amount = 10;
-
+        
         //user admin for testing
         \App\Models\User::factory()->create([
             'name' => 'admin',
@@ -23,8 +25,13 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123123123'),
             'admin' => 1
         ]);
-     
-        \App\Models\Corrida::factory($amount)->create();
+        
+        $i = 5;
+        \App\Models\Passageiro::factory($i)->create();
+        \App\Models\Veiculo::factory($i)->create();
+
+        $amount = 100;
+        \App\Models\Atividade::factory($amount)->create();
 
     }
 }

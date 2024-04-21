@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Corridas;
+namespace App\Livewire\Atividades;
 
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -24,7 +24,7 @@ class Filter extends Component
 
     public function render()
     {
-        return view('corridas.filter');
+        return view('atividades.filter');
     }
 
     #[On('openFilter')]

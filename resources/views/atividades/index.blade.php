@@ -5,9 +5,9 @@
 
 <div class="p-3 w-full h-full">
     <div class="p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 w-full">
-    <Datatable-Corridas :ajax-route="'{{route('admin.corridas.dataTableData')}}'">
+    <Datatable-Atividades :ajax-route="'{{route('admin.atividades.dataTableData')}}'">
             <template v-slot:toolbar>
-                {{-- @can('corridas.create')
+                {{-- @can('atividades.create')
                 <button class="btn-primary" onclick="Livewire.dispatch('openCreate')">
                     <i class="fa-solid fa-plus mr-1"></i> Novo
                 </button>
@@ -16,11 +16,11 @@
                     <i class="fa-solid fa-magnifying-glass-chart mr-1"></i> Filtro
                 </button>
             </template>
-        </Datatable-Corridas>    
+        </Datatable-Atividades>    
 </div>
 </div>
 
 @push('modals')
-    @livewire('corridas.filter')
+    @livewire('atividades.filter')
 @endpush
 @endsection
