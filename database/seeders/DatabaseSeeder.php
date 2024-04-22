@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        
         //user admin for testing
         \App\Models\User::factory()->create([
             'name' => 'admin',

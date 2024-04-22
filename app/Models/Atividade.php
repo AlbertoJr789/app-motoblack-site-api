@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Atividade extends Model
 {
@@ -25,10 +25,9 @@ class Atividade extends Model
         'obs_passageiro',
         'justificativa_cancelamento',
         'veiculo_id',
-        'latitude_origem',
-        'longitude_origem',
-        'latitude_destino',
-        'longitude_destino',
+        'tipo',
+        'origem',
+        'destino',
         'rota_gerada'
     ];
 
@@ -54,6 +53,33 @@ class Atividade extends Model
     public static array $rules = [];
 
 
+    public function origin(){
+        return $this->hasOne(Endereco::class,'id','origem');
+    }
+    
+    public function destiny(){
+        return $this->hasOne(Endereco::class,'id','destino');
+    }
+
+    public function veiculo(){
+        return $this->hasOne(Veiculo::class,'id','veiculo_id');
+    }
+
+    public function agente(){
+        return $this->hasOne(Agente::class,'id','agente_id');
+    }
+
+    public function passageiro(){
+        return $this->hasOne(Passageiro::class,'id','passageiro_id');
+    }
+    
+    protected function tipoName(): Attribute{
+        return Attribute::make(get: fn (int $value) => match($value){
+            1 => __('Trip'),
+            2 => __('Delivery'),
+            default => ''    
+        });
+    }
 
     public function creator()
     {

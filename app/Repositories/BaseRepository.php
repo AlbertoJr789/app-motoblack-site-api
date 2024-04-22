@@ -55,9 +55,17 @@ abstract class BaseRepository
     /**
      * Paginate records for scaffold.
      */
-    public function paginate(int $perPage, array $columns = ['*']): LengthAwarePaginator
+    public function paginate(array $search = [],int $perPage, array $columns = ['*']): LengthAwarePaginator
     {
         $query = $this->allQuery();
+
+        if (count($search)) {
+            foreach($search as $key => $value) {
+                if (in_array($key, $this->getFieldsSearchable())) {
+                    $query->where($key, $value);
+                }
+            }
+        }
 
         return $query->paginate($perPage, $columns);
     }

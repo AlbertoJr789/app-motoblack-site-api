@@ -9,6 +9,7 @@ use App\Repositories\AtividadeRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Http\Resources\AtividadeCollection;
 
 /**
  * Class AtividadeAPIController
@@ -28,13 +29,9 @@ class AtividadeAPIController extends AppBaseController
      */
     public function index(Request $request): JsonResponse
     {
-        $Atividades = $this->AtividadeRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $Atividades = $this->AtividadeRepository->makeModel()->with(['origin','destiny','agente','passageiro','veiculo'])->paginate(perPage: $request->get('amount'));
 
-        return $this->sendResponse($Atividades->toArray(), 'Atividades retrieved successfully');
+        return $this->sendResponse(new AtividadeCollection($Atividades), 'Activities retrieved successfully');
     }
 
     /**
@@ -86,23 +83,23 @@ class AtividadeAPIController extends AppBaseController
         return $this->sendResponse($Atividade->toArray(), 'Atividade updated successfully');
     }
 
-    /**
-     * Remove the specified Atividade from storage.
-     * DELETE /Atividades/{id}
-     *
-     * @throws \Exception
-     */
-    public function destroy($id): JsonResponse
-    {
-        /** @var Atividade $Atividade */
-        $Atividade = $this->AtividadeRepository->find($id);
+    // /**
+    //  * Remove the specified Atividade from storage.
+    //  * DELETE /Atividades/{id}
+    //  *
+    //  * @throws \Exception
+    //  */
+    // public function destroy($id): JsonResponse
+    // {
+    //     /** @var Atividade $Atividade */
+    //     $Atividade = $this->AtividadeRepository->find($id);
 
-        if (empty($Atividade)) {
-            return $this->sendError('Atividade not found');
-        }
+    //     if (empty($Atividade)) {
+    //         return $this->sendError('Atividade not found');
+    //     }
 
-        $Atividade->delete();
+    //     $Atividade->delete();
 
-        return $this->sendSuccess('Atividade deleted successfully');
-    }
+    //     return $this->sendSuccess('Atividade deleted successfully');
+    // }
 }

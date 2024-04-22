@@ -224,5 +224,7 @@
     "Agent Evaluation": "Avaliação do Agente",
     "Reason for Cancelling": "Justificativa de Cancelamento",
     "Route Taken": "Percurso tomado",
-    "Vehicle Used": "Veículo Usado"
+    "Vehicle Used": "Veículo Usado",
+    "Trip": "Corrida",
+    "Delivery": "Entrega"
 }

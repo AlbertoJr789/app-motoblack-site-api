@@ -72,19 +72,19 @@ class AgenteController extends AppBaseController
                                return $reg->deleted_at ? $reg->deleted_at->format('d/m/Y H:i') : '';
                          })
                          ->editColumn('status',function($reg){
-                            switch($reg->status){
-                                case 0: return '<span class="badge uppercase">'.__('Unavailable').'</span>';
-                                case 1: return '<span class="badge badge-green uppercase">'.__('Available').'</span>';
-                                case 2: return '<span class="badge badge-yellow uppercase">'.__('Driving').'</span>';
-                                default: return '';
-                            }
+                            return match($reg->status){
+                                0 => '<span class="badge uppercase">'.__('Unavailable').'</span>',
+                                1 => '<span class="badge badge-green uppercase">'.__('Available').'</span>',
+                                2 => '<span class="badge badge-yellow uppercase">'.__('Driving').'</span>',
+                                default => ''
+                            };
                          })
                          ->editColumn('tipo',function($reg){
-                            switch($reg->tipo){
-                                case 1: return '<span class="badge badge-secondary uppercase">'.__('Motorcycle Pilot').'</span>';
-                                case 2: return '<span class="badge badge-primary uppercase">'.__('Car Driver').'</span>';
-                                default: return '';
-                            }
+                            return match($reg->tipo){
+                                1 => '<span class="badge badge-secondary uppercase">'.__('Motorcycle Pilot').'</span>',
+                                2 => '<span class="badge badge-primary uppercase">'.__('Car Driver').'</span>',
+                                default => ''
+                            };
                          })
                          ->addColumn('localizacao',function($reg){
                             return ($reg->latitude && $reg->longitude) ? "<button class=\"btn-primary\" onclick=\"monitorarLocalizacao($reg->id)\"><i class=\"fa-solid fa-magnifying-glass\"></i></button>" : '';
