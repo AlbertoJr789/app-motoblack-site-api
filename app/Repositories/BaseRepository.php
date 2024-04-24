@@ -7,6 +7,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 
 abstract class BaseRepository
@@ -55,25 +56,17 @@ abstract class BaseRepository
     /**
      * Paginate records for scaffold.
      */
-    public function paginate(array $search = [],int $perPage, array $columns = ['*']): LengthAwarePaginator
+    public function paginate(int $perPage,array $search = [],array $columns = ['*'],array $eagerLoads = [],bool $simple = false): LengthAwarePaginator|Paginator
     {
-        $query = $this->allQuery();
+        $query = $this->allQuery(search: $search,eagerLoads: $eagerLoads);
 
-        if (count($search)) {
-            foreach($search as $key => $value) {
-                if (in_array($key, $this->getFieldsSearchable())) {
-                    $query->where($key, $value);
-                }
-            }
-        }
-
-        return $query->paginate($perPage, $columns);
+        return $simple ? $query->simplePaginate($perPage,$columns) : $query->paginate($perPage, $columns);
     }
 
     /**
      * Build a query for retrieving all records.
      */
-    public function allQuery(array $search = [], int $skip = null, int $limit = null): Builder
+    public function allQuery(array $search = [], int $skip = null, int $limit = null, array $eagerLoads = []): Builder
     {
         $query = $this->model->newQuery();
 
@@ -83,6 +76,10 @@ abstract class BaseRepository
                     $query->where($key, $value);
                 }
             }
+        }
+
+        if(count($eagerLoads)){
+            $query->with($eagerLoads);
         }
 
         if (!is_null($skip)) {

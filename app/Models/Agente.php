@@ -39,21 +39,34 @@ class Agente extends Model
 
     public static array $rules = [];
 
-
-    protected function tipoName(): Attribute{
-        return Attribute::make(get: fn (int $value) => match($value){
-            1 => __('Motorcycle Pilot'),
-            2 => __('Car Driver'),
-            default => ''
-        });
+    protected function tipo(): Attribute
+    {
+        return Attribute::make(
+            get: function (int $value) {
+                return [
+                    'tipo' => $value,
+                    'nome' => match ($value) {
+                        1 => __('Motorcycle Pilot'),
+                        2 => __('Car Driver'),
+                        default => ''
+                    }
+                ];
+            }
+        );
     }
 
-    public function veiculos(){
-        return $this->hasMany(Veiculo::class,'agente_id','id');
+    public function pessoa(){
+        return $this->hasOne(Pessoa::class,'id','pessoa_id');
     }
 
-    public function user(){
-        return $this->hasOne(User::class,'id','user_id');
+    public function veiculos()
+    {
+        return $this->hasMany(Veiculo::class, 'agente_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     public function creator()

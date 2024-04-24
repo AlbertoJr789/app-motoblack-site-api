@@ -30,18 +30,18 @@ class AuthController extends Controller
         }; 
         if(!$user){
             return response()->json([
-                'message' => 'Usuário não encontrado!'
+                'message' => __('User not found!')
             ],404);
         } 
 
         if(!Hash::check($request->password,$user->user->password)){
             return response()->json([
-                'message' => 'Senha inválida!'
+                'message' => __('Invalid password!')
             ],401);
         }
         
         return response()->json([
-            "message" => "Autenticado com sucesso",
+            "message" => __("User authenticated successfully"),
             "token" => $user->createToken($user->id)->plainTextToken
         ]);
 
@@ -51,7 +51,7 @@ class AuthController extends Controller
     {
         Auth::user()->currentAccessToken()->delete();
         return response()->json([
-            "message" => "Sessão encerrada"
+            "message" => __("Session terminated")
         ]);
     }
 }

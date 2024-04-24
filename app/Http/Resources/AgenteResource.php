@@ -16,10 +16,7 @@ class AgenteResource extends JsonResource
     {
         return [
             'name' => $this->pessoa->nome,
-            'type' => [
-                'code' => $this->tipo, 
-                'name' => $this->tipoName
-            ],
+            'type' => $this->tipo,
             'avatar' => $this->user->profile_photo_url
         ];
     }

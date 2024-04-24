@@ -10,6 +10,12 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Resources\AtividadeCollection;
+use App\Models\Agente;
+use App\Models\Passageiro;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
+
+use function Laravel\Prompts\search;
 
 /**
  * Class AtividadeAPIController
@@ -29,9 +35,28 @@ class AtividadeAPIController extends AppBaseController
      */
     public function index(Request $request): JsonResponse
     {
-        $Atividades = $this->AtividadeRepository->makeModel()->with(['origin','destiny','agente','passageiro','veiculo'])->paginate(perPage: $request->get('amount'));
 
-        return $this->sendResponse(new AtividadeCollection($Atividades), 'Activities retrieved successfully');
+        $field = null;
+        if(Auth::user() instanceof Passageiro){
+            $field = 'passageiro_id';
+        }else if(Auth::user() instanceof Agente){
+            $field = 'agente_id';
+        }
+
+        if($field){
+            $Atividades = $this->AtividadeRepository
+                                ->paginate(
+                                    search: [
+                                        $field => Auth::user()->id
+                                    ],
+                                    eagerLoads: ['origin','destiny','agente','passageiro','veiculo'],
+                                    perPage: $request->get('amount') ?? 10,
+                                    simple: true
+                                );
+            return $this->sendResponse(new AtividadeCollection($Atividades), 'Activities retrieved successfully');
+        }else{
+            return $this->sendError('Couldn\'t retrieve user\'s activities');
+        }
     }
 
     /**

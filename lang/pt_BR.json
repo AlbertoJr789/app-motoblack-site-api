@@ -2,6 +2,10 @@
   
     "Email or User": "E-mail ou nome de usuário",
     "Enter your email or username": "Digite o seu e-mail ou nome de usuário",
+    "User not found!": "Usuário não encontrado!",
+    "Invalid password!": "Senha inválida!",
+    "User authenticated successfully": "Usuário autenticado com sucesso",
+    "Session terminated": "Sessão finalizada",
 
     "(and :count more error)": "(e mais :count erro)",
     "(and :count more errors)": "(e mais :count erros)",

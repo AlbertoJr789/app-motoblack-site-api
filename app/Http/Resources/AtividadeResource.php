@@ -17,10 +17,7 @@ class AtividadeResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'type' => [
-                'code' => $this->tipo, 
-                'name' => $this->tipoName
-            ],
+            'type' => $this->tipo,
             'creationDate' => $this->created_at,
             'agent' => new AgenteResource($this->agente),
             'passenger' => new PassageiroResource($this->passageiro),

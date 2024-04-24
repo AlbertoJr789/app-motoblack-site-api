@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Atividade extends Model
 {
     use HasFactory;
-      
+
     public $table = 'atividade';
 
     public $dates = ['data_finalizada'];
@@ -53,32 +53,45 @@ class Atividade extends Model
     public static array $rules = [];
 
 
-    public function origin(){
-        return $this->hasOne(Endereco::class,'id','origem');
-    }
-    
-    public function destiny(){
-        return $this->hasOne(Endereco::class,'id','destino');
+    public function origin()
+    {
+        return $this->hasOne(Endereco::class, 'id', 'origem');
     }
 
-    public function veiculo(){
-        return $this->hasOne(Veiculo::class,'id','veiculo_id');
+    public function destiny()
+    {
+        return $this->hasOne(Endereco::class, 'id', 'destino');
     }
 
-    public function agente(){
-        return $this->hasOne(Agente::class,'id','agente_id');
+    public function veiculo()
+    {
+        return $this->hasOne(Veiculo::class, 'id', 'veiculo_id');
     }
 
-    public function passageiro(){
-        return $this->hasOne(Passageiro::class,'id','passageiro_id');
+    public function agente()
+    {
+        return $this->hasOne(Agente::class, 'id', 'agente_id');
     }
-    
-    protected function tipoName(): Attribute{
-        return Attribute::make(get: fn (int $value) => match($value){
-            1 => __('Trip'),
-            2 => __('Delivery'),
-            default => ''    
-        });
+
+    public function passageiro()
+    {
+        return $this->hasOne(Passageiro::class, 'id', 'passageiro_id');
+    }
+
+    protected function tipo(): Attribute
+    {
+        return Attribute::make(
+            get: function (int $value) {
+                return [
+                    'tipo' => $value,
+                    'nome' => match ($value) {
+                        1 => __('Trip'),
+                        2 => __('Delivery'),
+                        default => ''
+                    }
+                ];
+            }
+        );
     }
 
     public function creator()

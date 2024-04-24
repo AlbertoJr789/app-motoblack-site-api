@@ -32,6 +32,9 @@ class Passageiro extends Model
 
     public static array $rules = [];
 
+    public function pessoa(){
+        return $this->hasOne(Pessoa::class,'id','pessoa_id');
+    }
 
     public function user(){
         return $this->hasOne(User::class,'id','user_id');
