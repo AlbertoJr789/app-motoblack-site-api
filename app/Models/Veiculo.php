@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -45,6 +46,22 @@ class Veiculo extends Model
     public static array $rules = [];
 
 
+    
+    protected function tipo(): Attribute
+    {
+        return Attribute::make(
+            get: function (int $value) {
+                return [
+                    'tipo' => $value,
+                    'nome' => match ($value) {
+                        1 => __('Motorcycle'),
+                        2 => __('Car'),
+                        default => ''
+                    }
+                ];
+            }
+        );
+    }
 
     public function creator()
     {

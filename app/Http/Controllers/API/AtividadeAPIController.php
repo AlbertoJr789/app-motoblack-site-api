@@ -37,24 +37,31 @@ class AtividadeAPIController extends AppBaseController
     {
 
         $field = null;
-        if(Auth::user() instanceof Passageiro){
+        if (Auth::user() instanceof Passageiro) {
             $field = 'passageiro_id';
-        }else if(Auth::user() instanceof Agente){
+        } else if (Auth::user() instanceof Agente) {
             $field = 'agente_id';
         }
 
-        if($field){
+        if ($field) {
             $Atividades = $this->AtividadeRepository
-                                ->paginate(
-                                    search: [
-                                        $field => Auth::user()->id
-                                    ],
-                                    eagerLoads: ['origin','destiny','agente','passageiro','veiculo'],
-                                    perPage: $request->get('amount') ?? 10,
-                                    simple: true
-                                );
-            return $this->sendResponse(new AtividadeCollection($Atividades), 'Activities retrieved successfully');
-        }else{
+                ->paginate(
+                    search: [
+                        $field => Auth::user()->id
+                    ],
+                    eagerLoads: ['origin', 'destiny', 'agente', 'passageiro', 'veiculo'],
+                    perPage: $request->get('amount') ?? 10,
+                    simple: true,
+                    beforePaginating: function($query){
+                        $query->orderBy('created_at','desc');
+                    }
+                );
+            return $this->sendResponse(
+                ['result' => new AtividadeCollection($Atividades), 
+                // 'currentPage' => $Atividades->currentPage(),
+                'hasMore' => $Atividades->hasMorePages()
+            ],'Activities retrieved successfully');
+        } else {
             return $this->sendError('Couldn\'t retrieve user\'s activities');
         }
     }

@@ -14,9 +14,6 @@ class AtividadeCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        return array_merge(parent::toArray($request),[
-            'currentPage' => $this->currentPage(),
-            'hasMore' => $this->hasMorePages()
-        ]);
+        return parent::toArray($request);
     }
 }

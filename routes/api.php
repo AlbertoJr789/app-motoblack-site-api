@@ -20,8 +20,8 @@ Route::group(['prefix' => 'auth'],function () {
 });
 
 Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified' ]], function () {
-    Route::apiResource('atividades', App\Http\Controllers\API\AtividadeAPIController::class);
-    Route::apiResource('veiculos', App\Http\Controllers\API\VeiculoAPIController::class);
+    Route::apiResource('activities', App\Http\Controllers\API\AtividadeAPIController::class);
+    Route::apiResource('vehicles', App\Http\Controllers\API\VeiculoAPIController::class);
 
     // Route::apiResource('pessoas', App\Http\Controllers\API\PessoaAPIController::class)
     //     ->except(['create', 'edit']);

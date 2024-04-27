@@ -18,18 +18,18 @@ class AtividadeResource extends JsonResource
         return [
             'id' => $this->id,
             'type' => $this->tipo,
-            'creationDate' => $this->created_at,
             'agent' => new AgenteResource($this->agente),
             'passenger' => new PassageiroResource($this->passageiro),
             'vehicle' => new VeiculoResource($this->veiculo),
             'origin' => new EnderecoResource($this->origin),
             'destiny' => new EnderecoResource($this->destiny),
-            'price' => 0.0,
+            'price' => 0.00,
             'agentEvaluation' => $this->nota_agente,
             'passengerEvaluation' => $this->nota_passageiro,
             'route' => $this->rota_gerada,
-            'canceled' => $this->cancelada,
-            'cancellingReason' => $this->justificativa_cancelamento
+            'cancelled' => $this->cancelada,
+            'cancellingReason' => $this->justificativa_cancelamento,
+            'createdAt' => $this->created_at,
         ];
     }
 }

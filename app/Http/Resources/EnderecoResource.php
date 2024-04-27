@@ -14,6 +14,17 @@ class EnderecoResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
+            'zipCode' => $this->cep,
+            'street' => $this->logradouro,
+            'number' => $this->numero,
+            'neighborhood' => $this->bairro,
+            'complement' => $this->complemento,
+            'country' => $this->pais,
+            'state' => $this->state,
+            'city' => $this->city,
+        ];
     }
 }

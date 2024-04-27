@@ -56,10 +56,13 @@ abstract class BaseRepository
     /**
      * Paginate records for scaffold.
      */
-    public function paginate(int $perPage,array $search = [],array $columns = ['*'],array $eagerLoads = [],bool $simple = false): LengthAwarePaginator|Paginator
+    public function paginate(int $perPage,array $search = [],array $columns = ['*'],array $eagerLoads = [],bool $simple = false,$beforePaginating = null): LengthAwarePaginator|Paginator
     {
         $query = $this->allQuery(search: $search,eagerLoads: $eagerLoads);
-
+        if($beforePaginating){
+            $beforePaginating($query);
+        }
+        
         return $simple ? $query->simplePaginate($perPage,$columns) : $query->paginate($perPage, $columns);
     }
 
