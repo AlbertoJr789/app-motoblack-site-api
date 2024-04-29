@@ -29,7 +29,10 @@ class AtividadeResource extends JsonResource
             'route' => $this->rota_gerada,
             'cancelled' => $this->cancelada,
             'cancellingReason' => $this->justificativa_cancelamento,
+            'agentObs' => $this->obs_agente,
+            'passengerObs' => $this->obs_passageiro,
             'createdAt' => $this->created_at,
+            'finishedAt' => $this->data_finalizada,
         ];
     }
 }
