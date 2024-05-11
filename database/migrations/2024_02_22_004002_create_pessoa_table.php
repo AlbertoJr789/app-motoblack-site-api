@@ -17,9 +17,9 @@ return new class extends Migration
         Schema::create('pessoa', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->smallInteger('tipo')->comment('1-PF,2-PJ');
-            $table->string('documento')->comment('CPF/CNPJ');
-            $table->string('rg');
+            $table->smallInteger('tipo')->nullable()->comment('1-PF,2-PJ');
+            $table->string('documento')->nullable()->comment('CPF/CNPJ');
+            $table->string('rg')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->boolean('active')->default(true);

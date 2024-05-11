@@ -27,6 +27,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make('123123123'), // password
             'two_factor_secret' => null,
+            'telefone' => '+55 37111111111',
             'two_factor_recovery_codes' => null,
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,

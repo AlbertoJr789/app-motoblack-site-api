@@ -2,6 +2,9 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Agente;
+use App\Models\Passageiro;
+use App\Models\Pessoa;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -23,10 +26,9 @@ class CreateNewUser implements CreatesNewUsers
         if($input['email']==""){
             unset($input['email']);
         }
-        
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255','unique:users,name'],
-            'email' => ['sometimes','email', 'max:255', 'unique:users,email'],
+            'name' => ['required', 'string', 'max:255',],
+            'email' => ['sometimes','email', 'max:255',],
             'password' => ['required',new Password],
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
@@ -35,13 +37,34 @@ class CreateNewUser implements CreatesNewUsers
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'] ?? null,
+            'telefone' => $input['telefone'],
             'password' => Hash::make($input['password']),
         ]); 
+        
+        $ret = match(request()->query('type')){
+            'A' => Agente::create([
+                'user_id' => $user->id,
+                'pessoa_id' => Pessoa::create([
+                    'nome' => $user->name,
+                    'creator_id' => $user->id,
+                    'editor_id' => $user->id,
+                ])->id,
+                'creator_id' => $user->id,
+                'editor_id' => $user->id,
+            ])->user,
+            'P' => Passageiro::create([
+                'user_id' => $user->id,
+                'pessoa_id' => Pessoa::create([
+                    'nome' => $user->name,
+                    'creator_id' => $user->id,
+                    'editor_id' => $user->id,
+                ])->id,
+                'creator_id' => $user->id,
+                'editor_id' => $user->id,
+            ])->user,
+            default => $user
+        };
 
-        // if(isset($input['mototaxista'])){
-
-        // }
-
-        return $user;
+        return $ret;
     }
 }

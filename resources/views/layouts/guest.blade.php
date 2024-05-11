@@ -18,10 +18,14 @@
         @livewireStyles
     </head>
     <body>
-        <div class="font-sans text-gray-900 dark:text-gray-100 antialiased">
-            {{ $slot }}
-        </div>
+        <main>
+            <div class="font-sans text-gray-900 dark:text-gray-100 antialiased">
+                {{ $slot }}
+            </div>
+        </main>
         
-        @livewireScripts
+        @stack('scripts')
+        {{-- @livewireScripts --}}
+        @livewireScriptConfig
     </body>
 </html>

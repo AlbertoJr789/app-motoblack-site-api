@@ -1,12 +1,12 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <img src="{{asset('img/moto_black_logo.png')}}" alt="Logo Moto Black" class="h-40 w-80">
         </x-slot>
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register')."?type=".request()->query('type') }}">
             @csrf
 
             @if(request()->query('mototaxista'))
@@ -14,13 +14,18 @@
             @endif
 
             <div>
-                <x-label for="name" value="{{ __('Name') }}" class="required"/>
+                <x-label for="name" value="{{ __('User Name') }}" class="required"/>
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="telefone" value="{{ __('Telefone') }}" />
+                <x-phone-input id="telefone" class="block mt-1" name="telefone" />
             </div>
 
             <div class="mt-4">
@@ -51,14 +56,33 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
+                @if(!request()->query('type'))
                 <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
+                @endif
 
-                <x-button class="ml-4">
+                <x-button class="ml-4" type="button" onclick="submitRegister()">
                     {{ __('Register') }}
                 </x-button>
+                <button id="submit" hidden></button>
             </div>
         </form>
     </x-authentication-card>
+    @push('scripts')
+        <script>
+            function submitRegister(){
+                if(!validateTelefone()){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: `{{__('Invalid Fields')}}`,
+                        text: `{{__('The given phone number is invalid!')}}`,
+                    })
+                    return
+                }
+                document.querySelector('#submit').click()
+            }
+        </script>
+    @endpush
 </x-guest-layout>
+

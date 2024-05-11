@@ -230,5 +230,9 @@
     "Route Taken": "Percurso tomado",
     "Vehicle Used": "Veículo Usado",
     "Trip": "Corrida",
-    "Delivery": "Entrega"
+    "Delivery": "Entrega",
+    "Phone Number": "Telefone",
+    "User Name": "Nome de Usuário",
+    "The given phone number is invalid!": "O número de telefone informado está invalido!",
+    "Type your phone number": "Digite seu número de telefone"
 }

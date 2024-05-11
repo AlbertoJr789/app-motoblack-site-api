@@ -38,10 +38,10 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);       
         Fortify::authenticateUsing(function(Request $request){
-            $user = User::whereName($request->name)->orWhere('email',$request->name)->first();
+            $user = User::whereName($request->name)->orWhere('email',$request->name)->orWhere('telefone',$request->name)->first();
             if($user && Hash::check($request->password,$user->password)) return $user;
         });
-
+        
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
 

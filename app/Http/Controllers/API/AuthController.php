@@ -21,10 +21,10 @@ class AuthController extends Controller
         
         $user = match($request->type) {
             'P' => Passageiro::withWhereHas('user',function($query) use ($request){
-                    $query->whereName($request->name)->orWhere('email',$request->name);
+                    $query->whereName($request->name)->orWhere('email',$request->name)->orWhere('telefone','LIKE',"%$request->telefone");
                 })->first(),
             'A' => Agente::withWhereHas('user',function($query) use ($request){
-                $query->whereName($request->name)->orWhere('email',$request->name);
+                $query->whereName($request->name)->orWhere('email',$request->name)->orWhere('telefone','LIKE',"%$request->telefone");
             })->first(),
             default => null
         }; 
