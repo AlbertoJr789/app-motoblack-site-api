@@ -35,25 +35,21 @@ class AtividadeAPIController extends AppBaseController
      */
     public function index(Request $request): JsonResponse
     {
-
         $field = null;
         if (Auth::user() instanceof Passageiro) {
             $field = 'passageiro_id';
         } else if (Auth::user() instanceof Agente) {
             $field = 'agente_id';
         }
-
         if ($field) {
             $Atividades = $this->AtividadeRepository
                 ->paginate(
-                    search: [
-                        $field => Auth::user()->id
-                    ],
                     eagerLoads: ['origin', 'destiny', 'agente', 'passageiro', 'veiculo'],
                     perPage: $request->get('amount') ?? 10,
                     simple: true,
-                    beforePaginating: function($query){
-                        $query->orderBy('created_at','desc');
+                    beforePaginating: function($query) use ($field) {
+                        $query->where($field,Auth::user()->id)
+                              ->orderBy('created_at','desc');
                     }
                 );
             return $this->sendResponse(

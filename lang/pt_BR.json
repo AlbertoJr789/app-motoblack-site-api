@@ -234,5 +234,6 @@
     "Phone Number": "Telefone",
     "User Name": "Nome de Usuário",
     "The given phone number is invalid!": "O número de telefone informado está invalido!",
-    "Type your phone number": "Digite seu número de telefone"
+    "Type your phone number": "Digite seu número de telefone",
+    "Profile data updated sucessfully": "Dados de perfil atualizados com sucesso"
 }

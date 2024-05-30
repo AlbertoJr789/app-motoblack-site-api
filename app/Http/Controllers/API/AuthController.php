@@ -21,13 +21,18 @@ class AuthController extends Controller
         
         $user = match($request->type) {
             'P' => Passageiro::withWhereHas('user',function($query) use ($request){
-                    $query->whereName($request->name)->orWhere('email',$request->name)->orWhere('telefone','LIKE',"%$request->telefone");
+                    $query->whereName($request->name)
+                          ->orWhere('email',$request->name)
+                          ->orWhere('telefone',$request->name);
                 })->first(),
             'A' => Agente::withWhereHas('user',function($query) use ($request){
-                $query->whereName($request->name)->orWhere('email',$request->name)->orWhere('telefone','LIKE',"%$request->telefone");
+                        $query->whereName($request->name)
+                              ->orWhere('email',$request->name)
+                              ->orWhere('telefone',$request->name);
             })->first(),
             default => null
         }; 
+
         if(!$user){
             return response()->json([
                 'message' => __('User not found!')

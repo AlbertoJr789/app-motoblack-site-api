@@ -22,7 +22,8 @@ Route::group(['prefix' => 'auth'],function () {
 Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified' ]], function () {
     Route::apiResource('activities', App\Http\Controllers\API\AtividadeAPIController::class);
     Route::apiResource('vehicles', App\Http\Controllers\API\VeiculoAPIController::class);
-
+    Route::get('profileData',[App\Http\Controllers\API\ProfileAPIController::class,'getProfileData']);
+    Route::post('updateProfile',[App\Http\Controllers\API\ProfileAPIController::class,'updateProfileData']);
     // Route::apiResource('pessoas', App\Http\Controllers\API\PessoaAPIController::class)
     //     ->except(['create', 'edit']);
 

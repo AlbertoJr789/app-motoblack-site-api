@@ -172,7 +172,6 @@ return [
         App\Providers\JetstreamServiceProvider::class,
         InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class,
         App\Providers\GlobalFunctionsProvider::class,
-        Arcanedev\LogViewer\LogViewerServiceProvider::class,
     ])->toArray(),
 
     /*
