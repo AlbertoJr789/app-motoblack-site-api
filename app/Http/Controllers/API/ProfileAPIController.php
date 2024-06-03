@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Models\Veiculo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
 
 /**
  * Class ProfileAPIController
@@ -32,8 +34,8 @@ class ProfileAPIController extends AppBaseController {
 
     public function updateProfileData(Request $request){
         $d = $request->all();
-       
         try {
+
             DB::beginTransaction();
 
             $user = Auth::user(); 
@@ -48,9 +50,13 @@ class ProfileAPIController extends AppBaseController {
             ]);
 
             if(isset($d['photo'])){
-                $user->user->updateProfilePhoto($request->file('photo'));
+                (new UpdateUserProfileInformation)->update($user->user,$d);
             }
+            DB::commit();
             return $this->sendResponse('OK',__('Profile data updated sucessfully'));
+        } catch(ValidationException $th) {
+            DB::rollBack();
+            return $this->sendError($th->getMessage());
         } catch (\Throwable $th) {
             DB::rollBack();
             \Log::error('Erro while updating user profile data: '. $th->getMessage());
