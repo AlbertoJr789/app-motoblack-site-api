@@ -10,6 +10,7 @@ use App\Http\Controllers\AppBaseController;
 use App\Http\Resources\ProfileResource;
 use App\Models\Agente;
 use App\Models\Passageiro;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -27,7 +28,7 @@ class ProfileAPIController extends AppBaseController {
                 ['result' => new ProfileResource(Auth::user()), 
             ],'Profile data retrieved successfully.'); 
         } catch (\Throwable $th) {
-            Log::error('Erro while getting profile data: '. $th->getMessage());
+            Log::error('Error while getting profile data: '. $th->getMessage());
             return $this->sendError($th->getMessage(),422);
         }
     }
@@ -44,19 +45,13 @@ class ProfileAPIController extends AppBaseController {
                 'nome' => $d['name']
             ]);
 
-            $user->user->update([
-                'telefone' => $d['phone'],
-                'email' => $d['email']
-            ]);
-
-            if(isset($d['photo'])){
-                (new UpdateUserProfileInformation)->update($user->user,$d);
-            }
+            (new UpdateUserProfileInformation)->update($user->user,$d);
+            
             DB::commit();
             return $this->sendResponse('OK',__('Profile data updated sucessfully'));
         } catch(ValidationException $th) {
             DB::rollBack();
-            return $this->sendError($th->getMessage());
+            return $this->sendError($th->getMessage(),422);
         } catch (\Throwable $th) {
             DB::rollBack();
             \Log::error('Erro while updating user profile data: '. $th->getMessage());

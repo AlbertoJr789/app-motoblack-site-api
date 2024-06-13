@@ -136,7 +136,7 @@ return [
     'string'               => 'O campo :attribute deve ser uma string.',
     'timezone'             => 'O campo :attribute deve ser uma zona válida.',
     'unique'               => 'O campo :attribute já está sendo utilizado.',
-    'uploaded'             => 'Ocorreu uma falha no upload do campo :attribute.',
+    'uploaded'             => 'Ocorreu uma falha no upload do seu arquivo. Tente um arquivo de menor tamanho.',
     'url'                  => 'O campo :attribute tem um formato inválido.',
     'uuid' => 'O campo :attribute deve ser um UUID válido.',
 
