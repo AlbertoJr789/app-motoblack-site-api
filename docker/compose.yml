@@ -1,0 +1,37 @@
+services:
+  motoblack:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    container_name: motoblack
+    networks:
+      - motoblack-network
+    volumes:
+      - ../:/var/www/motoblack
+  db:
+    image: mysql
+    container_name: db
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=moto_black_db
+    ports:
+      - 3307:3306
+    networks:
+      - motoblack-network
+  webserver:
+    image: nginx
+    container_name: webserver
+    volumes:
+      - ./nginx/:/etc/nginx/
+      - ../public/:/var/www/motoblack/public
+      - ../storage/:/var/www/motoblack/storage
+    depends_on:
+      - motoblack
+    ports:
+      - 8000:8000
+    networks:
+      - motoblack-network
+networks:
+  motoblack-network:
+    driver: bridge

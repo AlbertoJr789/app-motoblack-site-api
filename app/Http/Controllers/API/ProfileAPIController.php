@@ -23,7 +23,7 @@ use Illuminate\Validation\ValidationException;
 class ProfileAPIController extends AppBaseController {
 
     public function getProfileData(){
-        try {
+        try { 
             return $this->sendResponse(
                 ['result' => new ProfileResource(Auth::user()), 
             ],'Profile data retrieved successfully.'); 
