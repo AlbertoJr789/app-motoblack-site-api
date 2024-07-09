@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('cep');
             $table->string('logradouro');
             $table->string('numero');
-            $table->string('bairro');
+            $table->string('bairro')->nullable();
             $table->string('complemento')->nullable();
             $table->string('cidade')->nullable();
             $table->string('estado')->nullable();

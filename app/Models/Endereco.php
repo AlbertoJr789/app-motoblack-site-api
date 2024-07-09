@@ -13,6 +13,8 @@ class Endereco extends Model
     public $table = 'endereco';
 
     protected $fillable = [
+        'latitude',
+        'longitude',
         'cep',
         'logradouro',
         'complemento',

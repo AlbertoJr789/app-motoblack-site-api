@@ -10,10 +10,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Resources\AtividadeCollection;
+use App\Http\Resources\AtividadeResource;
 use App\Models\Agente;
+use App\Models\Endereco;
 use App\Models\Passageiro;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use function Laravel\Prompts\search;
 
@@ -66,13 +69,54 @@ class AtividadeAPIController extends AppBaseController
      * Store a newly created Atividade in storage.
      * POST /Atividades
      */
-    public function store(CreateAtividadeAPIRequest $request): JsonResponse
+    public function store(CreateAtividadeAPIRequest $request) 
     {
-        $input = $request->all();
+        $d = $request->all();
+        try {
+            
+            DB::beginTransaction();
 
-        $Atividade = $this->AtividadeRepository->create($input);
+            $destino = Endereco::firstOrCreate([
+                'latitude' => $d['origin']['latitude'],
+                'longitude' => $d['origin']['longitude']
+            ],[
+                'cep' => $d['origin']['zipcode'],
+                'logradouro' => $d['origin']['street'],
+                'numero' => $d['origin']['number'],
+                'bairro' => $d['origin']['neighborhood'],
+                'cidade' => $d['origin']['city'],
+                'estado' => $d['origin']['state'],
+                'pais' => $d['origin']['country']
+            ])->id;
 
-        return $this->sendResponse($Atividade->toArray(), 'Atividade saved successfully');
+            $origem = Endereco::firstOrCreate([
+                'latitude' => $d['destiny']['latitude'],
+                'longitude' => $d['destiny']['longitude']
+            ],[
+                'latitude' => $d['destiny']['latitude'],
+                'longitude' => $d['destiny']['longitude'],
+                'cep' => $d['destiny']['zipcode'],
+                'logradouro' => $d['destiny']['street'],
+                'numero' => $d['destiny']['number'],
+                'bairro' => $d['destiny']['neighborhood'],
+                'cidade' => $d['destiny']['city'],
+                'estado' => $d['destiny']['state'],
+                'pais' => $d['destiny']['country']
+            ])->id;
+                        
+            $atividade = Atividade::create([
+                'origem' => $origem,
+                'destino' => $destino,
+                'tipo' => intval($d['type']),
+                'passageiro_id' => Auth::id()
+            ]);
+            DB::commit();
+            return $this->sendResponse(new AtividadeResource($atividade), 'Atividade saved successfully');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            \Log::emergency('Error while creating activity: '. $th->getLine().'-'.$th->getMessage());
+            return $this->sendError('Error while creating activity');
+        }
     }
 
     /**

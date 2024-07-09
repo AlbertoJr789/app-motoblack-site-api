@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('atividade', function (Blueprint $table) {
             $table->id();
             $table->smallInteger('tipo')->comment('Corrida,entrega ou outra atividade');
-            $table->tinyInteger('cancelada');
+            $table->tinyInteger('cancelada')->default(false);
             $table->dateTime('data_finalizada')->nullable();
             $table->smallInteger('nota_passageiro')->nullable();
             $table->smallInteger('nota_agente')->nullable();
@@ -29,9 +29,9 @@ return new class extends Migration
             $table->foreignId('destino')->references('id')->on('endereco');
             
             $table->text('rota_gerada')->nullable();
-            $table->foreignId('agente_id')->references('id')->on('agente');
+            $table->foreignId('agente_id')->nullable()->references('id')->on('agente');
             $table->foreignId('passageiro_id')->references('id')->on('passageiro');
-            $table->foreignId('veiculo_id')->references('id')->on('veiculo');
+            $table->foreignId('veiculo_id')->nullable()->references('id')->on('veiculo');
             $table->timestamps();
             
             try {

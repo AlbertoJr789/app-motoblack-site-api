@@ -23,7 +23,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        if($input['email']==""){
+        if(isset($input['email']) && $input['email']==""){
             unset($input['email']);
         }
         Validator::make($input, [
@@ -37,7 +37,7 @@ class CreateNewUser implements CreatesNewUsers
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'] ?? null,
-            'telefone' => $input['telefone'],
+            'telefone' => $input['telefone'] ?? null,
             'password' => Hash::make($input['password']),
         ]); 
         
@@ -49,6 +49,8 @@ class CreateNewUser implements CreatesNewUsers
                     'creator_id' => $user->id,
                     'editor_id' => $user->id,
                 ])->id,
+                'tipo' => 1,
+                'status'=> 0,
                 'creator_id' => $user->id,
                 'editor_id' => $user->id,
             ])->user,

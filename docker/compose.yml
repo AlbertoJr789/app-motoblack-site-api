@@ -12,6 +12,8 @@ services:
   db:
     image: mysql
     container_name: db
+    volumes:
+      - mysqldata:/var/lib/mysql
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=moto_black_db
@@ -35,3 +37,6 @@ services:
 networks:
   motoblack-network:
     driver: bridge
+
+volumes:
+  mysqldata:

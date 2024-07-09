@@ -44,7 +44,7 @@ class ProfileAPIController extends AppBaseController {
             $user->pessoa->update([
                 'nome' => $d['name']
             ]);
-
+            unset($d['name']);
             (new UpdateUserProfileInformation)->update($user->user,$d);
             
             DB::commit();
@@ -54,7 +54,7 @@ class ProfileAPIController extends AppBaseController {
             return $this->sendError($th->getMessage(),422);
         } catch (\Throwable $th) {
             DB::rollBack();
-            \Log::error('Erro while updating user profile data: '. $th->getMessage());
+            \Log::error('Erro while updating user profile data: '. $th->getLine().' - '.$th->getMessage());
             return $this->sendError('Error while updating your profile data!');
         }
     }
