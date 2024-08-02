@@ -21,7 +21,7 @@ return new class extends Migration
             $table->id();
             $table->string('cep');
             $table->string('logradouro');
-            $table->string('numero');
+            $table->string('numero')->nullable();
             $table->string('bairro')->nullable();
             $table->string('complemento')->nullable();
             $table->string('cidade')->nullable();

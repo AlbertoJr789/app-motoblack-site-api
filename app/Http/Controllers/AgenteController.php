@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\AgenteStatus;
+use App\Enum\VeiculoTipo;
 use App\Http\Requests\CreateAgenteRequest;
 use App\Http\Requests\UpdateAgenteRequest;
 use App\Http\Controllers\AppBaseController;
@@ -51,8 +53,8 @@ class AgenteController extends AppBaseController
     */
    public function dataTableData(Request $request){
 
-       $query = Agente::select('agente.*','C.name','E.name','D.name','P.nome as pessoa','U.name as usuario')
-                                    ->leftjoin('pessoa as P','P.id','agente.id')
+       $query = Agente::with('activeVehicle')->select('agente.*','C.name','E.name','D.name','P.nome as pessoa','U.name as usuario')
+                                    ->leftjoin('pessoa as P','P.id','agente.pessoa_id')
                                     ->leftjoin('users as U','U.id','agente.user_id')
                                     ->leftjoin('users as C','C.id','agente.creator_id')
                                     ->leftjoin('users as E','E.id','agente.editor_id')
@@ -73,18 +75,22 @@ class AgenteController extends AppBaseController
                          })
                          ->editColumn('status',function($reg){
                             return match($reg->status){
-                                0 => '<span class="badge uppercase">'.__('Unavailable').'</span>',
-                                1 => '<span class="badge badge-green uppercase">'.__('Available').'</span>',
-                                2 => '<span class="badge badge-yellow uppercase">'.__('Driving').'</span>',
+                                AgenteStatus::Unavailable->value => '<span class="badge uppercase">'.__('Unavailable').'</span>',
+                                AgenteStatus::Available->value => '<span class="badge badge-green uppercase">'.__('Available').'</span>',
+                                AgenteStatus::Driving->value => '<span class="badge badge-yellow uppercase">'.__('Driving').'</span>',
                                 default => ''
                             };
                          })
-                         ->editColumn('tipo',function($reg){
-                            return match($reg->tipo){
-                                1 => '<span class="badge badge-secondary uppercase">'.__('Motorcycle Pilot').'</span>',
-                                2 => '<span class="badge badge-primary uppercase">'.__('Car Driver').'</span>',
-                                default => ''
-                            };
+                         ->addColumn('active_vehicle',function($reg){
+                            if($reg->activeVehicle){
+                                $type = match($reg->activeVehicle->tipo['type']){
+                                    VeiculoTipo::Motorcycle->value => '<span class="badge badge-secondary uppercase">'.__('Motorcycle Pilot').'</span>',
+                                    VeiculoTipo::Car->value => '<span class="badge badge-primary uppercase">'.__('Car Driver').'</span>',
+                                    default => ''
+                                };
+                                return "$type - {$reg->activeVehicle->modelo} ({$reg->activeVehicle->placa})";
+                            }
+                            return '';
                          })
                          ->addColumn('localizacao',function($reg){
                             return ($reg->latitude && $reg->longitude) ? "<button class=\"btn-primary\" onclick=\"monitorarLocalizacao($reg->id)\"><i class=\"fa-solid fa-magnifying-glass\"></i></button>" : '';
@@ -104,7 +110,7 @@ class AgenteController extends AppBaseController
                          ->addColumn('action',function($reg){
                                return view('agentes.action-buttons',['data' => $reg]);
                          })
-                         ->rawColumns(['action','active','status','tipo','localizacao'])
+                         ->rawColumns(['action','active','status','tipo','localizacao','active_vehicle'])
                          ->make();
 
    }

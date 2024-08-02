@@ -21,7 +21,10 @@ Route::group(['prefix' => 'auth'],function () {
 
 Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified' ]], function () {
     Route::apiResource('activity', App\Http\Controllers\API\AtividadeAPIController::class);
+    Route::get('drawAgent',[App\Http\Controllers\API\AtividadeAPIController::class,'drawAgent']);
+
     Route::apiResource('vehicle', App\Http\Controllers\API\VeiculoAPIController::class);
+    
     Route::get('profileData',[App\Http\Controllers\API\ProfileAPIController::class,'getProfileData']);
     Route::post('updateProfile',[App\Http\Controllers\API\ProfileAPIController::class,'updateProfileData']);
     // Route::apiResource('pessoas', App\Http\Controllers\API\PessoaAPIController::class)

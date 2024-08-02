@@ -49,7 +49,7 @@ class CreateNewUser implements CreatesNewUsers
                     'creator_id' => $user->id,
                     'editor_id' => $user->id,
                 ])->id,
-                'tipo' => 1,
+                // 'tipo' => 1,
                 'status'=> 0,
                 'creator_id' => $user->id,
                 'editor_id' => $user->id,

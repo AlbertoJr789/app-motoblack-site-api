@@ -18,7 +18,7 @@ class Agente extends Authenticatable
     public $table = 'agente';
 
     public $fillable = [
-        'tipo',
+        // 'tipo',
         'status',
         'latitude',
         'longitude',
@@ -41,24 +41,28 @@ class Agente extends Authenticatable
 
     public static array $rules = [];
 
-    protected function tipo(): Attribute
-    {
-        return Attribute::make(
-            get: function (int $value) {
-                return [
-                    'tipo' => $value,
-                    'nome' => match ($value) {
-                        1 => __('Motorcycle Pilot'),
-                        2 => __('Car Driver'),
-                        default => ''
-                    }
-                ];
-            }
-        );
-    }
+    // protected function tipo(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: function (int $value) {
+    //             return [
+    //                 'tipo' => $value,
+    //                 'nome' => match ($value) {
+    //                     1 => __('Motorcycle Pilot'),
+    //                     2 => __('Car Driver'),
+    //                     default => ''
+    //                 }
+    //             ];
+    //         }
+    //     );
+    // }
 
     public function pessoa(){
         return $this->hasOne(Pessoa::class,'id','pessoa_id');
+    }
+
+    public function activeVehicle(){
+        return $this->hasOne(Veiculo::class,'id','veiculo_ativo_id');
     }
 
     public function veiculos()

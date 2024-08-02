@@ -64,9 +64,9 @@
         {data: 'id', title: window.trans('id')},
         {data: 'pessoa', name: "P.nome",title: window.trans('Person')},
         {data: 'usuario', name: "U.name",title: window.trans('User')},
-        {responsivePriority: 1,data: 'tipo', title: window.trans('tipo')},
+        {responsivePriority: 1,data: 'active_vehicle', title: window.trans('Active Vehicle')},
         {data: 'status', title: window.trans('status')},
-        {data: 'localizacao', title: window.trans('Current Location')},
+        // {data: 'localizacao', title: window.trans('Current Location')},
         {data: 'created_at', title: window.trans('Creation Date')},
         {data: 'updated_at', title: window.trans('Update Date')},
 

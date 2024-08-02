@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\VeiculoTipo;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -44,23 +45,25 @@ class Veiculo extends Model
     ];
 
     public static array $rules = [];
-
-
-    
+   
     protected function tipo(): Attribute
     {
         return Attribute::make(
             get: function (int $value) {
                 return [
-                    'tipo' => $value,
-                    'nome' => match ($value) {
-                        1 => __('Motorcycle'),
-                        2 => __('Car'),
+                    'type' => $value,
+                    'name' => match ($value) {
+                        VeiculoTipo::Motorcycle->value => __('Motorcycle'),
+                        VeiculoTipo::Car->value => __('Car'),
                         default => ''
                     }
                 ];
             }
         );
+    }
+
+    public function agente(){
+        return $this->hasOne(Agente::class,'id','agente_id');
     }
 
     public function creator()

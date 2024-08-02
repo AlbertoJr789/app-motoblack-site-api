@@ -9,7 +9,10 @@ RUN apk add \
     git \
     curl \
     oniguruma-dev \
-    bash
+    bash \
+    nodejs npm
+
+RUN npm install vite
 
 # Install extensions
 RUN docker-php-ext-install pdo_mysql mbstring  

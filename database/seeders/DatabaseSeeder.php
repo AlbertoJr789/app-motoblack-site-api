@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
         //user admin for testing
         \App\Models\User::factory()->create([
             'name' => 'admin',
@@ -25,9 +24,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123123123'),
             'admin' => 1
         ]);
-
-
-        
+       
         $i = 5;
         \App\Models\Passageiro::factory($i)->create();
         \App\Models\Veiculo::factory($i)->create();
@@ -48,8 +45,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'alberto',
             'password' => '123123123'
         ]);
-
-
 
     }
 }

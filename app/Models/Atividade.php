@@ -85,8 +85,9 @@ class Atividade extends Model
                 return [
                     'tipo' => $value,
                     'nome' => match ($value) {
-                        1 => __('Trip'),
+                        1 => __('Bike Trip'),
                         2 => __('Delivery'),
+                        3 => __('Car Trip'),
                         default => ''
                     }
                 ];

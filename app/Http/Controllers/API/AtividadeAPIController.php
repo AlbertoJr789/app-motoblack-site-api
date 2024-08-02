@@ -12,9 +12,12 @@ use App\Http\Controllers\AppBaseController;
 use App\Http\Resources\AtividadeCollection;
 use App\Http\Resources\AtividadeResource;
 use App\Models\Agente;
+use App\Enum\AgenteStatus          ;
+use App\Enum\AtividadeTipo;
 use App\Models\Endereco;
 use App\Models\Passageiro;
-use Illuminate\Pagination\Paginator;
+use App\Enum\VeiculoTipo;
+use App\Http\Resources\AgenteResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -39,6 +42,7 @@ class AtividadeAPIController extends AppBaseController
     public function index(Request $request): JsonResponse
     {
         $field = null;
+
         if (Auth::user() instanceof Passageiro) {
             $field = 'passageiro_id';
         } else if (Auth::user() instanceof Agente) {
@@ -72,6 +76,7 @@ class AtividadeAPIController extends AppBaseController
     public function store(CreateAtividadeAPIRequest $request) 
     {
         $d = $request->all();
+        \Log::debug($d);
         try {
             
             DB::beginTransaction();
@@ -80,7 +85,7 @@ class AtividadeAPIController extends AppBaseController
                 'latitude' => $d['origin']['latitude'],
                 'longitude' => $d['origin']['longitude']
             ],[
-                'cep' => $d['origin']['zipcode'],
+                'cep' => $d['origin']['zipCode'],
                 'logradouro' => $d['origin']['street'],
                 'numero' => $d['origin']['number'],
                 'bairro' => $d['origin']['neighborhood'],
@@ -93,9 +98,7 @@ class AtividadeAPIController extends AppBaseController
                 'latitude' => $d['destiny']['latitude'],
                 'longitude' => $d['destiny']['longitude']
             ],[
-                'latitude' => $d['destiny']['latitude'],
-                'longitude' => $d['destiny']['longitude'],
-                'cep' => $d['destiny']['zipcode'],
+                'cep' => $d['destiny']['zipCode'],
                 'logradouro' => $d['destiny']['street'],
                 'numero' => $d['destiny']['number'],
                 'bairro' => $d['destiny']['neighborhood'],
@@ -108,7 +111,7 @@ class AtividadeAPIController extends AppBaseController
                 'origem' => $origem,
                 'destino' => $destino,
                 'tipo' => intval($d['type']),
-                'passageiro_id' => Auth::id()
+                'passageiro_id' => Auth::id(),
             ]);
             DB::commit();
             return $this->sendResponse(new AtividadeResource($atividade), 'Atividade saved successfully');
@@ -154,6 +157,24 @@ class AtividadeAPIController extends AppBaseController
 
         return $this->sendResponse($Atividade->toArray(), 'Atividade updated successfully');
     }
+
+    /**
+     *  Gets the most suited agent to take charge in the trip
+     */
+    public function drawAgent(Request $request){
+
+        $agente = Agente::with(['pessoa','activeVehicle'])->active()->whereStatus(AgenteStatus::Available)->whereHas('activeVehicle',function($query) use($request){
+            if($request->tripType == AtividadeTipo::MotorcycleTrip->value){
+                $query->whereTipo(VeiculoTipo::Motorcycle);
+            }else if($request->tripType == AtividadeTipo::CarTrip->value){
+                $query->whereTipo(VeiculoTipo::Car);
+            }
+        })->inRandomOrder()->limit(1)->first();
+        
+        if($agente == null) return $this->sendError(__('Not found',['attribute' => __('Agent')]));
+        return new AgenteResource($agente,true);
+    }
+
 
     // /**
     //  * Remove the specified Atividade from storage.

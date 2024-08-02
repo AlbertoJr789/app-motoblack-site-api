@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Agente;
+use App\Models\Veiculo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -31,4 +32,17 @@ class VeiculoFactory extends Factory
             'creator_id' => $agente->id,
         ];
     }
+
+        /**
+     * Configure the model factory.
+     */
+    public function configure(): static
+    {
+        return $this->afterCreating(function (Veiculo $veiculo) {
+            $veiculo->agente->update([
+                'veiculo_ativo_id' => $veiculo->id
+            ]);
+        });
+    }
+
 }
