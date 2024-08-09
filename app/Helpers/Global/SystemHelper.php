@@ -149,4 +149,53 @@ if (!function_exists('validateDocument')) {
             return false;
         }
     }
+
+    if (!function_exists('haversine')) {
+
+
+        
+        /** 
+         * Calculates the aproximate distance between two coordinates considering earths geometric form
+            a = sin²(φB - φA/2) + cos φA * cos φB * sin²(λB - λA/2)
+            c = 2 * atan2( √a, √(1−a) )
+            d = R ⋅ c 
+
+            R = earth's median radius
+
+            A = (-20.4607863, -45.4265978)
+            B = (-20.4579654, -45.4252579)
+            C = (-20.4604747, -45.4252128)
+
+        */
+        // function haversine($latX,$longX,$latY,$longY){
+        //     $R = 6371; 
+        //     $start =  microtime(true);
+
+        //     [$phiX,$phiY] = [deg2rad($latX),deg2rad($latY)];
+        //     [$lambdaX,$lambdaY] = [deg2rad($longX),deg2rad($longY)];
+        //     [$deltaPhi,$deltaLambda] = [$phiY - $phiX,$lambdaY - $lambdaX];
+
+        //     $a = pow(sin($deltaPhi/2),2) + cos($phiX) * cos($phiY) * pow(sin($deltaLambda/2),2);
+        //     $c = 2 * atan2(sqrt($a),sqrt(1-$a));
+        //     $d = $R * $c;
+        //     echo microtime(true) - $start;
+
+        //     return $d;
+        // }
+
+        /** 
+         * '( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) *sin( radians(     latitude ))) 
+         *   
+         *  @return float - distance in KM
+         * */
+        function haversine($latX,$longX,$latY,$longY){
+            [$phiX,$phiY] = [deg2rad($latX),deg2rad($latY)];
+            [$lambdaX,$lambdaY] = [deg2rad($longX),deg2rad($longY)];
+
+            $d = 6371 * acos( cos($phiY) * cos($phiX) * cos($lambdaX - $lambdaY) + sin($phiY) * sin($phiX));
+            return $d;
+        }
+
+
+    }
 }

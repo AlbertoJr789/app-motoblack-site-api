@@ -44,6 +44,8 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
+    'firebase_url' => env('FIREBASE_URL'),
+
     /*
     |--------------------------------------------------------------------------
     | Application URL

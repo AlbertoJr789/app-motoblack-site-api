@@ -29,9 +29,9 @@ return new class extends Migration
             $table->foreignId('destino')->references('id')->on('endereco');
             
             $table->text('rota_gerada')->nullable();
-            $table->foreignId('agente_id')->nullable()->references('id')->on('agente');
+            $table->foreignId('agente_id')->references('id')->on('agente');
             $table->foreignId('passageiro_id')->references('id')->on('passageiro');
-            $table->foreignId('veiculo_id')->nullable()->references('id')->on('veiculo');
+            $table->foreignId('veiculo_id')->references('id')->on('veiculo');
             $table->timestamps();
             
             try {

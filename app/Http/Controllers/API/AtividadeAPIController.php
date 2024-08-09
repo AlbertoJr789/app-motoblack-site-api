@@ -20,6 +20,7 @@ use App\Enum\VeiculoTipo;
 use App\Http\Resources\AgenteResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 use function Laravel\Prompts\search;
 
@@ -163,18 +164,37 @@ class AtividadeAPIController extends AppBaseController
      */
     public function drawAgent(Request $request){
 
-        $agente = Agente::with(['pessoa','activeVehicle'])->active()->whereStatus(AgenteStatus::Available)->whereHas('activeVehicle',function($query) use($request){
-            if($request->tripType == AtividadeTipo::MotorcycleTrip->value){
-                $query->whereTipo(VeiculoTipo::Motorcycle);
-            }else if($request->tripType == AtividadeTipo::CarTrip->value){
-                $query->whereTipo(VeiculoTipo::Car);
+        $agente = null;
+        $distance = null;
+        foreach($this->getActiveAgents($request->tripType) as $agent) {
+            if($distance == null){
+                $distance = haversine($request->latitude,$request->longitude,$agent['latitude'],$agent['longitude']);
+                $agente = $agent['id']; 
+            }else{
+                $d = haversine($request->latitude,$request->longitude,$agent['latitude'],$agent['longitude']);
+                if($d < $distance){
+                    $distance = $d;
+                    $agente = $agent['id'];
+                }
             }
-        })->inRandomOrder()->limit(1)->first();
-        
+        }
+
         if($agente == null) return $this->sendError(__('Not found',['attribute' => __('Agent')]));
-        return new AgenteResource($agente,true);
+        return new AgenteResource(Agente::find($agente),true);
     }
 
+    /**
+     * Gets active agents in a realtime database (currently using firebase)
+     * @return Collection
+     */
+    private function getActiveAgents($tripType){
+        $type = match(intval($tripType)){
+            AtividadeTipo::MotorcycleTrip->value => "?orderBy=\"type\"&startAt=".VeiculoTipo::Motorcycle->value."&endAt=".VeiculoTipo::Motorcycle->value,
+            AtividadeTipo::CarTrip->value => "?orderBy=\"type\"&startAt=".VeiculoTipo::Car->value."&endAt=".VeiculoTipo::Car->value,
+            default => ''
+        };
+        return collect(Http::get(config('app.firebase_url')."/availableAgents.json$type")->json());
+    }
 
     // /**
     //  * Remove the specified Atividade from storage.
