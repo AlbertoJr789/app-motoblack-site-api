@@ -8,7 +8,7 @@
     <!-- Agente Id Field -->
     <div wire:ignore>
         {!! Form::label(__('Owner'), __('Owner').':',['class' => "block mx-1"]) !!}
-        {!! Form::select(__('Owner'), $agentes, null, ['class' => 'input w-full','required' => 'true','wire:model' => 'agente_id','id' => 'agente_id','placeholder' => 'Selecione o Agente Dono do Veículo']) !!}
+        {!! Form::select(__('Owner'), $agentes, null, ['class' => 'input w-full','required' => 'true','wire:model' => 'agente_id','id' => 'agente_id','data-placeholder' => 'Selecione o Agente Dono do Veículo']) !!}
     </div>
     <!-- Tipo Field -->
     <div>

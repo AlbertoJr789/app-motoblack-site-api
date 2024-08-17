@@ -23,7 +23,7 @@
                     </div>
                     <div class="hidden">
                         <h1 class="text-2xl">{{__('Address')}}</h1>
-                        <livewire:address-fields :required="$requiredAddress" key={{now()}} :endereco="$endereco"/>
+                        <livewire:address-fields :required="$requiredAddress" key={{now()}} :addr="$endereco"/>
                     </div>
                 </div>
             </div>

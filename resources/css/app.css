@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --primary: #E7E6E6;
+    --secondary: #0A0909;
+    --danger: #ff3700;
+    --tertiary: rgb(251,191,36);
+}
+
 [x-cloak] {
     display: none;
 }
@@ -32,6 +39,12 @@ body::-webkit-scrollbar-thumb {
 * {
     scrollbar-width: thin;
     scrollbar-color: #2c2a2a transparent;
+}
+
+input[type=file]::file-selector-button {
+    color: var(--tertiary);
+    background-color: var(--secondary);
+    /* border-radius: 5px; */
 }
 
 div {
@@ -100,4 +113,8 @@ div::-webkit-scrollbar {
     .select2-container--default .select2-results__option--highlighted[aria-selected] {
         @apply bg-amber-400 text-secondary transition-all ease-in-out
     }
+    .filepicker {
+        @apply bg-gray-200 w-full rounded-md
+    }
+
 }

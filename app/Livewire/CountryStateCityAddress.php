@@ -2,40 +2,36 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\AddressForm;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
 class CountryStateCityAddress extends Component
 {
 
-    public $pais,$estado,$cidade,$required,$updateParent=false;
+    public ?AddressForm $address;
+
     public $paises,
            $estados,
-           $cidades;
+           $cidades,
+           $required;
 
-    public function mount($endereco=null){
-        $this->paises = ['' => '','BR' => '🇧🇷 '.__('Brazil'), 'EN' => '🇺🇸 '. __('United States')];
+    public function mount($address=null){
+        $this->paises = ['BR' => '🇧🇷 '.__('Brazil'), 'EN' => '🇺🇸 '. __('United States')];
         $this->estados = $this->cidades = [];
-        if(!$endereco){
-            $this->pais = Auth::user()->location->countryCode ?? null;
-            if($this->pais){
-                $this->updateParent = true;
+        if(!$address->pais){
+            $this->address->pais = location()->countryCode ?? null;
+            if($this->address->pais){
                 $this->updatedPais($this->pais);
-                $this->estado = 'MG';  
+                $this->address->estado = 'MG';  
                 $this->updatedEstado($this->estado);
-                $this->cidade = 'Formiga';
+                $this->address->cidade = 'Formiga';
                 $this->updatedCidade($this->cidade);
             }
         }else{
-            $this->pais = $endereco['pais'];
-            $this->estado = $endereco['estado'];
-            $this->cidade = $endereco['cidade'];
-            
             $this->initEstados();
             $this->initCidades();
         }
-        $this->updateParent = true;
     }
 
     public function render()
@@ -43,34 +39,32 @@ class CountryStateCityAddress extends Component
         return view('livewire.country-state-city-address');
     }
 
-    public function updatedPais($pais){
-        $this->pais = $pais;
+    public function updatedAddressPais($pais){
+        $this->address->pais = $pais;
         $this->cidades = [];
         $this->initEstados();
-        $this->estado = null;
-        // if($this->updateParent){
-            // $this->dispatch('updatedPaisEstadoCidade',$this->pais,$this->estado,$this->cidade);
-        // }
+        $this->address->estado = null;
+        if(!$this->required){
+            $this->JS('
+                setTimeout(toggleRequiredAddressFields,300)
+            ');
+        }
     }
 
-    public function updatedEstado($estado){
-        $this->estado = $estado;
+    public function updatedAddressEstado($estado){
+        $this->address->estado = $estado;
         $this->initCidades();
-        $this->cidade = null;
-        // if($this->updateParent){
-            // $this->dispatch('updatedPaisEstadoCidade',$this->pais,$this->estado,$this->cidade);
-        // }
+        $this->address->cidade = null;
+      
     }
 
-    public function updatedCidade($cidade){
-        $this->cidade = $cidade;
-        // if($this->updateParent)
-            // $this->dispatch('updatedPaisEstadoCidade',$this->pais,$this->estado,$this->cidade);
+    public function updatedAddressCidade($cidade){
+        $this->address->cidade = $cidade;
     }
 
     public function initEstados(){
         $this->estados = [];
-        if($this->pais == 'BR'){
+        if($this->address->pais == 'BR'){
             $this->estados = [
                 '' => '',
                 'MG' => 'Minas Gerais',
@@ -79,7 +73,7 @@ class CountryStateCityAddress extends Component
                 'RS' => 'Rio Grande do Sul',
             ];
         }
-        if($this->pais == 'EN'){
+        if($this->address->pais == 'EN'){
             $this->estados = [
                 '' => '',
                 'MA' => 'Massachussets',
@@ -90,8 +84,8 @@ class CountryStateCityAddress extends Component
 
     public function initCidades(){
         $this->cidades = [];
-        if($this->pais == 'BR'){
-            if($this->estado == 'MG'){
+        if($this->address->pais == 'BR'){
+            if($this->address->estado == 'MG'){
                 $this->cidades = [
                     '' => '',
                     'Formiga' => 'Formiga',

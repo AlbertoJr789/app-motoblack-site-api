@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
+
 if (!function_exists('includeFilesInFolder')) {
     /**
      * Loops through a folder and requires all PHP files
@@ -150,10 +152,7 @@ if (!function_exists('validateDocument')) {
         }
     }
 
-    if (!function_exists('haversine')) {
-
-
-        
+    if (!function_exists('haversine')) {      
         /** 
          * Calculates the aproximate distance between two coordinates considering earths geometric form
             a = sin²(φB - φA/2) + cos φA * cos φB * sin²(λB - λA/2)
@@ -187,6 +186,9 @@ if (!function_exists('validateDocument')) {
          * '( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) *sin( radians(     latitude ))) 
          *   
          *  @return float - distance in KM
+         *  $latX, $longX - Destiny
+         *  $latY,$longY - Origin ( what would be inside of '?' in the formula above)
+         *  
          * */
         function haversine($latX,$longX,$latY,$longY){
             [$phiX,$phiY] = [deg2rad($latX),deg2rad($latY)];
@@ -198,4 +200,18 @@ if (!function_exists('validateDocument')) {
 
 
     }
+
+
+    if(!function_exists('location')){    
+        function location(){
+            try {
+                $ip = request()->getClientIp();
+                $ip = $ip == '127.0.0.1' ? "" : $ip;
+                return (object) Http::get("http://ip-api.com/json/".$ip)->json();
+            } catch (\Throwable $th) {
+                return null;
+            }
+        }
+    }
+
 }

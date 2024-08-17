@@ -239,5 +239,9 @@
     "Profile Picture": "foto de perfil",
     "Not found": ":attribute não encontrado",
     "Agent": "Agente",
-    "Active Vehicle": "Veículo Ativo"
+    "Active Vehicle": "Veículo Ativo",
+    "Documents": "Documentos",
+    "Please, send documents about your driver's license and your vehicle": "Por gentileza, envie as fotos da sua carteira de motorista e do documento do seu veículo",
+    "Driver's License": "Carteira de Motorista",
+    "Vehicle document": "Documento do Veículo" 
 }

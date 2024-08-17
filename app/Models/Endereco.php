@@ -31,7 +31,7 @@ class Endereco extends Model
 
     public static function queryCep($cep) {
         try {
-            return preg_replace('/[?();]/','',Http::get("https://viacep.com.br/ws/$cep/json/?callback=?")->body());
+            return json_decode(preg_replace('/[?();]/','',Http::get("https://viacep.com.br/ws/$cep/json/?callback=?")->body()));
         } catch (\Throwable $th) {
             return null;
         }

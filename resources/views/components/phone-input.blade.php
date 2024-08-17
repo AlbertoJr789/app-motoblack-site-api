@@ -4,7 +4,6 @@
     'required' => false
 ])
 
-
 @php
     $flags = [
         '' => '...',
@@ -32,10 +31,8 @@
             let phoneMask = IMask(input, { mask: '' })
             let select = document.querySelector("#{{ $name }}Select")
             select.addEventListener('change', (e) => {
-                console.log('change');
                 switch (e.target.value) {
                     case '+55': {
-                        console.log('mask br');
                         phoneMask.updateOptions({
                             mask: [{
                                 mask: '(00) 00000-0000'

@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'auth'],function () {
     Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login']);
     Route::post('logout', [App\Http\Controllers\API\AuthController::class, 'logout'])->middleware('auth:sanctum');
+    Route::get('registerPassenger',[App\Http\Controllers\API\AuthController::class, 'registerPassenger'])->middleware('web');
+    Route::get('registerAgent',[App\Http\Controllers\API\AuthController::class, 'registerAgent'])->middleware('web');
+    Route::post('createAgent',[App\Http\Controllers\API\AuthController::class, 'createAgent'])->name('createAgent')->middleware('web');
+    Route::post('createPassenger',[App\Http\Controllers\API\AuthController::class, 'createAgent'])->name('createPassenger')->middleware('web');
 });
 
 Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified' ]], function () {

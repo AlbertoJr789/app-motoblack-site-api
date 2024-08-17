@@ -2,41 +2,31 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\AddressForm;
 use App\Models\Endereco;
 use Exception;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
 class AddressFields extends Component
 {
 
-    public $required,
-           $endereco,
-           $cep,
-           $logradouro,
-           $numero,
-           $bairro,
-           $complemento,
-           $pais,
-           $cidade,
-           $estado;
+    public $required;
+    public ?AddressForm $address;
 
-
-    public function mount($required=null,$endereco=null){
+    public function mount($required=null,$addr=null){
         $this->required = $required;
-        if($endereco){
-          $this->endereco = $endereco;
-          $this->cep = $endereco['cep'];
-          $this->logradouro = $endereco['logradouro'];
-          $this->numero = $endereco['numero'];
-          $this->bairro = $endereco['bairro'];
-          $this->complemento = $endereco['complemento'];
-          $this->pais = $endereco['pais'];
-          $this->cidade = $endereco['cidade'];
-          $this->estado = $endereco['estado'];
-       }else{
-           $this->endereco = $this->cep = $this->logradouro = $this->numero = $this->bairro = $this->complemento = $this->pais = $this->estado = $this->cidade = null;
-       }
+        if($addr){
+          $this->address->cep = $addr['cep'];
+          $this->address->logradouro = $addr['logradouro'];
+          $this->address->numero = $addr['numero'];
+          $this->address->bairro = $addr['bairro'];
+          $this->address->complemento = $addr['complemento'];
+          $this->address->pais = $addr['pais'];
+          $this->address->cidade = $addr['cidade'];
+          $this->address->estado = $addr['estado'];
+        }
     }
 
     public function render()
@@ -44,33 +34,23 @@ class AddressFields extends Component
         return view('livewire.address-fields');
     }
 
-    public function updated(){
-        if(!$this->endereco){ //fields always required when on address editing mode
-            if($this->cep || $this->logradouro || $this->numero || $this->bairro){
-                $this->required = true;
-            }else{
-                $this->required = false;
-            }
-        }
-    }
-
-    public function updatedCep(){
+    public function updatedAddressCep(){
         switch(app()->getLocale()){
             case 'pt_BR': {
 
-                if(strlen($this->cep) == 9){
+                if(strlen($this->address->cep) == 9){
 
                     try {
-                        $data = json_decode(Endereco::queryCep($this->cep));
+                        $data = Endereco::queryCep($this->address->cep);
 
                         if(isset($data->erro)) throw new Exception();
 
-                        $this->logradouro = $data->logradouro;
-                        $this->bairro = $data->bairro;
-                        $this->pais = 'BR';
-                        $this->estado = $data->uf;
-                        $this->cidade = $data->localidade;
-                        $this->updated();
+                        $this->address->logradouro = $data->logradouro;
+                        $this->address->bairro = $data->bairro;
+                        $this->address->pais = 'BR';
+                        $this->address->estado = $data->uf;
+                        $this->address->cidade = $data->localidade;
+                        
                     } catch (\Throwable $th) {
                         $message = [
                             'icon' => 'error',
@@ -80,13 +60,7 @@ class AddressFields extends Component
                         $this->dispatch('alert',$message);
                     }
     
-                }else{  
-                    $this->logradouro = null;
-                    $this->bairro = null;
-                    $this->pais = 'BR';
-                    $this->estado = null;
-                    $this->cidade = null;
-                }   
+                }
                 break;
             }
             default: break;

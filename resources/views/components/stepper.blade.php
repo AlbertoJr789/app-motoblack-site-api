@@ -27,13 +27,17 @@
                             stepperItems[i].setAttribute('active-stepper',i)
                             stepperItems[i].classList.remove('bg-secondary', 'text-primary', 'hover:text-secondary', 'hover:bg-amber-400','cursor-pointer')
                             stepperItems[i].classList.add('bg-amber-400','text-secondary')
+                            window.dispatchEvent(new CustomEvent('stepperChanged',{
+                                detail: { activeStepper: i }
+                            }))
                         }else{
                             stepperFields.children[i].classList.add('hidden')
                             stepperItems[i].classList.remove('bg-amber-400','text-secondary')
                             stepperItems[i].classList.add('bg-secondary','text-primary','hover:text-secondary','hover:bg-amber-400','cursor-pointer')
                             stepperItems[i].removeAttribute('active-stepper')
                         }
-                        }
+                    }
+                    
                 }else{
                     Swal.fire({
                         icon: 'warning',
@@ -50,10 +54,12 @@
     function fieldsValid(container){
         let inputs = container.querySelectorAll('input,select')
         let invalid = ''
+        
         inputs.forEach((input)=>{
-            if(input.getAttribute('required') == "true"){
+            if(input.hasAttribute('required')){
                 if(input.value.trim() == "" || !input.value){
-                invalid += input.getAttribute('name')+','
+                    invalid += input.labels[0].innerHTML.trim().replace(':','') ?? input.getAttribute('name')
+                    invalid += ',' 
                 }
             }
         })

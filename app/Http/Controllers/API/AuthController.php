@@ -16,6 +16,19 @@ use App\Models\Passageiro;
 class AuthController extends Controller
 {
     
+
+    public function registerPassenger(){
+        return view('auth.register-passenger-form');
+    }
+
+    public function registerAgent(){
+        return view('auth.register-agent-form');
+    }
+
+    public function resgister(){
+        
+    }
+
     public function login(LoginUserRequest $request)
     {
         

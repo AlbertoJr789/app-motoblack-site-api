@@ -6,28 +6,98 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register',['type' => 'A'])}}">
             @csrf
 
-            @if(request()->query('mototaxista'))
-                <input type="text" name="mototaxista" value="true" hidden>
-            @endif
+            <x-stepper>
+                <x-stepper-item icon="fa-solid fa-info" active-stepper="0"/>
+                <x-stepper-item icon="fa-solid fa-location-dot"/>
+                <x-stepper-item icon="fa-solid fa-folder-open"/>
+            </x-stepper>
+            <div class="my-2" stepper-fields >
+                <div>
 
-            <div>
-                <x-label for="name" value="{{ __('Driver\'s License') }}" class="required"/>
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+                    <h1 class="m-auto text-2xl">{{__('Personal Info')}}</h1>
+                    <div>
+                        <x-label for="name" value="{{ __('User Name') }}" class="required"/>
+                        <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required="true" autofocus autocomplete="name" />
+                    </div>
+        
+                    <div class="mt-4">
+                        <x-label for="email" value="{{ __('Email') }}" />
+                        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" />
+                    </div>
+        
+                    <div class="mt-4">
+                        <x-label for="telefone" value="{{ __('Telefone') }}" />
+                        <x-phone-input id="telefone" class="block mt-1" name="telefone" />
+                    </div>
+        
+                    <div class="mt-4">
+                        <x-label for="password" value="{{ __('Password') }}" class="required" />
+                        <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                    </div>
 
-            <div>
-                <x-label for="name" value="{{ __('Vehicle\'s License') }}" class="required"/>
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+                </div>
+                <div class="hidden">
+                    <h1 class="text-2xl">{{__('Address')}}</h1>
+                    <livewire:address-fields :required="true" />
+                </div>
+                <div class="hidden">
+                    <h1 class="text-2xl">{{__('Documents')}}</h1>
+                    <span>{{__('Please, send documents about your driver\'s license and your vehicle')}}.</span>
+                    
+                    <Filepicker accept="image/*,application/pdf" name="driver_license" class="mt-4 mb-4" required>
+                        {{ __('Driver\'s License') }}:
+                    </Filepicker>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
+                    <Filepicker accept="image/*,application/pdf" name="vehicle" required>
+                        {{ __('Vehicle document') }}:
+                    </Filepicker>
+                    
+                    <div class="flex items-center justify-end mt-4">
+                        <x-button class="ml-4">
+                            {{ __('Register') }}
+                        </x-button>
+                    </div>
+                </div>
             </div>
         </form>
     </x-authentication-card>
+    @push('scripts')
+        <script>
+            function submitRegister(){
+                if(!validateTelefone()){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: `{{__('Invalid Fields')}}`,
+                        text: `{{__('The given phone number is invalid!')}}`,
+                    })
+                    return
+                }
+                document.querySelector('#submit').click()
+            }
+
+            window.addEventListener('stepperChanged', function(a) {
+                if(a.detail.activeStepper == 1){
+                    document.querySelector('#authCard').classList.remove('sm:max-w-md')
+                    document.querySelector('#authCard').classList.add('sm:w-1/2')
+                }else{
+                    document.querySelector('#authCard').classList.remove('sm:w-1/2')
+                    document.querySelector('#authCard').classList.add('sm:max-w-md')
+                }
+            })
+
+            document.addEventListener('livewire:initialized', () => {
+                Livewire.on('alert',(e)=>{
+                    Swal.fire({
+                        icon: e[0].icon,
+                        title: e[0].title,
+                        text: e[0].text
+                    })
+                })
+            })
+
+        </script>
+    @endpush
 </x-guest-layout>
