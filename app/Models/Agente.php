@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
+use Symfony\Component\HttpFoundation\FileBag;
 
 class Agente extends Authenticatable
 
@@ -89,4 +92,13 @@ class Agente extends Authenticatable
     {
         return $this->hasOne(User::class, 'id', 'deleter_id');
     }
+
+    public function uploadFiles(FileBag $files){
+    
+        foreach($files as $key => $file){
+            $ext = $file->getClientOriginalExtension();
+            Storage::disk('agent')->put("/$this->id/$key.$ext",file_get_contents($file->getRealPath()));
+        }
+    }
+
 }

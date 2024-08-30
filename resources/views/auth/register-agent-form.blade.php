@@ -6,7 +6,7 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register',['type' => 'A'])}}">
+        <form method="POST" action="{{ route('createAgent')}}" enctype="multipart/form-data">
             @csrf
 
             <x-stepper>
@@ -29,7 +29,7 @@
                     </div>
         
                     <div class="mt-4">
-                        <x-label for="telefone" value="{{ __('Telefone') }}" />
+                        <x-label for="telefone" value="{{ __('Phone Number') }}" />
                         <x-phone-input id="telefone" class="block mt-1" name="telefone" />
                     </div>
         
@@ -45,16 +45,20 @@
                 </div>
                 <div class="hidden">
                     <h1 class="text-2xl">{{__('Documents')}}</h1>
-                    <span>{{__('Please, send documents about your driver\'s license and your vehicle')}}.</span>
+                    <span>{{__('We\'re gonna need some documents to analyze your appliance')}}.</span>
                     
                     <Filepicker accept="image/*,application/pdf" name="driver_license" class="mt-4 mb-4" required>
-                        {{ __('Driver\'s License') }}:
+                        {{ __('Driver\'s License') }}
                     </Filepicker>
 
-                    <Filepicker accept="image/*,application/pdf" name="vehicle" required>
-                        {{ __('Vehicle document') }}:
+                    <Filepicker accept="image/*,application/pdf" name="vehicle_doc" class="mb-4" required>
+                        {{ __('Vehicle document') }}
                     </Filepicker>
                     
+                    <Filepicker accept="image/*,application/pdf" name="address_proof" required >
+                        {{ __('Billing Address') }}
+                    </Filepicker>
+
                     <div class="flex items-center justify-end mt-4">
                         <x-button class="ml-4">
                             {{ __('Register') }}

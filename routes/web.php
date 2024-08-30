@@ -16,6 +16,11 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth:sanctum',config('jetstrea
     includeRouteFiles(__DIR__.'/admin/');
 });
 
+Route::get('registerPassenger',[App\Http\Controllers\API\AuthController::class, 'registerPassenger']);
+Route::get('registerAgent',[App\Http\Controllers\API\AuthController::class, 'registerAgent']);
+Route::post('createAgent',[App\Http\Controllers\API\AuthController::class, 'createAgent'])->name('createAgent');
+Route::post('createPassenger',[App\Http\Controllers\API\AuthController::class, 'createAgent'])->name('createPassenger');
+
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder');
 Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->name('io_field_template');
 Route::get('relation_field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@relationFieldTemplate')->name('io_relation_field_template');

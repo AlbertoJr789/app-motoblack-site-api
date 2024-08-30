@@ -30,11 +30,11 @@ class AppServiceProvider extends ServiceProvider
             return $this->whereActive(false);
         });
 
-        Cache::remember('translationsJSON', 10, function () {
+        Cache::remember('translationsJSON'.request()->getPreferredLanguage(), 10, function () {
             try {
-                $contents = file_get_contents('../lang/'.App::getLocale().'.json'); 
+                $contents = file_get_contents('../lang/'.request()->getPreferredLanguage().'.json'); 
             } catch (\Throwable $th) {
-                $contents = file_get_contents('lang/'.App::getLocale().'.json'); 
+                $contents = file_get_contents('lang/'.request()->getPreferredLanguage().'.json'); 
             }
             return $contents;
         });

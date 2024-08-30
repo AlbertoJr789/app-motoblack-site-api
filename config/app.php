@@ -85,7 +85,7 @@ return [
     |
     */
 
-    'locale' => 'pt_BR',
+    'locale' => (app()->runningInConsole() === false) ? request()->getPreferredLanguage() ?? 'pt_BR' : 'pt_BR',
 
     /*
     |--------------------------------------------------------------------------

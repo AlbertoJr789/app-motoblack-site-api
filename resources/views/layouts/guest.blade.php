@@ -26,6 +26,18 @@
                 {{ $slot }}
             </div>
         </main>
+
+        <script>
+            window.translations = {!! Cache::get('translationsJSON'.request()->getPreferredLanguage()) ?? '' !!};
+            window.trans = (key, replace = {}) =>
+            {
+                let translation = key.split('.').reduce((t, i) => t[i] || null, window.translations);
+                for (var placeholder in replace) {
+                    translation = translation.replace(`:${placeholder}`, replace[placeholder]);
+                }
+                return translation ?? key;
+            }
+        </script>
         
         @stack('scripts')
         {{-- @livewireScripts --}}

@@ -38,7 +38,7 @@ class AddressFields extends Component
         switch(app()->getLocale()){
             case 'pt_BR': {
 
-                if(strlen($this->address->cep) == 9){
+                if(strlen(trim($this->address->cep)) == 9){
 
                     try {
                         $data = Endereco::queryCep($this->address->cep);
@@ -55,7 +55,7 @@ class AddressFields extends Component
                         $message = [
                             'icon' => 'error',
                             'title' => __('Error'),
-                            'text' => __('Error While Fetching ZIP Code, insert the data manually'),         
+                            'text' => __('Error While Fetching ZIP Code, please insert the data manually'),         
                         ];
                         $this->dispatch('alert',$message);
                     }
@@ -63,7 +63,14 @@ class AddressFields extends Component
                 }
                 break;
             }
-            default: break;
+            default: {
+                $message = [
+                    'icon' => 'warning',
+                    'title' => __('Warning'),
+                    'text' => __('Couldn\'t fetch your ZIP Code data, please insert the data manually'),         
+                ];
+                $this->dispatch('alert',$message);
+            };
         }
     }
 

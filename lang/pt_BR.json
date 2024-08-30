@@ -183,6 +183,7 @@
     "You are not authorized to do this action": "Você não está autorizado a executar esta ação",
     "Photo": "Foto",
     "Warning!": "Aviso!",
+    "Warning": "Aviso",
     "Invalid Document": "Documento inválido",
     "Invalid Fields": "Campos inválidos",
     "Some fields are invalid or not filled, correct them before proceding: ": "Alguns campos se encontram inválidos ou não preenchidos, corrija-os antes de continuar: ",
@@ -195,7 +196,8 @@
     "Country": "País",
     "Personal Info": "Informações Pessoais",
     "Complement": "Complemento",
-    "Error While Fetching ZIP Code, insert the data manually": "Houve um erro ao buscar informações sobre o CEP, Insira os dados manualmente",
+    "Error While Fetching ZIP Code, please insert the data manually": "Houve um erro ao buscar informações sobre o CEP. Por favor, insira os dados manualmente",
+    "Couldn't fetch your ZIP Code data, please insert the data manually": "Não podemos buscar informações sobre o seu CEP. Por favor, insira os dados manualmente",
     "Brazil": "Brasil",
     "United States": "Estados Unidos",
     "Vehicle Info": "Informações do Veículo",
@@ -241,7 +243,11 @@
     "Agent": "Agente",
     "Active Vehicle": "Veículo Ativo",
     "Documents": "Documentos",
-    "Please, send documents about your driver's license and your vehicle": "Por gentileza, envie as fotos da sua carteira de motorista e do documento do seu veículo",
+    "We're gonna need some documents to analyze your appliance": "Vamos precisar de alguns documentos para analisar seu cadastro",
     "Driver's License": "Carteira de Motorista",
-    "Vehicle document": "Documento do Veículo" 
+    "Vehicle document": "Documento do Veículo",
+    "Billing Address": "Comprovante de Endereço",
+    "File must be less than :value": "Arquivo deve ter menos de :value",
+    "Try again later": "Tente novamente mais tarde",
+    "Ok": "Ok"
 }

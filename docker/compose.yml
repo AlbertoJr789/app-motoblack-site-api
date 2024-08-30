@@ -9,6 +9,7 @@ services:
       - motoblack-network
     volumes:
       - ../:/var/www/motoblack
+      - ./php/config.ini:/usr/local/etc/php/conf.d/config.ini
   db:
     image: mysql
     container_name: db

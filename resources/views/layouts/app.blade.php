@@ -49,7 +49,7 @@
         </div>
 
         <script>
-            window.translations = {!! Cache::get('translationsJSON') ?? '' !!};
+            window.translations = {!! Cache::get('translationsJSON'.request()->getPreferredLanguage()) ?? '' !!};
             window.trans = (key, replace = {}) =>
             {
                 let translation = key.split('.').reduce((t, i) => t[i] || null, window.translations);
