@@ -35,6 +35,7 @@ class AgenteController extends AppBaseController
 
         try {
             $d = $request->all();
+            dd($d);
             $agente = $this->agenteRepository->update($d,$agente->id);
 
             alert()->success(__('Success'),'Agente '.__('updated successfully!'));
