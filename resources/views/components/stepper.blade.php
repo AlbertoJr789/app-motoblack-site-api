@@ -4,22 +4,27 @@
 
 @push('scripts')
 <script>
+    let stepperFields = stepperItems = null
+    
     document.addEventListener('DOMContentLoaded', function() {
-            initStepper()
-            Livewire.on('resetStepper',(e)=>{
-                document.querySelector('[stepper-item]').click()
-            })
+        initStepper()
+        Livewire.on('resetStepper',(e)=>{
+            document.querySelector('[stepper-item]').click()
+        })
     })
 
     function initStepper(){
         
-        let stepperFields = document.querySelector('[stepper-fields]')
-        let stepperItems = document.querySelectorAll('[stepper-item]') 
+        stepperFields = document.querySelector('[stepper-fields]')
+        stepperItems = document.querySelectorAll('[stepper-item]') 
         stepperItems.forEach((item)=>{
             item.addEventListener('click',(e)=>{
                 let previous = document.querySelector('[active-stepper]')
                 if(previous == e.target) return
-                let fields = fieldsValid(stepperFields.children[previous.getAttribute('active-stepper')])
+                let fields = false
+                if(Array.from(stepperItems).indexOf(e.target) > Array.from(stepperItems).indexOf(previous)) {
+                    fields = fieldsValid(stepperFields.children[previous.getAttribute('active-stepper')])
+                }
                 if(!fields){
                     for(let i=0;i < stepperItems.length;++i){
                         if(stepperItems[i] === e.target){

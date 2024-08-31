@@ -13,7 +13,7 @@
     <!-- Tipo Field -->
     <div>
         {!! Form::label('tipo', 'Tipo:',['class' => "block mx-1"]) !!}
-        {!! Form::select('tipo', ['1' => 'Moto','2' => 'Carro'],null, ['class' => 'input w-full','required' => 'true','wire:model' => 'tipo' ]) !!}
+        {!! Form::select('tipo', ['1' => __('Motorcycle'),'2' => __('Car')],null, ['class' => 'input w-full','required' => 'true','wire:model' => 'tipo' ]) !!}
     </div>
 </div>
 

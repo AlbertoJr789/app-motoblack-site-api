@@ -240,7 +240,6 @@
     "Profile data updated sucessfully": "Dados de perfil atualizados com sucesso",
     "Profile Picture": "foto de perfil",
     "Not found": ":attribute não encontrado",
-    "Agent": "Agente",
     "Active Vehicle": "Veículo Ativo",
     "Documents": "Documentos",
     "We're gonna need some documents to analyze your appliance": "Vamos precisar de alguns documentos para analisar seu cadastro",
@@ -249,5 +248,9 @@
     "Billing Address": "Comprovante de Endereço",
     "File must be less than :value": "Arquivo deve ter menos de :value",
     "Try again later": "Tente novamente mais tarde",
-    "Ok": "Ok"
+    "Ok": "Ok",
+    "Agent Activation": "Ativação de Agente",
+    "Check if the agent's documents are valid": "Confira se os documentos do agente estão válidos",
+    "Document": "Documento",
+    "Insert the vehicle data just the way it is presented in the document": "Insira os dados do veículo assim como são apresentados no documento"
 }

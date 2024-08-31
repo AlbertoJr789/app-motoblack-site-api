@@ -26,12 +26,12 @@ class AuthController extends Controller
     }
 
     public function registerAgent(){
-        return view('auth.register-agent-success');
+        return view('auth.register-agent-form');
     }
 
     public function createPassenger(Request $request){
-        dd($request->all());
-        return response('Ok');
+        $passenger = (new CreateNewUser)->create($request->all(),'P');
+        return response()->json();
     }
 
     public function createAgent(Request $request){

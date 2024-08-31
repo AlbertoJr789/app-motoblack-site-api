@@ -35,5 +35,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
         Storage::disk('public')->deleteDirectory('profile-photos');
+        Storage::disk('local')->deleteDirectory('livewire-tmp');
     }
 };

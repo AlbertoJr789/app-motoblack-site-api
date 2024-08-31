@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 
 return new class extends Migration
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->dateTime('data_desativacao')->nullable();
+            $table->string('motivo_inativo')->nullable();
             $table->boolean('active')->default(false);
             $table->foreignId('veiculo_ativo_id')->nullable()->references('id')->on('veiculo');
             $table->foreignId('pessoa_id')->references('id')->on('pessoa');
@@ -57,7 +59,9 @@ return new class extends Migration
                   ->orWhereName('agentes.create')
                   ->orWhereName('agentes.delete')
                   ->delete();
+
         } catch (\Throwable $th) {
         }
+        Storage::disk('agent')->deleteDirectory('/');
     }
 };

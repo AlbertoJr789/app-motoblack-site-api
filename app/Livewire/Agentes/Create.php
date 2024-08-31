@@ -16,14 +16,15 @@ class Create extends Component
     public ?Agente $Agente;
 
     //attributes
-    public $id,$tipo,$status,$latitude,$longitude,$created_at,$updated_at,$active;
+    public $id,$tipo,$status,$latitude,$longitude,$created_at,$updated_at,$veiculo_ativo_id,$motivo_inativo,$active;
     
     
     public function mount(){
         $this->open = $this->create = $this->update = false;
         $Agente = null;
-        $this->id = $this->tipo = $this->status = $this->latitude = $this->longitude = $this->created_at = $this->updated_at = $this->active = null;
-    
+        $this->id = $this->tipo = $this->status = $this->latitude = $this->longitude 
+        = $this->created_at = $this->updated_at = $this->motivo_inativo = 
+        $this->active = $this->veiculo_ativo_id = null;    
     }
 
     public function render()
@@ -31,22 +32,19 @@ class Create extends Component
         return view('agentes.create');
     }
 
-    #[On('openCreate')]
-    public function openCreate()
-    {
-        $this->reset();
-        $this->create = true;
-        $this->open = true;
-    }
-
     #[On('openEdit')]
     public function openEdit(Agente $agente)
     {
         $this->Agente = $agente;
-        $this->id = $agente->id;$this->tipo = $agente->tipo;$this->status = $agente->status;$this->latitude = $agente->latitude;$this->longitude = $agente->longitude;$this->created_at = $agente->created_at;$this->updated_at = $agente->updated_at;
+        $this->id = $agente->id;
+        $this->tipo = $agente->tipo;
+        $this->status = $agente->status;
         $this->active = $agente->active;
+        $this->veiculo_ativo_id = $agente->veiculo_ativo_id;
+        $this->motivo_inativo = $agente->motivo_inativo;
         $this->open = $this->update = true;
         $this->create = false;
+        $this->dispatch('resetStepper');
     }
 
     #[On('delete')]

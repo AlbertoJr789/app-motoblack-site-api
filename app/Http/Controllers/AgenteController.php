@@ -138,5 +138,11 @@ class AgenteController extends AppBaseController
         return $query;
     }
 
+    public function getDocument(Agente $agente){
+        $doc = $agente->getDocument(request()->query('doc'));
+        if(!$doc) return $this->sendError(__('Not found',['attribute' => __('Document')]));
+        return response($doc->content)->header('Content-Type',$doc->mimeType);
+    }
+
 
 }

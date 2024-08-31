@@ -31,7 +31,8 @@ class Agente extends Authenticatable
         'creator_id',
         'editor_id',
         'deleter_id',
-        'active'
+        'active',
+        'veiculo_ativo_id'
     ];
 
     protected $casts = [
@@ -39,26 +40,11 @@ class Agente extends Authenticatable
         'tipo' => 'integer',
         'status' => 'integer',
         'latitude' => 'string',
-        'longitude' => 'string'
+        'longitude' => 'string',
+        'active' => 'bool'
     ];
 
     public static array $rules = [];
-
-    // protected function tipo(): Attribute
-    // {
-    //     return Attribute::make(
-    //         get: function (int $value) {
-    //             return [
-    //                 'tipo' => $value,
-    //                 'nome' => match ($value) {
-    //                     1 => __('Motorcycle Pilot'),
-    //                     2 => __('Car Driver'),
-    //                     default => ''
-    //                 }
-    //             ];
-    //         }
-    //     );
-    // }
 
     public function pessoa(){
         return $this->hasOne(Pessoa::class,'id','pessoa_id');
@@ -100,5 +86,15 @@ class Agente extends Authenticatable
             Storage::disk('agent')->put("/$this->id/$key.$ext",file_get_contents($file->getRealPath()));
         }
     }
+
+    public function getDocument($doc){
+        $filename = collect(Storage::disk('agent')->files("/$this->id/"))->filter(function($item) use ($doc) { 
+            return pathinfo($item,PATHINFO_FILENAME) === $doc;
+        })->first();
+
+        if(!$filename) return null;
+        return (object) ['content' => Storage::disk('agent')->get($filename), 'mimeType' => Storage::disk('agent')->mimeType($filename) ];
+    }
+
 
 }
