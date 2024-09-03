@@ -36,32 +36,32 @@
         <div class="grid sm:grid-cols-3 grid-cols-1 gap-4 my-2">
             <!-- Tipo Field -->
             <div>
-                {!! Form::label('tipo', 'Tipo:',['class' => "block mx-1 required"]) !!}
+                {!! Form::label('tipo', __('Type'),['class' => "block mx-1 required"]) !!}
                 {!! Form::select('tipo', ['1' => __('Motorcycle'),'2' => __('Car')],null, ['class' => 'input w-full','x-bind:required'=>'$wire.active && !$wire.veiculo_ativo_id',]) !!}
             </div>
 
             <div>
-                {!! Form::label('marca', 'Marca:',['class' => "block mx-1 required"]) !!}
+                {!! Form::label('marca', __('Brand'),['class' => "block mx-1 required"]) !!}
                 {!! Form::text('marca', null, ['class' => 'input w-full','x-bind:required'=>'$wire.active && !$wire.veiculo_ativo_id',]) !!}
             </div>
             <!-- Modelo Field -->
             <div>
-                {!! Form::label('modelo', 'Modelo:',['class' => "block mx-1 required"]) !!}
+                {!! Form::label('modelo', __('Model'),['class' => "block mx-1 required"]) !!}
                 {!! Form::text('modelo', null, ['class' => 'input w-full','x-bind:required'=>'$wire.active && !$wire.veiculo_ativo_id' ]) !!}
             </div>
             <!-- Placa Field -->
             <div>
-                {!! Form::label('placa', 'Placa:',['class' => "block mx-1 required"]) !!}
+                {!! Form::label('placa', __('License Plate'),['class' => "block mx-1 required"]) !!}
                 {!! Form::text('placa', null, ['class' => 'input w-full','x-bind:required'=>'$wire.active && !$wire.veiculo_ativo_id']) !!}
             </div>
             <!-- Renavam Field -->
             <div>
-                {!! Form::label('renavam', 'Renavam:',['class' => "block mx-1 required"]) !!}
+                {!! Form::label('renavam', 'Renavam',['class' => "block mx-1 required"]) !!}
                 {!! Form::text('renavam', null, ['class' => 'input w-full','x-bind:required'=>'$wire.active && !$wire.veiculo_ativo_id']) !!}
             </div>
             <!-- Chassi Field -->
             <div>
-                {!! Form::label('chassi', 'Chassi:',['class' => "block mx-1 required"]) !!}
+                {!! Form::label('chassi', 'Chassi',['class' => "block mx-1 required"]) !!}
                 {!! Form::text('chassi', null, ['class' => 'input w-full','x-bind:required'=>'$wire.active && !$wire.veiculo_ativo_id']) !!}
             </div>
         </div>
@@ -69,7 +69,7 @@
         <!-- Cor Field -->
         <div class="grid sm:grid-cols-2 grid-cols-1">
             <div>
-                {!! Form::label('cor', 'Cor:',['class' => "block mx-1"]) !!}
+                {!! Form::label('cor', __('Color'),['class' => "block mx-1"]) !!}
                 {!! Form::color('cor', null, ['class' => 'input','x-bind:required'=>'$wire.active && !$wire.veiculo_ativo_id']) !!}
             </div>
         </div>

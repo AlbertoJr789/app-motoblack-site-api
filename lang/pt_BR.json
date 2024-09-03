@@ -254,5 +254,6 @@
     "Document": "Documento",
     "Check if the vehicle data is just the way it is presented in the document": "Confira se os dados do veículo estão apresentados como no documento",
     "Check if the address data is just the way it is presented in the document": "Confira se os dados do endereço se encontram da mesma forma como no comprovante",
-    "Make the necessary changes or deactivate the agent if the fields don't match to the document that was sent": "Realize as mudanças necessárias ou desative o agente caso os campos não coincidam com o documento enviado"
+    "Make the necessary changes or deactivate the agent if the fields don't match to the document that was sent": "Realize as mudanças necessárias ou desative o agente caso os campos não coincidam com o documento enviado",
+    "Color": "Cor"
 }

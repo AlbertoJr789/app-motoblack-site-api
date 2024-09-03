@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <img src="{{asset('img/moto_black_logo.png')}}" alt="Logo Moto Black" class="h-40 w-80">
+            <img src="{{asset('img/moto_black_logo.png')}}" alt="Logo Moto Black" class="h-60 w-60">
         </x-slot>
 
         <x-validation-errors class="mb-4" />
@@ -10,11 +10,12 @@
             @csrf
 
             <x-stepper>
-                <x-stepper-item icon="fa-solid fa-info" active-stepper="0"/>
+                <x-stepper-item icon="fa-solid fa-info" active-stepper/>
                 <x-stepper-item icon="fa-solid fa-location-dot"/>
+                <x-stepper-item icon="fa-solid fa-car"/>
                 <x-stepper-item icon="fa-solid fa-folder-open"/>
             </x-stepper>
-            <div class="my-2" stepper-fields >
+            <div  stepper-fields >
                 <div>
 
                     <h1 class="m-auto text-2xl">{{__('Personal Info')}}</h1>
@@ -39,10 +40,47 @@
                     </div>
 
                 </div>
+
                 <div class="hidden">
                     <h1 class="text-2xl">{{__('Address')}}</h1>
                     <livewire:address-fields :required="true" />
                 </div>
+
+                <div class="hidden">
+                    <h1 class="text-2xl">{{__('Vehicle Info')}}</h1>
+                    <div class="grid sm:grid-cols-2 grid-cols-1 gap-4 my-2">
+                        
+                        <!-- Tipo Field -->
+                        <div>
+                            {!! Form::label('tipo', __('Type'),['class' => "block mx-1 required"]) !!}
+                            {!! Form::select('tipo', ['1' => __('Motorcycle'),'2' => __('Car')],null, ['class' => 'input w-full','required'=>'true',]) !!}
+                        </div>
+
+                        <div>
+                            {!! Form::label('marca', __('Brand'),['class' => "block mx-1 required"]) !!}
+                            {!! Form::text('marca', null, ['class' => 'input w-full','required'=>'true',]) !!}
+                        </div>
+                        <!-- Modelo Field -->
+                        <div>
+                            {!! Form::label('modelo', __('Model'),['class' => "block mx-1 required"]) !!}
+                            {!! Form::text('modelo', null, ['class' => 'input w-full','required'=>'true' ]) !!}
+                        </div>
+                        <!-- Placa Field -->
+                        <div>
+                            {!! Form::label('placa', __('License Plate'),['class' => "block mx-1 required"]) !!}
+                            {!! Form::text('placa', null, ['class' => 'input w-full','required'=>'true']) !!}
+                        </div>
+
+                    </div>
+                    <!-- Cor Field -->
+                    <div class="grid sm:grid-cols-2 grid-cols-1">
+                        <div>
+                            {!! Form::label('cor', __('Color'),['class' => "block mx-1 required"]) !!}
+                            {!! Form::color('cor', null, ['class' => 'input','required'=>'true']) !!}
+                        </div>
+                    </div>
+                </div>
+
                 <div class="hidden">
                     <h1 class="text-2xl">{{__('Documents')}}</h1>
                     <span>{{__('We\'re gonna need some documents to analyze your appliance')}}.</span>
@@ -65,6 +103,7 @@
                         </x-button>
                     </div>
                 </div>
+
             </div>
         </form>
     </x-authentication-card>
