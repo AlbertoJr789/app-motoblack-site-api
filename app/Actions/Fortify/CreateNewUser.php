@@ -61,6 +61,7 @@ class CreateNewUser implements CreatesNewUsers
                 ])->id,
                 // 'tipo' => 1,
                 'status'=> 0,
+                'em_analise' => true,
                 'motivo_inativo' => 'Cadastro em análise',
                 'creator_id' => $user->id,
                 'editor_id' => $user->id,

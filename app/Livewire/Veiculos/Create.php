@@ -37,6 +37,7 @@ class Create extends Component
         $this->reset();
         $this->create = true;
         $this->open = true;
+        $this->dispatch('resetStepper');
     }
 
     #[On('openEdit')]
@@ -48,6 +49,7 @@ class Create extends Component
         $this->open = $this->update = true;
         $this->create = false;
         $this->dispatch('select2',$this->agente_id);
+        $this->dispatch('resetStepper');
     }
 
     #[On('delete')]

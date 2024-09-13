@@ -28,6 +28,8 @@ class Agente extends Authenticatable
         'pessoa_id',
         'user_id',
         'data_desativacao',
+        'motivo_inativo',
+        'em_analise',
         'creator_id',
         'editor_id',
         'deleter_id',
@@ -41,7 +43,8 @@ class Agente extends Authenticatable
         'status' => 'integer',
         'latitude' => 'string',
         'longitude' => 'string',
-        'active' => 'bool'
+        'active' => 'bool',
+        'em_analise' => 'bool'
     ];
 
     public static array $rules = [];

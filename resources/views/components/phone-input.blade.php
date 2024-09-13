@@ -1,3 +1,4 @@
+
 @props([
     'name' => 'phone',
     'value' => null,
@@ -15,10 +16,10 @@
 <div class="relative mb-4 flex flex-wrap items-stretch">
     <input type="text" name="{{ $name }}" id="{{ $name }}" value="{{ $value }}" hidden>
     {!! Form::select('', $flags, $currentFlag, [
-        'class' => 'input rounded-tr-none rounded-br-none border-r-0',
+        'class' => 'input rounded-tr-none rounded-br-none border-r-0 inline-flex w-auto',
         'id' => $name . 'Select',
     ]) !!}
-    <x-input type="text" id="{{ $name }}Input" class="flex-auto rounded-tl-none rounded-bl-none"
+    <x-input type="text" id="{{ $name }}Input" class="flex-1 min-w-0 rounded-tl-none rounded-bl-none"
         placeholder="{{ __('Type your phone number').'...' }}" />
 </div>
 

@@ -16,7 +16,7 @@ class Create extends Component
     public ?Agente $Agente;
 
     //attributes
-    public $id,$tipo,$status,$latitude,$longitude,$created_at,$updated_at,$veiculo_ativo_id,$motivo_inativo,$active;
+    public $id,$tipo,$status,$latitude,$longitude,$created_at,$updated_at,$em_analise,$veiculo_ativo_id,$motivo_inativo,$active;
     
     
     public function mount(){
@@ -24,7 +24,7 @@ class Create extends Component
         $Agente = null;
         $this->id = $this->tipo = $this->status = $this->latitude = $this->longitude 
         = $this->created_at = $this->updated_at = $this->motivo_inativo = 
-        $this->active = $this->veiculo_ativo_id = null;    
+        $this->active = $this->veiculo_ativo_id = $this->em_analise = null;    
     }
 
     public function render()
@@ -42,6 +42,7 @@ class Create extends Component
         $this->active = $agente->active;
         $this->veiculo_ativo_id = $agente->veiculo_ativo_id;
         $this->motivo_inativo = $agente->motivo_inativo;
+        $this->em_analise = $agente->em_analise;
         $this->open = $this->update = true;
         $this->create = false;
         $this->dispatch('resetStepper');

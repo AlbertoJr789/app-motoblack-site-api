@@ -13,7 +13,7 @@
         
             <div wire:key='veiculos' id="veiculosFields"> 
                <x-stepper>
-                    <x-stepper-item icon="fa-solid fa-info" active-stepper="0"/>
+                    <x-stepper-item icon="fa-solid fa-info" active-stepper/>
                     <x-stepper-item icon="fa-solid fa-folder-open" />
                 </x-stepper> 
                 <div class="my-2" stepper-fields >

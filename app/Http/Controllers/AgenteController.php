@@ -11,6 +11,8 @@ use App\Repositories\AgenteRepository;
 use Illuminate\Http\Request;
 use Flash;
 use App\Models\Agente;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class AgenteController extends AppBaseController
@@ -35,9 +37,43 @@ class AgenteController extends AppBaseController
 
         try {
             $d = $request->all();
-            dd($d);
-            $agente = $this->agenteRepository->update($d,$agente->id);
 
+            if($agente->em_analise){
+                if(key_exists('active',$d)){
+                    $d['em_analise'] = false;
+                    $ativando = true;
+                }
+            }
+
+            if(key_exists('active',$d)){
+                $d['motivo_inativo'] = null;
+            }
+
+            DB::beginTransaction();
+                $agente = $this->agenteRepository->update($d,$agente->id);
+                if(isset($ativando)){
+                    $agente->activeVehicle->update([
+                        'tipo' => $d['tipo'],
+                        'marca' => $d['marca'],
+                        'modelo' => $d['modelo'],
+                        'placa' => $d['placa'],
+                        'renavam' => $d['renavam'],
+                        'chassi' => $d['chassi'],
+                        'cor' => $d['cor'],
+                        'editor_id' => Auth::id()
+                    ]);
+                    $agente->pessoa->endereco->update([
+                        'cep' => $d['cep'],
+                        'logradouro' => $d['logradouro'], 
+                        'numero' => $d['numero'],
+                        'bairro' => $d['bairro'],
+                        'complemento' => $d['complemento'],
+                        'pais' => $d['pais'],
+                        'estado' => $d['estado'],
+                        'cidade' => $d['cidade']
+                    ]);
+                }
+            DB::commit();
             alert()->success(__('Success'),'Agente '.__('updated successfully!'));
         }catch (\Throwable $th) {
             \Log::error('Error while submiting Agente: '.$th->getMessage());

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->smallInteger('tipo');
             $table->string('modelo');
             $table->string('marca');
-            $table->string('chassi');
-            $table->string('renavam');
+            $table->string('chassi')->nullable();
+            $table->string('renavam')->nullable();
             $table->string('placa');
             $table->string('cor');
             $table->dateTime('data_desativacao')->nullable();

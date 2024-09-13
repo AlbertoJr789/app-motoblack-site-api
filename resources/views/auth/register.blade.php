@@ -23,7 +23,8 @@
                     <x-label for="telefone" value="{{ __('Telefone') }}" />
                     <x-phone-input id="telefone" class="block mt-1" name="telefone" />
                 </div>
-    
+
+
                 <div class="mt-4">
                     <x-label for="password" value="{{ __('Password') }}" class="required" />
                     <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />

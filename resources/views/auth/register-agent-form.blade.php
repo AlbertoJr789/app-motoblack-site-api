@@ -8,7 +8,7 @@
 
         <form method="POST" action="{{ route('createAgent')}}" enctype="multipart/form-data">
             @csrf
-
+           
             <x-stepper>
                 <x-stepper-item icon="fa-solid fa-info" active-stepper/>
                 <x-stepper-item icon="fa-solid fa-location-dot"/>
@@ -31,7 +31,7 @@
         
                     <div class="mt-4">
                         <x-label for="telefone" value="{{ __('Phone Number') }}" />
-                        <x-phone-input id="telefone" class="block mt-1" name="telefone" />
+                        <x-phone-input id="telefone" class="block mt-1" name="telefone" />     
                     </div>
         
                     <div class="mt-4">

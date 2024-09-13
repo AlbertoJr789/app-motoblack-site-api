@@ -14,7 +14,7 @@
             <div wire:key='agentes'> 
                <x-stepper>
                     <x-stepper-item icon="fa-solid fa-info" active-stepper="0"/>
-                    <x-stepper-item icon="fa-solid fa-address-card" x-show="$wire.active && !$wire.veiculo_ativo_id"/>
+                    <x-stepper-item icon="fa-solid fa-address-card" x-show="$wire.active && $wire.em_analise"/>
                 </x-stepper> 
                 <div class="my-2" stepper-fields >
                     <div>

@@ -26,6 +26,7 @@ class AgenteFactory extends Factory
             'pessoa_id' => Pessoa::factory(),
             'user_id' => $user->id,
             'creator_id' => $user->id,
+            'em_analise' => false,
             'active' => true
         ];
     }
