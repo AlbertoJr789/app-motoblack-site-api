@@ -48,8 +48,13 @@
             </main>
         </div>
 
+        @php
+            $preferredLanguage = request()->getPreferredLanguage() ?? 'en_US';
+            $translations = Illuminate\Support\Facades\Cache::get('translationsJSON'.$preferredLanguage) ?? '';
+        @endphp
         <script>
-            window.translations = {!! Cache::get('translationsJSON'.request()->getPreferredLanguage()) ?? '' !!};
+            window.translations = {!! $translations !!};
+            
             window.trans = (key, replace = {}) =>
             {
                 let translation = key.split('.').reduce((t, i) => t[i] || null, window.translations);

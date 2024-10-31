@@ -31,7 +31,8 @@ class User extends Authenticatable
         'email',
         'telefone',
         'password',
-        'profile_photo_path'
+        'profile_photo_path',
+        'motivo_inativo'
     ];
 
     /**

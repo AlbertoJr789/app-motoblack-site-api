@@ -28,7 +28,6 @@ class Agente extends Authenticatable
         'pessoa_id',
         'user_id',
         'data_desativacao',
-        'motivo_inativo',
         'em_analise',
         'creator_id',
         'editor_id',

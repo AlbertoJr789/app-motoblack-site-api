@@ -22,7 +22,6 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     
-
     public function registerPassenger(){
         return view('auth.register-passenger-form');
     }
@@ -100,6 +99,12 @@ class AuthController extends Controller
         if(!Hash::check($request->password,$user->user->password)){
             return response()->json([
                 'message' => __('Invalid password!')
+            ],401);
+        }
+
+        if(!$user->active){
+            return response()->json([
+                'message' => __('Your account is not active!').' '.__('Reason').': '.__($user->user->motivo_inativo,locale:request()->getPreferredLanguage() ?? 'en_US')
             ],401);
         }
         

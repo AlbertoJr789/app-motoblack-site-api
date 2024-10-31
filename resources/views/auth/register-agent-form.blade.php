@@ -38,7 +38,7 @@
                         <x-label for="password" value="{{ __('Password') }}" class="required" />
                         <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
                     </div>
-
+                    
                 </div>
 
                 <div class="hidden">

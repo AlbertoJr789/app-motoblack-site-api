@@ -41,7 +41,7 @@ class Create extends Component
         $this->status = $agente->status;
         $this->active = $agente->active;
         $this->veiculo_ativo_id = $agente->veiculo_ativo_id;
-        $this->motivo_inativo = $agente->motivo_inativo;
+        $this->motivo_inativo = $agente->user->motivo_inativo;
         $this->em_analise = $agente->em_analise;
         $this->open = $this->update = true;
         $this->create = false;

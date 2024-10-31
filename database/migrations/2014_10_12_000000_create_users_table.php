@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
             $table->boolean('admin')->default(false);
+            $table->string('motivo_inativo')->nullable();
         });
     }
 

@@ -48,7 +48,7 @@ class AgenteController extends AppBaseController
             if(key_exists('active',$d)){
                 $d['motivo_inativo'] = null;
             }
-
+            
             DB::beginTransaction();
                 $agente = $this->agenteRepository->update($d,$agente->id);
                 if(isset($ativando)){
@@ -73,9 +73,13 @@ class AgenteController extends AppBaseController
                         'cidade' => $d['cidade']
                     ]);
                 }
+                $agente->user->update([
+                    'motivo_inativo' => $d['motivo_inativo']
+                ]);
             DB::commit();
             alert()->success(__('Success'),'Agente '.__('updated successfully!'));
         }catch (\Throwable $th) {
+            DB::rollBack();
             \Log::error('Error while submiting Agente: '.$th->getMessage());
             alert()->error(__('Error'),__('Whoops! Something went wrong.'));
         }
