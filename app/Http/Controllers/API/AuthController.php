@@ -37,7 +37,7 @@ class AuthController extends Controller
             'password' => ['required',new Password(8)],
         ]); 
         $passenger = (new CreateNewUser)->create($request->all(),'P');
-        return response()->json();
+        return redirect(route('login'));
     }
 
     public function createAgent(Request $request){
@@ -102,7 +102,7 @@ class AuthController extends Controller
             ],401);
         }
 
-        if(!$user->active){
+        if($user->user->motivo_inativo){
             return response()->json([
                 'message' => __('Your account is not active!').' '.__('Reason').': '.__($user->user->motivo_inativo,locale:request()->getPreferredLanguage() ?? 'en_US')
             ],401);

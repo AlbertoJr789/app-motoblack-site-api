@@ -22,7 +22,7 @@ class Passageiro extends Authenticatable
         'creator_id',
         'editor_id',
         'deleter_id',
-        'active'
+        // 'active'
     ];
 
     protected $casts = [

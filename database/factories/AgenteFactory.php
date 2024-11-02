@@ -27,7 +27,7 @@ class AgenteFactory extends Factory
             'user_id' => $user->id,
             'creator_id' => $user->id,
             'em_analise' => false,
-            'active' => true
+            // 'active' => true
         ];
     }
 }

@@ -30,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
             return $this->whereActive(false);
         });
 
+        if ($this->app->runningInConsole()) {
+            return;
+        }
+
         $lang = request()->getPreferredLanguage() ?? 'pt_BR';
         Cache::remember('translationsJSON'.$lang, now()->addHour(1), function () use ($lang) {
             try {

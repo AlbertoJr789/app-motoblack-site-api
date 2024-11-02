@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Actions\Fortify\CreateNewUser;
+use App\Enum\VeiculoTipo;
 use App\Models\Agente;
 use App\Models\Passageiro;
 use Illuminate\Database\Seeder;
@@ -32,19 +33,37 @@ class DatabaseSeeder extends Seeder
         $amount = 100;
         \App\Models\Atividade::factory($amount)->create();
 
-        request()->merge(['type' => 'P']);
 
-        (new CreateNewUser)->create([
+       (new CreateNewUser)->create([
             'name' => 'alberto',
             'password' => '123123123'
-        ]);
+        ],'P');
 
-        request()->merge(['type' => 'A']);
-
-        (new CreateNewUser)->create([
+        $agent = (new CreateNewUser)->create([
             'name' => 'alberto',
-            'password' => '123123123'
-        ]);
+            'password' => '123123123',
+            'cep' => '01001000',
+            'logradouro' => 'rua teste',
+            'numero' => '123',
+            'bairro' => 'centro',
+            'cidade' => 'Formiga',
+            'estado' => 'MG',
+            'complemento' => '',
+            'pais' => 'BR'
+        ],'A');
+
+        $agent->veiculo_ativo_id = \App\Models\Veiculo::factory()->create([
+            'tipo' => VeiculoTipo::Motorcycle,
+            'modelo' => 'fz250',
+            'marca' => 'yamaha',
+            'placa' => 'abc1234',
+            'cor' => '#000000',        
+            'agente_id' => $agent->id,
+            'creator_id' => $agent->user_id,
+            'active' => true
+        ])->id;
+
+        $agent->save();
 
     }
 }

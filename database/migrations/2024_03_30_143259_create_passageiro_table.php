@@ -20,7 +20,7 @@ return new class extends Migration
             $table->softDeletes();
             $table->foreignId('pessoa_id')->references('id')->on('pessoa');
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->boolean('active')->default(true);
+            // $table->boolean('active')->default(true);
             $table->foreignId('creator_id')->references('id')->on('users');
             $table->foreignId('editor_id')->nullable()->references('id')->on('users');
             $table->foreignId('deleter_id')->nullable()->references('id')->on('users');

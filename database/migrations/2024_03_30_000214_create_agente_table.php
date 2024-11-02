@@ -25,7 +25,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->dateTime('data_desativacao')->nullable();
-            $table->boolean('active')->default(false);
+            // $table->boolean('active')->default(false);
             $table->boolean('em_analise')->default(true);
             $table->foreignId('veiculo_ativo_id')->nullable()->references('id')->on('veiculo');
             $table->foreignId('pessoa_id')->references('id')->on('pessoa');

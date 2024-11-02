@@ -32,7 +32,7 @@ class Agente extends Authenticatable
         'creator_id',
         'editor_id',
         'deleter_id',
-        'active',
+        // 'active',
         'veiculo_ativo_id'
     ];
 

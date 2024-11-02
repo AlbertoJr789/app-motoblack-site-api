@@ -146,7 +146,7 @@ class AgenteController extends AppBaseController
                                return $reg->deleter ? $reg->deleter->name : '';
                          })
                          ->editColumn('active',function($reg){
-                            return $reg->active ? '<span class="badge badge-green uppercase">'.__('Yes').'</span>' : '<span class="badge badge-red uppercase">'.__('No').'</span>';
+                            return !$reg->user->motivo_inativo ? '<span class="badge badge-green uppercase">'.__('Yes').'</span>' : '<span class="badge badge-red uppercase">'.__('No').' - '.__($reg->user->motivo_inativo).'</span>';
                          })
                          ->addColumn('action',function($reg){
                                return view('agentes.action-buttons',['data' => $reg]);
@@ -171,9 +171,9 @@ class AgenteController extends AppBaseController
         }
         if(isset($r['activeFilter'])){
             if($r['activeFilter'] == 'true'){
-                $query->where('agente.active',true);
+                $query->whereNull('U.motivo_inativo');
             }else{
-                $query->where('agente.active',false);
+                $query->whereNotNull('U.motivo_inativo');
             }
         }
         return $query;
