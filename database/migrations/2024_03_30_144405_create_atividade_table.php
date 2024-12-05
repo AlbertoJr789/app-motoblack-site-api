@@ -16,6 +16,7 @@ return new class extends Migration
     {
         Schema::create('atividade', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid')->nullable();
             $table->smallInteger('tipo')->comment('Corrida,entrega ou outra atividade');
             $table->tinyInteger('cancelada')->default(false);
             $table->dateTime('data_finalizada')->nullable();

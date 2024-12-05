@@ -15,6 +15,8 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
+            <x-banner />
+
             <div>
                 <x-label for="name" value="{{ __('Email or User') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" placeholder="{{__('Enter your email or username')}}" name="name" :value="old('name')" required autofocus autocomplete="username" />

@@ -19,7 +19,7 @@ Route::group(['prefix' => 'auth'],function () {
     Route::post('logout', [App\Http\Controllers\API\AuthController::class, 'logout'])->middleware('auth:sanctum');
 });
 
-Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified' ]], function () {
+Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified','verify.user.active']], function () {
     Route::apiResource('activity', App\Http\Controllers\API\AtividadeAPIController::class);
     Route::get('drawAgent',[App\Http\Controllers\API\AtividadeAPIController::class,'drawAgent']);
 
@@ -27,6 +27,10 @@ Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),
     
     Route::get('profileData',[App\Http\Controllers\API\ProfileAPIController::class,'getProfileData']);
     Route::post('updateProfile',[App\Http\Controllers\API\ProfileAPIController::class,'updateProfileData']);
+
+    Route::get('getOnline',[App\Http\Controllers\API\AgenteAPIController::class,'getOnline']);
+    Route::get('getOffline',[App\Http\Controllers\API\AgenteAPIController::class,'getOffline']);
+
     // Route::apiResource('pessoas', App\Http\Controllers\API\PessoaAPIController::class)
     //     ->except(['create', 'edit']);
 

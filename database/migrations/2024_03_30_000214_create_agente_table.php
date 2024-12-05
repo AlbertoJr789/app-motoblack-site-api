@@ -18,6 +18,7 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('agente', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid')->nullable();
             // $table->smallInteger('tipo');
             $table->smallInteger('status');
             // $table->text('latitude')->nullable();

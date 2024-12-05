@@ -24,7 +24,7 @@
                     </svg>
                 </span>
 
-                <p class="ml-3 font-medium sm:text-lg text-sm text-white truncate" x-text="message"></p>
+                <p class="ml-3 font-medium sm:text-lg text-sm text-white" x-text="message"></p>
             </div>
 
             <div class="shrink-0 sm:ml-3">

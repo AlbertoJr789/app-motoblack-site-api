@@ -9,6 +9,7 @@ use App\Repositories\AgenteRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class AgenteAPIController
@@ -105,4 +106,21 @@ class AgenteAPIController extends AppBaseController
 
         return $this->sendSuccess('Agente deleted successfully');
     }
+
+    public function getOnline(): JsonResponse
+    {
+        dd('zaaa');
+
+        return $this->sendSuccess('Agente online');
+    }
+
+    public function getOffline(): JsonResponse
+    {
+        $agentes = $this->agenteRepository->getOffline();
+
+        return $this->sendSuccess('Agente offline');
+    }
+
+
+
 }
