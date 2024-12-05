@@ -1,0 +1,734 @@
+[2024-12-05 14:54:35] local.ERROR: SQLSTATE[HY000] [1049] Unknown database 'laravel' (Connection: mysql, SQL: select * from `sessions` where `id` = IheBkhZ0D8YdIEcU4tbvqlHg4tHBx2J7YUiYB1vG limit 1) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 1049): SQLSTATE[HY000] [1049] Unknown database 'laravel' (Connection: mysql, SQL: select * from `sessions` where `id` = IheBkhZ0D8YdIEcU4tbvqlHg4tHBx2J7YUiYB1vG limit 1) at /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connection.php:829)
+[stacktrace]
+#0 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connection.php(783): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#2 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2913): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#3 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2902): Illuminate\\Database\\Query\\Builder->runSelect()
+#4 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3456): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#5 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2901): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#6 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(333): Illuminate\\Database\\Query\\Builder->get(Array)
+#7 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2824): Illuminate\\Database\\Query\\Builder->first(Array)
+#8 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/DatabaseSessionHandler.php(97): Illuminate\\Database\\Query\\Builder->find('IheBkhZ0D8YdIEc...')
+#9 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Store.php(113): Illuminate\\Session\\DatabaseSessionHandler->read('IheBkhZ0D8YdIEc...')
+#10 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Store.php(101): Illuminate\\Session\\Store->readFromHandler()
+#11 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Store.php(85): Illuminate\\Session\\Store->loadSession()
+#12 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(147): Illuminate\\Session\\Store->start()
+#13 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Support/helpers.php(307): Illuminate\\Session\\Middleware\\StartSession->Illuminate\\Session\\Middleware\\{closure}(Object(Illuminate\\Session\\Store))
+#14 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(144): tap(Object(Illuminate\\Session\\Store), Object(Closure))
+#15 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(116): Illuminate\\Session\\Middleware\\StartSession->startSession(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store))
+#16 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#17 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#24 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#25 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#26 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#27 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#28 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#29 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 /var/www/motoblack/vendor/itsgoingd/clockwork/Clockwork/Support/Laravel/ClockworkMiddleware.php(24): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Clockwork\\Support\\Laravel\\ClockworkMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#49 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#50 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#51 {main}
+
+[previous exception] [object] (PDOException(code: 1049): SQLSTATE[HY000] [1049] Unknown database 'laravel' at /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php:65)
+[stacktrace]
+#0 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(65): PDO->__construct('mysql:host=db;p...', 'root', Object(SensitiveParameterValue), Array)
+#1 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(44): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=db;p...', 'root', '', Array)
+#2 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=db;p...', Array, Array)
+#3 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#4 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#5 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1339): call_user_func(Object(Closure))
+#6 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1375): Illuminate\\Database\\Connection->getPdo()
+#7 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connection.php(528): Illuminate\\Database\\Connection->getReadPdo()
+#8 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connection.php(423): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#9 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connection.php(816): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#10 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connection.php(783): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#11 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#12 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2913): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#13 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2902): Illuminate\\Database\\Query\\Builder->runSelect()
+#14 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3456): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#15 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2901): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#16 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(333): Illuminate\\Database\\Query\\Builder->get(Array)
+#17 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2824): Illuminate\\Database\\Query\\Builder->first(Array)
+#18 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/DatabaseSessionHandler.php(97): Illuminate\\Database\\Query\\Builder->find('IheBkhZ0D8YdIEc...')
+#19 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Store.php(113): Illuminate\\Session\\DatabaseSessionHandler->read('IheBkhZ0D8YdIEc...')
+#20 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Store.php(101): Illuminate\\Session\\Store->readFromHandler()
+#21 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Store.php(85): Illuminate\\Session\\Store->loadSession()
+#22 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(147): Illuminate\\Session\\Store->start()
+#23 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Support/helpers.php(307): Illuminate\\Session\\Middleware\\StartSession->Illuminate\\Session\\Middleware\\{closure}(Object(Illuminate\\Session\\Store))
+#24 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(144): tap(Object(Illuminate\\Session\\Store), Object(Closure))
+#25 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(116): Illuminate\\Session\\Middleware\\StartSession->startSession(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store))
+#26 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#27 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#34 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#35 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#36 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#37 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#38 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#39 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#44 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /var/www/motoblack/vendor/itsgoingd/clockwork/Clockwork/Support/Laravel/ClockworkMiddleware.php(24): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Clockwork\\Support\\Laravel\\ClockworkMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#59 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#60 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#61 {main}
+"} 
+[2024-12-05 15:01:09] local.ERROR: Vite manifest not found at: /var/www/motoblack/public/build/manifest.json {"view":{"view":"/var/www/motoblack/resources/views/layouts/guest.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-2020395684 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1816</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-2020395684\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","componentName":"<pre class=sf-dump id=sf-dump-1837865849 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"12 characters\">guest-layout</span>\"
+</pre><script>Sfdump(\"sf-dump-1837865849\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","attributes":"<pre class=sf-dump id=sf-dump-1213017370 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\ComponentAttributeBag</span> {<a class=sf-dump-ref>#1872</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1213017370\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","slot":"<pre class=sf-dump id=sf-dump-174719346 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\ComponentSlot</span> {<a class=sf-dump-ref>#1857</a><samp data-depth=1 class=sf-dump-expanded>
+  +<span class=sf-dump-public title=\"Public property\">attributes</span>: <span class=sf-dump-note title=\"Illuminate\\View\\ComponentAttributeBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ComponentAttributeBag</span> {<a class=sf-dump-ref>#1854</a><samp data-depth=2 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">contents</span>: \"\"\"
+    <span class=sf-dump-str title=\"2435 characters\">&lt;div class=&quot;min-h-screen flex flex-col sm:justify-center items-center p-6 sm:pt-0 bg-zinc-950&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">    &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">        &lt;a href=&quot;/&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">   &lt;img src=&quot;http://localhost:8000/img/moto_black_logo.png&quot; alt=&quot;Logo Moto Black&quot; class=&quot;h-60 w-60&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">&lt;/a&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">    &lt;div class=&quot;w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-neutral-900 shadow-md overflow-hidden sm:rounded-lg&quot; id=&quot;authCard&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">         &lt;form method=&quot;POST&quot; action=&quot;http://localhost:8000/login&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;F6fUNqNX9KKD02WNWfCK2wb2MKX0mFT3pVoe9RnX&quot; autocomplete=&quot;off&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">            &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                &lt;label class=&quot;block font-medium text-sm text-gray-700 dark:text-gray-300&quot; for=&quot;name&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">    E-mail ou nome de usu&#225;rio<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                &lt;input  class=&quot;input duration-400 block mt-1 w-full&quot; id=&quot;name&quot; type=&quot;text&quot; placeholder=&quot;Digite o seu e-mail ou nome de usu&#225;rio&quot; name=&quot;name&quot; required=&quot;required&quot; autofocus=&quot;autofocus&quot; autocomplete=&quot;username&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">            &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">            &lt;div class=&quot;mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                &lt;label class=&quot;block font-medium text-sm text-gray-700 dark:text-gray-300&quot; for=&quot;password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">    Senha<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                &lt;input  class=&quot;input duration-400 block mt-1 w-full&quot; id=&quot;password&quot; type=&quot;password&quot; placeholder=&quot;Digite sua senha&quot; name=&quot;password&quot; required=&quot;required&quot; autocomplete=&quot;current-password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">            &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">            &lt;div class=&quot;block mt-4 flex justify-between&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                &lt;label for=&quot;remember_me&quot; class=&quot;flex items-center&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                    &lt;input type=&quot;checkbox&quot; class=&quot;input input-checkbox&quot; id=&quot;remember_me&quot; name=&quot;remember&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                    &lt;span class=&quot;ml-2 text-sm text-gray-600 dark:text-gray-400&quot;&gt;Manter conectado&lt;/span&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                &lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                &lt;a href=&quot;http://localhost:8000/register&quot; class=&quot;underline text-sm text-gray-400&quot;&gt;N&#227;o possui uma conta?&lt;/a&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">            &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">            &lt;div class=&quot;flex items-center justify-end mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                                    &lt;a class=&quot;underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800&quot; href=&quot;http://localhost:8000/forgot-password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                        Esqueceu sua senha?<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                    &lt;/a&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                 <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">                &lt;button type=&quot;submit&quot; class=&quot;btn-primary ml-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">    Entrar<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">&lt;/button&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">            &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">        &lt;/form&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"2435 characters\">&lt;/div&gt;</span>
+    \"\"\"
+</samp>}
+</pre><script>Sfdump(\"sf-dump-174719346\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","__laravel_slots":"<pre class=sf-dump id=sf-dump-1973346970 data-indent-pad=\"  \"><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
+  \"<span class=sf-dump-key>__default</span>\" => <span class=sf-dump-note title=\"Illuminate\\View\\ComponentSlot
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ComponentSlot</span> {<a class=sf-dump-ref>#1857</a><samp data-depth=2 class=sf-dump-compact>
+    +<span class=sf-dump-public title=\"Public property\">attributes</span>: <span class=sf-dump-note title=\"Illuminate\\View\\ComponentAttributeBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ComponentAttributeBag</span> {<a class=sf-dump-ref>#1854</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">contents</span>: \"\"\"
+      <span class=sf-dump-str title=\"2435 characters\">&lt;div class=&quot;min-h-screen flex flex-col sm:justify-center items-center p-6 sm:pt-0 bg-zinc-950&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">    &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">        &lt;a href=&quot;/&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">   &lt;img src=&quot;http://localhost:8000/img/moto_black_logo.png&quot; alt=&quot;Logo Moto Black&quot; class=&quot;h-60 w-60&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">&lt;/a&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">    &lt;div class=&quot;w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-neutral-900 shadow-md overflow-hidden sm:rounded-lg&quot; id=&quot;authCard&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">         &lt;form method=&quot;POST&quot; action=&quot;http://localhost:8000/login&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;F6fUNqNX9KKD02WNWfCK2wb2MKX0mFT3pVoe9RnX&quot; autocomplete=&quot;off&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">            &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                &lt;label class=&quot;block font-medium text-sm text-gray-700 dark:text-gray-300&quot; for=&quot;name&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">    E-mail ou nome de usu&#225;rio<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                &lt;input  class=&quot;input duration-400 block mt-1 w-full&quot; id=&quot;name&quot; type=&quot;text&quot; placeholder=&quot;Digite o seu e-mail ou nome de usu&#225;rio&quot; name=&quot;name&quot; required=&quot;required&quot; autofocus=&quot;autofocus&quot; autocomplete=&quot;username&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">            &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">            &lt;div class=&quot;mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                &lt;label class=&quot;block font-medium text-sm text-gray-700 dark:text-gray-300&quot; for=&quot;password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">    Senha<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                &lt;input  class=&quot;input duration-400 block mt-1 w-full&quot; id=&quot;password&quot; type=&quot;password&quot; placeholder=&quot;Digite sua senha&quot; name=&quot;password&quot; required=&quot;required&quot; autocomplete=&quot;current-password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">            &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">            &lt;div class=&quot;block mt-4 flex justify-between&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                &lt;label for=&quot;remember_me&quot; class=&quot;flex items-center&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                    &lt;input type=&quot;checkbox&quot; class=&quot;input input-checkbox&quot; id=&quot;remember_me&quot; name=&quot;remember&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                    &lt;span class=&quot;ml-2 text-sm text-gray-600 dark:text-gray-400&quot;&gt;Manter conectado&lt;/span&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                &lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                &lt;a href=&quot;http://localhost:8000/register&quot; class=&quot;underline text-sm text-gray-400&quot;&gt;N&#227;o possui uma conta?&lt;/a&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">            &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">            &lt;div class=&quot;flex items-center justify-end mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                                    &lt;a class=&quot;underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800&quot; href=&quot;http://localhost:8000/forgot-password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                        Esqueceu sua senha?<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                    &lt;/a&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                 <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">                &lt;button type=&quot;submit&quot; class=&quot;btn-primary ml-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">    Entrar<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">&lt;/button&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">            &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">        &lt;/form&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"2435 characters\">&lt;/div&gt;</span>
+      \"\"\"
+  </samp>}
+</samp>]
+</pre><script>Sfdump(\"sf-dump-1973346970\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","config":"<pre class=sf-dump id=sf-dump-1382511924 data-indent-pad=\"  \"><span class=sf-dump-note>InfyOm\\Generator\\Common\\GeneratorConfig</span> {<a class=sf-dump-ref>#1877</a><samp data-depth=1 class=sf-dump-expanded>
+  +<span class=sf-dump-public title=\"Public property\">namespaces</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorNamespaces</span>
+  +<span class=sf-dump-public title=\"Public property\">paths</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorPaths</span>
+  +<span class=sf-dump-public title=\"Public property\">modelNames</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\ModelNames</span>
+  +<span class=sf-dump-public title=\"Public property\">prefixes</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorPrefixes</span>
+  +<span class=sf-dump-public title=\"Public property\">options</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorOptions</span>
+  +<span class=sf-dump-public title=\"Public property\">command</span>: <span class=sf-dump-const title=\"Uninitialized property\">? Illuminate\\Console\\Command</span>
+  +<span class=sf-dump-public title=\"Public property\">fields</span>: []
+  +<span class=sf-dump-public title=\"Public property\">relations</span>: []
+  +<span class=sf-dump-public title=\"Public property\">tableName</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">tableType</span>: <span class=sf-dump-const title=\"Uninitialized property\">? string</span>
+  +<span class=sf-dump-public title=\"Public property\">apiPrefix</span>: <span class=sf-dump-const title=\"Uninitialized property\">? string</span>
+  +<span class=sf-dump-public title=\"Public property\">primaryName</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">connection</span>: <span class=sf-dump-const>null</span>
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1382511924\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Vite manifest not found at: /var/www/motoblack/public/build/manifest.json at /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:728)
+[stacktrace]
+#0 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php(293): Illuminate\\Foundation\\Vite->manifest('build')
+#1 /var/www/motoblack/resources/views/layouts/guest.blade.php(18): Illuminate\\Foundation\\Vite->__invoke(Object(Illuminate\\Support\\Collection))
+#2 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#3 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#5 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#6 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#7 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#8 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#9 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#10 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#11 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesComponents.php(99): Illuminate\\View\\View->render()
+#12 /var/www/motoblack/resources/views/auth/login.blade.php(230): Illuminate\\View\\Factory->renderComponent()
+#13 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#14 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#15 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#16 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#17 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#18 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#19 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#20 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#21 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#22 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\\View\\View->render()
+#23 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#24 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(918): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#25 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(885): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#26 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Laravel\\Fortify\\Http\\Responses\\SimpleViewResponse))
+#27 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /var/www/motoblack/app/Http/Middleware/RedirectIfAuthenticated.php(28): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): App\\Http\\Middleware\\RedirectIfAuthenticated->handle(Object(Illuminate\\Http\\Request), Object(Closure), 'web')
+#30 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#38 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#45 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#46 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#47 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#48 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#49 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#58 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#59 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#60 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#61 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#65 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 /var/www/motoblack/vendor/itsgoingd/clockwork/Clockwork/Support/Laravel/ClockworkMiddleware.php(24): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Clockwork\\Support\\Laravel\\ClockworkMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#69 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#70 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#71 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#72 {main}
+
+[previous exception] [object] (Illuminate\\Foundation\\ViteManifestNotFoundException(code: 0): Vite manifest not found at: /var/www/motoblack/public/build/manifest.json at /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:728)
+[stacktrace]
+#0 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php(293): Illuminate\\Foundation\\Vite->manifest('build')
+#1 /var/www/motoblack/storage/framework/views/7df383c7c4a222ed891c517d8c603c29.php(18): Illuminate\\Foundation\\Vite->__invoke(Object(Illuminate\\Support\\Collection))
+#2 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#3 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#5 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#6 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#7 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#8 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#9 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#10 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#11 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesComponents.php(99): Illuminate\\View\\View->render()
+#12 /var/www/motoblack/storage/framework/views/a927555b67c70858af54b6aa29e34b86.php(230): Illuminate\\View\\Factory->renderComponent()
+#13 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#14 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#15 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#16 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#17 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#18 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#19 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#20 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#21 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#22 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\\View\\View->render()
+#23 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#24 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(918): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#25 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(885): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#26 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Laravel\\Fortify\\Http\\Responses\\SimpleViewResponse))
+#27 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /var/www/motoblack/app/Http/Middleware/RedirectIfAuthenticated.php(28): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): App\\Http\\Middleware\\RedirectIfAuthenticated->handle(Object(Illuminate\\Http\\Request), Object(Closure), 'web')
+#30 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#38 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#45 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#46 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#47 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#48 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#49 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#58 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#59 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#60 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#61 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#65 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 /var/www/motoblack/vendor/itsgoingd/clockwork/Clockwork/Support/Laravel/ClockworkMiddleware.php(24): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Clockwork\\Support\\Laravel\\ClockworkMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#69 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#70 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#71 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#72 {main}
+"} 
+[2024-12-05 15:02:27] local.ERROR: file_put_contents(/var/www/motoblack/storage/framework/cache/data/85/5f/855f92484c8c414d36c1b25cb24876e30229cbbf): Failed to open stream: Permission denied {"view":{"view":"/var/www/motoblack/resources/views/layouts/menu.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-22321673 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1836</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-22321673\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","attributes":"<pre class=sf-dump id=sf-dump-2006575720 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\ComponentAttributeBag</span> {<a class=sf-dump-ref>#1920</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-2006575720\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","slot":"<pre class=sf-dump id=sf-dump-1675789469 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\ComponentSlot</span> {<a class=sf-dump-ref>#1908</a><samp data-depth=1 class=sf-dump-expanded>
+  +<span class=sf-dump-public title=\"Public property\">attributes</span>: <span class=sf-dump-note title=\"Illuminate\\View\\ComponentAttributeBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ComponentAttributeBag</span> {<a class=sf-dump-ref>#1909</a><samp data-depth=2 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">contents</span>: \"\"
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1675789469\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","__laravel_slots":"<pre class=sf-dump id=sf-dump-1405746757 data-indent-pad=\"  \"><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
+  \"<span class=sf-dump-key>__default</span>\" => <span class=sf-dump-note title=\"Illuminate\\View\\ComponentSlot
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ComponentSlot</span> {<a class=sf-dump-ref>#1908</a><samp data-depth=2 class=sf-dump-compact>
+    +<span class=sf-dump-public title=\"Public property\">attributes</span>: <span class=sf-dump-note title=\"Illuminate\\View\\ComponentAttributeBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ComponentAttributeBag</span> {<a class=sf-dump-ref>#1909</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">contents</span>: \"\"
+  </samp>}
+</samp>]
+</pre><script>Sfdump(\"sf-dump-1405746757\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","config":"<pre class=sf-dump id=sf-dump-1299409546 data-indent-pad=\"  \"><span class=sf-dump-note>InfyOm\\Generator\\Common\\GeneratorConfig</span> {<a class=sf-dump-ref>#1931</a><samp data-depth=1 class=sf-dump-expanded>
+  +<span class=sf-dump-public title=\"Public property\">namespaces</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorNamespaces</span>
+  +<span class=sf-dump-public title=\"Public property\">paths</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorPaths</span>
+  +<span class=sf-dump-public title=\"Public property\">modelNames</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\ModelNames</span>
+  +<span class=sf-dump-public title=\"Public property\">prefixes</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorPrefixes</span>
+  +<span class=sf-dump-public title=\"Public property\">options</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorOptions</span>
+  +<span class=sf-dump-public title=\"Public property\">command</span>: <span class=sf-dump-const title=\"Uninitialized property\">? Illuminate\\Console\\Command</span>
+  +<span class=sf-dump-public title=\"Public property\">fields</span>: []
+  +<span class=sf-dump-public title=\"Public property\">relations</span>: []
+  +<span class=sf-dump-public title=\"Public property\">tableName</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">tableType</span>: <span class=sf-dump-const title=\"Uninitialized property\">? string</span>
+  +<span class=sf-dump-public title=\"Public property\">apiPrefix</span>: <span class=sf-dump-const title=\"Uninitialized property\">? string</span>
+  +<span class=sf-dump-public title=\"Public property\">primaryName</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">connection</span>: <span class=sf-dump-const>null</span>
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1299409546\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","component":"<pre class=sf-dump id=sf-dump-846083785 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\AnonymousComponent</span> {<a class=sf-dump-ref>#1855</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">except</span>: []
+  +<span class=sf-dump-public title=\"Public property\">componentName</span>: \"<span class=sf-dump-str title=\"16 characters\">application-mark</span>\"
+  +<span class=sf-dump-public title=\"Public property\">attributes</span>: <span class=sf-dump-note title=\"Illuminate\\View\\ComponentAttributeBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ComponentAttributeBag</span> {<a class=sf-dump-ref>#1852</a><samp data-depth=2 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">view</span>: \"<span class=sf-dump-str title=\"27 characters\">components.application-mark</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">data</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-846083785\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","constructor":"<pre class=sf-dump id=sf-dump-28464 data-indent-pad=\"  \"><span class=sf-dump-note>ReflectionMethod</span> {<a class=sf-dump-ref>#1857</a><samp data-depth=1 class=sf-dump-expanded>
+  +<span class=sf-dump-public title=\"Public property\">name</span>: \"<span class=sf-dump-str title=\"11 characters\">__construct</span>\"
+  +<span class=sf-dump-public title=\"Public property\">class</span>: \"<span class=sf-dump-str title=\"34 characters\">Illuminate\\View\\AnonymousComponent</span>\"
+  <span class=sf-dump-meta>parameters</span>: {<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-meta>$view</span>: <span class=sf-dump-note>ReflectionParameter</span> {<a class=sf-dump-ref>#1867</a><samp data-depth=3 class=sf-dump-compact>
+      +<span class=sf-dump-public title=\"Public property\">name</span>: \"<span class=sf-dump-str title=\"4 characters\">view</span>\"
+      <span class=sf-dump-meta>position</span>: <span class=sf-dump-num>0</span>
+    </samp>}
+    <span class=sf-dump-meta>$data</span>: <span class=sf-dump-note>ReflectionParameter</span> {<a class=sf-dump-ref>#2113</a><samp data-depth=3 class=sf-dump-compact>
+      +<span class=sf-dump-public title=\"Public property\">name</span>: \"<span class=sf-dump-str title=\"4 characters\">data</span>\"
+      <span class=sf-dump-meta>position</span>: <span class=sf-dump-num>1</span>
+    </samp>}
+  </samp>}
+  <span class=sf-dump-meta>extra</span>: {<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-meta>file</span>: \"<span class=sf-dump-str title=\"/var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/AnonymousComponent.php
+86 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">/var/www/motoblack/vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">/laravel/framework/</span>src/Illuminate/View/AnonymousComponent.php</span>\"
+    <span class=sf-dump-meta>line</span>: \"<span class=sf-dump-str title=\"8 characters\">28 to 32</span>\"
+    <span class=sf-dump-meta>docComment</span>: \"\"\"
+      <span class=sf-dump-str title=\"145 characters\">/**<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"145 characters\">     * Create a new anonymous component instance.<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"145 characters\">     *<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"145 characters\">     * @param  string  $view<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"145 characters\">     * @param  array  $data<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"145 characters\">     * @return void<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"145 characters\">     */</span>
+      \"\"\"
+    <span class=sf-dump-meta>isUserDefined</span>: <span class=sf-dump-const>true</span>
+  </samp>}
+  <span class=sf-dump-meta>modifiers</span>: \"<span class=sf-dump-str title=\"6 characters\">public</span>\"
+</samp>}
+</pre><script>Sfdump(\"sf-dump-28464\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"userId":1,"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): file_put_contents(/var/www/motoblack/storage/framework/cache/data/85/5f/855f92484c8c414d36c1b25cb24876e30229cbbf): Failed to open stream: Permission denied at /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:204)
+[stacktrace]
+#0 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'file_put_conten...', '/var/www/motobl...', 204)
+#1 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'file_put_conten...', '/var/www/motobl...', 204)
+#2 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(204): file_put_contents('/var/www/motobl...', '1733497347a:3:{...', 2)
+#3 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cache/FileStore.php(83): Illuminate\\Filesystem\\Filesystem->put('/var/www/motobl...', '1733497347a:3:{...', true)
+#4 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cache/Repository.php(216): Illuminate\\Cache\\FileStore->put('spatie.permissi...', Array, 86400)
+#5 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cache/Repository.php(398): Illuminate\\Cache\\Repository->put('spatie.permissi...', Array, Object(DateInterval))
+#6 /var/www/motoblack/vendor/spatie/laravel-permission/src/PermissionRegistrar.php(198): Illuminate\\Cache\\Repository->remember('spatie.permissi...', Object(DateInterval), Object(Closure))
+#7 /var/www/motoblack/vendor/spatie/laravel-permission/src/PermissionRegistrar.php(216): Spatie\\Permission\\PermissionRegistrar->loadPermissions()
+#8 /var/www/motoblack/vendor/spatie/laravel-permission/src/Models/Permission.php(143): Spatie\\Permission\\PermissionRegistrar->getPermissions(Array, true)
+#9 /var/www/motoblack/vendor/spatie/laravel-permission/src/Models/Permission.php(154): Spatie\\Permission\\Models\\Permission::getPermissions(Array, true)
+#10 /var/www/motoblack/vendor/spatie/laravel-permission/src/Models/Permission.php(92): Spatie\\Permission\\Models\\Permission::getPermission(Array)
+#11 /var/www/motoblack/vendor/spatie/laravel-permission/src/Traits/HasPermissions.php(186): Spatie\\Permission\\Models\\Permission::findByName('pessoas.view', 'web')
+#12 /var/www/motoblack/vendor/spatie/laravel-permission/src/Traits/HasPermissions.php(213): App\\Models\\User->filterPermission('pessoas.view', NULL)
+#13 /var/www/motoblack/vendor/spatie/laravel-permission/src/Traits/HasPermissions.php(261): App\\Models\\User->hasPermissionTo('pessoas.view', NULL)
+#14 /var/www/motoblack/vendor/spatie/laravel-permission/src/PermissionRegistrar.php(129): App\\Models\\User->checkPermissionTo('pessoas.view', NULL)
+#15 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Access/Gate.php(566): Spatie\\Permission\\PermissionRegistrar->Spatie\\Permission\\{closure}(Object(App\\Models\\User), 'pessoas.view', Array)
+#16 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Access/Gate.php(438): Illuminate\\Auth\\Access\\Gate->callBeforeCallbacks(Object(App\\Models\\User), 'pessoas.view', Array)
+#17 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Access/Gate.php(406): Illuminate\\Auth\\Access\\Gate->raw('pessoas.view', Array)
+#18 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Access/Gate.php(354): Illuminate\\Auth\\Access\\Gate->inspect('pessoas.view', Array)
+#19 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Collections/Traits/EnumeratesValues.php(277): Illuminate\\Auth\\Access\\Gate->Illuminate\\Auth\\Access\\{closure}('pessoas.view', 0)
+#20 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Access/Gate.php(353): Illuminate\\Support\\Collection->every(Object(Closure))
+#21 /var/www/motoblack/resources/views/layouts/menu.blade.php(3): Illuminate\\Auth\\Access\\Gate->check('pessoas.view')
+#22 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#23 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#24 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#25 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#26 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#27 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#28 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#29 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#30 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#31 /var/www/motoblack/resources/views/components/sidebar-menu.blade.php(11): Illuminate\\View\\View->render()
+#32 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#33 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#34 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#35 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#36 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#37 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#38 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#39 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#40 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#41 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesComponents.php(103): Illuminate\\View\\View->render()
+#42 /var/www/motoblack/resources/views/layouts/app.blade.php(28): Illuminate\\View\\Factory->renderComponent()
+#43 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#44 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#45 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#46 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#47 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#48 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#49 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#50 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#51 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#52 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesComponents.php(99): Illuminate\\View\\View->render()
+#53 /var/www/motoblack/resources/views/dashboard.blade.php(13): Illuminate\\View\\Factory->renderComponent()
+#54 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#55 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#56 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#57 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#58 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#59 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#60 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#61 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#62 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#63 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\\View\\View->render()
+#64 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#65 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(918): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#66 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(885): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#67 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#68 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#69 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Middleware/EnsureEmailIsVerified.php(41): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#70 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Auth\\Middleware\\EnsureEmailIsVerified->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#72 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#73 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/AuthenticateSession.php(60): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#74 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\AuthenticateSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#75 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#76 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure), 'sanctum')
+#77 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#78 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#79 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#80 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#81 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#82 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#83 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#84 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#85 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#86 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#87 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#88 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#89 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#90 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#91 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#92 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#93 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#94 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#95 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#96 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#97 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#98 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#99 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#100 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#101 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#102 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#103 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#104 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#105 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#106 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#107 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#108 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#109 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#110 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#111 /var/www/motoblack/vendor/itsgoingd/clockwork/Clockwork/Support/Laravel/ClockworkMiddleware.php(24): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#112 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Clockwork\\Support\\Laravel\\ClockworkMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#113 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#114 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#115 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#116 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#117 {main}
+
+[previous exception] [object] (ErrorException(code: 0): file_put_contents(/var/www/motoblack/storage/framework/cache/data/85/5f/855f92484c8c414d36c1b25cb24876e30229cbbf): Failed to open stream: Permission denied at /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:204)
+[stacktrace]
+#0 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'file_put_conten...', '/var/www/motobl...', 204)
+#1 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'file_put_conten...', '/var/www/motobl...', 204)
+#2 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(204): file_put_contents('/var/www/motobl...', '1733497347a:3:{...', 2)
+#3 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cache/FileStore.php(83): Illuminate\\Filesystem\\Filesystem->put('/var/www/motobl...', '1733497347a:3:{...', true)
+#4 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cache/Repository.php(216): Illuminate\\Cache\\FileStore->put('spatie.permissi...', Array, 86400)
+#5 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cache/Repository.php(398): Illuminate\\Cache\\Repository->put('spatie.permissi...', Array, Object(DateInterval))
+#6 /var/www/motoblack/vendor/spatie/laravel-permission/src/PermissionRegistrar.php(198): Illuminate\\Cache\\Repository->remember('spatie.permissi...', Object(DateInterval), Object(Closure))
+#7 /var/www/motoblack/vendor/spatie/laravel-permission/src/PermissionRegistrar.php(216): Spatie\\Permission\\PermissionRegistrar->loadPermissions()
+#8 /var/www/motoblack/vendor/spatie/laravel-permission/src/Models/Permission.php(143): Spatie\\Permission\\PermissionRegistrar->getPermissions(Array, true)
+#9 /var/www/motoblack/vendor/spatie/laravel-permission/src/Models/Permission.php(154): Spatie\\Permission\\Models\\Permission::getPermissions(Array, true)
+#10 /var/www/motoblack/vendor/spatie/laravel-permission/src/Models/Permission.php(92): Spatie\\Permission\\Models\\Permission::getPermission(Array)
+#11 /var/www/motoblack/vendor/spatie/laravel-permission/src/Traits/HasPermissions.php(186): Spatie\\Permission\\Models\\Permission::findByName('pessoas.view', 'web')
+#12 /var/www/motoblack/vendor/spatie/laravel-permission/src/Traits/HasPermissions.php(213): App\\Models\\User->filterPermission('pessoas.view', NULL)
+#13 /var/www/motoblack/vendor/spatie/laravel-permission/src/Traits/HasPermissions.php(261): App\\Models\\User->hasPermissionTo('pessoas.view', NULL)
+#14 /var/www/motoblack/vendor/spatie/laravel-permission/src/PermissionRegistrar.php(129): App\\Models\\User->checkPermissionTo('pessoas.view', NULL)
+#15 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Access/Gate.php(566): Spatie\\Permission\\PermissionRegistrar->Spatie\\Permission\\{closure}(Object(App\\Models\\User), 'pessoas.view', Array)
+#16 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Access/Gate.php(438): Illuminate\\Auth\\Access\\Gate->callBeforeCallbacks(Object(App\\Models\\User), 'pessoas.view', Array)
+#17 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Access/Gate.php(406): Illuminate\\Auth\\Access\\Gate->raw('pessoas.view', Array)
+#18 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Access/Gate.php(354): Illuminate\\Auth\\Access\\Gate->inspect('pessoas.view', Array)
+#19 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Collections/Traits/EnumeratesValues.php(277): Illuminate\\Auth\\Access\\Gate->Illuminate\\Auth\\Access\\{closure}('pessoas.view', 0)
+#20 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Access/Gate.php(353): Illuminate\\Support\\Collection->every(Object(Closure))
+#21 /var/www/motoblack/storage/framework/views/fd9d6776d5486cc972a9e8052f79df4b.php(2): Illuminate\\Auth\\Access\\Gate->check('pessoas.view')
+#22 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#23 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#24 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#25 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#26 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#27 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#28 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#29 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#30 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#31 /var/www/motoblack/storage/framework/views/6350f51f7fd57d5cd59818640782ffb9.php(30): Illuminate\\View\\View->render()
+#32 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#33 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#34 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#35 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#36 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#37 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#38 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#39 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#40 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#41 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesComponents.php(103): Illuminate\\View\\View->render()
+#42 /var/www/motoblack/storage/framework/views/80c544d7d12f6fbcb3d5a5eb0c3a4b3d.php(39): Illuminate\\View\\Factory->renderComponent()
+#43 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#44 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#45 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#46 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#47 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#48 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#49 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#50 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#51 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#52 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesComponents.php(99): Illuminate\\View\\View->render()
+#53 /var/www/motoblack/storage/framework/views/4b139545db2bf629464a246565ab14f4.php(24): Illuminate\\View\\Factory->renderComponent()
+#54 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#55 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#56 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#57 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#58 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#59 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#60 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#61 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#62 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#63 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\\View\\View->render()
+#64 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#65 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(918): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#66 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(885): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#67 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#68 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#69 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Middleware/EnsureEmailIsVerified.php(41): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#70 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Auth\\Middleware\\EnsureEmailIsVerified->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#72 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#73 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/AuthenticateSession.php(60): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#74 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\AuthenticateSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#75 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#76 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure), 'sanctum')
+#77 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#78 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#79 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#80 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#81 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#82 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#83 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#84 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#85 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#86 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#87 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#88 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#89 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#90 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#91 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#92 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#93 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#94 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#95 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#96 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#97 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#98 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#99 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#100 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#101 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#102 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#103 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#104 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#105 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#106 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#107 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#108 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#109 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#110 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#111 /var/www/motoblack/vendor/itsgoingd/clockwork/Clockwork/Support/Laravel/ClockworkMiddleware.php(24): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#112 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Clockwork\\Support\\Laravel\\ClockworkMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#113 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#114 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#115 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#116 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#117 {main}
+"} 
