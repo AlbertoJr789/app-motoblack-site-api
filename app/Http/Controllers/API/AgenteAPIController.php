@@ -9,7 +9,9 @@ use App\Repositories\AgenteRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 /**
  * Class AgenteAPIController
@@ -109,16 +111,48 @@ class AgenteAPIController extends AppBaseController
 
     public function getOnline(): JsonResponse
     {
-        dd('zaaa');
 
-        return $this->sendSuccess('Agente online');
+        try {
+            $agente = Auth::user();
+
+            if($agente instanceof Agente){
+                if($agente->uuid){
+                    return $this->sendSuccess(__('Agent online'));
+                }
+                $agente->update(['uuid' => Http::post(config('app.firebase_url').'/availableAgents/.json',[
+                    'id' => $agente->id,
+                    'latitude' => 0,
+                    'longitude' => 0,
+                    'type' => $agente->tipo->value
+                ])->throw()->json()['name']]);
+            }else{
+                throw new Exception(__('Invalid user'));
+            }
+        } catch (\Throwable $th) {
+            return $this->sendError(__('Error while getting online: '. $th->getMessage()));
+        }
+
+        return $this->sendSuccess(__('Agent online'));
     }
 
     public function getOffline(): JsonResponse
     {
-        $agentes = $this->agenteRepository->getOffline();
+        try {
+            $agente = Auth::user();
+            if($agente instanceof Agente){
+                if(!$agente->uuid){
+                    return $this->sendSuccess(__('Agent offline'));
+                }
+                Http::delete(config('app.firebase_url')."/availableAgents/$agente->uuid/.json")->throw();
+                $agente->update(['uuid' => null]);
+            }else{
+                throw new Exception(__('Invalid user'));
+            }
+        } catch (\Throwable $th) {
+            return $this->sendError(__('Error while getting offline: '. $th->getMessage()));
+        }
 
-        return $this->sendSuccess('Agente offline');
+        return $this->sendSuccess(__('Agent offline'));
     }
 
 

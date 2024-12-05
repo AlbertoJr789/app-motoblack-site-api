@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enum\AgenteTipo;
+use App\Enum\VeiculoTipo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +24,7 @@ class Agente extends Authenticatable
 
     public $fillable = [
         // 'tipo',
+        'uuid',
         'status',
         'latitude',
         'longitude',
@@ -79,6 +82,14 @@ class Agente extends Authenticatable
     public function deleter()
     {
         return $this->hasOne(User::class, 'id', 'deleter_id');
+    }
+
+    public function getTipoAttribute(){
+        return match($this->activeVehicle->tipo){
+            VeiculoTipo::Car => AgenteTipo::Driver,
+            VeiculoTipo::Motorcycle =>  AgenteTipo::Pilot,
+            default => ''
+        };
     }
 
     public function uploadFiles(FileBag $files){

@@ -33,7 +33,7 @@ class Veiculo extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'tipo' => 'integer',
+        'tipo' => VeiculoTipo::class,
         'modelo' => 'string',
         'marca' => 'string',
         'chassi' => 'string',
@@ -45,22 +45,6 @@ class Veiculo extends Model
     ];
 
     public static array $rules = [];
-   
-    protected function tipo(): Attribute
-    {
-        return Attribute::make(
-            get: function (int $value) {
-                return [
-                    'type' => $value,
-                    'name' => match ($value) {
-                        VeiculoTipo::Motorcycle->value => __('Motorcycle'),
-                        VeiculoTipo::Car->value => __('Car'),
-                        default => ''
-                    }
-                ];
-            }
-        );
-    }
 
     public function agente(){
         return $this->hasOne(Agente::class,'id','agente_id');
