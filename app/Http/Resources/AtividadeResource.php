@@ -17,6 +17,7 @@ class AtividadeResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'uuid' => $this->uuid,
             'type' => $this->tipo,
             'agent' => new AgenteResource($this->agente),
             'passenger' => new PassageiroResource($this->passageiro),

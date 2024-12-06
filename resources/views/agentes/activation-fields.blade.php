@@ -39,7 +39,7 @@
             <!-- Tipo Field -->
             <div>
                 {!! Form::label('tipo', __('Type'),['class' => "block mx-1 required"]) !!}
-                {!! Form::select('tipo', ['1' => __('Motorcycle'),'2' => __('Car')],$Agente?->activeVehicle?->tipo, ['class' => 'input w-full','x-bind:required'=>'$wire.active && $wire.em_analise',]) !!}
+                {!! Form::select('tipo', ['1' => __('Motorcycle'),'2' => __('Car')],$Agente?->activeVehicle?->tipo->value, ['class' => 'input w-full','x-bind:required'=>'$wire.active && $wire.em_analise',]) !!}
             </div>
 
             <div>

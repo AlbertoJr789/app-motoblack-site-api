@@ -117,7 +117,7 @@ class AgenteAPIController extends AppBaseController
 
             if($agente instanceof Agente){
                 if($agente->uuid){
-                    return $this->sendSuccess(__('Agent online'));
+                    return $this->sendSuccess($agente->uuid);
                 }
                 $agente->update(['uuid' => Http::post(config('app.firebase_url').'/availableAgents/.json',[
                     'id' => $agente->id,
@@ -132,7 +132,7 @@ class AgenteAPIController extends AppBaseController
             return $this->sendError(__('Error while getting online: '. $th->getMessage()));
         }
 
-        return $this->sendSuccess(__('Agent online'));
+        return $this->sendSuccess($agente->uuid);
     }
 
     public function getOffline(): JsonResponse

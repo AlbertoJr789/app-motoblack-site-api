@@ -78,6 +78,7 @@ class AtividadeAPIController extends AppBaseController
     {
         $d = $request->all();
         \Log::debug($d);
+
         try {
             
             DB::beginTransaction();
@@ -113,6 +114,10 @@ class AtividadeAPIController extends AppBaseController
                 'destino' => $destino,
                 'tipo' => intval($d['type']),
                 'passageiro_id' => Auth::id(),
+            ]);
+
+            $atividade->update([
+                'uuid' => $this->initTrip($atividade)
             ]);
             DB::commit();
             return $this->sendResponse(new AtividadeResource($atividade), 'Atividade saved successfully');
@@ -194,6 +199,25 @@ class AtividadeAPIController extends AppBaseController
             default => ''
         };
         return collect(Http::get(config('app.firebase_url')."/availableAgents.json$type")->json());
+    }
+
+    /**
+     * Initializes a trip in the realtime database (currently using firebase)
+     */
+    private function initTrip(Atividade $atividade){
+        return Http::post(config('app.firebase_url')."/trips/.json",[
+            'agent' => [
+                'accepted' => false,
+                'id' => null
+            ],
+            'cancelled' => false,
+            'id' => $atividade->id,
+            'passenger' => [
+                'id' => $atividade->passageiro_id,
+                'latitude' => $atividade->origin->latitude,
+                'longitude' => $atividade->origin->longitude
+            ]
+        ])->throw()->json()['name'];
     }
 
     // /**

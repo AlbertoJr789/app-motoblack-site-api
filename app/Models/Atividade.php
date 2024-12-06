@@ -16,6 +16,7 @@ class Atividade extends Model
 
     public $fillable = [
         'agente_id',
+        'uuid',
         'passageiro_id',
         'cancelada',
         'data_finalizada',

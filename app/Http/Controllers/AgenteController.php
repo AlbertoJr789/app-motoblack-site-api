@@ -124,9 +124,9 @@ class AgenteController extends AppBaseController
                          })
                          ->addColumn('active_vehicle',function($reg){
                             if($reg->activeVehicle){
-                                $type = match($reg->activeVehicle->tipo['type']){
-                                    VeiculoTipo::Motorcycle->value => '<span class="badge badge-secondary uppercase">'.__('Motorcycle Pilot').'</span>',
-                                    VeiculoTipo::Car->value => '<span class="badge badge-primary uppercase">'.__('Car Driver').'</span>',
+                                $type = match($reg->activeVehicle->tipo){
+                                    VeiculoTipo::Motorcycle => '<span class="badge badge-secondary uppercase">'.__('Motorcycle Pilot').'</span>',
+                                    VeiculoTipo::Car => '<span class="badge badge-primary uppercase">'.__('Car Driver').'</span>',
                                     default => ''
                                 };
                                 return "$type - {$reg->activeVehicle->modelo} ({$reg->activeVehicle->placa})";

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Permission;
 
@@ -30,9 +31,9 @@ return new class extends Migration
             $table->foreignId('destino')->references('id')->on('endereco');
             
             $table->text('rota_gerada')->nullable();
-            $table->foreignId('agente_id')->references('id')->on('agente');
+            $table->foreignId('agente_id')->nullable()->references('id')->on('agente');
+            $table->foreignId('veiculo_id')->nullable()->references('id')->on('veiculo');
             $table->foreignId('passageiro_id')->references('id')->on('passageiro');
-            $table->foreignId('veiculo_id')->references('id')->on('veiculo');
             $table->timestamps();
             
             try {
@@ -50,7 +51,7 @@ return new class extends Migration
     public function down()
     {
         Schema::drop('atividade');
-                
+        Http::delete(config('app.firebase_url').'/trips/.json')->throw();
         try {
             Permission::whereName('atividades.view')
                   ->delete();
