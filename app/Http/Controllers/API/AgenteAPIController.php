@@ -116,7 +116,7 @@ class AgenteAPIController extends AppBaseController
             $agente = Auth::user();
 
             if($agente instanceof Agente){
-                if($agente->uuid){
+                if($agente->uuid && self::isRegistered($agente)){
                     return $this->sendSuccess($agente->uuid);
                 }
                 $agente->update(['uuid' => Http::post(config('app.firebase_url').'/availableAgents/.json',[
@@ -156,5 +156,10 @@ class AgenteAPIController extends AppBaseController
     }
 
 
+    public static function isRegistered(Agente $agente): bool
+    {
+        $response = Http::get(config('app.firebase_url')."/availableAgents/$agente->uuid/.json")->throw()->json();
+        return $response !== null;
+    }
 
 }
