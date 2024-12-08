@@ -21,7 +21,7 @@ Route::group(['prefix' => 'auth'],function () {
 
 Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),'verified','verify.user.active']], function () {
     Route::apiResource('activity', App\Http\Controllers\API\AtividadeAPIController::class);
-    Route::get('drawAgent',[App\Http\Controllers\API\AtividadeAPIController::class,'drawAgent']);
+    Route::get('drawAgent/{atividade}',[App\Http\Controllers\API\AtividadeAPIController::class,'drawAgent']);
 
     Route::apiResource('vehicle', App\Http\Controllers\API\VeiculoAPIController::class);
     

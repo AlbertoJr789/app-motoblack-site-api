@@ -167,25 +167,44 @@ class AtividadeAPIController extends AppBaseController
     /**
      *  Gets the most suited agent to take charge in the trip
      */
-    public function drawAgent(Request $request){
+    public function drawAgent(Atividade $atividade){
 
         $agente = null;
         $distance = null;
-        foreach($this->getActiveAgents($request->tripType) as $agent) {
-            if($distance == null){
-                $distance = haversine($request->latitude,$request->longitude,$agent['latitude'],$agent['longitude']);
-                $agente = $agent['id']; 
-            }else{
-                $d = haversine($request->latitude,$request->longitude,$agent['latitude'],$agent['longitude']);
-                if($d < $distance){
-                    $distance = $d;
-                    $agente = $agent['id'];
+        try {
+            foreach($this->getActiveAgents($atividade->tipo) as $agent) {
+                if($distance == null){
+                    $distance = haversine($atividade->origin->latitude,$atividade->origin->longitude,$agent['latitude'],$agent['longitude']);
+                    $agente = $agent['id']; 
+                }else{
+                    $d = haversine($atividade->origin->latitude,$atividade->origin->longitude,$agent['latitude'],$agent['longitude']);
+                    if($d < $distance){
+                        $distance = $d;
+                        $agente = $agent['id'];
+                    }
                 }
             }
-        }
 
-        if($agente == null) return $this->sendError(__('Not found',['attribute' => __('Agent')]));
-        return new AgenteResource(Agente::find($agente),true);
+            if($agente == null) return $this->sendError(__('Not found',['attribute' => __('Agent')]));
+
+            $agente = Agente::find($agente);
+            Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
+                'agent' => [
+                    'accepting' => true,
+                ]
+            ])->throw();
+            Http::patch(config('app.firebase_url')."/availableAgents/{$agente->uuid}/.json",[
+                'trips' => [
+                    'id' => $atividade->id,
+                    'refused' => false
+                ]
+            ])->throw();
+            return new AgenteResource($agente,true);
+       } catch (\Throwable $th) {
+            \Log::error('Error while drawing agent: '. $th->getLine().'-'.$th->getMessage());
+            $this->sendError(__('Not found',['attribute' => __('Agent')]));
+       }
+       
     }
 
     /**
@@ -207,7 +226,7 @@ class AtividadeAPIController extends AppBaseController
     private function initTrip(Atividade $atividade){
         return Http::post(config('app.firebase_url')."/trips/.json",[
             'agent' => [
-                'accepted' => false,
+                'accepting' => false,
                 'id' => null
             ],
             'cancelled' => false,
