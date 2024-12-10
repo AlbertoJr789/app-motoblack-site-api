@@ -134,14 +134,13 @@ class AtividadeAPIController extends AppBaseController
      */
     public function show($id): JsonResponse
     {
-        /** @var Atividade $Atividade */
-        $Atividade = $this->AtividadeRepository->find($id);
 
-        if (empty($Atividade)) {
+        $atividade = Atividade::with(['origin', 'destiny', 'agente', 'passageiro', 'veiculo'])->find($id);
+        if (empty($atividade)) {
             return $this->sendError('Atividade not found');
         }
 
-        return $this->sendResponse($Atividade->toArray(), 'Atividade retrieved successfully');
+        return $this->sendResponse(new AtividadeResource($atividade), 'Atividade retrieved successfully');
     }
 
     /**
@@ -188,6 +187,12 @@ class AtividadeAPIController extends AppBaseController
             if($agente == null) return $this->sendError(__('Not found',['attribute' => __('Agent')]));
 
             $agente = Agente::find($agente);
+            $trips = collect(Http::get(config('app.firebase_url')."/availableAgents/{$agente->uuid}/trips/.json")->throw()->json());
+            $trips->push([
+                'id' => $atividade->id,
+                'refused' => false
+            ]);
+            
             Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
                 'agent' => [
                     'accepting' => true,
@@ -195,8 +200,7 @@ class AtividadeAPIController extends AppBaseController
             ])->throw();
             Http::patch(config('app.firebase_url')."/availableAgents/{$agente->uuid}/.json",[
                 'trips' => [
-                    'id' => $atividade->id,
-                    'refused' => false
+                  ...$trips->unique()->toArray()
                 ]
             ])->throw();
             return new AgenteResource($agente,true);
