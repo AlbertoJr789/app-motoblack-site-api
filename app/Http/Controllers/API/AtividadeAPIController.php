@@ -18,6 +18,7 @@ use App\Models\Endereco;
 use App\Models\Passageiro;
 use App\Enum\VeiculoTipo;
 use App\Http\Resources\AgenteResource;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -128,7 +129,7 @@ class AtividadeAPIController extends AppBaseController
         }
     }
 
-    /**
+    /** 
      * Display the specified Atividade.
      * GET|HEAD /Atividades/{id}
      */
@@ -242,6 +243,28 @@ class AtividadeAPIController extends AppBaseController
             ]
         ])->throw()->json()['name'];
     }
+
+    public function acceptTrip(Atividade $atividade){
+        
+        if($atividade->agente_id) return $this->sendSuccess('Trip accepted successfully'); //already accepted
+        try{
+            if(!$atividade->uuid) throw new Exception('no uuid found');
+
+            $atividade->agente_id = Auth::id();
+            $atividade->veiculo_id = Auth::user()->veiculo_ativo_id;
+            Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
+                'agent' => [
+                    'id' => Auth::id()
+                ]
+            ])->throw();
+            $atividade->save();
+            return $this->sendSuccess('Trip accepted successfully');
+        }catch (\Throwable $th) {
+            \Log::error('Error accepting trip: '. $th->getLine().'-'.$th->getMessage());
+            return $this->sendError('Could not accept trip',422);
+        }
+    }
+
 
     // /**
     //  * Remove the specified Atividade from storage.

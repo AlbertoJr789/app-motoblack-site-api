@@ -1,3 +1,0 @@
-[2024-10-31 01:28:37] local.ERROR: Error while submiting Agente: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'motivo_inativo' in 'field list' (Connection: mysql, SQL: update `agente` set `active` = 1, `em_analise` = 0, `editor_id` = 1, `motivo_inativo` = ?, `agente`.`updated_at` = 2024-10-31 01:28:37 where `id` = 6)  
-[2024-10-31 01:29:12] local.ERROR: Error while submiting Agente: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'motivo_inativo' in 'field list' (Connection: mysql, SQL: update `agente` set `active` = 1, `em_analise` = 0, `editor_id` = 1, `motivo_inativo` = ?, `agente`.`updated_at` = 2024-10-31 01:29:12 where `id` = 6)  
-[2024-10-31 01:37:01] local.ERROR: Error while submiting Agente: Class "App\Http\Controllers\Exception" not found  
