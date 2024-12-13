@@ -23,6 +23,7 @@ Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),
     Route::apiResource('activity', App\Http\Controllers\API\AtividadeAPIController::class);
     Route::get('drawAgent/{atividade}',[App\Http\Controllers\API\AtividadeAPIController::class,'drawAgent']);
     Route::patch('acceptTrip/{atividade}',[App\Http\Controllers\API\AtividadeAPIController::class,'acceptTrip']);
+    Route::patch('cancel/{atividade}',[App\Http\Controllers\API\AtividadeAPIController::class,'cancel']);
 
     Route::apiResource('vehicle', App\Http\Controllers\API\VeiculoAPIController::class);
     

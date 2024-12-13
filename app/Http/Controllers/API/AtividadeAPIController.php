@@ -78,8 +78,8 @@ class AtividadeAPIController extends AppBaseController
     public function store(CreateAtividadeAPIRequest $request) 
     {
         $d = $request->all();
-        \Log::debug($d);
-
+       
+        // return $this->sendResponse(new AtividadeResource(Atividade::find(105)), 'Atividade saved successfully');
         try {
             
             DB::beginTransaction();
@@ -171,6 +171,8 @@ class AtividadeAPIController extends AppBaseController
 
         $agente = null;
         $distance = null;
+
+        if($atividade->agente_id) return new AgenteResource($atividade->agente,true);
         try {
             foreach($this->getActiveAgents($atividade->tipo) as $agent) {
                 if($distance == null){
@@ -263,6 +265,30 @@ class AtividadeAPIController extends AppBaseController
             \Log::error('Error accepting trip: '. $th->getLine().'-'.$th->getMessage());
             return $this->sendError('Could not accept trip',422);
         }
+    }
+
+    public function cancel(Atividade $atividade,Request $request){
+
+        $d = $request->all();
+        if($atividade->cancelada) return $this->sendSuccess('Trip accepted successfully'); //already accepted
+        try{
+            
+            Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
+                'cancelled' => true,
+                'whoCancelled' => Auth::id() instanceof Agente ? 'a' : 'p',
+                'cancellingReason' => $d['reason']
+            ])->throw();
+
+            $atividade->cancelada = true;
+            $atividade->justificativa_cancelamento = $d['reason'];
+
+            $atividade->save();
+            return $this->sendSuccess('Trip cancelled successfully');
+        }catch (\Throwable $th) {
+            \Log::error('Error cancelling trip: '. $th->getLine().'-'.$th->getMessage());
+            return $this->sendError('Could not cancel trip',422);
+        }
+
     }
 
 
