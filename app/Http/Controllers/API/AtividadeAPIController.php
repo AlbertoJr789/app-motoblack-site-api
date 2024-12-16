@@ -58,6 +58,7 @@ class AtividadeAPIController extends AppBaseController
                     simple: true,
                     beforePaginating: function($query) use ($field) {
                         $query->where($field,Auth::user()->id)
+                              ->whereNotNull('agente_id')
                               ->orderBy('created_at','desc');
                     }
                 );
@@ -79,7 +80,7 @@ class AtividadeAPIController extends AppBaseController
     {
         $d = $request->all();
        
-        // return $this->sendResponse(new AtividadeResource(Atividade::find(105)), 'Atividade saved successfully');
+        // return $this->sendResponse(new AtividadeResource(Atividade::find(106)), 'Atividade saved successfully');
         try {
             
             DB::beginTransaction();
@@ -270,7 +271,7 @@ class AtividadeAPIController extends AppBaseController
     public function cancel(Atividade $atividade,Request $request){
 
         $d = $request->all();
-        if($atividade->cancelada) return $this->sendSuccess('Trip accepted successfully'); //already accepted
+
         try{
             
             Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
@@ -278,6 +279,15 @@ class AtividadeAPIController extends AppBaseController
                 'whoCancelled' => Auth::id() instanceof Agente ? 'a' : 'p',
                 'cancellingReason' => $d['reason']
             ])->throw();
+
+            $trips = collect(Http::get(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/trips/.json")->throw()->json());
+            
+            Http::patch(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/.json",[
+                'trips' => [
+                  ...$trips->where('id','!=',$atividade->id)->toArray()
+                ]
+            ])->throw();
+
 
             $atividade->cancelada = true;
             $atividade->justificativa_cancelamento = $d['reason'];

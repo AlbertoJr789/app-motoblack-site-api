@@ -121,3 +121,16 @@
 #52 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #53 {main}
 "} 
+[2024-12-16 13:17:47] local.ERROR: Error cancelling trip: 279-Undefined array key "reason"  
+[2024-12-16 13:20:03] local.DEBUG: array (
+)  
+[2024-12-16 13:20:03] local.ERROR: Error cancelling trip: 280-Undefined array key "reason"  
+[2024-12-16 13:23:34] local.DEBUG: array (
+)  
+[2024-12-16 13:23:34] local.ERROR: Error cancelling trip: 280-Undefined array key "reason"  
+[2024-12-16 13:26:59] local.DEBUG: array (
+)  
+[2024-12-16 13:26:59] local.ERROR: Error cancelling trip: 280-Undefined array key "reason"  
+[2024-12-16 13:29:23] local.DEBUG: array (
+  'reason' => 'teste',
+)  
