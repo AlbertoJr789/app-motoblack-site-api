@@ -26,12 +26,12 @@ Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),
     
     Route::patch('acceptTrip/{atividade}',[App\Http\Controllers\API\AtividadeAPIController::class,'acceptTrip']);
     Route::post('cancel/{atividade}',[App\Http\Controllers\API\AtividadeAPIController::class,'cancel']);
-
+    
     Route::apiResource('vehicle', App\Http\Controllers\API\VeiculoAPIController::class);
     
     Route::get('profileData',[App\Http\Controllers\API\ProfileAPIController::class,'getProfileData']);
     Route::post('updateProfile',[App\Http\Controllers\API\ProfileAPIController::class,'updateProfileData']);
-
+    
     Route::get('getOnline',[App\Http\Controllers\API\AgenteAPIController::class,'getOnline']);
     Route::get('getOffline',[App\Http\Controllers\API\AgenteAPIController::class,'getOffline']);
 
@@ -44,3 +44,5 @@ Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),
     // Route::resource('passageiros', App\Http\Controllers\API\PassageiroAPIController::class)
     //     ->except(['create', 'edit']);
 });
+
+Route::get('marker/{user}',[App\Http\Controllers\API\AtividadeAPIController::class,'marker']);

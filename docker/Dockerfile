@@ -1,16 +1,16 @@
-FROM php:8.3-fpm-alpine
+FROM php:8.3-fpm
 
 WORKDIR /var/www/motoblack
 
 # Install dependencies
-RUN apk update
-RUN apk add \
+RUN apt-get update
+RUN apt-get install -y \
     nano \
     git \
     curl \
-    oniguruma-dev \
-    bash \
-    nodejs npm
+    libonig-dev \
+    nodejs npm \
+    wkhtmltopdf
 
 RUN npm install vite
 

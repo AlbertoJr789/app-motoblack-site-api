@@ -18,6 +18,8 @@ use App\Models\Endereco;
 use App\Models\Passageiro;
 use App\Enum\VeiculoTipo;
 use App\Http\Resources\AgenteResource;
+use App\Models\User;
+use Barryvdh\Snappy\Facades\SnappyImage;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -242,7 +244,7 @@ class AtividadeAPIController extends AppBaseController
             'passenger' => [
                 'id' => $atividade->passageiro_id,
                 'latitude' => $atividade->origin->latitude,
-                'longitude' => $atividade->origin->longitude
+                'longitude' =>$atividade->origin->longitude
             ]
         ])->throw()->json()['name'];
     }
@@ -266,6 +268,18 @@ class AtividadeAPIController extends AppBaseController
             \Log::error('Error accepting trip: '. $th->getLine().'-'.$th->getMessage());
             return $this->sendError('Could not accept trip',422);
         }
+    }
+
+    public function marker(User $user) 
+    {
+        $html = view('components.agent-marker')->with('avatar', $user->profile_photo_url)->render();
+
+        $image = SnappyImage::loadHTML($html)
+            ->setOption('format', 'png')
+            ->setOption('transparent', true)
+            ->setOption('width', 332); 
+
+        return $image->inline();
     }
 
     public function cancel(Atividade $atividade,Request $request){

@@ -9,6 +9,7 @@ use App\Repositories\AgenteRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Barryvdh\Snappy\Facades\SnappyImage;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;

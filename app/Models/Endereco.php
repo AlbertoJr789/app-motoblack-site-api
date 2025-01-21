@@ -25,6 +25,11 @@ class Endereco extends Model
         'pais'
     ];
 
+    protected $casts = [
+        'latitude' => 'double',
+        'longitude' => 'double'
+    ];
+
     public function getFormattedAddressAttribute(){
         return "$this->logradouro, $this->numero, $this->bairro $this->complemento - $this->cidade/$this->estado - $this->pais - $this->cep";
     }

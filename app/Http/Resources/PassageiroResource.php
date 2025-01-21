@@ -16,6 +16,7 @@ class PassageiroResource extends JsonResource
     {
         return [
             'name' => $this->pessoa->nome,
+            'user_id' => $this->user_id,
             'avatar' => $this->user->profile_photo_url
         ];
     }
