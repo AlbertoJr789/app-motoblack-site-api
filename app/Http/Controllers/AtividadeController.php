@@ -40,11 +40,11 @@ class AtividadeController extends AppBaseController
    public function dataTableData(Request $request){
 
        $query = Atividade::select('atividade.*','PA.nome as agente','PP.nome as passageiro',DB::raw('CONCAT(V.marca,\' - \',V.modelo) as veiculo'))
-                         ->join('agente as A','A.id','agente_id')
-                         ->join('pessoa as PA','PA.id','A.pessoa_id')
-                         ->join('passageiro as P','P.id','passageiro_id')
-                         ->join('pessoa as PP','PP.id','P.pessoa_id')
-                         ->join('veiculo as V','V.id','veiculo_id');
+                         ->leftjoin('agente as A','A.id','agente_id')
+                         ->leftjoin('pessoa as PA','PA.id','A.pessoa_id')
+                         ->leftjoin('passageiro as P','P.id','passageiro_id')
+                         ->leftjoin('pessoa as PP','PP.id','P.pessoa_id')
+                         ->leftjoin('veiculo as V','V.id','veiculo_id');
 
        $query = $this->filterDataTableData($query,$request->all());
        return DataTables::eloquent($query)

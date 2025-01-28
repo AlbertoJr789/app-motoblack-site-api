@@ -61,6 +61,7 @@ class AtividadeAPIController extends AppBaseController
                     beforePaginating: function($query) use ($field) {
                         $query->where($field,Auth::user()->id)
                               ->whereNotNull('agente_id')
+                              ->whereNotNull('data_finalizada')
                               ->orderBy('created_at','desc');
                     }
                 );
@@ -288,25 +289,29 @@ class AtividadeAPIController extends AppBaseController
 
         try{
             
-            Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
-                'cancelled' => true,
-                'whoCancelled' => Auth::id() instanceof Agente ? 'a' : 'p',
-                'cancellingReason' => $d['reason']
-            ])->throw();
+            if($atividade->agente_id){
+                Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
+                    'cancelled' => true,
+                    'whoCancelled' => Auth::id() instanceof Agente ? 'a' : 'p',
+                    'cancellingReason' => $d['reason']
+                ])->throw();
 
-            $trips = collect(Http::get(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/trips/.json")->throw()->json());
+                $trips = collect(Http::get(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/trips/.json")->throw()->json());
             
-            Http::patch(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/.json",[
-                'trips' => [
-                  ...$trips->where('id','!=',$atividade->id)->toArray()
-                ]
-            ])->throw();
+                Http::patch(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/.json",[
+                    'trips' => [
+                      ...$trips->where('id','!=',$atividade->id)->toArray()
+                    ]
+                ])->throw();
 
-
-            $atividade->cancelada = true;
-            $atividade->justificativa_cancelamento = $d['reason'];
-
-            $atividade->save();
+                $atividade->cancelada = true;
+                $atividade->data_finalizada = now();
+                $atividade->justificativa_cancelamento = $d['reason'];
+                $atividade->save();
+            }else{
+                Http::delete(config('app.firebase_url')."/trips/{$atividade->uuid}/.json")->throw();
+                $atividade->delete();
+            }
             return $this->sendSuccess('Trip cancelled successfully');
         }catch (\Throwable $th) {
             \Log::error('Error cancelling trip: '. $th->getLine().'-'.$th->getMessage());

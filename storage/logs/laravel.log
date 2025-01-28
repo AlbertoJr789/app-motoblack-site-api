@@ -581,3 +581,7 @@ command: /usr/bin/wkhtmltoimage --format 'png' --height '100' --width '100' '/tm
 #32 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #33 {main}
 "} 
+[2025-01-28 22:52:27] local.ERROR: Error cancelling trip: 298-Attempt to read property "uuid" on null  
+[2025-01-28 22:52:39] local.ERROR: Error cancelling trip: 298-Attempt to read property "uuid" on null  
+[2025-01-28 22:58:03] local.ERROR: Error cancelling trip: 298-Attempt to read property "uuid" on null  
+[2025-01-28 22:59:43] local.ERROR: Error cancelling trip: 298-Attempt to read property "uuid" on null  
