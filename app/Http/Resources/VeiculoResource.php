@@ -17,9 +17,11 @@ class VeiculoResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'type' => $this->tipo,
             'model' => $this->modelo,
             'brand' => $this->marca,
+            'currentActiveVehicle' => $this->agente->veiculo_ativo_id == $this->id ? true : false,
             //private documents regarding the vehicle will only appear to the owner
             'chassi' => Auth::user() instanceof Agente && Auth::user()->id == $this->agente_id ? $this->chassi : null, 
             'renavam' => Auth::user() instanceof Agente && Auth::user()->id == $this->agente_id  ? $this->renavam : null,

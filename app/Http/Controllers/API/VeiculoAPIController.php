@@ -9,6 +9,9 @@ use App\Repositories\VeiculoRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Http\Resources\VeiculoCollection;
+use App\Models\Passageiro;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class VeiculoAPIController
@@ -28,13 +31,30 @@ class VeiculoAPIController extends AppBaseController
      */
     public function index(Request $request): JsonResponse
     {
-        $veiculos = $this->veiculoRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+       
+        try {
+            
+            if (Auth::user() instanceof Passageiro) {
+                return $this->sendError('Passenger cannot access vehicles');
+            } 
 
-        return $this->sendResponse($veiculos->toArray(), 'Veiculos retrieved successfully');
+            $veiculos = $this->veiculoRepository
+                ->paginate(
+                    perPage: $request->get('amount') ?? 10,
+                    simple: true,
+                    beforePaginating: function($query) {
+                        $query->where('agente_id',Auth::user()->id)
+                              ->orderBy('created_at','desc');
+                    }
+                );
+            return $this->sendResponse(
+                ['result' => new VeiculoCollection($veiculos), 
+                'hasMore' => $veiculos->hasMorePages()
+            ],'Vehicles retrieved successfully');
+        } catch (\Throwable $th) {
+            \Log::error($th->getMessage());
+            return $this->sendError('Couldn\'t retrieve user\'s vehicles');
+        }
     }
 
     /**
