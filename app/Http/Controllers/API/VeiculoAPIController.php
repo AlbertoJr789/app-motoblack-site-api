@@ -64,27 +64,16 @@ class VeiculoAPIController extends AppBaseController
     public function store(CreateVeiculoAPIRequest $request): JsonResponse
     {
         $input = $request->all();
-
+        $input['active'] = false;
+        $input['motivo_inativo'] = 'Veículo em análise';
+        
         $veiculo = $this->veiculoRepository->create($input);
+
+        $veiculo->uploadDocument($input['document']);
 
         return $this->sendResponse($veiculo->toArray(), 'Veiculo saved successfully');
     }
 
-    /**
-     * Display the specified Veiculo.
-     * GET|HEAD /veiculos/{id}
-     */
-    public function show($id): JsonResponse
-    {
-        /** @var Veiculo $veiculo */
-        $veiculo = $this->veiculoRepository->find($id);
-
-        if (empty($veiculo)) {
-            return $this->sendError('Veiculo not found');
-        }
-
-        return $this->sendResponse($veiculo->toArray(), 'Veiculo retrieved successfully');
-    }
 
     /**
      * Update the specified Veiculo in storage.

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->softDeletes();
             $table->foreignId('agente_id')->references('id')->on('agente');
             $table->boolean('active')->default(false);
+            $table->string('motivo_inativo')->nullable();
             $table->foreignId('creator_id')->references('id')->on('users');
             $table->foreignId('editor_id')->nullable()->references('id')->on('users');
             $table->foreignId('deleter_id')->nullable()->references('id')->on('users');

@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Enum\VeiculoTipo;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Veiculo extends Model
 {
@@ -28,7 +28,8 @@ class Veiculo extends Model
         'creator_id',
         'editor_id',
         'deleter_id',
-        'active'
+        'active',
+        'motivo_inativo'
     ];
 
     protected $casts = [
@@ -41,7 +42,8 @@ class Veiculo extends Model
         'placa' => 'string',
         'cor' => 'string',
         'data_desativacao' => 'datetime',
-        'agente_id' => 'integer'
+        'agente_id' => 'integer',
+        'motivo_inativo' => 'string'
     ];
 
     public static array $rules = [];
@@ -64,4 +66,11 @@ class Veiculo extends Model
     {
         return $this->hasOne(User::class, 'id', 'deleter_id');
     }
+
+    public function uploadDocument($document)
+    {
+        $ext = $document->getClientOriginalExtension();
+        Storage::disk('vehicle')->put("/$this->id/document.$ext",file_get_contents($document->getRealPath()));
+    }
+
 }

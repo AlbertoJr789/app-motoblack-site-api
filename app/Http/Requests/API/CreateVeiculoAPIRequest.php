@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\API;
 
+use App\Enum\VeiculoTipo;
 use App\Models\Veiculo;
+use Illuminate\Validation\Rule;
 use InfyOm\Generator\Request\APIRequest;
 
 class CreateVeiculoAPIRequest extends APIRequest
@@ -24,6 +26,13 @@ class CreateVeiculoAPIRequest extends APIRequest
      */
     public function rules()
     {
-        return Veiculo::$rules;
+        return array_merge(Veiculo::$rules, [
+            'brand' => 'required|string|max:255',
+            'model' => 'required|string|max:255',
+            'type' => ['required',Rule::enum(VeiculoTipo::class)],
+            'plate' => 'required|string|max:255',
+            'color' => 'required|string|max:255',
+            'document' => 'required|mimes:jpg,jpeg,png,pdf|max:3096',
+        ]);
     }
 }
