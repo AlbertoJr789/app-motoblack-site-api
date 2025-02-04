@@ -19,7 +19,7 @@
 
             <div class="text-center">
                 {!! Form::label('', __('Vehicle document'),['class' => "block mx-1 text-sm"]) !!}
-                <a href="{{route('admin.agentes.getDocument',$Agente->id)}}?doc=vehicle_doc" target="_blank"><img src="{{route('admin.agentes.getDocument',$Agente->id)}}?doc=vehicle_doc" alt="{{__('Vehicle document')}}" class="w-full h-auto"></a>
+                <a href="{{route('admin.veiculos.getDocument',$Agente->veiculo_ativo_id)}}" target="_blank"><img src="{{route('admin.veiculos.getDocument',$Agente->veiculo_ativo_id)}}" alt="{{__('Vehicle document')}}" class="w-full h-auto"></a>
             </div>
             @endif
         </div>

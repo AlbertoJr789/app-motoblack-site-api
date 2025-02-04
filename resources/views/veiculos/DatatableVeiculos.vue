@@ -70,6 +70,7 @@
         {data: 'renavam', title: window.trans('renavam')},
         {data: 'placa', title: window.trans('License Plate')},
         {data: 'cor', title: window.trans('cor')},
+        {data: 'motivo_inativo', title: window.trans('Unactive Reason')},
         {data: 'data_desativacao', title: window.trans('Deactivation Date')},
         {data: 'created_at', title: window.trans('Creation Date')},
         {data: 'updated_at', title: window.trans('Update Date')},

@@ -12,11 +12,9 @@
         evaluateSteppers(0)
         Livewire.on('resetStepper',(e)=>{
             document.querySelector('[stepper-item]').click()
-            if(e.evaluate){
-                setTimeout(() => {
-                    evaluateSteppers(0)
-                }, 500);
-            }
+            setTimeout(() => {
+                evaluateSteppers(0)
+            }, 500);
         })
         Livewire.hook('commit', ({component,commit,respond,succeed,fail}) => {                
             respond(() => {

@@ -13,7 +13,7 @@
     <!-- Tipo Field -->
     <div>
         {!! Form::label('tipo', 'Tipo:',['class' => "block mx-1 required"]) !!}
-        {!! Form::select('tipo', ['1' => __('Motorcycle'),'2' => __('Car')],null, ['class' => 'input w-full','required' => 'true','wire:model' => 'tipo' ]) !!}
+        {!! Form::select('tipo', ['1' => __('Motorcycle'),'2' => __('Car')],$Veiculo->tipo->value ?? null, ['class' => 'input w-full','required' => 'true','wire:model' => 'tipo' ]) !!}
     </div>
 </div>
 
@@ -53,4 +53,12 @@
         {!! Form::checkbox('active',null,$active, ['class' => 'checkbox-toggle-switch','wire:model' => 'active',]) !!}
     </div>
     @endif
+</div>
+
+<div class="grid sm:grid-cols-2 sm:gap-6 grid-cols-1" x-show="!$wire.active">
+    <!-- Documento Field -->
+    <div>
+        {!! Form::label('motivo_inativo', 'Motivo Inativo:',['class' => "block mx-1 required"]) !!}
+        {!! Form::text('motivo_inativo', null, ['class' => 'input w-full','wire:model' => 'motivo_inativo','x-bind:required'=>'!$wire.active']) !!}
+    </div>
 </div>

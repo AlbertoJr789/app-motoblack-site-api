@@ -35,4 +35,16 @@ class CreateVeiculoAPIRequest extends APIRequest
             'document' => 'required|mimes:jpg,jpeg,png,pdf|max:3096',
         ]);
     }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'marca' => $this->input('brand'),
+            'modelo' => $this->input('model'),
+            'tipo' => $this->input('type'),
+            'placa' => $this->input('plate'),
+            'cor' => $this->input('color'),
+        ]);
+    }
+
 }

@@ -22,7 +22,7 @@
                         @include('veiculos.fields')
                     </div>
                     <div class="hidden">
-                        <h1 class="m-auto text-2xl">{{__('Vehicle Papers')}}</h1>
+                        <h1 class="m-auto text-2xl">{{__('Vehicle Papers')}}  @if($Veiculo && $Veiculo->documento) - <a href="{{ route('admin.veiculos.getDocument', $Veiculo->id) }}" class="text-blue-400" target="_blank">{{ __('Check Document') }}</a>@endif</h1>
                         @include('veiculos.docs-fields')
                     </div>
                 </div>

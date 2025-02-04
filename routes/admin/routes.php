@@ -21,6 +21,7 @@ Route::group(['prefix' => 'agentes', 'as' => 'agentes.', 'middleware' => 'permis
 Route::group(['prefix' => 'veiculos', 'as' => 'veiculos.', 'middleware' => 'permission:veiculo.view'],function(){
     Route::resource('/', App\Http\Controllers\VeiculoController::class);
     Route::patch('/update/{veiculo}', [App\Http\Controllers\VeiculoController::class,'update'])->name('update');
+    Route::get('/document/{veiculo}', [App\Http\Controllers\VeiculoController::class,'getDocument'])->name('getDocument');
     Route::get('dataTableData',[App\Http\Controllers\VeiculoController::class,'dataTableData'])->name('dataTableData');
 });
 Route::group(['prefix' => 'passageiros', 'as' => 'passageiros.', 'middleware' => 'permission:passageiro.view'],function(){

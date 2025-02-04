@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Resources\VeiculoCollection;
+use App\Models\Agente;
 use App\Models\Passageiro;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,10 +64,16 @@ class VeiculoAPIController extends AppBaseController
      */
     public function store(CreateVeiculoAPIRequest $request): JsonResponse
     {
+
+        if(!Auth::user() instanceof Agente){
+            return $this->sendError('Only agents can register vehicles');
+        }
+
         $input = $request->all();
         $input['active'] = false;
         $input['motivo_inativo'] = 'Veículo em análise';
-        
+        $input['agente_id'] = Auth::user()->id;
+
         $veiculo = $this->veiculoRepository->create($input);
 
         $veiculo->uploadDocument($input['document']);

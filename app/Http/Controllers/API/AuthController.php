@@ -42,9 +42,9 @@ class AuthController extends Controller
 
     public function createAgent(Request $request){
         $request->validate([
-            'driver_license' => ['required', 'mimes:jpg,jpeg,png,application/pdf', 'max:3096'],
-            'vehicle_doc' => ['required', 'mimes:jpg,jpeg,png,application/pdf', 'max:3096'],
-            'address_proof' => ['required', 'mimes:jpg,jpeg,png,application/pdf', 'max:3096'],
+            'driver_license' => ['required', 'mimes:jpg,jpeg,png,pdf', 'max:3096'],
+            'vehicle_doc' => ['required', 'mimes:jpg,jpeg,png,pdf', 'max:3096'],
+            'address_proof' => ['required', 'mimes:jpg,jpeg,png,pdf', 'max:3096'],
             'name' => ['required', 'string', 'max:255', new UserUniqueRule('A')],
             'email' => ['nullable','email', 'max:255',new UserUniqueRule('A')],
             'password' => ['required',new Password(8)],
@@ -62,6 +62,7 @@ class AuthController extends Controller
                 'marca' => $request['marca'],
                 'placa' => $request['placa'],
                 'cor' => $request['cor'],        
+                'motivo_inativo' => 'Cadastro do agente em análise',
                 'agente_id' => $agent->id,
                 'creator_id' => $agent->user_id,
                 'active' => false

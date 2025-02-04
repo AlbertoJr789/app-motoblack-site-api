@@ -50,6 +50,12 @@ class VeiculoController extends AppBaseController
         try {
             $d = $request->all();
             $d['agente_id'] = $d['Dono'];
+            if(key_exists('active',$d)){
+                $d['motivo_inativo'] = null;
+            }else{
+                $d['data_desativacao'] = now();
+            }
+            
             $veiculo = $this->veiculoRepository->update($d,$veiculo->id);
 
             alert()->success(__('Success'),'Veiculo '.__('updated successfully!'));
@@ -87,6 +93,9 @@ class VeiculoController extends AppBaseController
                          })
                          ->editColumn('deleted_at',function($reg){
                                return $reg->deleted_at ? $reg->deleted_at->format('d/m/Y H:i') : '';
+                         })
+                         ->editColumn('data_desativacao',function($reg){
+                            return $reg->data_desativacao ? $reg->data_desativacao->format('d/m/Y H:i') : '';
                          })
                          ->editColumn('tipo',function($reg){
                             switch($reg->tipo){
@@ -141,5 +150,10 @@ class VeiculoController extends AppBaseController
         return $query;
     }
 
+    public function getDocument(Veiculo $veiculo){
+        $doc = $veiculo->documento;
+        if(!$doc) return $this->sendError(__('Not found',['attribute' => __('Document')]));
+        return response($doc->content)->header('Content-Type',$doc->mimeType);
+    }
 
 }

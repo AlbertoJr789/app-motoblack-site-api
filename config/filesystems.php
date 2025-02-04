@@ -64,6 +64,15 @@ return [
             'throw' => false,
         ],
 
+        
+        'vehicle' => [
+            'driver' => 'local',
+            'root' => storage_path('app/vehicle'),
+            // 'url' => env('APP_URL').'/storage',
+            'visibility' => 'private',
+            'throw' => false,
+        ],
+
 
     ],
 

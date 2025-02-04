@@ -85,7 +85,7 @@ class Agente extends Authenticatable
     }
 
     public function getTipoAttribute(){
-        return match($this->activeVehicle->tipo){
+        return match($this->activeVehicle?->tipo){
             VeiculoTipo::Car => AgenteTipo::Driver,
             VeiculoTipo::Motorcycle =>  AgenteTipo::Pilot,
             default => ''
@@ -96,7 +96,11 @@ class Agente extends Authenticatable
     
         foreach($files as $key => $file){
             $ext = $file->getClientOriginalExtension();
-            Storage::disk('agent')->put("/$this->id/$key.$ext",file_get_contents($file->getRealPath()));
+            if($key === 'vehicle_doc'){
+                Storage::disk('vehicle')->put("/$this->veiculo_ativo_id/document.$ext",file_get_contents($file->getRealPath()));
+            }else{
+                Storage::disk('agent')->put("/$this->id/$key.$ext",file_get_contents($file->getRealPath()));
+            }
         }
     }
 

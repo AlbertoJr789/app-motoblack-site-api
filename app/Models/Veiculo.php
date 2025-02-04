@@ -73,4 +73,13 @@ class Veiculo extends Model
         Storage::disk('vehicle')->put("/$this->id/document.$ext",file_get_contents($document->getRealPath()));
     }
 
+  
+    public function getDocumentoAttribute(){
+        $filename = collect(Storage::disk('vehicle')->files("/$this->id/"))->filter(function($item) { 
+            return pathinfo($item,PATHINFO_FILENAME) === 'document';
+        })->first();
+
+        if(!$filename) return null;
+        return (object) ['content' => Storage::disk('vehicle')->get($filename), 'mimeType' => Storage::disk('vehicle')->mimeType($filename) ];
+    }
 }

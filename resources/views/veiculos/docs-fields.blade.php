@@ -20,3 +20,6 @@
         {!! Form::text('placa', null, ['class' => 'input w-full','required' => 'true','wire:model' => 'placa' ]) !!}
     </div>
 </div>
+
+
+
