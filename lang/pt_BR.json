@@ -261,5 +261,6 @@
     "Make the necessary changes or deactivate the agent if the fields don't match to the document that was sent": "Realize as mudanças necessárias ou desative o agente caso os campos não coincidam com o documento enviado",
     "Color": "Cor",
     "Unactive Reason": "Motivo Inativo",
-    "Check Document": "Ver Documento"
+    "Check Document": "Ver Documento",
+    "You can't use an inactive vehicle, check the inactive reason": "Você não pode usar um veículo inativo, verifique o motivo da inatividade"
 }

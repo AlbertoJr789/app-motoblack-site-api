@@ -36,6 +36,8 @@ Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),
     Route::get('getOnline',[App\Http\Controllers\API\AgenteAPIController::class,'getOnline']);
     Route::get('getOffline',[App\Http\Controllers\API\AgenteAPIController::class,'getOffline']);
 
+    Route::get('vehicle/setActive/{veiculo}',[App\Http\Controllers\API\VeiculoAPIController::class,'setActive']);
+
     // Route::apiResource('pessoas', App\Http\Controllers\API\PessoaAPIController::class)
     //     ->except(['create', 'edit']);
 

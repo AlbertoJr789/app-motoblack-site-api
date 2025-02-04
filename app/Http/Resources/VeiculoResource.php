@@ -22,6 +22,7 @@ class VeiculoResource extends JsonResource
             'model' => $this->modelo,
             'brand' => $this->marca,
             'currentActiveVehicle' => $this->agente->veiculo_ativo_id == $this->id ? true : false,
+            'inactiveReason' => $this->motivo_inativo,
             //private documents regarding the vehicle will only appear to the owner
             'chassi' => Auth::user() instanceof Agente && Auth::user()->id == $this->agente_id ? $this->chassi : null, 
             'renavam' => Auth::user() instanceof Agente && Auth::user()->id == $this->agente_id  ? $this->renavam : null,

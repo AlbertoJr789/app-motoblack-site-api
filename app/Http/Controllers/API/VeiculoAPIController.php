@@ -121,4 +121,29 @@ class VeiculoAPIController extends AppBaseController
 
         return $this->sendSuccess('Veiculo deleted successfully');
     }
+
+        /**
+     * Store a newly created Veiculo in storage.
+     * POST /veiculos
+     */
+    public function setActive(Veiculo $veiculo): JsonResponse
+    {
+
+        if(!Auth::user() instanceof Agente){
+            return $this->sendError('Only agents can register vehicles');
+        }
+
+        if($veiculo->agente_id != Auth::user()->id){
+            return $this->sendError('You don\'t have permission to activate this vehicle');
+        }
+
+        if(!$veiculo->active){
+            return $this->sendError(__('You can\'t use an inactive vehicle, check the inactive reason'),422);
+        }
+
+        Auth::user()->update(['veiculo_ativo_id' => $veiculo->id]);
+
+        return $this->sendSuccess('Veiculo activated successfully');
+    }
+
 }
