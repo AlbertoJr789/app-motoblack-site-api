@@ -70,6 +70,7 @@ class Veiculo extends Model
     public function uploadDocument($document)
     {
         $ext = $document->getClientOriginalExtension();
+        Storage::disk('vehicle')->deleteDirectory("/$this->id");
         Storage::disk('vehicle')->put("/$this->id/document.$ext",file_get_contents($document->getRealPath()));
     }
 

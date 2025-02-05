@@ -24,8 +24,9 @@ class UpdateVeiculoAPIRequest extends APIRequest
      */
     public function rules()
     {
-        $rules = Veiculo::$rules;
         
-        return $rules;
+        return [
+            'document' => 'required|mimes:jpg,jpeg,png,pdf|max:3096',
+        ];
     }
 }

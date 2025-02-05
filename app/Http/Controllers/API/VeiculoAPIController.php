@@ -88,16 +88,22 @@ class VeiculoAPIController extends AppBaseController
      */
     public function update($id, UpdateVeiculoAPIRequest $request): JsonResponse
     {
-        $input = $request->all();
-
-        /** @var Veiculo $veiculo */
         $veiculo = $this->veiculoRepository->find($id);
 
         if (empty($veiculo)) {
-            return $this->sendError('Veiculo not found');
+            return $this->sendError('Veiculo not found',422);
         }
 
-        $veiculo = $this->veiculoRepository->update($input, $id);
+        if($veiculo->ativo){
+            return $this->sendError(__('You can\'t update an active vehicle'),422);
+        }
+
+        $veiculo->uploadDocument($request->document);
+
+        $veiculo->update([
+            'motivo_inativo' => 'Veículo em análise',
+            'active' => false
+        ]);
 
         return $this->sendResponse($veiculo->toArray(), 'Veiculo updated successfully');
     }
@@ -114,8 +120,17 @@ class VeiculoAPIController extends AppBaseController
         $veiculo = $this->veiculoRepository->find($id);
 
         if (empty($veiculo)) {
-            return $this->sendError('Veiculo not found');
+            return $this->sendError('Veiculo not found',422);
         }
+
+        if($veiculo->agente_id != Auth::user()->id){
+            return $this->sendError('You don\'t have permission to delete this vehicle',422);
+        }
+
+        if(Auth::user()->veiculo_ativo_id == $veiculo->id){
+            return $this->sendError(__('You can\'t delete an active vehicle you\'re using'),422);
+        }
+
 
         $veiculo->delete();
 

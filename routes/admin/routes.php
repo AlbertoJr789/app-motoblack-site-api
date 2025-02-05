@@ -15,13 +15,13 @@ Route::group(['prefix' => 'pessoas', 'as' => 'pessoas.', 'middleware' => 'permis
 Route::group(['prefix' => 'agentes', 'as' => 'agentes.', 'middleware' => 'permission:agente.view'],function(){
     Route::resource('/', App\Http\Controllers\AgenteController::class);
     Route::patch('/update/{agente}', [App\Http\Controllers\AgenteController::class,'update'])->name('update');
-    Route::get('/document/{agente}', [App\Http\Controllers\AgenteController::class,'getDocument'])->name('getDocument');
+    Route::get('/documento/{agente}', [App\Http\Controllers\AgenteController::class,'getDocument'])->name('getDocument');
     Route::get('dataTableData',[App\Http\Controllers\AgenteController::class,'dataTableData'])->name('dataTableData');
 });
 Route::group(['prefix' => 'veiculos', 'as' => 'veiculos.', 'middleware' => 'permission:veiculo.view'],function(){
     Route::resource('/', App\Http\Controllers\VeiculoController::class);
     Route::patch('/update/{veiculo}', [App\Http\Controllers\VeiculoController::class,'update'])->name('update');
-    Route::get('/document/{veiculo}', [App\Http\Controllers\VeiculoController::class,'getDocument'])->name('getDocument');
+    Route::get('/documento/{veiculo}', [App\Http\Controllers\VeiculoController::class,'getDocument'])->name('getDocument');
     Route::get('dataTableData',[App\Http\Controllers\VeiculoController::class,'dataTableData'])->name('dataTableData');
 });
 Route::group(['prefix' => 'passageiros', 'as' => 'passageiros.', 'middleware' => 'permission:passageiro.view'],function(){
