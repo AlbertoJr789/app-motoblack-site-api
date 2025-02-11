@@ -47,6 +47,7 @@
         //     className:'text-center noVis', orderable: false, searchable: false, visible: true, width: '20px'},
 
         {data: 'id', title: window.trans('id')},
+        {data: 'route', name: "route", title: window.trans('Route'), width: '300px', className: 'min-w-[300px]'},
         {data: 'agente', name: "PA.nome", title: window.trans('Agent')},
         {data: 'passageiro', name:"PP.nome", title: window.trans('Passenger')},
         {data: 'cancelada', title: window.trans('Cancelled')},

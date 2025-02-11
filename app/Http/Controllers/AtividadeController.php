@@ -39,7 +39,7 @@ class AtividadeController extends AppBaseController
     */
    public function dataTableData(Request $request){
 
-       $query = Atividade::select('atividade.*','PA.nome as agente','PP.nome as passageiro',DB::raw('CONCAT(V.marca,\' - \',V.modelo) as veiculo'))
+       $query = Atividade::with(['destiny','origin'])->select('atividade.*','PA.nome as agente','PP.nome as passageiro',DB::raw('CONCAT(V.marca,\' - \',V.modelo) as veiculo'))
                          ->leftjoin('agente as A','A.id','agente_id')
                          ->leftjoin('pessoa as PA','PA.id','A.pessoa_id')
                          ->leftjoin('passageiro as P','P.id','passageiro_id')
@@ -48,6 +48,18 @@ class AtividadeController extends AppBaseController
 
        $query = $this->filterDataTableData($query,$request->all());
        return DataTables::eloquent($query)
+                         ->addColumn('route',function($reg){
+                            return '<div class="flex flex-col gap-2">
+                                <div class="flex items-center gap-4">
+                                    <i class="fas fa-flag-checkered text-green-600"></i>
+                                    <span>'.$reg->origin->formatted_address.'</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <i class="fas fa-flag text-red-600"></i>
+                                    <span>'.$reg->destiny->formatted_address.'</span>
+                                </div>
+                            </div>';
+                         })
                          ->addColumn('select',function($reg){
                                return '';
                          })
@@ -72,7 +84,7 @@ class AtividadeController extends AppBaseController
                          ->addColumn('action',function($reg){
                                return view('atividades.action-buttons',['data' => $reg]);
                          })
-                         ->rawColumns(['action','cancelada','nota_agente','nota_passageiro'])
+                         ->rawColumns(['action','cancelada','nota_agente','nota_passageiro','route'])
                          ->make();
 
    }
