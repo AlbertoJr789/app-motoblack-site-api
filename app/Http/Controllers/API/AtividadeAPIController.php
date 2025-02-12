@@ -88,7 +88,7 @@ class AtividadeAPIController extends AppBaseController
             
             DB::beginTransaction();
 
-            $destino = Endereco::firstOrCreate([
+            $origem = Endereco::firstOrCreate([
                 'latitude' => $d['origin']['latitude'],
                 'longitude' => $d['origin']['longitude']
             ],[
@@ -101,7 +101,7 @@ class AtividadeAPIController extends AppBaseController
                 'pais' => $d['origin']['country']
             ])->id;
 
-            $origem = Endereco::firstOrCreate([
+            $destino = Endereco::firstOrCreate([
                 'latitude' => $d['destiny']['latitude'],
                 'longitude' => $d['destiny']['longitude']
             ],[
