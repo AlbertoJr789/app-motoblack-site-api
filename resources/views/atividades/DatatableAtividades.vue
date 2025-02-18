@@ -27,7 +27,7 @@
     import { ref } from 'vue';
     import '../../css/dataTables.css';
     import '../../css/dataTablesLoader.css';
-    
+    import { dataTableButtons, dataTableLengthMenu } from '../../js/utils';
     DataTable.use(DataTablesCore);
 
     const table = ref()
@@ -76,18 +76,14 @@
         language: {
             url: `../../../lang/${navigator.language ?? 'en'}/datatables.json`
         },
-        buttons: [{
-            extend: 'colvis',
-            columns: ':not(.noVis)',
-        }],
+        buttons: dataTableButtons,
         fixedHeader: true,
         fixedColumns: true,
         responsive: true,
         serverSide: true,
         processing: true,
-        responsive: true,
         stateSave: true,
-        order: [[1,'desc']],
+        order: [[1, 'desc']],
         dom: "<'grid grid-cols-1 sm:grid-cols-12 mb-2'" +
             "<'col-span-8'<'toolbar mt-4'>>" +
             "<'col-span-4 flex items-center sm:justify-end sm:flex-nowrap flex-wrap justify-center'fB>" +
@@ -97,7 +93,7 @@
             "<'col-span-12 md:col-span-5 flex items-center justify-center md:justify-start mx-2'li>" +
             "<'col-span-12 md:col-span-7 flex items-center justify-center md:justify-end'p>" +
             ">",
-        lengthMenu: [ [5,10 , 25, 50, 100, -1], [5,10, 25, 50, 100, "∞"] ]
+        lengthMenu: dataTableLengthMenu
     };
 
     const ajax = {

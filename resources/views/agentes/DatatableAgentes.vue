@@ -30,7 +30,7 @@
     import 'datatables.net-buttons/js/buttons.colVis.js';
     import DataTablesCore from 'datatables.net';
     import { ref, toRaw } from 'vue';
-    import { handleCheckboxes } from '../../js/utils.js';
+    import { handleCheckboxes, dataTableButtons, dataTableLengthMenu } from '../../js/utils.js';
     import '../../css/dataTables.css';
     import '../../css/dataTablesLoader.css';
     
@@ -83,10 +83,7 @@
         language: {
             url: `../../../lang/${navigator.language ?? 'en'}/datatables.json`
         },
-        buttons: [{
-            extend: 'colvis',
-            columns: ':not(.noVis)',
-        }],
+        buttons: dataTableButtons,
         // fixedHeader: true,
         fixedColumns: true,
         responsive: true,
@@ -125,7 +122,7 @@
                 checked.value = []
             }
         },
-        lengthMenu: [ [5,10 , 25, 50, 100, -1], [5,10, 25, 50, 100, "∞"] ]
+        lengthMenu: dataTableLengthMenu
     };
 
     const ajax = {

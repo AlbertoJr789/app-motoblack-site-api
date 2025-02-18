@@ -30,7 +30,7 @@
     import 'datatables.net-buttons/js/buttons.colVis.js';
     import DataTablesCore from 'datatables.net';
     import { ref, toRaw } from 'vue';
-    import { handleCheckboxes } from '../../js/utils.js';
+    import { handleCheckboxes, dataTableButtons, dataTableLengthMenu } from '../../js/utils.js';
     import '../../css/dataTables.css';
     import '../../css/dataTablesLoader.css';
     
@@ -63,7 +63,7 @@
 
         {data: 'id', title: window.trans('id')},
         {data: 'pessoa', name: "P.nome", title: window.trans('Person')},
-        {data: 'user', name:"U.name",title: window.trans('User')},
+        {data: 'user_name', name:"U.name",title: window.trans('User')},
         {data: 'created_at', title: window.trans('Creation Date')},
         {data: 'updated_at', title: window.trans('Update Date')},
 
@@ -80,10 +80,7 @@
         language: {
             url: `../../../lang/${navigator.language ?? 'en'}/datatables.json`
         },
-        buttons: [{
-            extend: 'colvis',
-            columns: ':not(.noVis)',
-        }],
+        buttons: dataTableButtons,
         fixedHeader: true,
         fixedColumns: true,
         responsive: true,
@@ -122,7 +119,7 @@
                 checked.value = []
             }
         },
-        lengthMenu: [ [5,10 , 25, 50, 100, -1], [5,10, 25, 50, 100, "∞"] ]
+        lengthMenu: dataTableLengthMenu
     };
 
     const ajax = {

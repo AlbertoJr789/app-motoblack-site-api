@@ -51,7 +51,7 @@ class PassageiroController extends AppBaseController
     */
    public function dataTableData(Request $request){
 
-       $query = Passageiro::select('passageiro.*','C.name','E.name','D.name','P.nome as pessoa','U.name as user')
+       $query = Passageiro::select('passageiro.*','C.name','E.name','D.name','P.nome as pessoa','U.name as user_name')
                                     ->leftjoin('pessoa as P','P.id','pessoa_id')
                                     ->leftjoin('users as U','U.id','user_id')
                                     ->leftjoin('users as C','C.id','passageiro.creator_id')
@@ -81,7 +81,7 @@ class PassageiroController extends AppBaseController
                                return $reg->deleter ? $reg->deleter->name : '';
                          })
                          ->editColumn('active',function($reg){
-                            return $reg->active ? '<span class="badge badge-green uppercase">'.__('Yes').'</span>' : '<span class="badge badge-red uppercase">'.__('No').'</span>';
+                            return $reg->user->motivo_inativo ? '<span class="badge badge-green uppercase">'.__('Yes').'</span>' : '<span class="badge badge-red uppercase">'.__('No').'</span>';
                          })
                          ->addColumn('action',function($reg){
                                return view('passageiros.action-buttons',['data' => $reg]);
@@ -106,9 +106,9 @@ class PassageiroController extends AppBaseController
         }
         if(isset($r['activeFilter'])){
             if($r['activeFilter'] == 'true'){
-                $query->where('passageiro.active',true);
+                $query->whereNull('U.motivo_inativo');
             }else{
-                $query->where('passageiro.active',false);
+                $query->whereNotNull('U.motivo_inativo');
             }
         }
         return $query;

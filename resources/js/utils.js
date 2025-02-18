@@ -46,3 +46,18 @@ export function handleCheckboxes(targetTable,checked){
         }
     })
 }
+
+export const dataTableButtons = [
+    {
+        extend: 'colvis',
+        columns: ':not(.noVis)',
+    },
+    {
+        text: '<i class="fas fa-sync-alt"></i>',
+        action: function (e, dt, node, config) {
+            dt.ajax.reload();
+        }
+    }
+]
+
+export const dataTableLengthMenu = [ [5,10 , 25, 50, 100, -1], [5,10, 25, 50, 100, "∞"] ]
