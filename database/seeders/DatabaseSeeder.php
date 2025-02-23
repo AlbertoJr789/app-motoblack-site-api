@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123123123'),
             'admin' => 1
         ]);
-       
+
+
         $i = 5;
         \App\Models\Passageiro::factory($i)->create();
         \App\Models\Veiculo::factory($i)->create();

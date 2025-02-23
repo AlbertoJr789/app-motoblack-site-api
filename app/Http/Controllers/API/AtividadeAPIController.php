@@ -14,6 +14,7 @@ use App\Http\Resources\AtividadeResource;
 use App\Models\Agente;
 use App\Enum\AgenteStatus          ;
 use App\Enum\AtividadeTipo;
+use App\Enum\Cancelou;
 use App\Models\Endereco;
 use App\Models\Passageiro;
 use App\Enum\VeiculoTipo;
@@ -24,8 +25,6 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-
-use function Laravel\Prompts\search;
 
 /**
  * Class AtividadeAPIController
@@ -154,18 +153,35 @@ class AtividadeAPIController extends AppBaseController
      */
     public function update($id, UpdateAtividadeAPIRequest $request): JsonResponse
     {
-        $input = $request->all();
+     
+        $d = $request->all();
+        
+        try{
+            
+            $atividade = Atividade::findOrFail($id);
+            
+            if(Auth::user() instanceof Passageiro){
+                if(!$atividade->nota_agente){
+                    $atividade->nota_agente = $d['nota_agente'];
+                }
+                $atividade->obs_passageiro = $d['obs_passageiro'];
+            }else{
+                if(!$atividade->nota_passageiro){
+                    $atividade->nota_passageiro = $d['nota_passageiro'];
+                }
+                $atividade->obs_agente = $d['obs_agente'];
+            }
 
-        /** @var Atividade $Atividade */
-        $Atividade = $this->AtividadeRepository->find($id);
-
-        if (empty($Atividade)) {
-            return $this->sendError('Atividade not found');
+            if(!$atividade->data_finalizada){
+                $atividade->data_finalizada = now();
+            }
+        
+            $atividade->save();
+            return $this->sendSuccess('Trip updated successfully');
+        }catch (\Throwable $th) {
+            \Log::error('Error updating trip: '. $th->getLine().'-'.$th->getMessage());
+            return $this->sendError('Could not update trip',422);
         }
-
-        $Atividade = $this->AtividadeRepository->update($input, $id);
-
-        return $this->sendResponse($Atividade->toArray(), 'Atividade updated successfully');
     }
 
     /**
@@ -193,7 +209,7 @@ class AtividadeAPIController extends AppBaseController
 
             if($agente == null) return $this->sendError(__('Not found',['attribute' => __('Agent')]));
 
-            $agente = Agente::find($agente);
+            $agente = Agente::findOrFail($agente);
             $trips = collect(Http::get(config('app.firebase_url')."/availableAgents/{$agente->uuid}/trips/.json")->throw()->json());
             $trips->push([
                 'id' => $atividade->id,
@@ -288,11 +304,13 @@ class AtividadeAPIController extends AppBaseController
         $d = $request->all();
 
         try{
+
+            if($atividade->data_finalizada) return $this->sendError(__('Trip already finished'),405);
             
             if($atividade->agente_id){
                 Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
                     'cancelled' => true,
-                    'whoCancelled' => Auth::id() instanceof Agente ? 'a' : 'p',
+                    'whoCancelled' => Auth::user() instanceof Agente ? 'a' : 'p',
                     'cancellingReason' => $d['reason']
                 ])->throw();
 
@@ -307,6 +325,7 @@ class AtividadeAPIController extends AppBaseController
                 $atividade->cancelada = true;
                 $atividade->data_finalizada = now();
                 $atividade->justificativa_cancelamento = $d['reason'];
+                $atividade->quem_cancelou = Auth::user() instanceof Agente ? Cancelou::Agente->value : Cancelou::Passageiro->value;
                 $atividade->save();
             }else{
                 Http::delete(config('app.firebase_url')."/trips/{$atividade->uuid}/.json")->throw();

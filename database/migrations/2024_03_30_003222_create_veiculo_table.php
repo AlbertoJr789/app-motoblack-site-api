@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 
 return new class extends Migration
@@ -37,6 +38,7 @@ return new class extends Migration
                 Permission::create([ 'name' => 'veiculos.view']);
                 Permission::create([ 'name' => 'veiculos.create']);
                 Permission::create([ 'name' => 'veiculos.delete']);
+
             } catch (\Throwable $th) {
             }
         });
@@ -58,6 +60,9 @@ return new class extends Migration
                   ->orWhereName('veiculos.create')
                   ->orWhereName('veiculos.delete')
                   ->delete();
+
+            Storage::disk('vehicle')->deleteDirectory('/');
+
         } catch (\Throwable $th) {
         }
     }

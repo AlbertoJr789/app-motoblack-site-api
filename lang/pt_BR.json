@@ -229,8 +229,8 @@
     "Agent Report": "Relato do Agente",
     "Passenger": "Passageiro",
     "Passenger Report": "Relato do Passageiro",
-    "Passenger Evaluation": "Avaliação do Passageiro",
-    "Agent Evaluation": "Avaliação do Agente",
+    "Passenger Evaluation": "Nota do Passageiro",
+    "Agent Evaluation": "Nota do Agente",
     "Reason for Cancelling": "Justificativa de Cancelamento",
     "Route Taken": "Percurso tomado",
     "Vehicle Used": "Veículo Usado",
@@ -265,5 +265,6 @@
     "You can't use an inactive vehicle, check the inactive reason": "Você não pode usar um veículo inativo, verifique o motivo da inatividade",
     "You can't delete an active vehicle you're using": "Você não pode deletar um veículo ativo que você está utilizando, ative outro veículo e tente novamente.",
     "You don't have permission to delete this vehicle": "Você não tem permissão para deletar este veículo",
-    "Route": "Rota"
+    "Route": "Rota",
+    "Trip already finished": "Esta atividade já foi finalizada"
 }

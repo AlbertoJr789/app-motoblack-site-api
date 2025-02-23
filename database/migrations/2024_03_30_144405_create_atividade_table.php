@@ -21,11 +21,12 @@ return new class extends Migration
             $table->smallInteger('tipo')->comment('Corrida,entrega ou outra atividade');
             $table->tinyInteger('cancelada')->default(false);
             $table->dateTime('data_finalizada')->nullable();
-            $table->smallInteger('nota_passageiro')->nullable();
-            $table->smallInteger('nota_agente')->nullable();
+            $table->double('nota_passageiro')->nullable();
+            $table->double('nota_agente')->nullable();
             $table->text('obs_agente')->nullable();
             $table->text('obs_passageiro')->nullable();
             $table->text('justificativa_cancelamento')->nullable();
+            $table->smallInteger('quem_cancelou')->nullable();
             
             $table->foreignId('origem')->references('id')->on('endereco');
             $table->foreignId('destino')->references('id')->on('endereco');
