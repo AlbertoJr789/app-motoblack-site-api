@@ -57,10 +57,18 @@ class AtividadeAPIController extends AppBaseController
                     eagerLoads: ['origin', 'destiny', 'agente', 'passageiro', 'veiculo'],
                     perPage: $request->get('amount') ?? 10,
                     simple: true,
-                    beforePaginating: function($query) use ($field) {
+                    beforePaginating: function($query) use ($field,$request) {
                         $query->where($field,Auth::user()->id)
                               ->whereNotNull('agente_id')
                               ->whereNotNull('data_finalizada')
+                              ->when(isset($request->unrated),function($query){
+                                    if(Auth::user() instanceof Agente){
+                                        $query->whereNull('nota_passageiro');
+                                    }else{
+                                        $query->whereNull('nota_agente');
+                                    }
+                                    $query->where('cancelada',false);
+                              })
                               ->orderBy('created_at','desc');
                     }
                 );
@@ -174,6 +182,7 @@ class AtividadeAPIController extends AppBaseController
 
             if(!$atividade->data_finalizada){
                 $atividade->data_finalizada = now();
+                $this->removeTrip($atividade);
             }
         
             $atividade->save();
@@ -266,6 +275,18 @@ class AtividadeAPIController extends AppBaseController
         ])->throw()->json()['name'];
     }
 
+    /**
+     * Removes a trip from the realtime database (currently using firebase)
+     */
+    private function removeTrip(Atividade $atividade){
+        try{
+            Http::delete(config('app.firebase_url')."/trips/{$atividade->uuid}/.json");
+        }catch(\Throwable $th){
+            \Log::error('Error removing trip: '. $th->getLine().'-'.$th->getMessage());
+        }
+    }
+
+
     public function acceptTrip(Atividade $atividade){
         
         if($atividade->agente_id) return $this->sendSuccess('Trip accepted successfully'); //already accepted
@@ -308,12 +329,6 @@ class AtividadeAPIController extends AppBaseController
             if($atividade->data_finalizada) return $this->sendError(__('Trip already finished'),405);
             
             if($atividade->agente_id){
-                Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
-                    'cancelled' => true,
-                    'whoCancelled' => Auth::user() instanceof Agente ? 'a' : 'p',
-                    'cancellingReason' => $d['reason']
-                ])->throw();
-
                 $trips = collect(Http::get(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/trips/.json")->throw()->json());
             
                 Http::patch(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/.json",[
@@ -328,9 +343,9 @@ class AtividadeAPIController extends AppBaseController
                 $atividade->quem_cancelou = Auth::user() instanceof Agente ? Cancelou::Agente->value : Cancelou::Passageiro->value;
                 $atividade->save();
             }else{
-                Http::delete(config('app.firebase_url')."/trips/{$atividade->uuid}/.json")->throw();
                 $atividade->delete();
             }
+            $this->removeTrip($atividade);
             return $this->sendSuccess('Trip cancelled successfully');
         }catch (\Throwable $th) {
             \Log::error('Error cancelling trip: '. $th->getLine().'-'.$th->getMessage());
