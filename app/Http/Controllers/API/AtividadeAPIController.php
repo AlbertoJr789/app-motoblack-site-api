@@ -60,14 +60,21 @@ class AtividadeAPIController extends AppBaseController
                     beforePaginating: function($query) use ($field,$request) {
                         $query->where($field,Auth::user()->id)
                               ->whereNotNull('agente_id')
-                              ->whereNotNull('data_finalizada')
-                              ->when(isset($request->unrated),function($query){
+                              ->when(isset($request->unrated) || isset($request->cancelled),function($query){
+
+                                if(isset($request->unrated)){ //looking for the latest unrated trip
                                     if(Auth::user() instanceof Agente){
                                         $query->whereNull('nota_passageiro');
                                     }else{
                                         $query->whereNull('nota_agente');
                                     }
                                     $query->where('cancelada',false);
+                                }else{ //looking for the latest cancelled trip
+                                    $query->where('cancelada',true);
+                                }
+                                
+                              },function($query){
+                                $query->whereNotNull('data_finalizada');
                               })
                               ->orderBy('created_at','desc');
                     }
@@ -295,6 +302,7 @@ class AtividadeAPIController extends AppBaseController
 
             $atividade->agente_id = Auth::id();
             $atividade->veiculo_id = Auth::user()->veiculo_ativo_id;
+            Http::delete(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/trips/.json"); //remove trips in queue since he's taking one
             Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
                 'agent' => [
                     'id' => Auth::id()
