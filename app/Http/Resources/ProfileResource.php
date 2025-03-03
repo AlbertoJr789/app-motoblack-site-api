@@ -18,7 +18,7 @@ class ProfileResource extends JsonResource
             'name' => $this->pessoa->nome,
             'phone' => $this->user->telefone,
             'email' => $this->user->email,
-            'photo' => str_contains($this->user->profile_photo_url, 'ui-avatars') ? null : $this->user->profile_photo_path,
+            'photo' => str_contains($this->user->profile_photo_url, 'ui-avatars') ? null : $this->user->profile_photo_url,
         ];
     }
 }
