@@ -55,12 +55,12 @@ class AtividadeAPIController extends AppBaseController
             $Atividades = $this->AtividadeRepository
                 ->paginate(
                     eagerLoads: ['origin', 'destiny', 'agente', 'passageiro', 'veiculo'],
-                    perPage: $request->get('amount') ?? 10,
+                    perPage: isset($request->unrated) || isset($request->cancelled) ? 1 : $request->get('amount') ?? 10,
                     simple: true,
                     beforePaginating: function($query) use ($field,$request) {
                         $query->where($field,Auth::user()->id)
                               ->whereNotNull('agente_id')
-                              ->when(isset($request->unrated) || isset($request->cancelled),function($query){
+                              ->when(isset($request->unrated) || isset($request->cancelled),function($query) use ($request){
 
                                 if(isset($request->unrated)){ //looking for the latest unrated trip
                                     if(Auth::user() instanceof Agente){
@@ -69,10 +69,10 @@ class AtividadeAPIController extends AppBaseController
                                         $query->whereNull('nota_agente');
                                     }
                                     $query->where('cancelada',false);
+
                                 }else{ //looking for the latest cancelled trip
                                     $query->where('cancelada',true);
                                 }
-                                
                               },function($query){
                                 $query->whereNotNull('data_finalizada');
                               })
@@ -189,9 +189,10 @@ class AtividadeAPIController extends AppBaseController
 
             if(!$atividade->data_finalizada){
                 $atividade->data_finalizada = now();
-                $this->removeTrip($atividade);
             }
-        
+
+            Http::delete(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/trips/.json"); //remove trips in queue since he's taking one            
+            $this->removeTrip($atividade);
             $atividade->save();
             return $this->sendSuccess('Trip updated successfully');
         }catch (\Throwable $th) {
