@@ -227,21 +227,18 @@ class AtividadeAPIController extends AppBaseController
             if($agente == null) return $this->sendError(__('Not found',['attribute' => __('Agent')]));
 
             $agente = Agente::findOrFail($agente);
-            $trips = collect(Http::get(config('app.firebase_url')."/availableAgents/{$agente->uuid}/trips/.json")->throw()->json());
-            $trips->push([
-                'id' => $atividade->id,
-                'refused' => false
-            ]);
-            
+            $trips = [];
+            collect(Http::get(config('app.firebase_url')."/availableAgents/{$agente->uuid}/trips/.json")->throw()->json())->map(function($trip, $key) use (&$trips){
+                $trips[$key] = $trip;
+            });
+            $trips[$atividade->id] = false;
             Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
                 'agent' => [
                     'accepting' => true,
                 ]
             ])->throw();
             Http::patch(config('app.firebase_url')."/availableAgents/{$agente->uuid}/.json",[
-                'trips' => [
-                  ...$trips->unique()->toArray()
-                ]
+                'trips' => $trips
             ])->throw();
             return new AgenteResource($agente,true);
        } catch (\Throwable $th) {
@@ -303,6 +300,9 @@ class AtividadeAPIController extends AppBaseController
 
             $atividade->agente_id = Auth::id();
             $atividade->veiculo_id = Auth::user()->veiculo_ativo_id;
+            $atividade->agente->update([
+                'status' => AgenteStatus::Driving->value
+            ]);
             Http::delete(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/trips/.json"); //remove trips in queue since he's taking one
             Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
                 'agent' => [
@@ -345,6 +345,10 @@ class AtividadeAPIController extends AppBaseController
                       ...$trips->where('id','!=',$atividade->id)->toArray()
                     ]
                 ])->throw();
+
+                $atividade->agente->update([
+                    'status' => AgenteStatus::Available->value
+                ]);
 
                 $atividade->cancelada = true;
                 $atividade->data_finalizada = now();

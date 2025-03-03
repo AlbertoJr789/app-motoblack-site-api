@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Enum\AgenteStatus;
 use App\Http\Requests\API\CreateAgenteAPIRequest;
 use App\Http\Requests\API\UpdateAgenteAPIRequest;
 use App\Models\Agente;
@@ -120,12 +121,17 @@ class AgenteAPIController extends AppBaseController
                 if($agente->uuid && self::isRegistered($agente)){
                     return $this->sendSuccess($agente->uuid);
                 }
-                $agente->update(['uuid' => Http::post(config('app.firebase_url').'/availableAgents/.json',[
+                $uuid = Http::post(config('app.firebase_url').'/availableAgents/.json',[
                     'id' => $agente->id,
                     'latitude' => 0,
                     'longitude' => 0,
-                    'type' => $agente->tipo->value
-                ])->throw()->json()['name']]);
+                    'type' => $agente->tipo->value,
+                ])->throw()->json()['name'];
+                
+                $agente->update([
+                    'uuid' => $uuid,
+                    'status' => AgenteStatus::Available->value
+                ]);
             }else{
                 throw new Exception(__('Invalid user'));
             }
@@ -145,7 +151,7 @@ class AgenteAPIController extends AppBaseController
                     return $this->sendSuccess(__('Agent offline'));
                 }
                 Http::delete(config('app.firebase_url')."/availableAgents/$agente->uuid/.json")->throw();
-                $agente->update(['uuid' => null]);
+                $agente->update(['uuid' => null,'status' => AgenteStatus::Unavailable->value]);
             }else{
                 throw new Exception(__('Invalid user'));
             }

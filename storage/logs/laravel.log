@@ -188,3 +188,5 @@
 #59 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #60 {main}
 "} 
+[2025-03-03 20:19:26] local.ERROR: Error while drawing agent: 112-Method Illuminate\Support\Collection::forEach does not exist.  
+[2025-03-03 20:19:58] local.ERROR: Error while drawing agent: 112-Method Illuminate\Support\Collection::forEach does not exist.  
