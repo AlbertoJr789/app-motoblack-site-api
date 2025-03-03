@@ -328,7 +328,7 @@ class AtividadeAPIController extends AppBaseController
 
         return $image->inline();
     }
-
+    
     public function cancel(Atividade $atividade,Request $request){
 
         $d = $request->all();

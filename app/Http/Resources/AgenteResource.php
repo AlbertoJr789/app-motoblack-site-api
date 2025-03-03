@@ -27,7 +27,7 @@ class AgenteResource extends JsonResource
             'name' => $this->pessoa->nome,
             'user_id' => $this->user_id,
             // 'type' => $this->tipo,
-            'avatar' => $this->user->profile_photo_url,
+            'avatar' => str_contains($this->user->profile_photo_url, 'ui-avatars') ? null : $this->user->profile_photo_path,
             'vehicle' => $this->withVehicle ? new VeiculoResource($this->activeVehicle) : null
         ];
     }
