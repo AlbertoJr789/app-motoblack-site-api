@@ -59,7 +59,6 @@ class AtividadeAPIController extends AppBaseController
                     simple: true,
                     beforePaginating: function($query) use ($field,$request) {
                         $query->where($field,Auth::user()->id)
-                              ->whereNotNull('agente_id')
                               ->when(isset($request->unrated) || isset($request->cancelled),function($query) use ($request){
 
                                 if(isset($request->unrated)){ //looking for the latest unrated trip
@@ -74,7 +73,8 @@ class AtividadeAPIController extends AppBaseController
                                     $query->where('cancelada',true);
                                 }
                               },function($query){
-                                $query->whereNotNull('data_finalizada');
+                                $query->whereNotNull('data_finalizada')
+                                       ->whereNotNull('agente_id');
                               })
                               ->orderBy('created_at','desc');
                     }
@@ -211,7 +211,14 @@ class AtividadeAPIController extends AppBaseController
 
         if($atividade->agente_id) return new AgenteResource($atividade->agente,true);
         try {
-            foreach($this->getActiveAgents($atividade->tipo) as $agent) {
+            foreach($this->getActiveAgents($atividade->tipo) as $key => $agent) {
+                if(isset($agent['trips'][$atividade->id])) {
+                    if(count($agent['trips']) >= 5) { //remove dead weight agents
+                        Http::delete(config('app.firebase_url')."/availableAgents/{$key}/.json");
+                    }
+                    continue;
+                }; //he was already selected for this trip
+                
                 if($distance == null){
                     $distance = haversine($atividade->origin->latitude,$atividade->origin->longitude,$agent['latitude'],$agent['longitude']);
                     $agente = $agent['id']; 
@@ -233,7 +240,7 @@ class AtividadeAPIController extends AppBaseController
             });
             $trips[$atividade->id] = false;
             Http::patch(config('app.firebase_url')."/trips/{$atividade->uuid}/.json",[
-                'agent' => [
+                'agent' => [ 
                     'accepting' => true,
                 ]
             ])->throw();
@@ -258,7 +265,9 @@ class AtividadeAPIController extends AppBaseController
             AtividadeTipo::CarTrip->value => "?orderBy=\"type\"&startAt=".VeiculoTipo::Car->value."&endAt=".VeiculoTipo::Car->value,
             default => ''
         };
-        return collect(Http::get(config('app.firebase_url')."/availableAgents.json$type")->json());
+        return collect(Http::get(config('app.firebase_url')."/availableAgents.json$type")->json())->filter(function($agent) {
+            return !isset($agent['busy']) || !$agent['busy'];
+        });
     }
 
     /**
@@ -286,6 +295,9 @@ class AtividadeAPIController extends AppBaseController
     private function removeTrip(Atividade $atividade){
         try{
             Http::delete(config('app.firebase_url')."/trips/{$atividade->uuid}/.json");
+            Http::patch(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/.json",[
+                'busy' => false
+            ])->throw();
         }catch(\Throwable $th){
             \Log::error('Error removing trip: '. $th->getLine().'-'.$th->getMessage());
         }
@@ -294,7 +306,11 @@ class AtividadeAPIController extends AppBaseController
 
     public function acceptTrip(Atividade $atividade){
         
-        if($atividade->agente_id) return $this->sendSuccess('Trip accepted successfully'); //already accepted
+        
+        if($atividade->agente_id){
+            if(Auth::user()->id != $atividade->agente_id) return $this->sendError(__('Trip already accepted by another agent'),405);
+            return $this->sendSuccess('Trip already accepted');
+        }
         try{
             if(!$atividade->uuid) throw new Exception('no uuid found');
 
@@ -308,6 +324,9 @@ class AtividadeAPIController extends AppBaseController
                 'agent' => [
                     'id' => Auth::id()
                 ]
+            ])->throw();
+            Http::patch(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/.json",[
+                'busy' => true
             ])->throw();
             $atividade->save();
             return $this->sendSuccess('Trip accepted successfully');

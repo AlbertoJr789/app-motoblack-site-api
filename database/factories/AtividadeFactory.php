@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enum\AtividadeTipo;
 use App\Models\Agente;
 use App\Models\Endereco;
 use App\Models\Passageiro;
@@ -31,7 +32,7 @@ class AtividadeFactory extends Factory
         }
         return [
             'agente_id' => $this->agente ?? $veiculo->agente_id,
-            'tipo' => $this->faker->numberBetween(1,2),
+            'tipo' => AtividadeTipo::MotorcycleTrip->value,
             'passageiro_id' => $this->passageiro ?? Passageiro::inRandomOrder()->first() ?? Passageiro::factory(),
             'cancelada' => $cancelada,
             'data_finalizada' => $this->faker->date(),
