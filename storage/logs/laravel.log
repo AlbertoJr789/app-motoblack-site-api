@@ -1459,3 +1459,871 @@
 [2025-03-04 19:57:43] local.EMERGENCY: Error while creating activity: 829-SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'cep' cannot be null (Connection: mysql, SQL: insert into `endereco` (`latitude`, `longitude`, `cep`, `logradouro`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `updated_at`, `created_at`) values (-20.456529997504045, -45.42478881776333, ?, ?, ?, ?, ?, ?, ?, 2025-03-04 19:57:43, 2025-03-04 19:57:43))  
 [2025-03-04 20:08:57] local.ERROR: Error removing trip: 298-Attempt to read property "uuid" on null  
 [2025-03-04 20:32:44] local.EMERGENCY: Error while creating activity: 829-SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'cep' cannot be null (Connection: mysql, SQL: insert into `endereco` (`latitude`, `longitude`, `cep`, `logradouro`, `numero`, `bairro`, `cidade`, `estado`, `pais`, `updated_at`, `created_at`) values (-20.456296596644144, -45.42527362704277, ?, ?, ?, ?, ?, ?, ?, 2025-03-04 20:32:44, 2025-03-04 20:32:44))  
+[2025-03-06 12:18:59] local.ERROR: Error removing trip: 298-Attempt to read property "uuid" on null  
+[2025-03-06 12:44:36] local.ERROR: Error removing trip: 298-Attempt to read property "uuid" on null  
+[2025-03-08 17:42:25] local.ERROR: Class "App\Models\AtividadeStatus" not found {"userId":6,"exception":"[object] (Error(code: 0): Class \"App\\Models\\AtividadeStatus\" not found at /var/www/motoblack/app/Models/Agente.php:88)
+[stacktrace]
+#0 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(804): App\\Models\\Agente->rate()
+#1 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Relations/Relation.php(110): Illuminate\\Database\\Eloquent\\Builder->Illuminate\\Database\\Eloquent\\{closure}()
+#2 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(802): Illuminate\\Database\\Eloquent\\Relations\\Relation::noConstraints(Object(Closure))
+#3 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(776): Illuminate\\Database\\Eloquent\\Builder->getRelation('rate')
+#4 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(756): Illuminate\\Database\\Eloquent\\Builder->eagerLoadRelation(Array, 'rate', Object(Closure))
+#5 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(724): Illuminate\\Database\\Eloquent\\Builder->eagerLoadRelations(Array)
+#6 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Relations/Relation.php(203): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#7 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Relations/Relation.php(166): Illuminate\\Database\\Eloquent\\Relations\\Relation->get()
+#8 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(787): Illuminate\\Database\\Eloquent\\Relations\\Relation->getEager()
+#9 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(756): Illuminate\\Database\\Eloquent\\Builder->eagerLoadRelation(Array, 'agente', Object(Closure))
+#10 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(724): Illuminate\\Database\\Eloquent\\Builder->eagerLoadRelations(Array)
+#11 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(960): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#12 /var/www/motoblack/app/Repositories/BaseRepository.php(66): Illuminate\\Database\\Eloquent\\Builder->simplePaginate(10, Array)
+#13 /var/www/motoblack/app/Http/Controllers/API/AtividadeAPIController.php(56): App\\Repositories\\BaseRepository->paginate(10, Array, Array, Array, true, Object(Closure))
+#14 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): App\\Http\\Controllers\\API\\AtividadeAPIController->index(Object(Illuminate\\Http\\Request))
+#15 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('index', Array)
+#16 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Route.php(259): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\API\\AtividadeAPIController), 'index')
+#17 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Route.php(205): Illuminate\\Routing\\Route->runController()
+#18 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(806): Illuminate\\Routing\\Route->run()
+#19 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#20 /var/www/motoblack/app/Http/Middleware/VerifyUserActive.php(31): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): App\\Http\\Middleware\\VerifyUserActive->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Middleware/EnsureEmailIsVerified.php(41): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Auth\\Middleware\\EnsureEmailIsVerified->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/AuthenticateSession.php(41): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\AuthenticateSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(159): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(125): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequest(Object(Illuminate\\Http\\Request), Object(Closure), Array)
+#30 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(87): Illuminate\\Routing\\Middleware\\ThrottleRequests->handleRequestUsingNamedLimiter(Object(Illuminate\\Http\\Request), Object(Closure), 'api', Object(Closure))
+#31 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 'api')
+#32 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure), 'sanctum')
+#34 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#36 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#37 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#38 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#39 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#40 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#41 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(62): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#59 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#60 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#61 {main}
+"} 
+[2025-03-08 18:13:38] local.ERROR: Error removing trip: 298-Attempt to read property "uuid" on null  
+[2025-03-08 18:17:08] local.ERROR: Error removing trip: 298-Attempt to read property "uuid" on null  
+[2025-03-08 18:32:50] local.ERROR: Error removing trip: 298-Attempt to read property "uuid" on null  
+[2025-03-08 19:11:50] local.ERROR: Error removing trip: 298-Attempt to read property "uuid" on null  
+[2025-03-08 19:37:33] local.ERROR: Undefined property: stdClass::$countryCode {"view":{"view":"/var/www/motoblack/resources/views/livewire/address-fields.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-192068769 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1808</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-192068769\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","config":"<pre class=sf-dump id=sf-dump-721854475 data-indent-pad=\"  \"><span class=sf-dump-note>InfyOm\\Generator\\Common\\GeneratorConfig</span> {<a class=sf-dump-ref>#1828</a><samp data-depth=1 class=sf-dump-expanded>
+  +<span class=sf-dump-public title=\"Public property\">namespaces</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorNamespaces</span>
+  +<span class=sf-dump-public title=\"Public property\">paths</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorPaths</span>
+  +<span class=sf-dump-public title=\"Public property\">modelNames</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\ModelNames</span>
+  +<span class=sf-dump-public title=\"Public property\">prefixes</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorPrefixes</span>
+  +<span class=sf-dump-public title=\"Public property\">options</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorOptions</span>
+  +<span class=sf-dump-public title=\"Public property\">command</span>: <span class=sf-dump-const title=\"Uninitialized property\">? Illuminate\\Console\\Command</span>
+  +<span class=sf-dump-public title=\"Public property\">fields</span>: []
+  +<span class=sf-dump-public title=\"Public property\">relations</span>: []
+  +<span class=sf-dump-public title=\"Public property\">tableName</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">tableType</span>: <span class=sf-dump-const title=\"Uninitialized property\">? string</span>
+  +<span class=sf-dump-public title=\"Public property\">apiPrefix</span>: <span class=sf-dump-const title=\"Uninitialized property\">? string</span>
+  +<span class=sf-dump-public title=\"Public property\">primaryName</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">connection</span>: <span class=sf-dump-const>null</span>
+</samp>}
+</pre><script>Sfdump(\"sf-dump-721854475\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Undefined property: stdClass::$countryCode at /var/www/motoblack/app/Livewire/CountryStateCityAddress.php:24)
+[stacktrace]
+#0 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined prope...', '/var/www/motobl...', 24)
+#1 /var/www/motoblack/app/Livewire/CountryStateCityAddress.php(24): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Undefined prope...', '/var/www/motobl...', 24)
+#2 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): App\\Livewire\\CountryStateCityAddress->mount(Object(App\\Livewire\\Forms\\AddressForm), true)
+#3 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#4 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#5 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#6 /var/www/motoblack/vendor/livewire/livewire/src/Wrapped.php(23): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array)
+#7 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(134): Livewire\\Wrapped->__call('mount', Array)
+#8 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(20): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->callHook('mount', Array)
+#9 /var/www/motoblack/vendor/livewire/livewire/src/ComponentHook.php(19): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->mount(Array, Object(App\\Livewire\\AddressFields))
+#10 /var/www/motoblack/vendor/livewire/livewire/src/ComponentHookRegistry.php(45): Livewire\\ComponentHook->callMount(Array, Object(App\\Livewire\\AddressFields))
+#11 /var/www/motoblack/vendor/livewire/livewire/src/EventBus.php(60): Livewire\\ComponentHookRegistry::Livewire\\{closure}(Object(App\\Livewire\\CountryStateCityAddress), Array, '2025-03-08 19:3...', Object(App\\Livewire\\AddressFields))
+#12 /var/www/motoblack/vendor/livewire/livewire/src/helpers.php(98): Livewire\\EventBus->trigger('mount', Object(App\\Livewire\\CountryStateCityAddress), Array, '2025-03-08 19:3...', Object(App\\Livewire\\AddressFields))
+#13 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(50): Livewire\\trigger('mount', Object(App\\Livewire\\CountryStateCityAddress), Array, '2025-03-08 19:3...', Object(App\\Livewire\\AddressFields))
+#14 /var/www/motoblack/vendor/livewire/livewire/src/LivewireManager.php(73): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->mount('country-state-c...', Array, '2025-03-08 19:3...')
+#15 /var/www/motoblack/resources/views/livewire/address-fields.blade.php(73): Livewire\\LivewireManager->mount('country-state-c...', Array, '2025-03-08 19:3...', Array, Array)
+#16 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(37): include('/var/www/motobl...')
+#17 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(38): App\\Livewire\\AddressFields->Livewire\\Mechanisms\\ExtendBlade\\{closure}()
+#18 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#19 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(16): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#20 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#21 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#22 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#23 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(241): Illuminate\\View\\View->render(Object(Closure))
+#24 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(285): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->Livewire\\Mechanisms\\HandleComponents\\{closure}()
+#25 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(233): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->trackInRenderStack(Object(App\\Livewire\\AddressFields), Object(Closure))
+#26 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(54): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->render(Object(App\\Livewire\\AddressFields), '<div></div>')
+#27 /var/www/motoblack/vendor/livewire/livewire/src/LivewireManager.php(73): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->mount('address-fields', Array, 'lw-3322649919-0')
+#28 /var/www/motoblack/resources/views/auth/register-agent-form.blade.php(45): Livewire\\LivewireManager->mount('address-fields', Array, 'lw-3322649919-0', Array, Array)
+#29 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#30 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#31 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#32 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#33 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#34 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#35 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#36 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#37 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#38 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\\View\\View->render()
+#39 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#40 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(918): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#41 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(885): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#42 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#43 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /var/www/motoblack/app/Http/Middleware/VerifyUserActive.php(31): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): App\\Http\\Middleware\\VerifyUserActive->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#54 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#60 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#61 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#62 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#63 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#64 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#65 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#66 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#69 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#70 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#72 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#73 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#74 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#75 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#76 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#77 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#78 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#79 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#80 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#81 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#82 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#83 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#84 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#85 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#86 {main}
+
+[previous exception] [object] (ErrorException(code: 0): Undefined property: stdClass::$countryCode at /var/www/motoblack/app/Livewire/CountryStateCityAddress.php:24)
+[stacktrace]
+#0 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Undefined prope...', '/var/www/motobl...', 24)
+#1 /var/www/motoblack/app/Livewire/CountryStateCityAddress.php(24): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Undefined prope...', '/var/www/motobl...', 24)
+#2 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): App\\Livewire\\CountryStateCityAddress->mount(Object(App\\Livewire\\Forms\\AddressForm), true)
+#3 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#4 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#5 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#6 /var/www/motoblack/vendor/livewire/livewire/src/Wrapped.php(23): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array)
+#7 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(134): Livewire\\Wrapped->__call('mount', Array)
+#8 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(20): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->callHook('mount', Array)
+#9 /var/www/motoblack/vendor/livewire/livewire/src/ComponentHook.php(19): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->mount(Array, Object(App\\Livewire\\AddressFields))
+#10 /var/www/motoblack/vendor/livewire/livewire/src/ComponentHookRegistry.php(45): Livewire\\ComponentHook->callMount(Array, Object(App\\Livewire\\AddressFields))
+#11 /var/www/motoblack/vendor/livewire/livewire/src/EventBus.php(60): Livewire\\ComponentHookRegistry::Livewire\\{closure}(Object(App\\Livewire\\CountryStateCityAddress), Array, '2025-03-08 19:3...', Object(App\\Livewire\\AddressFields))
+#12 /var/www/motoblack/vendor/livewire/livewire/src/helpers.php(98): Livewire\\EventBus->trigger('mount', Object(App\\Livewire\\CountryStateCityAddress), Array, '2025-03-08 19:3...', Object(App\\Livewire\\AddressFields))
+#13 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(50): Livewire\\trigger('mount', Object(App\\Livewire\\CountryStateCityAddress), Array, '2025-03-08 19:3...', Object(App\\Livewire\\AddressFields))
+#14 /var/www/motoblack/vendor/livewire/livewire/src/LivewireManager.php(73): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->mount('country-state-c...', Array, '2025-03-08 19:3...')
+#15 /var/www/motoblack/storage/framework/views/2572899f0a9cf42c148a36055a4886eb.php(108): Livewire\\LivewireManager->mount('country-state-c...', Array, '2025-03-08 19:3...', Array, Array)
+#16 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(37): include('/var/www/motobl...')
+#17 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(38): App\\Livewire\\AddressFields->Livewire\\Mechanisms\\ExtendBlade\\{closure}()
+#18 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#19 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(16): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#20 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#21 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#22 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#23 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(241): Illuminate\\View\\View->render(Object(Closure))
+#24 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(285): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->Livewire\\Mechanisms\\HandleComponents\\{closure}()
+#25 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(233): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->trackInRenderStack(Object(App\\Livewire\\AddressFields), Object(Closure))
+#26 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(54): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->render(Object(App\\Livewire\\AddressFields), '<div></div>')
+#27 /var/www/motoblack/vendor/livewire/livewire/src/LivewireManager.php(73): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->mount('address-fields', Array, 'lw-3322649919-0')
+#28 /var/www/motoblack/storage/framework/views/0c1fdf945f07a51976db4cf464d63df7.php(335): Livewire\\LivewireManager->mount('address-fields', Array, 'lw-3322649919-0', Array, Array)
+#29 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#30 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#31 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#32 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#33 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#34 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#35 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#36 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#37 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#38 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\\View\\View->render()
+#39 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#40 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(918): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#41 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(885): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#42 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#43 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /var/www/motoblack/app/Http/Middleware/VerifyUserActive.php(31): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): App\\Http\\Middleware\\VerifyUserActive->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#54 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#60 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#61 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#62 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#63 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#64 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#65 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#66 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#69 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#70 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#72 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#73 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#74 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#75 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#76 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#77 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#78 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#79 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#80 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#81 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#82 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#83 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#84 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#85 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#86 {main}
+"} 
+[2025-03-08 21:49:06] local.ERROR: Vite manifest not found at: /var/www/motoblack/public/build/manifest.json {"view":{"view":"/var/www/motoblack/resources/views/layouts/guest.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1253022700 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1808</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1253022700\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","componentName":"<pre class=sf-dump id=sf-dump-1304715465 data-indent-pad=\"  \">\"<span class=sf-dump-str title=\"12 characters\">guest-layout</span>\"
+</pre><script>Sfdump(\"sf-dump-1304715465\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","attributes":"<pre class=sf-dump id=sf-dump-813765957 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\ComponentAttributeBag</span> {<a class=sf-dump-ref>#1832</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-813765957\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","slot":"<pre class=sf-dump id=sf-dump-72320459 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\ComponentSlot</span> {<a class=sf-dump-ref>#1846</a><samp data-depth=1 class=sf-dump-expanded>
+  +<span class=sf-dump-public title=\"Public property\">attributes</span>: <span class=sf-dump-note title=\"Illuminate\\View\\ComponentAttributeBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ComponentAttributeBag</span> {<a class=sf-dump-ref>#1881</a><samp data-depth=2 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">contents</span>: \"\"\"
+    <span class=sf-dump-str title=\"13414 characters\">&lt;div class=&quot;min-h-screen flex flex-col sm:justify-center items-center p-6 sm:pt-0 bg-zinc-950&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;img src=&quot;http://10.0.0.41:8000/img/moto_black_logo.png&quot; alt=&quot;Logo Moto Black&quot; class=&quot;h-60 w-60&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;div class=&quot;w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-neutral-900 shadow-md overflow-hidden sm:rounded-lg&quot; id=&quot;authCard&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">         &lt;form method=&quot;POST&quot; action=&quot;http://10.0.0.41:8000/createAgent&quot; enctype=&quot;multipart/form-data&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;8c2shOKLslpt0JNJyKHdnMWP8B0vgkGOXDf7hjG6&quot; autocomplete=&quot;off&quot;&gt;           <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;ol class=&quot;flex items-center w-full mb-4&quot; wire:ignore&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;li class=&quot;flex w-full items-center border-secondary text-secondary&quot; x-transition.duration.200ms wire:ignore   active-stepper=&quot;active-stepper&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;i class=&quot;fa-solid fa-info sm:text-xl text-lg mx-3 bg-amber-400 text-secondary duration-300 flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0&quot; stepper-item wire:ignore&gt;&lt;/i&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/li&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;li class=&quot;flex w-full items-center border-secondary text-secondary&quot; x-transition.duration.200ms wire:ignore   style=&quot;display: none;&quot;  &gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;i class=&quot;fa-solid fa-location-dot sm:text-xl text-lg mx-3 bg-secondary text-primary hover:text-secondary hover:bg-amber-400 cursor-pointer duration-300 flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0&quot; stepper-item wire:ignore&gt;&lt;/i&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/li&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;li class=&quot;flex w-full items-center border-secondary text-secondary&quot; x-transition.duration.200ms wire:ignore   style=&quot;display: none;&quot;  &gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;i class=&quot;fa-solid fa-car sm:text-xl text-lg mx-3 bg-secondary text-primary hover:text-secondary hover:bg-amber-400 cursor-pointer duration-300 flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0&quot; stepper-item wire:ignore&gt;&lt;/i&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/li&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;li class=&quot;flex w-full items-center border-secondary text-secondary&quot; x-transition.duration.200ms wire:ignore   style=&quot;display: none;&quot;  &gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;i class=&quot;fa-solid fa-folder-open sm:text-xl text-lg mx-3 bg-secondary text-primary hover:text-secondary hover:bg-amber-400 cursor-pointer duration-300 flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0&quot; stepper-item wire:ignore&gt;&lt;/i&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/li&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/ol&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;div  stepper-fields &gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;h1 class=&quot;m-auto text-2xl&quot;&gt;Personal Info&lt;/h1&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;label class=&quot;block font-medium text-sm text-gray-700 dark:text-gray-300 required&quot; for=&quot;name&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    User Name<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;input  class=&quot;input duration-400 block mt-1 w-full&quot; id=&quot;name&quot; type=&quot;text&quot; name=&quot;name&quot; required=&quot;true&quot; autofocus=&quot;autofocus&quot; autocomplete=&quot;name&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;div class=&quot;mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;label class=&quot;block font-medium text-sm text-gray-700 dark:text-gray-300&quot; for=&quot;email&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    Email<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;input  class=&quot;input duration-400 block mt-1 w-full&quot; id=&quot;email&quot; type=&quot;email&quot; name=&quot;email&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;div class=&quot;mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;label class=&quot;block font-medium text-sm text-gray-700 dark:text-gray-300&quot; for=&quot;telefone&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    Phone Number<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;div class=&quot;relative mb-4 flex flex-wrap items-stretch&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;input type=&quot;text&quot; name=&quot;telefone&quot; id=&quot;telefone&quot; value=&quot;&quot; hidden&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;select class=&quot;input rounded-tr-none rounded-br-none border-r-0 inline-flex w-auto&quot; id=&quot;telefoneSelect&quot; name=&quot;&quot;&gt;&lt;option value=&quot;&quot; selected=&quot;selected&quot;&gt;...&lt;/option&gt;&lt;option value=&quot;+55&quot;&gt;&#127463;&#127479;&lt;/option&gt;&lt;/select&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;input  class=&quot;input duration-400 flex-1 min-w-0 rounded-tl-none rounded-bl-none&quot; type=&quot;text&quot; id=&quot;telefoneInput&quot; placeholder=&quot;Type your phone number...&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">     <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;div class=&quot;mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;label class=&quot;block font-medium text-sm text-gray-700 dark:text-gray-300 required&quot; for=&quot;password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    Password<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;input  class=&quot;input duration-400 block mt-1 w-full&quot; id=&quot;password&quot; type=&quot;password&quot; name=&quot;password&quot; required=&quot;required&quot; autocomplete=&quot;new-password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;div class=&quot;hidden&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;h1 class=&quot;text-2xl&quot;&gt;Address&lt;/h1&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;div wire:snapshot=&quot;{&amp;quot;data&amp;quot;:{&amp;quot;required&amp;quot;:true,&amp;quot;address&amp;quot;:[{&amp;quot;endereco&amp;quot;:null,&amp;quot;cep&amp;quot;:null,&amp;quot;logradouro&amp;quot;:null,&amp;quot;numero&amp;quot;:null,&amp;quot;bairro&amp;quot;:null,&amp;quot;complemento&amp;quot;:null,&amp;quot;pais&amp;quot;:null,&amp;quot;cidade&amp;quot;:null,&amp;quot;estado&amp;quot;:null},{&amp;quot;class&amp;quot;:&amp;quot;App\\\\Livewire\\\\Forms\\\\AddressForm&amp;quot;,&amp;quot;s&amp;quot;:&amp;quot;form&amp;quot;}]},&amp;quot;memo&amp;quot;:{&amp;quot;id&amp;quot;:&amp;quot;MXibF6QgYDAlqocxSSJn&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;address-fields&amp;quot;,&amp;quot;path&amp;quot;:&amp;quot;registerAgent&amp;quot;,&amp;quot;method&amp;quot;:&amp;quot;GET&amp;quot;,&amp;quot;children&amp;quot;:{&amp;quot;2025-03-08 21:49:06\\/&amp;quot;:[&amp;quot;div&amp;quot;,&amp;quot;4RpzpLHotqmHdwENBGM8&amp;quot;]},&amp;quot;scripts&amp;quot;:[],&amp;quot;assets&amp;quot;:[],&amp;quot;errors&amp;quot;:[],&amp;quot;locale&amp;quot;:&amp;quot;en_US&amp;quot;},&amp;quot;checksum&amp;quot;:&amp;quot;341875ede460f40b499a5982d749e8625e21e1744566523f348dc2aa6ab07e2b&amp;quot;}&quot; wire:effects=&quot;[]&quot; wire:id=&quot;MXibF6QgYDAlqocxSSJn&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;div class=&quot;sm:flex&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;!-- CEP Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;sm:max-w-[7.5em] w-full&quot; wire:ignore x-init=&quot;initZipCodeMask($refs.cep)&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;label for=&quot;cep&quot; class=&quot;block mx-1 required&quot;&gt;ZIP Code&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;div class=&quot;relative&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;input class=&quot;input sm:max-w-[7.5em] w-full&quot; required=&quot;true&quot; wire:model.blur=&quot;address.cep&quot; x-ref=&quot;cep&quot; id=&quot;cep&quot; name=&quot;cep&quot; type=&quot;text&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;div class=&quot;h-4 w-4 mx-2 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] absolute top-[15px] left-[70%]&quot; wire:loading=&quot;wire:loading&quot; wire:target=&quot;address.cep&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;span<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">  class=&quot;!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]&quot;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">  &gt;Loading...&lt;/span&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;            &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;!-- Logradouro Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;sm:flex-1 sm:mx-2&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;label for=&quot;logradouro&quot; class=&quot;block mx-1 required&quot;&gt;Address&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;input class=&quot;input w-full&quot; required=&quot;true&quot; x-on:input=&quot;&quot; wire:model=&quot;address.logradouro&quot; id=&quot;logradouro&quot; name=&quot;logradouro&quot; type=&quot;text&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;!-- Numero Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;sm:max-w-[4.5em] w-full&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;label for=&quot;numero&quot; class=&quot;block mx-1 required&quot;&gt;Number&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;input class=&quot;input sm:max-w-[4.5em] w-full&quot; required=&quot;true&quot; x-on:input=&quot;&quot; wire:model=&quot;address.numero&quot; name=&quot;numero&quot; type=&quot;text&quot; id=&quot;numero&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;div class=&quot;sm:flex&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;!-- Pais Fields --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;sm:grow&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;label for=&quot;bairro&quot; class=&quot;block mx-1 required&quot;&gt;Neighborhood&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;input class=&quot;input w-full&quot; required=&quot;true&quot; wire:model=&quot;address.bairro&quot; x-on:input=&quot;&quot; id=&quot;bairro&quot; name=&quot;bairro&quot; type=&quot;text&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;sm:flex-1 sm:ml-2&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;label for=&quot;complemento&quot; class=&quot;block mx-1&quot;&gt;Complement&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;input class=&quot;input w-full&quot; wire:model=&quot;address.complemento&quot; name=&quot;complemento&quot; type=&quot;text&quot; id=&quot;complemento&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;div wire:snapshot=&quot;{&amp;quot;data&amp;quot;:{&amp;quot;address&amp;quot;:[{&amp;quot;endereco&amp;quot;:null,&amp;quot;cep&amp;quot;:null,&amp;quot;logradouro&amp;quot;:null,&amp;quot;numero&amp;quot;:null,&amp;quot;bairro&amp;quot;:null,&amp;quot;complemento&amp;quot;:null,&amp;quot;pais&amp;quot;:null,&amp;quot;cidade&amp;quot;:null,&amp;quot;estado&amp;quot;:null},{&amp;quot;class&amp;quot;:&amp;quot;App\\\\Livewire\\\\Forms\\\\AddressForm&amp;quot;,&amp;quot;s&amp;quot;:&amp;quot;form&amp;quot;}],&amp;quot;paises&amp;quot;:[{&amp;quot;&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;BR&amp;quot;:&amp;quot;\\ud83c\\udde7\\ud83c\\uddf7 Brazil&amp;quot;},{&amp;quot;s&amp;quot;:&amp;quot;arr&amp;quot;}],&amp;quot;estados&amp;quot;:[[],{&amp;quot;s&amp;quot;:&amp;quot;arr&amp;quot;}],&amp;quot;cidades&amp;quot;:[[],{&amp;quot;s&amp;quot;:&amp;quot;arr&amp;quot;}],&amp;quot;required&amp;quot;:true},&amp;quot;memo&amp;quot;:{&amp;quot;id&amp;quot;:&amp;quot;4RpzpLHotqmHdwENBGM8&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;country-state-city-address&amp;quot;,&amp;quot;path&amp;quot;:&amp;quot;registerAgent&amp;quot;,&amp;quot;method&amp;quot;:&amp;quot;GET&amp;quot;,&amp;quot;children&amp;quot;:[],&amp;quot;scripts&amp;quot;:[],&amp;quot;assets&amp;quot;:[],&amp;quot;errors&amp;quot;:[],&amp;quot;locale&amp;quot;:&amp;quot;en_US&amp;quot;},&amp;quot;checksum&amp;quot;:&amp;quot;a777849e54bcc961c0947012c7e316e7c0e486137b688c2404fd49122c556083&amp;quot;}&quot; wire:effects=&quot;[]&quot; wire:id=&quot;4RpzpLHotqmHdwENBGM8&quot; class=&quot;sm:flex&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;div class=&quot;grow&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;label for=&quot;pais&quot; class=&quot;block mx-1 required&quot;&gt;Country&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;relative&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;select class=&quot;input w-full&quot; required=&quot;true&quot; wire:model.live.debounce.500=&quot;address.pais&quot; data-placeholder=&quot;Selecione...&quot; id=&quot;pais&quot; name=&quot;pais&quot;&gt;&lt;option value=&quot;&quot; selected=&quot;selected&quot;&gt;&lt;/option&gt;&lt;option value=&quot;BR&quot;&gt;&#127463;&#127479; Brazil&lt;/option&gt;&lt;/select&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;div class=&quot;h-4 w-4 mx-2 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] absolute top-[35%] left-[80%]&quot; wire:loading=&quot;wire:loading&quot; wire:target=&quot;address.pais&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;span<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">  class=&quot;!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]&quot;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">  &gt;Loading...&lt;/span&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;!-- Bairro Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;div class=&quot;grow sm:mx-2&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;label for=&quot;estado&quot; class=&quot;block mx-1 required&quot;&gt;State&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;relative&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;select class=&quot;input w-full&quot; required=&quot;true&quot; wire:model.live.debounce.500=&quot;address.estado&quot; id=&quot;estado&quot; name=&quot;estado&quot;&gt;&lt;/select&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;div class=&quot;h-4 w-4 mx-2 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] absolute top-[35%] left-[80%]&quot; wire:loading=&quot;wire:loading&quot; wire:target=&quot;address.estado&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;span<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">  class=&quot;!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]&quot;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">  &gt;Loading...&lt;/span&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;!-- Cidade Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;div class=&quot;grow&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;label for=&quot;cidade&quot; class=&quot;block mx-1 required&quot;&gt;City&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;select class=&quot;input w-full&quot; required=&quot;true&quot; wire:model.live.debounce.500=&quot;address.cidade&quot; id=&quot;cidade&quot; name=&quot;cidade&quot;&gt;&lt;/select&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;div class=&quot;hidden&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;h1 class=&quot;text-2xl&quot;&gt;Vehicle Info&lt;/h1&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;div class=&quot;grid sm:grid-cols-2 grid-cols-1 gap-4 my-2&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;!-- Tipo Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                            &lt;label for=&quot;tipo&quot; class=&quot;block mx-1 required&quot;&gt;Type&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                            &lt;select class=&quot;input w-full&quot; required=&quot;true&quot; id=&quot;tipo&quot; name=&quot;tipo&quot;&gt;&lt;option value=&quot;1&quot;&gt;Motorcycle&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;Car&lt;/option&gt;&lt;/select&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                            &lt;label for=&quot;marca&quot; class=&quot;block mx-1 required&quot;&gt;Brand&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                            &lt;input class=&quot;input w-full&quot; required=&quot;true&quot; name=&quot;marca&quot; type=&quot;text&quot; id=&quot;marca&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;!-- Modelo Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                            &lt;label for=&quot;modelo&quot; class=&quot;block mx-1 required&quot;&gt;Model&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                            &lt;input class=&quot;input w-full&quot; required=&quot;true&quot; name=&quot;modelo&quot; type=&quot;text&quot; id=&quot;modelo&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;!-- Placa Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                            &lt;label for=&quot;placa&quot; class=&quot;block mx-1 required&quot;&gt;License Plate&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                            &lt;input class=&quot;input w-full&quot; required=&quot;true&quot; name=&quot;placa&quot; type=&quot;text&quot; id=&quot;placa&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;!-- Cor Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;div class=&quot;grid sm:grid-cols-2 grid-cols-1&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                            &lt;label for=&quot;cor&quot; class=&quot;block mx-1 required&quot;&gt;Color&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                            &lt;input class=&quot;input&quot; required=&quot;true&quot; name=&quot;cor&quot; type=&quot;color&quot; id=&quot;cor&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;div class=&quot;hidden&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;h1 class=&quot;text-2xl&quot;&gt;Documents&lt;/h1&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;span&gt;We&amp;#039;re gonna need some documents to analyze your appliance.&lt;/span&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;Filepicker accept=&quot;image/*,application/pdf&quot; name=&quot;driver_license&quot; class=&quot;mt-4 mb-4&quot; required&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        Driver&amp;#039;s License<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;/Filepicker&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;Filepicker accept=&quot;image/*,application/pdf&quot; name=&quot;vehicle_doc&quot; class=&quot;mb-4&quot; required&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        Vehicle document<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;/Filepicker&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;Filepicker accept=&quot;image/*,application/pdf&quot; name=&quot;address_proof&quot; required &gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        Billing Address<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;/Filepicker&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;div class=&quot;flex items-center justify-end mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                        &lt;button type=&quot;submit&quot; class=&quot;btn-primary ml-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    Register<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/button&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">                &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">            &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">        &lt;/form&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+    <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;</span>
+    \"\"\"
+</samp>}
+</pre><script>Sfdump(\"sf-dump-72320459\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","__laravel_slots":"<pre class=sf-dump id=sf-dump-230774996 data-indent-pad=\"  \"><span class=sf-dump-note>array:1</span> [<samp data-depth=1 class=sf-dump-expanded>
+  \"<span class=sf-dump-key>__default</span>\" => <span class=sf-dump-note title=\"Illuminate\\View\\ComponentSlot
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ComponentSlot</span> {<a class=sf-dump-ref>#1846</a><samp data-depth=2 class=sf-dump-compact>
+    +<span class=sf-dump-public title=\"Public property\">attributes</span>: <span class=sf-dump-note title=\"Illuminate\\View\\ComponentAttributeBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>ComponentAttributeBag</span> {<a class=sf-dump-ref>#1881</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: []
+    </samp>}
+    #<span class=sf-dump-protected title=\"Protected property\">contents</span>: \"\"\"
+      <span class=sf-dump-str title=\"13414 characters\">&lt;div class=&quot;min-h-screen flex flex-col sm:justify-center items-center p-6 sm:pt-0 bg-zinc-950&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;img src=&quot;http://10.0.0.41:8000/img/moto_black_logo.png&quot; alt=&quot;Logo Moto Black&quot; class=&quot;h-60 w-60&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;div class=&quot;w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-neutral-900 shadow-md overflow-hidden sm:rounded-lg&quot; id=&quot;authCard&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">         &lt;form method=&quot;POST&quot; action=&quot;http://10.0.0.41:8000/createAgent&quot; enctype=&quot;multipart/form-data&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;8c2shOKLslpt0JNJyKHdnMWP8B0vgkGOXDf7hjG6&quot; autocomplete=&quot;off&quot;&gt;           <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;ol class=&quot;flex items-center w-full mb-4&quot; wire:ignore&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;li class=&quot;flex w-full items-center border-secondary text-secondary&quot; x-transition.duration.200ms wire:ignore   active-stepper=&quot;active-stepper&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;i class=&quot;fa-solid fa-info sm:text-xl text-lg mx-3 bg-amber-400 text-secondary duration-300 flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0&quot; stepper-item wire:ignore&gt;&lt;/i&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/li&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;li class=&quot;flex w-full items-center border-secondary text-secondary&quot; x-transition.duration.200ms wire:ignore   style=&quot;display: none;&quot;  &gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;i class=&quot;fa-solid fa-location-dot sm:text-xl text-lg mx-3 bg-secondary text-primary hover:text-secondary hover:bg-amber-400 cursor-pointer duration-300 flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0&quot; stepper-item wire:ignore&gt;&lt;/i&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/li&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;li class=&quot;flex w-full items-center border-secondary text-secondary&quot; x-transition.duration.200ms wire:ignore   style=&quot;display: none;&quot;  &gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;i class=&quot;fa-solid fa-car sm:text-xl text-lg mx-3 bg-secondary text-primary hover:text-secondary hover:bg-amber-400 cursor-pointer duration-300 flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0&quot; stepper-item wire:ignore&gt;&lt;/i&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/li&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;li class=&quot;flex w-full items-center border-secondary text-secondary&quot; x-transition.duration.200ms wire:ignore   style=&quot;display: none;&quot;  &gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;i class=&quot;fa-solid fa-folder-open sm:text-xl text-lg mx-3 bg-secondary text-primary hover:text-secondary hover:bg-amber-400 cursor-pointer duration-300 flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0&quot; stepper-item wire:ignore&gt;&lt;/i&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/li&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/ol&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;div  stepper-fields &gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;h1 class=&quot;m-auto text-2xl&quot;&gt;Personal Info&lt;/h1&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;label class=&quot;block font-medium text-sm text-gray-700 dark:text-gray-300 required&quot; for=&quot;name&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    User Name<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;input  class=&quot;input duration-400 block mt-1 w-full&quot; id=&quot;name&quot; type=&quot;text&quot; name=&quot;name&quot; required=&quot;true&quot; autofocus=&quot;autofocus&quot; autocomplete=&quot;name&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;div class=&quot;mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;label class=&quot;block font-medium text-sm text-gray-700 dark:text-gray-300&quot; for=&quot;email&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    Email<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;input  class=&quot;input duration-400 block mt-1 w-full&quot; id=&quot;email&quot; type=&quot;email&quot; name=&quot;email&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;div class=&quot;mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;label class=&quot;block font-medium text-sm text-gray-700 dark:text-gray-300&quot; for=&quot;telefone&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    Phone Number<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;div class=&quot;relative mb-4 flex flex-wrap items-stretch&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;input type=&quot;text&quot; name=&quot;telefone&quot; id=&quot;telefone&quot; value=&quot;&quot; hidden&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;select class=&quot;input rounded-tr-none rounded-br-none border-r-0 inline-flex w-auto&quot; id=&quot;telefoneSelect&quot; name=&quot;&quot;&gt;&lt;option value=&quot;&quot; selected=&quot;selected&quot;&gt;...&lt;/option&gt;&lt;option value=&quot;+55&quot;&gt;&#127463;&#127479;&lt;/option&gt;&lt;/select&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;input  class=&quot;input duration-400 flex-1 min-w-0 rounded-tl-none rounded-bl-none&quot; type=&quot;text&quot; id=&quot;telefoneInput&quot; placeholder=&quot;Type your phone number...&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">     <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;div class=&quot;mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;label class=&quot;block font-medium text-sm text-gray-700 dark:text-gray-300 required&quot; for=&quot;password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    Password<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;input  class=&quot;input duration-400 block mt-1 w-full&quot; id=&quot;password&quot; type=&quot;password&quot; name=&quot;password&quot; required=&quot;required&quot; autocomplete=&quot;new-password&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;div class=&quot;hidden&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;h1 class=&quot;text-2xl&quot;&gt;Address&lt;/h1&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;div wire:snapshot=&quot;{&amp;quot;data&amp;quot;:{&amp;quot;required&amp;quot;:true,&amp;quot;address&amp;quot;:[{&amp;quot;endereco&amp;quot;:null,&amp;quot;cep&amp;quot;:null,&amp;quot;logradouro&amp;quot;:null,&amp;quot;numero&amp;quot;:null,&amp;quot;bairro&amp;quot;:null,&amp;quot;complemento&amp;quot;:null,&amp;quot;pais&amp;quot;:null,&amp;quot;cidade&amp;quot;:null,&amp;quot;estado&amp;quot;:null},{&amp;quot;class&amp;quot;:&amp;quot;App\\\\Livewire\\\\Forms\\\\AddressForm&amp;quot;,&amp;quot;s&amp;quot;:&amp;quot;form&amp;quot;}]},&amp;quot;memo&amp;quot;:{&amp;quot;id&amp;quot;:&amp;quot;MXibF6QgYDAlqocxSSJn&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;address-fields&amp;quot;,&amp;quot;path&amp;quot;:&amp;quot;registerAgent&amp;quot;,&amp;quot;method&amp;quot;:&amp;quot;GET&amp;quot;,&amp;quot;children&amp;quot;:{&amp;quot;2025-03-08 21:49:06\\/&amp;quot;:[&amp;quot;div&amp;quot;,&amp;quot;4RpzpLHotqmHdwENBGM8&amp;quot;]},&amp;quot;scripts&amp;quot;:[],&amp;quot;assets&amp;quot;:[],&amp;quot;errors&amp;quot;:[],&amp;quot;locale&amp;quot;:&amp;quot;en_US&amp;quot;},&amp;quot;checksum&amp;quot;:&amp;quot;341875ede460f40b499a5982d749e8625e21e1744566523f348dc2aa6ab07e2b&amp;quot;}&quot; wire:effects=&quot;[]&quot; wire:id=&quot;MXibF6QgYDAlqocxSSJn&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;div class=&quot;sm:flex&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;!-- CEP Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;sm:max-w-[7.5em] w-full&quot; wire:ignore x-init=&quot;initZipCodeMask($refs.cep)&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;label for=&quot;cep&quot; class=&quot;block mx-1 required&quot;&gt;ZIP Code&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;div class=&quot;relative&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;input class=&quot;input sm:max-w-[7.5em] w-full&quot; required=&quot;true&quot; wire:model.blur=&quot;address.cep&quot; x-ref=&quot;cep&quot; id=&quot;cep&quot; name=&quot;cep&quot; type=&quot;text&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;div class=&quot;h-4 w-4 mx-2 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] absolute top-[15px] left-[70%]&quot; wire:loading=&quot;wire:loading&quot; wire:target=&quot;address.cep&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;span<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">  class=&quot;!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]&quot;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">  &gt;Loading...&lt;/span&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;            &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;!-- Logradouro Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;sm:flex-1 sm:mx-2&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;label for=&quot;logradouro&quot; class=&quot;block mx-1 required&quot;&gt;Address&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;input class=&quot;input w-full&quot; required=&quot;true&quot; x-on:input=&quot;&quot; wire:model=&quot;address.logradouro&quot; id=&quot;logradouro&quot; name=&quot;logradouro&quot; type=&quot;text&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;!-- Numero Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;sm:max-w-[4.5em] w-full&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;label for=&quot;numero&quot; class=&quot;block mx-1 required&quot;&gt;Number&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;input class=&quot;input sm:max-w-[4.5em] w-full&quot; required=&quot;true&quot; x-on:input=&quot;&quot; wire:model=&quot;address.numero&quot; name=&quot;numero&quot; type=&quot;text&quot; id=&quot;numero&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;div class=&quot;sm:flex&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;!-- Pais Fields --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;sm:grow&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;label for=&quot;bairro&quot; class=&quot;block mx-1 required&quot;&gt;Neighborhood&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;input class=&quot;input w-full&quot; required=&quot;true&quot; wire:model=&quot;address.bairro&quot; x-on:input=&quot;&quot; id=&quot;bairro&quot; name=&quot;bairro&quot; type=&quot;text&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;sm:flex-1 sm:ml-2&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;label for=&quot;complemento&quot; class=&quot;block mx-1&quot;&gt;Complement&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;input class=&quot;input w-full&quot; wire:model=&quot;address.complemento&quot; name=&quot;complemento&quot; type=&quot;text&quot; id=&quot;complemento&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;div wire:snapshot=&quot;{&amp;quot;data&amp;quot;:{&amp;quot;address&amp;quot;:[{&amp;quot;endereco&amp;quot;:null,&amp;quot;cep&amp;quot;:null,&amp;quot;logradouro&amp;quot;:null,&amp;quot;numero&amp;quot;:null,&amp;quot;bairro&amp;quot;:null,&amp;quot;complemento&amp;quot;:null,&amp;quot;pais&amp;quot;:null,&amp;quot;cidade&amp;quot;:null,&amp;quot;estado&amp;quot;:null},{&amp;quot;class&amp;quot;:&amp;quot;App\\\\Livewire\\\\Forms\\\\AddressForm&amp;quot;,&amp;quot;s&amp;quot;:&amp;quot;form&amp;quot;}],&amp;quot;paises&amp;quot;:[{&amp;quot;&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;BR&amp;quot;:&amp;quot;\\ud83c\\udde7\\ud83c\\uddf7 Brazil&amp;quot;},{&amp;quot;s&amp;quot;:&amp;quot;arr&amp;quot;}],&amp;quot;estados&amp;quot;:[[],{&amp;quot;s&amp;quot;:&amp;quot;arr&amp;quot;}],&amp;quot;cidades&amp;quot;:[[],{&amp;quot;s&amp;quot;:&amp;quot;arr&amp;quot;}],&amp;quot;required&amp;quot;:true},&amp;quot;memo&amp;quot;:{&amp;quot;id&amp;quot;:&amp;quot;4RpzpLHotqmHdwENBGM8&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;country-state-city-address&amp;quot;,&amp;quot;path&amp;quot;:&amp;quot;registerAgent&amp;quot;,&amp;quot;method&amp;quot;:&amp;quot;GET&amp;quot;,&amp;quot;children&amp;quot;:[],&amp;quot;scripts&amp;quot;:[],&amp;quot;assets&amp;quot;:[],&amp;quot;errors&amp;quot;:[],&amp;quot;locale&amp;quot;:&amp;quot;en_US&amp;quot;},&amp;quot;checksum&amp;quot;:&amp;quot;a777849e54bcc961c0947012c7e316e7c0e486137b688c2404fd49122c556083&amp;quot;}&quot; wire:effects=&quot;[]&quot; wire:id=&quot;4RpzpLHotqmHdwENBGM8&quot; class=&quot;sm:flex&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;div class=&quot;grow&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;label for=&quot;pais&quot; class=&quot;block mx-1 required&quot;&gt;Country&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;relative&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;select class=&quot;input w-full&quot; required=&quot;true&quot; wire:model.live.debounce.500=&quot;address.pais&quot; data-placeholder=&quot;Selecione...&quot; id=&quot;pais&quot; name=&quot;pais&quot;&gt;&lt;option value=&quot;&quot; selected=&quot;selected&quot;&gt;&lt;/option&gt;&lt;option value=&quot;BR&quot;&gt;&#127463;&#127479; Brazil&lt;/option&gt;&lt;/select&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;div class=&quot;h-4 w-4 mx-2 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] absolute top-[35%] left-[80%]&quot; wire:loading=&quot;wire:loading&quot; wire:target=&quot;address.pais&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;span<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">  class=&quot;!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]&quot;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">  &gt;Loading...&lt;/span&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;!-- Bairro Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;div class=&quot;grow sm:mx-2&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;label for=&quot;estado&quot; class=&quot;block mx-1 required&quot;&gt;State&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;div class=&quot;relative&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;select class=&quot;input w-full&quot; required=&quot;true&quot; wire:model.live.debounce.500=&quot;address.estado&quot; id=&quot;estado&quot; name=&quot;estado&quot;&gt;&lt;/select&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;div class=&quot;h-4 w-4 mx-2 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] absolute top-[35%] left-[80%]&quot; wire:loading=&quot;wire:loading&quot; wire:target=&quot;address.estado&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;span<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">  class=&quot;!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]&quot;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">  &gt;Loading...&lt;/span&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;!-- Cidade Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;div class=&quot;grow&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;label for=&quot;cidade&quot; class=&quot;block mx-1 required&quot;&gt;City&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;select class=&quot;input w-full&quot; required=&quot;true&quot; wire:model.live.debounce.500=&quot;address.cidade&quot; id=&quot;cidade&quot; name=&quot;cidade&quot;&gt;&lt;/select&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;div class=&quot;hidden&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;h1 class=&quot;text-2xl&quot;&gt;Vehicle Info&lt;/h1&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;div class=&quot;grid sm:grid-cols-2 grid-cols-1 gap-4 my-2&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;!-- Tipo Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                            &lt;label for=&quot;tipo&quot; class=&quot;block mx-1 required&quot;&gt;Type&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                            &lt;select class=&quot;input w-full&quot; required=&quot;true&quot; id=&quot;tipo&quot; name=&quot;tipo&quot;&gt;&lt;option value=&quot;1&quot;&gt;Motorcycle&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;Car&lt;/option&gt;&lt;/select&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                            &lt;label for=&quot;marca&quot; class=&quot;block mx-1 required&quot;&gt;Brand&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                            &lt;input class=&quot;input w-full&quot; required=&quot;true&quot; name=&quot;marca&quot; type=&quot;text&quot; id=&quot;marca&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;!-- Modelo Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                            &lt;label for=&quot;modelo&quot; class=&quot;block mx-1 required&quot;&gt;Model&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                            &lt;input class=&quot;input w-full&quot; required=&quot;true&quot; name=&quot;modelo&quot; type=&quot;text&quot; id=&quot;modelo&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;!-- Placa Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                            &lt;label for=&quot;placa&quot; class=&quot;block mx-1 required&quot;&gt;License Plate&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                            &lt;input class=&quot;input w-full&quot; required=&quot;true&quot; name=&quot;placa&quot; type=&quot;text&quot; id=&quot;placa&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;!-- Cor Field --&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;div class=&quot;grid sm:grid-cols-2 grid-cols-1&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                            &lt;label for=&quot;cor&quot; class=&quot;block mx-1 required&quot;&gt;Color&lt;/label&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                            &lt;input class=&quot;input&quot; required=&quot;true&quot; name=&quot;cor&quot; type=&quot;color&quot; id=&quot;cor&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;div class=&quot;hidden&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;h1 class=&quot;text-2xl&quot;&gt;Documents&lt;/h1&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;span&gt;We&amp;#039;re gonna need some documents to analyze your appliance.&lt;/span&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;Filepicker accept=&quot;image/*,application/pdf&quot; name=&quot;driver_license&quot; class=&quot;mt-4 mb-4&quot; required&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        Driver&amp;#039;s License<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;/Filepicker&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;Filepicker accept=&quot;image/*,application/pdf&quot; name=&quot;vehicle_doc&quot; class=&quot;mb-4&quot; required&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        Vehicle document<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;/Filepicker&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    <span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;Filepicker accept=&quot;image/*,application/pdf&quot; name=&quot;address_proof&quot; required &gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        Billing Address<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;/Filepicker&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;div class=&quot;flex items-center justify-end mt-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                        &lt;button type=&quot;submit&quot; class=&quot;btn-primary ml-4&quot;&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    Register<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/button&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">                &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\"><span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">            &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">        &lt;/form&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">    &lt;/div&gt;<span class=\"sf-dump-default sf-dump-ns\">\\n</span></span>
+      <span class=sf-dump-str title=\"13414 characters\">&lt;/div&gt;</span>
+      \"\"\"
+  </samp>}
+</samp>]
+</pre><script>Sfdump(\"sf-dump-230774996\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","config":"<pre class=sf-dump id=sf-dump-1427131144 data-indent-pad=\"  \"><span class=sf-dump-note>InfyOm\\Generator\\Common\\GeneratorConfig</span> {<a class=sf-dump-ref>#1828</a><samp data-depth=1 class=sf-dump-expanded>
+  +<span class=sf-dump-public title=\"Public property\">namespaces</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorNamespaces</span>
+  +<span class=sf-dump-public title=\"Public property\">paths</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorPaths</span>
+  +<span class=sf-dump-public title=\"Public property\">modelNames</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\ModelNames</span>
+  +<span class=sf-dump-public title=\"Public property\">prefixes</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorPrefixes</span>
+  +<span class=sf-dump-public title=\"Public property\">options</span>: <span class=sf-dump-const title=\"Uninitialized property\">? InfyOm\\Generator\\DTOs\\GeneratorOptions</span>
+  +<span class=sf-dump-public title=\"Public property\">command</span>: <span class=sf-dump-const title=\"Uninitialized property\">? Illuminate\\Console\\Command</span>
+  +<span class=sf-dump-public title=\"Public property\">fields</span>: []
+  +<span class=sf-dump-public title=\"Public property\">relations</span>: []
+  +<span class=sf-dump-public title=\"Public property\">tableName</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">tableType</span>: <span class=sf-dump-const title=\"Uninitialized property\">? string</span>
+  +<span class=sf-dump-public title=\"Public property\">apiPrefix</span>: <span class=sf-dump-const title=\"Uninitialized property\">? string</span>
+  +<span class=sf-dump-public title=\"Public property\">primaryName</span>: <span class=sf-dump-const>null</span>
+  +<span class=sf-dump-public title=\"Public property\">connection</span>: <span class=sf-dump-const>null</span>
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1427131144\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Vite manifest not found at: /var/www/motoblack/public/build/manifest.json at /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:728)
+[stacktrace]
+#0 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php(293): Illuminate\\Foundation\\Vite->manifest('build')
+#1 /var/www/motoblack/resources/views/layouts/guest.blade.php(18): Illuminate\\Foundation\\Vite->__invoke(Object(Illuminate\\Support\\Collection))
+#2 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#3 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#5 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#6 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#7 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#8 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#9 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#10 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#11 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesComponents.php(99): Illuminate\\View\\View->render()
+#12 /var/www/motoblack/resources/views/auth/register-agent-form.blade.php(145): Illuminate\\View\\Factory->renderComponent()
+#13 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#14 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#15 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#16 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#17 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#18 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#19 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#20 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#21 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#22 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\\View\\View->render()
+#23 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#24 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(918): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#25 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(885): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#26 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#27 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /var/www/motoblack/app/Http/Middleware/VerifyUserActive.php(31): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): App\\Http\\Middleware\\VerifyUserActive->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#38 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#45 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#46 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#47 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#48 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#49 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#58 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#59 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#60 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#61 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#65 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#68 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#69 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#70 {main}
+
+[previous exception] [object] (Illuminate\\Foundation\\ViteManifestNotFoundException(code: 0): Vite manifest not found at: /var/www/motoblack/public/build/manifest.json at /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:728)
+[stacktrace]
+#0 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php(293): Illuminate\\Foundation\\Vite->manifest('build')
+#1 /var/www/motoblack/storage/framework/views/7df383c7c4a222ed891c517d8c603c29.php(18): Illuminate\\Foundation\\Vite->__invoke(Object(Illuminate\\Support\\Collection))
+#2 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#3 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#4 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#5 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#6 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#7 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#8 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#9 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#10 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#11 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Concerns/ManagesComponents.php(99): Illuminate\\View\\View->render()
+#12 /var/www/motoblack/storage/framework/views/0c1fdf945f07a51976db4cf464d63df7.php(485): Illuminate\\View\\Factory->renderComponent()
+#13 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/var/www/motobl...')
+#14 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#15 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('/var/www/motobl...', Array)
+#16 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(22): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('/var/www/motobl...', Array)
+#17 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->evaluatePath('/var/www/motobl...', Array)
+#18 /var/www/motoblack/vendor/livewire/livewire/src/Mechanisms/ExtendBlade/ExtendedCompilerEngine.php(10): Illuminate\\View\\Engines\\CompilerEngine->get('/var/www/motobl...', Array)
+#19 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(207): Livewire\\Mechanisms\\ExtendBlade\\ExtendedCompilerEngine->get('/var/www/motobl...', Array)
+#20 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate\\View\\View->getContents()
+#21 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate\\View\\View->renderContents()
+#22 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate\\View\\View->render()
+#23 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#24 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(918): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#25 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(885): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#26 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#27 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#28 /var/www/motoblack/app/Http/Middleware/VerifyUserActive.php(31): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): App\\Http\\Middleware\\VerifyUserActive->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#38 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#45 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#46 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#47 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#48 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#49 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /var/www/motoblack/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#58 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#59 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#60 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#61 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#65 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#68 /var/www/motoblack/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#69 /var/www/motoblack/public/index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#70 {main}
+"} 

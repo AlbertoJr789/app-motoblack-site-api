@@ -84,6 +84,19 @@ class Agente extends Authenticatable
         return $this->hasOne(User::class, 'id', 'deleter_id');
     }
 
+    public function atividades(){
+        return $this->hasMany(Atividade::class,'agente_id','id');
+    }
+    
+    public function rate()
+    {
+        return $this->hasMany(Atividade::class, 'agente_id', 'id')
+                    ->selectRaw('agente_id, AVG(nota_agente) as rate')
+                    ->whereNotNull('data_finalizada')
+                    ->whereNotNull('nota_agente')
+                    ->groupBy('agente_id');
+    }
+
     public function getTipoAttribute(){
         return match($this->activeVehicle?->tipo){
             VeiculoTipo::Car => AgenteTipo::Driver,

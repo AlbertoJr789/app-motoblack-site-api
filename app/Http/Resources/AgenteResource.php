@@ -26,6 +26,7 @@ class AgenteResource extends JsonResource
             'uuid' => $this->uuid,
             'name' => $this->pessoa->nome,
             'user_id' => $this->user_id,
+            'rate' => $this->relationLoaded('rate') && $this->rate->isNotEmpty() ? $this->rate->first()->rate : null,
             // 'type' => $this->tipo,
             'avatar' => str_contains($this->user->profile_photo_url, 'ui-avatars') ? null : $this->user->profile_photo_url,
             'vehicle' => $this->withVehicle ? new VeiculoResource($this->activeVehicle) : null

@@ -35,8 +35,10 @@ class AddressFields extends Component
     }
 
     public function updatedAddressCep(){
-        switch(app()->getLocale()){
-            case 'pt_BR': {
+        $locale = 'BR';
+        
+        switch($locale){
+            case str_contains($locale,'BR'): {
 
                 if(strlen(trim($this->address->cep)) == 9){
 

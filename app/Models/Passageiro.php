@@ -55,4 +55,12 @@ class Passageiro extends Authenticatable
     {
         return $this->hasOne(User::class, 'id', 'deleter_id');
     }
+    public function rate()
+    {
+        return $this->hasMany(Atividade::class, 'passageiro_id', 'id')
+                    ->selectRaw('passageiro_id, AVG(nota_passageiro) as rate')
+                    ->whereNotNull('data_finalizada')
+                    ->whereNotNull('nota_passageiro')
+                    ->groupBy('passageiro_id');
+    }
 }

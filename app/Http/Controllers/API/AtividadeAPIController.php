@@ -54,7 +54,7 @@ class AtividadeAPIController extends AppBaseController
         if ($field) {
             $Atividades = $this->AtividadeRepository
                 ->paginate(
-                    eagerLoads: ['origin', 'destiny', 'agente', 'passageiro', 'veiculo'],
+                    eagerLoads: ['origin', 'destiny', 'agente.rate', 'passageiro.rate', 'veiculo'],
                     perPage: isset($request->unrated) || isset($request->cancelled) ? 1 : $request->get('amount') ?? 10,
                     simple: true,
                     beforePaginating: function($query) use ($field,$request) {
@@ -154,7 +154,7 @@ class AtividadeAPIController extends AppBaseController
     public function show($id): JsonResponse
     {
 
-        $atividade = Atividade::with(['origin', 'destiny', 'agente', 'passageiro', 'veiculo'])->find($id);
+        $atividade = Atividade::with(['origin', 'destiny', 'agente.rate', 'passageiro.rate', 'veiculo'])->find($id);
         if (empty($atividade)) {
             return $this->sendError('Atividade not found');
         }
@@ -233,7 +233,7 @@ class AtividadeAPIController extends AppBaseController
 
             if($agente == null) return $this->sendError(__('Not found',['attribute' => __('Agent')]));
 
-            $agente = Agente::findOrFail($agente);
+            $agente = Agente::with('rate')->findOrFail($agente);
             $trips = [];
             collect(Http::get(config('app.firebase_url')."/availableAgents/{$agente->uuid}/trips/.json")->throw()->json())->map(function($trip, $key) use (&$trips){
                 $trips[$key] = $trip;

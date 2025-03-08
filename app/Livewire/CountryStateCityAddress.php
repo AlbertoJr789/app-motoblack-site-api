@@ -17,18 +17,9 @@ class CountryStateCityAddress extends Component
            $required;
 
     public function mount($address=null){
-        $this->paises = ['BR' => '🇧🇷 '.__('Brazil'), 'EN' => '🇺🇸 '. __('United States')];
+        $this->paises = [''=> '','BR' => '🇧🇷 '.__('Brazil')];
         $this->estados = $this->cidades = [];
-        if(!$address->pais){
-            $this->address->pais = location()->countryCode ?? null;
-            if($this->address->pais){
-                $this->updatedPais($this->pais);
-                $this->address->estado = 'MG';  
-                $this->updatedEstado($this->estado);
-                $this->address->cidade = 'Formiga';
-                $this->updatedCidade($this->cidade);
-            }
-        }else{
+        if($address->pais){
             $this->initEstados();
             $this->initCidades();
         }
@@ -68,16 +59,6 @@ class CountryStateCityAddress extends Component
             $this->estados = [
                 '' => '',
                 'MG' => 'Minas Gerais',
-                'RJ' => 'Rio de Janeiro',
-                'SP' => 'São Paulo',
-                'RS' => 'Rio Grande do Sul',
-            ];
-        }
-        if($this->address->pais == 'EN'){
-            $this->estados = [
-                '' => '',
-                'MA' => 'Massachussets',
-                'NY' => 'New York'
             ];
         }
     }

@@ -79,13 +79,11 @@
         function initZipCodeMask(cep){            
             let lang = navigator.language
             switch(lang){
-                case 'pt-BR': {
-                    IMask(cep,{
+                default: {   IMask(cep,{
                         mask: '00000-000'
                     })   
-                    break
+                    break 
                 }
-                default: { break; }
             }
         }
 
