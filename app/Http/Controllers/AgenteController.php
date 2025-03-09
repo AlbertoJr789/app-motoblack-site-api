@@ -94,9 +94,8 @@ class AgenteController extends AppBaseController
     */
    public function dataTableData(Request $request){
 
-       $query = Agente::with('activeVehicle')->select('agente.*','C.name','E.name','D.name','P.nome as pessoa','U.name as usuario')
+       $query = Agente::with(['activeVehicle','rate','user'])->select('agente.*','C.name','E.name','D.name','P.nome as pessoa')
                                     ->leftjoin('pessoa as P','P.id','agente.pessoa_id')
-                                    ->leftjoin('users as U','U.id','agente.user_id')
                                     ->leftjoin('users as C','C.id','agente.creator_id')
                                     ->leftjoin('users as E','E.id','agente.editor_id')
                                     ->leftjoin('users as D','D.id','agente.deleter_id');
@@ -104,6 +103,12 @@ class AgenteController extends AppBaseController
        return DataTables::eloquent($query)
                          ->addColumn('select',function($reg){
                                return '';
+                         })
+                         ->editColumn('pessoa',function($reg){
+                            $rate =  view('components.star-rating',['rate' => $reg->rating])->render();
+                            return "<div class=\"flex justify-start items-center\">
+                                    <img src=\"{$reg->user->profile_photo_url}\" class=\"rounded-full w-10 h-10 mr-2\"> {$reg->pessoa} - {$rate}
+                                    </div>";
                          })
                          ->editColumn('created_at',function($reg){
                                return $reg->created_at ? $reg->created_at->format('d/m/Y H:i') : '';
@@ -151,7 +156,7 @@ class AgenteController extends AppBaseController
                          ->addColumn('action',function($reg){
                                return view('agentes.action-buttons',['data' => $reg]);
                          })
-                         ->rawColumns(['action','active','status','tipo','localizacao','active_vehicle'])
+                         ->rawColumns(['action','active','status','tipo','localizacao','active_vehicle','pessoa'])
                          ->make();
 
    }
@@ -171,9 +176,13 @@ class AgenteController extends AppBaseController
         }
         if(isset($r['activeFilter'])){
             if($r['activeFilter'] == 'true'){
-                $query->whereNull('U.motivo_inativo');
+                $query->whereHas('user',function($query){
+                    $query->whereNull('motivo_inativo');
+                });
             }else{
-                $query->whereNotNull('U.motivo_inativo');
+                $query->whereHas('user',function($query){
+                    $query->whereNotNull('motivo_inativo');
+                });
             }
         }
         return $query;

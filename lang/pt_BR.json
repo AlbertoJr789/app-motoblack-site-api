@@ -267,5 +267,6 @@
     "You don't have permission to delete this vehicle": "Você não tem permissão para deletar este veículo",
     "Route": "Rota",
     "Trip already finished": "Esta atividade já foi finalizada",
-    "Trip already accepted by another agent": "Esta atividade já foi aceita por outro"
+    "Trip already accepted by another agent": "Esta atividade já foi aceita por outro",
+    "Inactive Reason": "Motivo Inativo"
 }

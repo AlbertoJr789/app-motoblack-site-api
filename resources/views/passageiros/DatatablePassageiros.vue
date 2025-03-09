@@ -61,17 +61,18 @@
             <input class="input input-checkbox" type="checkbox" value="-1" id="testesHeaderCheckbox"/></div>`, 
             className:'text-center noVis', orderable: false, searchable: false, visible: true, width: '20px'} : null,
 
-        {data: 'id', title: window.trans('id')},
+        {data: 'id', title: window.trans('id'),visible: false},
         {data: 'pessoa', name: "P.nome", title: window.trans('Person')},
-        {data: 'user_name', name:"U.name",title: window.trans('User')},
-        {data: 'created_at', title: window.trans('Creation Date')},
-        {data: 'updated_at', title: window.trans('Update Date')},
+        {data: 'user.name', name:"user.name",title: window.trans('User'),visible: false},
+        {data: 'created_at', title: window.trans('Creation Date'),visible: false},
+        {data: 'updated_at', title: window.trans('Update Date'),visible: false},
 
         {data: 'active', title: window.trans('Active')},
-        {data: 'creator', name:'C.name', title: window.trans('Creator')},
-        {data: 'editor', name:'E.name', title: window.trans('Editor')},
-        {data: 'deleter', name:'D.name', title: window.trans('Deleter')},
-        {data: 'deleted_at', title: window.trans('Delete Date')},
+        {data: 'user.motivo_inativo', name: 'user.motivo_inativo', title: window.trans('Inactive Reason'),visible: false},
+        {data: 'creator', name:'C.name', title: window.trans('Creator'),visible: false},
+        {data: 'editor', name:'E.name', title: window.trans('Editor'),visible: false},
+        {data: 'deleter', name:'D.name', title: window.trans('Deleter'),visible: false},
+        {data: 'deleted_at', title: window.trans('Delete Date'),visible: false},
         { responsivePriority: 2, data: 'action', name: 'action', title: '', className:'text-center noVis', orderable: false, searchable: false, width: '50px'},
 
     ].filter(Boolean)

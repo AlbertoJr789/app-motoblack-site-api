@@ -44,7 +44,7 @@ class Create extends Component
     {
         $this->Passageiro = $passageiro;
         $this->id = $passageiro->id;$this->pessoa_id = $passageiro->pessoa_id;$this->user_id = $passageiro->user_id;$this->created_at = $passageiro->created_at;$this->updated_at = $passageiro->updated_at;
-        $this->active = $passageiro->active;
+        $this->active = $passageiro->user->motivo_inativo ? false : true;
         $this->open = $this->update = true;
         $this->create = false;
     }

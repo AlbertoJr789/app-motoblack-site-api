@@ -6,14 +6,7 @@
                 @can('agentes.create')
                 <x-card>
                     <h4>Agentes pendentes para liberação</h4>
-                    <Datatable-Agentes :ajax-route="'{{route('admin.agentes.dataTableData')}}'"
-                    :can-create="@can('agentes.create') true @else false @endcan"
-                    :can-delete="@can('agentes.delete') true @else false @endcan"
-                    :filter-options="(d) => {
-                        d.activeFilter = false
-                    }"
-                    >
-                    </Datatable-Agentes>    
+                    @include('dashboard.agentes-pendentes')
                 </x-card>
                 @endcan
                 <div class="my-4"></div>

@@ -98,7 +98,7 @@ class Agente extends Authenticatable
     }
 
     public function getRatingAttribute(){
-        return $this->rate()->first()->rate;
+        return $this->rate()->first()->rate ?? null;
     }
 
     public function getTipoAttribute(){

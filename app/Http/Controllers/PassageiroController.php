@@ -33,8 +33,15 @@ class PassageiroController extends AppBaseController
 
         try {
             $d = $request->all();
-            $passageiro = $this->passageiroRepository->update($d,$passageiro->id);
 
+            $passageiro = $this->passageiroRepository->update($d,$passageiro->id);
+            if(isset($d['active']) && $d['active'] == 'on'){
+                $passageiro->user->motivo_inativo = null;
+            }else{
+                $passageiro->user->motivo_inativo = 'Passageiro inativado pelo sistema';
+            }
+            $passageiro->user->save();
+            
             alert()->success(__('Success'),'Passageiro '.__('updated successfully!'));
         }catch (\Throwable $th) {
             \Log::error('Error while submiting Passageiro: '.$th->getMessage());
@@ -51,9 +58,8 @@ class PassageiroController extends AppBaseController
     */
    public function dataTableData(Request $request){
 
-       $query = Passageiro::select('passageiro.*','C.name','E.name','D.name','P.nome as pessoa','U.name as user_name')
+       $query = Passageiro::with(['user','rate'])->select('passageiro.*','C.name','E.name','D.name','P.nome as pessoa')
                                     ->leftjoin('pessoa as P','P.id','pessoa_id')
-                                    ->leftjoin('users as U','U.id','user_id')
                                     ->leftjoin('users as C','C.id','passageiro.creator_id')
                                     ->leftjoin('users as E','E.id','passageiro.editor_id')
                                     ->leftjoin('users as D','D.id','passageiro.deleter_id');
@@ -61,6 +67,12 @@ class PassageiroController extends AppBaseController
        return DataTables::eloquent($query)
                          ->addColumn('select',function($reg){
                                return '';
+                         })
+                         ->editColumn('pessoa',function($reg){
+                            $rate =  view('components.star-rating',['rate' => $reg->rating])->render();
+                            return "<div class=\"flex justify-start items-center\">
+                                    <img src=\"{$reg->user->profile_photo_url}\" class=\"rounded-full w-10 h-10 mr-2\"> {$reg->pessoa} - {$rate}
+                                    </div>";
                          })
                          ->editColumn('created_at',function($reg){
                                return $reg->created_at ? $reg->created_at->format('d/m/Y H:i') : '';
@@ -81,12 +93,12 @@ class PassageiroController extends AppBaseController
                                return $reg->deleter ? $reg->deleter->name : '';
                          })
                          ->editColumn('active',function($reg){
-                            return $reg->user->motivo_inativo ? '<span class="badge badge-green uppercase">'.__('Yes').'</span>' : '<span class="badge badge-red uppercase">'.__('No').'</span>';
+                            return !$reg->user->motivo_inativo ? '<span class="badge badge-green uppercase">'.__('Yes').'</span>' : '<span class="badge badge-red uppercase">'.__('No').'</span>';
                          })
                          ->addColumn('action',function($reg){
                                return view('passageiros.action-buttons',['data' => $reg]);
                          })
-                         ->rawColumns(['action','active'])
+                         ->rawColumns(['action','active','pessoa'])
                          ->make();
 
    }
@@ -106,9 +118,13 @@ class PassageiroController extends AppBaseController
         }
         if(isset($r['activeFilter'])){
             if($r['activeFilter'] == 'true'){
-                $query->whereNull('U.motivo_inativo');
+                $query->whereHas('user',function($query){
+                    $query->whereNull('motivo_inativo');
+                });
             }else{
-                $query->whereNotNull('U.motivo_inativo');
+                $query->whereHas('user',function($query){
+                    $query->whereNotNull('motivo_inativo');
+                });
             }
         }
         return $query;

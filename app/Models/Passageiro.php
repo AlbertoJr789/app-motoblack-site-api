@@ -65,6 +65,6 @@ class Passageiro extends Authenticatable
     }
 
     public function getRatingAttribute(){
-        return $this->rate()->first()->rate;
+        return $this->rate()->first()->rate ?? null;
     }
 }
