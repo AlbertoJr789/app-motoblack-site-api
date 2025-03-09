@@ -97,6 +97,10 @@ class Agente extends Authenticatable
                     ->groupBy('agente_id');
     }
 
+    public function getRatingAttribute(){
+        return $this->rate()->first()->rate;
+    }
+
     public function getTipoAttribute(){
         return match($this->activeVehicle?->tipo){
             VeiculoTipo::Car => AgenteTipo::Driver,

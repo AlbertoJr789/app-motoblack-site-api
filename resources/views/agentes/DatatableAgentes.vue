@@ -52,6 +52,10 @@
         canDelete: {
             type: Boolean,
             required: true
+        },
+        filterOptions: {
+            type: Object,
+            required: false
         }
     })
   
@@ -125,14 +129,20 @@
         lengthMenu: dataTableLengthMenu
     };
 
+    let filterOptions = (d) => {
+        d.dateTypeFilter = document.getElementById('dateTypeFilter').value,
+        d.activeFilter = document.getElementById('activeFilter').checked,
+        d.initialDate = document.getElementById('initialDateFilter').value,
+        d.endDate = document.getElementById('endDateFilter').value
+    }
+
+    if(props.filterOptions){
+        filterOptions = props.filterOptions
+    }
+
     const ajax = {
         url: props.ajaxRoute,
-        data: (d) => {
-            d.dateTypeFilter = document.getElementById('dateTypeFilter').value,
-            d.activeFilter = document.getElementById('activeFilter').checked,
-            d.initialDate = document.getElementById('initialDateFilter').value,
-            d.endDate = document.getElementById('endDateFilter').value
-        }
+        data: props.filterOptions
     }
 
     document.addEventListener('livewire:initialized', () => {

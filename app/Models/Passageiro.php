@@ -63,4 +63,8 @@ class Passageiro extends Authenticatable
                     ->whereNotNull('nota_passageiro')
                     ->groupBy('passageiro_id');
     }
+
+    public function getRatingAttribute(){
+        return $this->rate()->first()->rate;
+    }
 }

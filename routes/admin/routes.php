@@ -3,10 +3,6 @@
 use App\Models\Endereco;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
-
 Route::group(['prefix' => 'pessoas', 'as' => 'pessoas.', 'middleware' => 'permission:pessoa.view'],function(){
     Route::resource('/', App\Http\Controllers\PessoaController::class);
     Route::patch('/update/{pessoa}', [App\Http\Controllers\PessoaController::class,'update'])->name('update');
@@ -33,4 +29,11 @@ Route::group(['prefix' => 'atividades', 'as' => 'atividades.', 'middleware' => '
     Route::resource('/', App\Http\Controllers\AtividadeController::class);
     Route::patch('/update/{corrida}', [App\Http\Controllers\AtividadeController::class,'update'])->name('update');
     Route::get('dataTableData',[App\Http\Controllers\AtividadeController::class,'dataTableData'])->name('dataTableData');
+});
+
+Route::get('/', [App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
+
+Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => 'permission:dashboard.view'],function(){
+    Route::get('/rankingTrips', [App\Http\Controllers\DashboardController::class,'rankingTrips'])->name('rankingTrips');
+    Route::get('/ongoingTrips', [App\Http\Controllers\DashboardController::class,'ongoingTrips'])->name('ongoingTrips');
 });

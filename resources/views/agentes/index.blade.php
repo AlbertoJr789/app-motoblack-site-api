@@ -6,8 +6,8 @@
 <div class="p-3 w-full h-full">
     <div class="p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 w-full">
         <Datatable-Agentes :ajax-route="'{{route('admin.agentes.dataTableData')}}'"
-            :can-create="@can('testes.create') true @else false @endcan"
-            :can-delete="@can('testes.delete') true @else false @endcan"
+            :can-create="@can('agentes.create') true @else false @endcan"
+            :can-delete="@can('agentes.delete') true @else false @endcan"
             >
             <template v-slot:toolbar>
                 {{-- @can('agentes.create')
