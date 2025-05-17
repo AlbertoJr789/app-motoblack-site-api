@@ -38,14 +38,10 @@ Route::group([ 'middleware' => ['auth:sanctum',config('jetstream.auth_session'),
 
     Route::get('vehicle/setActive/{veiculo}',[App\Http\Controllers\API\VeiculoAPIController::class,'setActive']);
 
-    // Route::apiResource('pessoas', App\Http\Controllers\API\PessoaAPIController::class)
-    //     ->except(['create', 'edit']);
-
-    // Route::resource('agentes', App\Http\Controllers\API\AgenteAPIController::class)
-    //     ->except(['create', 'edit']);
-
-    // Route::resource('passageiros', App\Http\Controllers\API\PassageiroAPIController::class)
-    //     ->except(['create', 'edit']);
 });
 
 Route::get('marker/{user}',[App\Http\Controllers\API\AtividadeAPIController::class,'marker']);
+
+
+
+
