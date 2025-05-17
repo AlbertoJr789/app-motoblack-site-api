@@ -6,12 +6,12 @@
         'true','wire:model' => 'tipo']) !!}
     </div> --}}
     <!-- Status Field -->
-    <div>
+    {{-- <div>
         {!! Form::label('status', 'Status:',['class' => "block mx-1"]) !!}
         {!! Form::select('status', ['0' => 'Indisponível', '1' => 'Disponivel', '2' => 'Em Corrida'], null, ['class' =>
         'input w-full','required' => 'true','wire:model' => 'status']) !!}
     </div>
-    
+     --}}
     <div class="flex sm:justify-start justify-center sm:my-auto my-4">
         {!! Form::label('active', __('Active'),['class' => "block mx-1"]) !!}
         {!! Form::checkbox('active',$active,$active, ['class' => 'checkbox-toggle-switch','wire:model' => 'active',]) !!}
