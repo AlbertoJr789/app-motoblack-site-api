@@ -106,6 +106,9 @@
                 targets: 1,
                 orderable: false,
                 render: function ( val, type, row ) {
+
+                    if(row.agente || row.passageiro) return ''
+
                     return `<div class="mx-0">
                                 <input class="input input-checkbox border-black" type="checkbox" value="${row.id}"/>
                             </div>`;

@@ -39,7 +39,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'] ?? null,
             'telefone' => $input['telefone'] ?? null,
             'password' => Hash::make($input['password']),
-            'motivo_inativo' => $type == 'A' ? 'Cadastro em análise' : '',
+            'motivo_inativo' => $type == 'A' ? 'Cadastro em análise' : null,
         ]); 
         
         $ret = match($type){

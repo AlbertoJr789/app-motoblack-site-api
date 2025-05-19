@@ -49,7 +49,14 @@ class AtividadeController extends AppBaseController
        $query = $this->filterDataTableData($query,$request->all());
        return DataTables::eloquent($query)
                          ->addColumn('route',function($reg){
-                            return '<div class="flex flex-col gap-2">
+
+                            $origin = $reg->origin->formatted_address ?? '';
+                            $destiny = $reg->destiny->formatted_address ?? '';
+                            $googleMapsUrl = '';
+                            if ($origin && $destiny) {
+                                $googleMapsUrl = 'https://www.google.com/maps/dir/' . urlencode($origin) . '/' . urlencode($destiny);
+                            }
+                            return '<a href="'.$googleMapsUrl.'" target="_blank" class="flex flex-col gap-2">
                                 <div class="flex items-center gap-4">
                                     <i class="fas fa-flag-checkered text-green-600"></i>
                                     <span>'.$reg->origin->formatted_address.'</span>
@@ -58,7 +65,7 @@ class AtividadeController extends AppBaseController
                                     <i class="fas fa-flag text-red-600"></i>
                                     <span>'.$reg->destiny->formatted_address.'</span>
                                 </div>
-                            </div>';
+                            </a>';
                          })
                          ->addColumn('select',function($reg){
                                return '';

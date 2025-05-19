@@ -21,5 +21,12 @@
     </div>
 </div>
 
-
-
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            IMask(document.querySelector('#placa'),{
+                mask: '***-****'
+            })                          
+        })
+    </script>
+@endpush

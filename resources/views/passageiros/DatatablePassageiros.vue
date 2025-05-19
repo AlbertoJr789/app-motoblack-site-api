@@ -68,7 +68,7 @@
         {data: 'updated_at', title: window.trans('Update Date'),visible: false},
 
         {data: 'active', title: window.trans('Active')},
-        {data: 'user.motivo_inativo', name: 'user.motivo_inativo', title: window.trans('Inactive Reason'),visible: false},
+        // {data: 'user.motivo_inativo', name: 'user.motivo_inativo', title: window.trans('Inactive Reason'),visible: false},
         {data: 'creator', name:'C.name', title: window.trans('Creator'),visible: false},
         {data: 'editor', name:'E.name', title: window.trans('Editor'),visible: false},
         {data: 'deleter', name:'D.name', title: window.trans('Deleter'),visible: false},

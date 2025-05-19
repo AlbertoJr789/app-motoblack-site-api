@@ -15,7 +15,7 @@
             </div>
         </button>
         @endcan
-        @can('passageiros.delete')
+        {{-- @can('passageiros.delete')
         <button class="btn-danger w-[25px] h-[25px] ms-auto me-1 flex justify-center" title="Deletar Registro" onclick="deleteRegister({{$data->id}})">
             <span class="svg-icon svg-icon-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,13 +30,13 @@
                 </svg>
             </span>
         </button>
-        @endcan
+        @endcan --}}
     @endif
-    @if($data->deleted_at)
+    {{-- @if($data->deleted_at)
         @can('passageiros.delete')
             <button class="btn" title="Restaurar Registro" onclick="restoreRegister({{$data->id}})">
                 <i class="fa fa-trash-restore"></i>
             </button>
         @endcan
-    @endif
+    @endif --}}
 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePessoaRequest;
 use App\Http\Requests\UpdatePessoaRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Endereco;
 use App\Repositories\PessoaRepository;
 use Illuminate\Http\Request;
 use Flash;
@@ -13,6 +14,7 @@ use App\Rules\DocumentRule;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use PhpParser\Node\Expr\Isset_;
 use Yajra\DataTables\Facades\DataTables;
 
 class PessoaController extends AppBaseController
@@ -68,11 +70,20 @@ class PessoaController extends AppBaseController
             $d = $request->all();
             $pessoa = $this->pessoaRepository->update($d,$pessoa->id);
                 
-            if($pessoa->endereco){
-                $pessoa->endereco->update($d);
+            if(isset($d['cep'])){
+                if($pessoa->endereco){
+                    $pessoa->endereco->update($d);
+                }else{
+                    $pessoa->update(['endereco_id' => Endereco::create($d)->id]);
+                }
             }else{
-                $pessoa->update(['endereco_id' => $pessoa->endereco()->create($d)->id]);
-            }        
+                if($pessoa->endereco){
+                    $end = $pessoa->endereco_id;
+                    $pessoa->update(['endereco_id' => null]);
+                    Endereco::find($end)->delete();
+                }
+            }
+
             alert()->success(__('Success'),'Pessoa '.__('updated successfully!'));
         }catch (\Throwable $th) {
             \Log::error('Error while submiting Pessoa: '.$th->getMessage());
@@ -89,10 +100,11 @@ class PessoaController extends AppBaseController
     */
    public function dataTableData(Request $request){
 
-       $query = Pessoa::select('pessoa.*','C.name','E.name','D.name')
-                                    ->leftjoin('users as C','C.id','pessoa.creator_id')
-                                    ->leftjoin('users as E','E.id','pessoa.editor_id')
-                                    ->leftjoin('users as D','D.id','pessoa.deleter_id');
+       $query = Pessoa::with('agente:id,pessoa_id','passageiro:id,pessoa_id')
+                        ->select('pessoa.*','C.name','E.name','D.name')
+                        ->leftjoin('users as C','C.id','pessoa.creator_id')
+                        ->leftjoin('users as E','E.id','pessoa.editor_id')
+                        ->leftjoin('users as D','D.id','pessoa.deleter_id');
        $query = $this->filterDataTableData($query,$request->all());
        return DataTables::eloquent($query)
                          ->addColumn('select',function($reg){

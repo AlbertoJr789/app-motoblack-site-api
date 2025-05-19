@@ -7,7 +7,7 @@
     <div class="p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 w-full">
     <Datatable-Passageiros :ajax-route="'{{route('admin.passageiros.dataTableData')}}'"
             :can-create="@can('passageiros.create') true @else false @endcan"
-            :can-delete="@can('passageiros.delete') true @else false @endcan"
+            :can-delete="false"
             >
             <template v-slot:toolbar>
                 {{-- @can('passageiros.create')

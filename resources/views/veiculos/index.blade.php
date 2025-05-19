@@ -6,14 +6,14 @@
 <div class="p-3 w-full h-full">
     <div class="p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 w-full">
         <Datatable-Veiculos :ajax-route="'{{route('admin.veiculos.dataTableData')}}'"
-            :can-create="@can('veiculos.create') true @else false @endcan"
+            :can-create="false"
             :can-delete="@can('veiculos.delete') true @else false @endcan">
             <template v-slot:toolbar>
-                @can('veiculos.create')
+                {{-- @can('veiculos.create')
                 <button class="btn-primary" onclick="Livewire.dispatch('openCreate')">
                     <i class="fa-solid fa-plus mr-1"></i> Novo
                 </button>
-                @endcan
+                @endcan --}}
                 <button class="btn-primary mx-2" onclick="Livewire.dispatch('openFilter')">
                     <i class="fa-solid fa-magnifying-glass-chart mr-1"></i> Filtro
                 </button>

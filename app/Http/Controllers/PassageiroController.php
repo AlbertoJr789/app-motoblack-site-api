@@ -35,10 +35,10 @@ class PassageiroController extends AppBaseController
             $d = $request->all();
 
             $passageiro = $this->passageiroRepository->update($d,$passageiro->id);
-            if(isset($d['active']) && $d['active'] == 'on'){
-                $passageiro->user->motivo_inativo = null;
+            if(!isset($d['active'])){
+                $passageiro->user->motivo_inativo = $d['motivo_inativo'];
             }else{
-                $passageiro->user->motivo_inativo = 'Passageiro inativado pelo sistema';
+                $passageiro->user->motivo_inativo = null;
             }
             $passageiro->user->save();
             
@@ -93,7 +93,7 @@ class PassageiroController extends AppBaseController
                                return $reg->deleter ? $reg->deleter->name : '';
                          })
                          ->editColumn('active',function($reg){
-                            return !$reg->user->motivo_inativo ? '<span class="badge badge-green uppercase">'.__('Yes').'</span>' : '<span class="badge badge-red uppercase">'.__('No').'</span>';
+                            return !$reg->user->motivo_inativo ? '<span class="badge badge-green uppercase">'.__('Yes').'</span>' : '<span class="badge badge-red uppercase">'.__('No') .' - '.$reg->user->motivo_inativo.'</span>';
                          })
                          ->addColumn('action',function($reg){
                                return view('passageiros.action-buttons',['data' => $reg]);

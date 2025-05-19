@@ -30,7 +30,8 @@ class Pessoa extends Model
         'nome' => 'string',
         'tipo' => 'integer',
         'documento' => 'string',
-        'rg' => 'string'
+        'rg' => 'string',
+        'active' => 'bool'
     ];
 
     public static array $rules = [];
@@ -54,4 +55,15 @@ class Pessoa extends Model
     {
         return $this->hasOne(Endereco::class, 'id', 'endereco_id');
     }
+
+    public function agente()
+    {
+        return $this->belongsTo(Agente::class, 'id', 'pessoa_id');
+    }
+
+    public function passageiro()
+    {
+        return $this->belongsTo(Passageiro::class, 'id', 'pessoa_id');
+    }
+
 }

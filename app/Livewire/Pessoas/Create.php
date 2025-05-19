@@ -21,24 +21,23 @@ class Create extends Component
     public $open, $create, $update;
 
     public ?Pessoa $Pessoa; 
+    public $showActive = false;
     public $endereco;
 
     //attributes
     public $id,$nome,$tipo=1,$documento,$rg,$active;
 
-    //address
-    public $requiredAddress;
-    
+
     public function mount(){
         $this->open = $this->create = $this->update = false;
         $this->Pessoa = $this->endereco = null;
         $this->id = $this->nome = $this->documento = $this->rg = $this->active = null;
         $this->tipo = 1;
-        $this->requiredAddress = false;
     }
 
     public function render()
     {
+   
         return view('pessoas.create');
     }
 
@@ -48,13 +47,15 @@ class Create extends Component
         $this->reset();
         $this->create = true;
         $this->open = true;
-        $this->requiredAddress = false;
+        $this->showActive = false;
+
         $this->dispatch('resetStepper');
     }
 
     #[On('openEdit')]
     public function openEdit(Pessoa $pessoa)
     {
+
         $this->Pessoa = $pessoa;
 
         $this->id = $pessoa->id;
@@ -67,12 +68,13 @@ class Create extends Component
         $this->open = $this->update = true;
         $this->create = false;
 
+        $this->showActive = true;
+        
         if($pessoa->endereco){
             $this->endereco = $pessoa->endereco->toArray();
         }else{
             $this->endereco = null;
         }
-        $this->requiredAddress = true;
         $this->dispatch('resetStepper');
     }
 

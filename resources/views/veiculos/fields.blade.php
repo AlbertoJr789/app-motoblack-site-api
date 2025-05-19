@@ -55,6 +55,7 @@
     @endif
 </div>
 
+@if($Veiculo)
 <div class="grid sm:grid-cols-2 sm:gap-6 grid-cols-1" x-show="!$wire.active">
     <!-- Documento Field -->
     <div>
@@ -62,3 +63,5 @@
         {!! Form::text('motivo_inativo', null, ['class' => 'input w-full','wire:model' => 'motivo_inativo','x-bind:required'=>'!$wire.active']) !!}
     </div>
 </div>
+@endif
+

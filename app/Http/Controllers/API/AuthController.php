@@ -105,7 +105,7 @@ class AuthController extends Controller
 
         if($user->user->motivo_inativo){
             return response()->json([
-                'message' => __('Your account is not active!').' '.__('Reason').': '.__($user->user->motivo_inativo,locale:request()->getPreferredLanguage() ?? 'en_US')
+                'message' => __('Your account is not active!',locale:request()->getPreferredLanguage() ?? 'pt_BR').' '.__('Reason').': '.__($user->user->motivo_inativo,locale:request()->getPreferredLanguage() ?? 'pt_BR')
             ],401);
         }
         
