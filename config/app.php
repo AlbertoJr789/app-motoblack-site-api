@@ -45,6 +45,7 @@ return [
     'debug' => (bool) env('APP_DEBUG', false),
 
     'firebase_url' => env('FIREBASE_URL'),
+    'here_api_key' => env('HERE_API_KEY'),
 
     /*
     |--------------------------------------------------------------------------
