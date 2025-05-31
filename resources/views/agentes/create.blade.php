@@ -14,21 +14,18 @@
             <div wire:key='agentes'> 
                <x-stepper>
                     <x-stepper-item icon="fa-solid fa-info" active-stepper="0"/>
-                    @if($Agente && $Agente->em_analise)
-                        <x-stepper-item icon="fa-solid fa-address-card" active-stepper="1"/>
-                    @endif
+                    <x-stepper-item icon="fa-solid fa-address-card" active-stepper="1" x-show="$wire.em_analise"/>
+                   
                 </x-stepper> 
                 <div class="my-2" stepper-fields >
                     <div>
                         <h1 class="m-auto text-2xl">{{__('Agent Info')}}</h1>
                         @include('agentes.fields')
                     </div>
-                    @if($Agente && $Agente->em_analise)
-                    <div class="hidden">
+                    <div class="hidden" x-show="$wire.em_analise">
                         <h1 class="m-auto text-2xl">{{__('Agent Activation')}}</h1>     
                         @include('agentes.activation-fields')                   
                     </div>
-                    @endif
                 </div>
             </div>
 
