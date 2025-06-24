@@ -64,7 +64,7 @@ trait DecodableTrait
         }
         $headerNumber = (string)+$encodedHeader;
         $precision = $headerNumber & 15;
-        $thirdDim = ($headerNumber >> 4) & 7;
+        $thirdDim = ($headerNumber >> 4) & 7; 
         $thirdDimPrecision = ($headerNumber >> 7) & 15;
         return compact('precision', 'thirdDim', 'thirdDimPrecision');
     }

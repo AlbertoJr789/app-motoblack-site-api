@@ -11,6 +11,9 @@ class AtividadeTest extends TestCase
 {
  
 
+    /**
+     *  Moving Agent and passenger location to the destination
+     */
     public function test_trip_with_simulated_coords() {
 
         $atividade = Atividade::find(110);
@@ -20,10 +23,10 @@ class AtividadeTest extends TestCase
 
         /**
          *  https://router.hereapi.com/v8/routes
-         *    ?transportMode=car&origin=-20.45271,%20-45.43919&destination=-20.45740,-45.42524&apiKey=qOeyhjddKf_KQt3iImd4QaVhu9QBGFFeh2YKR9Q0B5w&return=polyline
+         *    ?transportMode=car&origin=-20.45271,%20-45.43919&destination=-20.45740,-45.42524&apiKey=config('app.here_api_key')
          */
             
-        // ])->throw();
+        // 
 
         foreach ($coords['polyline'] as $coord) {
             dump("Current coordinate: " . implode(',', $coord) . PHP_EOL);
@@ -38,18 +41,16 @@ class AtividadeTest extends TestCase
             sleep(0.3);
         }
 
-
-
     }
 
     /**
-     *  Agent going to passengers pickup position
+     *  Agent going to passengers origin position
      */
     public function test_trip_agent_with_simulated_coords() {
         $atividade = Atividade::find(103);
 
 
-        $agent =Http::get(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/.json")->throw()->json();
+        $agent = Http::get(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/.json")->throw()->json();
         
         $origin = [
             'latitude' => $agent['latitude'],
