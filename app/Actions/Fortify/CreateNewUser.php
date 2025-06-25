@@ -79,6 +79,10 @@ class CreateNewUser implements CreatesNewUsers
             default => $user
         };
 
+        if(!$type){
+            $user->update(['admin' => true]);
+        }
+      
         return $ret;
     }
 }

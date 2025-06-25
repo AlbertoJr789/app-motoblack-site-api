@@ -32,7 +32,8 @@ class User extends Authenticatable
         'telefone',
         'password',
         'profile_photo_path',
-        'motivo_inativo'
+        'motivo_inativo',
+        'admin'
     ];
 
     /**
