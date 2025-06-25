@@ -18,15 +18,9 @@ class AtividadeTest extends TestCase
 
         $atividade = Atividade::find(110);
 
-        $flexPolyline = 'BG51qgnB9ts12C6hBmpB0jBgtB8GwqBAwWUsd8BsnB3cU3N3DrTkpC7GwbjI4c7Gkc3D4NjDoBvMkN3DgF7BgFrEopBU4NzF8VvH4N3DgF3X4SzU8f7Q0e7LoLvlBwW0FkIoBwHzP8VjDwH8B4DgP4NgU4Sj6BkkC7GsE7GUUwoCUgUrxB8BvbnB_JA';
-        $coords = FlexiblePolyline::decode($flexPolyline);
+        $response = Http::get("https://router.hereapi.com/v8/routes?transportMode=car&origin={$atividade->origin->latitude},{$atividade->origin->longitude}&destination={$atividade->destiny->latitude},{$atividade->destiny->longitude}&apiKey=".config('app.here_api_key')."&return=polyline")->throw()->json();
 
-        /**
-         *  https://router.hereapi.com/v8/routes
-         *    ?transportMode=car&origin=-20.45271,%20-45.43919&destination=-20.45740,-45.42524&apiKey=config('app.here_api_key')
-         */
-            
-        // 
+        $coords = FlexiblePolyline::decode($response['routes'][0]['sections'][0]['polyline']);
 
         foreach ($coords['polyline'] as $coord) {
             dump("Current coordinate: " . implode(',', $coord) . PHP_EOL);
@@ -48,7 +42,6 @@ class AtividadeTest extends TestCase
      */
     public function test_trip_agent_with_simulated_coords() {
         $atividade = Atividade::find(103);
-
 
         $agent = Http::get(config('app.firebase_url')."/availableAgents/{$atividade->agente->uuid}/.json")->throw()->json();
         
