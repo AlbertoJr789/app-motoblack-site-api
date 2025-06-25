@@ -41,9 +41,10 @@ Após instalar as dependências frontend, execute o vite para gerar o bundle con
 
     npm run build
 
-Variáveis importantes de considerar dentro do .env (além do banco de dados obviamente):
+Copie e renomeie o .env.example para .env e atente-se às seguintes variáveis lá dentro (além das que se referem ao banco de dados):
 
     APP_URL=http://${IPV4}:8000 (a porta é importante para os links simbólicos das fotos de usuário)
+
     FIREBASE_URL=https://exemplo-default-rtdb.firebaseio.com
     HERE_API_KEY=djjawdoajw92941924090asdj
 
@@ -62,6 +63,15 @@ Gere uma nova chave para o projeto caso necessário
 Migre o banco de dados
 
     php artisan migrate
+
+Você pode rodar as factories para que registros fictícios sejam criados também:
+
+    php artisan db:seed
+
+Isso inclusive já gera um usuário para acessar a página:
+
+    username: admin
+    senha: 123123123
 
 ## Executando a aplicação
 
