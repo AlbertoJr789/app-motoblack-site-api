@@ -17,13 +17,39 @@ Este repositório contém o site para moderador dos aplicativos do moto-black as
 <a href="https://github.com/AlbertoJr789/app-motoblack-mototaxista">Link Aplicativo Mototaxista</a>
 
 
+## Softwares necessários
+
+PHP: Versão 8.1 a 8.3
+
+Composer: Versão 2.8.6
+
+Node: Versão 23.10
+
+Sugiro utilizar o <a href="https://herd.laravel.com">Laravel Herd</a> para instalar todos os softwares convenientemente.
+
 ## Configurações
 
-Duas variáveis são necessárias dentro do .env (além do banco de dados obviamente):
+Instale as dependências do composer:
+
+    composer install
+
+Instale as dependências frontend:
+
+    npm install
+
+Após instalar as dependências frontend, execute o vite para gerar o bundle contendo a compilação das dependências frontend.
+
+    npm run build
+
+Variáveis importantes de considerar dentro do .env (além do banco de dados obviamente):
 
     APP_URL=http://${IPV4}:8000 (a porta é importante para os links simbólicos das fotos de usuário)
     FIREBASE_URL=https://exemplo-default-rtdb.firebaseio.com
     HERE_API_KEY=djjawdoajw92941924090asdj
+
+Limpe qualquer arquivo de cache antigo que possa estar no projeto:
+
+    php artisan config:clear
 
 Habilite o link simbólico do storage privado com a pasta pública para que as fotos de perfil sejam visíveis:
 
