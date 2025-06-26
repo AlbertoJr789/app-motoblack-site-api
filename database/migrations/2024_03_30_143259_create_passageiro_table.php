@@ -16,11 +16,10 @@ return new class extends Migration
     {
         Schema::create('passageiro', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->softDeletes();
             $table->foreignId('pessoa_id')->references('id')->on('pessoa');
             $table->foreignId('user_id')->references('id')->on('users');
-            // $table->boolean('active')->default(true);
+            $table->timestamps();
+            $table->softDeletes();
             $table->foreignId('creator_id')->references('id')->on('users');
             $table->foreignId('editor_id')->nullable()->references('id')->on('users');
             $table->foreignId('deleter_id')->nullable()->references('id')->on('users');

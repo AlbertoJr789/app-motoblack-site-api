@@ -16,14 +16,14 @@ return new class extends Migration
     {
         Schema::create('pessoa', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->smallInteger('tipo')->nullable()->comment('1-PF,2-PJ');
-            $table->string('documento')->nullable()->comment('CPF/CNPJ');
+            $table->string('nome',160);
             $table->string('rg')->nullable();
+            $table->smallInteger('tipo')->nullable()->comment('1-PF,2-PJ');
+            $table->string('documento',18)->nullable()->comment('CPF/CNPJ');
+            $table->foreignId('endereco_id')->nullable()->references('id')->on('endereco');
+            $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
-            $table->boolean('active')->default(true);
-            $table->foreignId('endereco_id')->nullable()->references('id')->on('endereco');
             $table->foreignId('creator_id')->references('id')->on('users');
             $table->foreignId('editor_id')->nullable()->references('id')->on('users');
             $table->foreignId('deleter_id')->nullable()->references('id')->on('users');

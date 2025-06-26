@@ -18,16 +18,16 @@ return new class extends Migration
         Schema::create('veiculo', function (Blueprint $table) {
             $table->id();
             $table->smallInteger('tipo');
-            $table->string('modelo');
-            $table->string('marca');
-            $table->string('chassi')->nullable();
-            $table->string('renavam')->nullable();
-            $table->string('placa');
-            $table->string('cor');
+            $table->string('modelo',100);
+            $table->string('marca',100);
+            $table->string('chassi',45)->nullable();
+            $table->string('renavam',45)->nullable();
+            $table->string('placa',10);
+            $table->string('cor',7)->comment('HEX');
             $table->dateTime('data_desativacao')->nullable();
+            $table->foreignId('agente_id')->references('id')->on('agente');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreignId('agente_id')->references('id')->on('agente');
             $table->boolean('active')->default(false);
             $table->string('motivo_inativo')->nullable();
             $table->foreignId('creator_id')->references('id')->on('users');

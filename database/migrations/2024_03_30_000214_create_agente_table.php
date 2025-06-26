@@ -20,18 +20,14 @@ return new class extends Migration
         Schema::create('agente', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->nullable();
-            // $table->smallInteger('tipo');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('pessoa_id')->references('id')->on('pessoa');
+            $table->foreignId('veiculo_ativo_id')->nullable()->references('id')->on('veiculo');
             $table->smallInteger('status');
-            // $table->text('latitude')->nullable();
-            // $table->text('longitude')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->dateTime('data_desativacao')->nullable();
-            // $table->boolean('active')->default(false);
             $table->boolean('em_analise')->default(true);
-            $table->foreignId('veiculo_ativo_id')->nullable()->references('id')->on('veiculo');
-            $table->foreignId('pessoa_id')->references('id')->on('pessoa');
-            $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('creator_id')->references('id')->on('users');
             $table->foreignId('editor_id')->nullable()->references('id')->on('users');
             $table->foreignId('deleter_id')->nullable()->references('id')->on('users');

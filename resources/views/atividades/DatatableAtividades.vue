@@ -58,7 +58,6 @@
         {data: 'obs_passageiro', title: window.trans('Passenger Report')},
         {data: 'justificativa_cancelamento', title: window.trans('Reason for Cancelling')},
         {data: 'veiculo', name: "V.modelo", title: window.trans('Vehicle Used')},
-        {data: 'rota_gerada', title: window.trans('Route Taken')},
         
         {data: 'created_at', title: window.trans('Creation Date')},
         {data: 'updated_at', title: window.trans('Update Date')},

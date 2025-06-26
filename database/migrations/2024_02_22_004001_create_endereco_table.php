@@ -19,14 +19,14 @@ return new class extends Migration
     {
         Schema::create('endereco', function (Blueprint $table) {
             $table->id();
-            $table->string('cep');
-            $table->string('logradouro');
-            $table->string('numero')->nullable();
-            $table->string('bairro')->nullable();
-            $table->string('complemento')->nullable();
-            $table->string('cidade')->nullable();
-            $table->string('estado')->nullable();
-            $table->string('pais')->nullable();
+            $table->string('cep',45);
+            $table->string('logradouro',100);
+            $table->string('numero',10)->nullable();
+            $table->string('bairro',45)->nullable();
+            $table->string('complemento',45)->nullable();
+            $table->string('pais',45)->nullable();
+            $table->string('estado',45)->nullable();
+            $table->string('cidade',45)->nullable();
             $table->text('latitude')->nullable();
             $table->text('longitude')->nullable();
             $table->timestamps();
