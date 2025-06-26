@@ -1,82 +1,124 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏍️ Moto Black - Painel Administrativo & API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<div align="center">
 
-## Moto Black Painel Administrativo/Api
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-Este repositório contém o site para moderador dos aplicativos do moto-black assim como endpoints de consumo para os mesmos.
+</div>
+
+---
+
+## 📋 Sobre o Projeto
+
+Este repositório contém o **painel administrativo** e **endpoints de API** para os aplicativos do Moto Black, permitindo o gerenciamento completo da plataforma de mototáxis.
+
+### 🔗 Aplicativos Relacionados
+
+- 🚶‍♂️ **[App Passageiro](https://github.com/AlbertoJr789/app-motoblack-cliente)** - Aplicativo para passageiros
+- 🏍️ **[App Mototaxista](https://github.com/AlbertoJr789/app-motoblack-mototaxista)** - Aplicativo para mototaxistas
+
+---
+
+## 🛠️ Pré-requisitos
+
+| Software | Versão |
+|----------|--------|
+| **PHP** | 8.1 - 8.3 |
+| **Composer** | 2.8.6+ |
+| **Node.js** | 23.10+ |
+
+> 💡 **Dica:** Recomendamos usar o [Laravel Herd](https://herd.laravel.com) para uma instalação mais conveniente de todos os softwares necessários.
+
+---
+
+## ⚙️ Configuração e Instalação
+
+### 1. 📦 Instalar Dependências
+
+```bash
+# Instalar dependências PHP
+composer install
+
+# Instalar dependências frontend
+npm install
+
+# Compilar assets
+npm run build
+```
+
+### 2. 🔧 Configurar Ambiente
+
+```bash
+# Copiar arquivo de ambiente
+cp .env.example .env
+
+# Limpar cache de configuração
+php artisan config:clear
+
+# Gerar chave da aplicação
+php artisan key:generate
+
+# Criar link simbólico para storage
+php artisan storage:link
+```
+
+### 3. 🗄️ Configurar Banco de Dados
+
+Edite o arquivo `.env` com as seguintes variáveis importantes:
+
+```env
+# URL da aplicação (importante para links simbólicos)
+APP_URL=http://${IPV4}:8000
+
+# Configurações do Firebase
+FIREBASE_URL=https://exemplo-default-rtdb.firebaseio.com
+
+# Chave da API HERE
+HERE_API_KEY=djjawdoajw92941924090asdj
+```
+
+### 4. 🚀 Executar Migrações
+
+```bash
+# Executar migrações
+php artisan migrate
+
+# (Opcional) Popular banco com dados de teste
+php artisan db:seed
+```
+
+> 🔑 **Credenciais de Acesso:** Após executar o seed, você pode acessar com:
+> - **Usuário:** `admin`
+> - **Senha:** `123123123`
+
+---
+
+## 🚀 Executando a Aplicação
+
+Para expor a aplicação aos aplicativos móveis:
+
+```bash
+php artisan serve --host=0.0.0.0
+```
+
+> 📱 **Importante:** Use a flag `--host=0.0.0.0` para permitir acesso via rede LAN. Os aplicativos móveis devem estar conectados na mesma rede Wi-Fi do servidor.
+
+---
+
+## 📚 Tecnologias Utilizadas
+
+- **Backend:** Laravel 10, PHP 8.1+
+- **Frontend:** Vue.js, Tailwind CSS, Livewire
+- **Banco de Dados:** MySQL
+- **APIs:** Firebase Realtime Database, HERE Maps API
+- **Autenticação:** Laravel Jetstream
+
+---
+
+<div align="center">
 
 
-<a href="https://github.com/AlbertoJr789/app-motoblack-cliente">Link Aplicativo Passageiro</a>
-
-<a href="https://github.com/AlbertoJr789/app-motoblack-mototaxista">Link Aplicativo Mototaxista</a>
-
-
-## Softwares necessários
-
-PHP: Versão 8.1 a 8.3
-
-Composer: Versão 2.8.6
-
-Node: Versão 23.10
-
-Sugiro utilizar o <a href="https://herd.laravel.com">Laravel Herd</a> para instalar todos os softwares convenientemente.
-
-## Configurações
-
-Instale as dependências do composer:
-
-    composer install
-
-Instale as dependências frontend:
-
-    npm install
-
-Após instalar as dependências frontend, execute o vite para gerar o bundle contendo a compilação das dependências frontend.
-
-    npm run build
-
-Copie e renomeie o .env.example para .env e atente-se às seguintes variáveis lá dentro (além das que se referem ao banco de dados):
-
-    APP_URL=http://${IPV4}:8000 (a porta é importante para os links simbólicos das fotos de usuário)
-
-    FIREBASE_URL=https://exemplo-default-rtdb.firebaseio.com
-    HERE_API_KEY=djjawdoajw92941924090asdj
-
-Limpe qualquer arquivo de cache antigo que possa estar no projeto:
-
-    php artisan config:clear
-
-Habilite o link simbólico do storage privado com a pasta pública para que as fotos de perfil sejam visíveis:
-
-    php artisan storage:link
-
-Gere uma nova chave para o projeto caso necessário
-
-    php artisan key:generate
-
-Migre o banco de dados
-
-    php artisan migrate
-
-Você pode rodar as factories para que registros fictícios sejam criados também:
-
-    php artisan db:seed
-
-Isso inclusive já gera um usuário para acessar a página:
-
-    username: admin
-    senha: 123123123
-
-## Executando a aplicação
-
-Para expor a aplicação aos aplicativos utilize o artisan:
-
-    php artisan serve --host=0.0.0.0
-
-Com a flag --host, será possível consumir os endpoints de API pelos aplicativos. Lá, utiliza-se a url base como o ipv4 da máquina na rede LAN. O celular deve estar conectado no mesmo wi-fi que o computador servindo este projeto. 
+</div> 
