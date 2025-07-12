@@ -29,9 +29,10 @@ Este repositório contém o **painel administrativo** e **endpoints de API** par
 | **PHP** | 8.1 - 8.3 |
 | **Composer** | 2.8.6+ |
 | **Node.js** | 23.10+ |
+| **[MySQL](https://dev.mysql.com/downloads/windows/installer/8.0.html)** | 8.0+ |
+
 
 > 💡 **Dica:** Recomendamos usar o [Laravel Herd](https://herd.laravel.com) para uma instalação mais conveniente de todos os softwares necessários.
-
 ---
 
 ## ⚙️ Configuração e Instalação
