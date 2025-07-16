@@ -18,8 +18,7 @@ Este repositório contém o **painel administrativo** e **endpoints de API** par
 ### 🔗 Aplicativos Relacionados
 
 - 🚶‍♂️ **[App Passageiro](https://github.com/AlbertoJr789/app-motoblack-cliente)** - Aplicativo para passageiros
-- 🏍️ **[App Mototaxista](https://github.com/AlbertoJr789/app-motoblack-mototaxista)** - Aplicativo para mototaxistas
-
+- 🏍️ **[App Mototaxista](https://github.com/AlbertoJr789/app-motoblack-mototaxista)** - Aplicativo para mototaxistas 
 ---
 
 ## 🛠️ Pré-requisitos
@@ -119,7 +118,5 @@ php artisan serve --host=0.0.0.0
 
 ---
 
-<div align="center">
+> 💡 **Não conseguiu configurar o projeto ?** [Clique aqui e acesse o vídeo com as instruções](https://youtu.be/Lgg81R3tMLM)
 
-
-</div> 
